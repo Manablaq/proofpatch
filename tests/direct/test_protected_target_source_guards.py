@@ -54,3 +54,35 @@ def test_adversarial_candidate_contains_regressions_for_semantic_review_fixture(
     assert "owner_upgrade_after_escalation" in source
     assert "root.upgraders.get().append(self.owner)" in source
     assert "self.protected_value = value" in source
+
+def test_v1_constructor_uses_native_address_calldata_boundary():
+    # Regression for the Bradbury CLI native-address constructor calldata path.
+    source = V1.read_text()
+    tree = ast.parse(source)
+    contract = next(
+        node
+        for node in tree.body
+        if isinstance(node, ast.ClassDef) and node.name == "ProtectedTarget"
+    )
+    constructor = next(
+        node
+        for node in contract.body
+        if isinstance(node, ast.FunctionDef) and node.name == "__init__"
+    )
+
+    params = constructor.args.args
+    assert [param.arg for param in params] == [
+        "self",
+        "proofpatch_governor",
+        "product_name",
+        "initial_value",
+    ]
+
+    governor_param = params[1]
+    assert isinstance(governor_param.annotation, ast.Name)
+    assert governor_param.annotation.id == "Address"
+
+    # A native Address decoded from calldata must not be wrapped in Address(...)
+    # a second time. Bradbury proved that double conversion raises TypeError.
+    assert "governor = proofpatch_governor" in source
+    assert "Address(proofpatch_governor)" not in source

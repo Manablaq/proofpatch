@@ -41,8 +41,8 @@ class ProtectedTarget(gl.Contract):
     installed_candidate_hash: str
     registered_with_proofpatch: bool
 
-    def __init__(self, proofpatch_governor: str, product_name: str, initial_value: str):
-        governor = Address(proofpatch_governor)
+    def __init__(self, proofpatch_governor: Address, product_name: str, initial_value: str):
+        governor = proofpatch_governor
         self.owner = gl.message.sender_address
         self.proofpatch_governor = governor
         self.product_name = product_name

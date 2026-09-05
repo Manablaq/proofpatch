@@ -48,7 +48,18 @@ Covered after the reviewer-coverage patch:
 - evidence identity is isolated by target;
 - mutation of one consequential consensus binding causes validator disagreement;
 - an exact all-true approval vector is accepted by the captured validator
-  only when every binding and semantic boolean matches.
+  only when every binding and semantic boolean matches;
+- the target-v1 constructor boundary is pinned to native `Address` calldata so
+  a CLI-decoded address cannot be incorrectly wrapped in `Address(...)` again.
+
+## Bradbury target-v1 deployment recovery
+
+The first target-v1 Bradbury deployment attempt did **not** install a contract.
+It is preserved as negative deployment evidence in
+`docs/BRADBURY_TARGET_V1_RECOVERY.md`. The failed address is never eligible for
+registration. A corrected target-v1 source must pass the full local preflight,
+receive a new immutable source hash/tag, and then be deployed once for a fresh
+finality/source-parity gate.
 
 ## Bradbury-only proof boundary
 

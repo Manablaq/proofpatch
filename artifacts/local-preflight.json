@@ -1,7 +1,7 @@
 {
   "contract_sha256": {
     "contracts/proofpatch_governor.py": "3f6f3b2c75582a47230a1d860d79645a16428000ae60f695deba878bf55fdcde",
-    "contracts/protected_target_v1.py": "6488e9d44acfac9997d41ce8c324fb410a469af68b96d8dbf20c50ce34b3df00",
+    "contracts/protected_target_v1.py": "7607cce754d8f7905eed629b0e8af0f3ce51bd405b3b4ba9db19e5d831209f19",
     "contracts/protected_target_v2_safe.py": "013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea"
   },
   "direct_test_suite": "tests/direct",

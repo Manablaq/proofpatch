@@ -3,7 +3,7 @@
     "params": [
       [
         "proofpatch_governor",
-        "string"
+        "address"
       ],
       [
         "product_name",
