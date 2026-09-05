@@ -101,7 +101,15 @@ def _semantic_checks(all_true: bool):
     }
 
 
-def _evidence(governor, target, proposal_id, *, now=None):
+def _evidence(
+    governor,
+    target,
+    proposal_id,
+    *,
+    now=None,
+    ci_id="ci-proof-001",
+    audit_id="audit-proof-001",
+):
     now = int(time.time()) if now is None else now
     summary = json.loads(governor.get_proposal_summary(proposal_id))
     common = {
@@ -116,7 +124,7 @@ def _evidence(governor, target, proposal_id, *, now=None):
     ci = {
         **common,
         "kind": "ci",
-        "evidence_id": "ci-proof-001",
+        "evidence_id": ci_id,
         "issuer": CI_AUTHORITY,
         "checks": {
             "genvm_lint": True,
@@ -130,7 +138,7 @@ def _evidence(governor, target, proposal_id, *, now=None):
     audit = {
         **common,
         "kind": "audit",
-        "evidence_id": "audit-proof-001",
+        "evidence_id": audit_id,
         "issuer": AUDIT_AUTHORITY,
         "verdict": "PASS",
         "independent_review": True,
@@ -397,3 +405,262 @@ def test_validator_agrees_only_when_full_bound_result_matches(direct_vm, direct_
     # validator agreement. The leader must first reach the intended decision.
     assert governor.get_proposal_status(proposal_id) == "REJECTED"
     assert direct_vm.run_validator() is True
+
+
+def test_expired_proposal_releases_target_and_cannot_remain_active(
+    direct_vm, direct_deploy, direct_alice, direct_bob
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    expires_at = int(summary["expires_at"])
+    warped = time.strftime(
+        "%Y-%m-%dT%H:%M:%SZ",
+        time.gmtime(expires_at + 1),
+    )
+
+    # genlayer-test 0.29.2 Direct Mode stores the warped datetime on the VM,
+    # but its _refresh_gl_message() path does not propagate datetime into the
+    # already-loaded SDK's gl.message_raw. ProofPatch reads the deterministic
+    # transaction timestamp from gl.message_raw["datetime"], so mirror the
+    # documented transaction-context value here for this pinned runner only.
+    direct_vm.warp(warped)
+    import sys
+
+    contract_module = sys.modules[governor.__class__.__module__]
+    contract_module.gl.message_raw["datetime"] = warped
+
+    governor.expire_proposal(proposal_id)
+
+    assert governor.get_proposal_status(proposal_id) == "EXPIRED"
+    assert int(governor.get_active_proposal(_address_arg(direct_bob))) == 0
+
+
+def test_retry_state_can_be_retried_and_reaches_fresh_review(
+    direct_vm, direct_deploy, direct_alice, direct_bob
+):
+    direct_vm.check_pickling = True
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    direct_vm.mock_web(
+        re.escape(PARENT_URL),
+        {"status": 500, "body": "temporary upstream failure"},
+    )
+    governor.review_proposal(proposal_id)
+    assert governor.get_proposal_status(proposal_id) == "REVIEW_RETRY_REQUIRED"
+
+    direct_vm.clear_mocks()
+    _mock_valid_evidence(
+        direct_vm,
+        governor,
+        direct_bob,
+        proposal_id,
+        semantic_all_true=False,
+    )
+    governor.review_proposal(proposal_id)
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    assert summary["status"] == "REJECTED"
+    assert int(summary["reviewed_at"]) > 0
+    assert int(governor.get_active_proposal(_address_arg(direct_bob))) == 0
+
+
+def test_repair_uses_fresh_evidence_ids_and_fresh_review_without_candidate_mutation(
+    direct_vm, direct_deploy, direct_alice, direct_bob
+):
+    direct_vm.check_pickling = True
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    candidate_hash_before = governor.get_candidate_hash(proposal_id)
+    evidence_set_before = governor.get_evidence_set_hash(proposal_id)
+
+    direct_vm.mock_web(
+        re.escape(PARENT_URL),
+        {"status": 200, "body": PARENT_BYTES.decode()},
+    )
+    direct_vm.mock_web(
+        re.escape(CANDIDATE_URL),
+        {"status": 200, "body": "tampered candidate"},
+    )
+    governor.review_proposal(proposal_id)
+    assert governor.get_proposal_status(proposal_id) == "EVIDENCE_REPAIR_REQUIRED"
+
+    repaired_ci_url = CI_PREFIX + ("f" * 40) + "/evidence/ci-repaired.json"
+    repaired_audit_url = AUDIT_PREFIX + ("1" * 40) + "/evidence/audit-repaired.json"
+    repaired_ci_id = "ci-proof-repaired-002"
+    repaired_audit_id = "audit-proof-repaired-002"
+
+    direct_vm.sender = direct_alice
+    governor.repair_evidence(
+        proposal_id,
+        REPAIRED_CANDIDATE_URL,
+        repaired_ci_url,
+        repaired_ci_id,
+        repaired_audit_url,
+        repaired_audit_id,
+    )
+
+    assert governor.get_candidate_hash(proposal_id) == candidate_hash_before
+    assert governor.get_evidence_set_hash(proposal_id) != evidence_set_before
+    assert governor.get_proposal_status(proposal_id) == "PROPOSED"
+
+    direct_vm.clear_mocks()
+    ci, audit = _evidence(
+        governor,
+        direct_bob,
+        proposal_id,
+        ci_id=repaired_ci_id,
+        audit_id=repaired_audit_id,
+    )
+    direct_vm.mock_web(
+        re.escape(PARENT_URL),
+        {"status": 200, "body": PARENT_BYTES.decode()},
+    )
+    direct_vm.mock_web(
+        re.escape(REPAIRED_CANDIDATE_URL),
+        {"status": 200, "body": CANDIDATE_BYTES.decode()},
+    )
+    direct_vm.mock_web(
+        re.escape(repaired_ci_url),
+        {"status": 200, "body": json.dumps(ci)},
+    )
+    direct_vm.mock_web(
+        re.escape(repaired_audit_url),
+        {"status": 200, "body": json.dumps(audit)},
+    )
+    direct_vm.mock_llm(
+        r"PROOFPATCH_SEMANTIC_REVIEW_V1",
+        json.dumps(_semantic_checks(False)),
+    )
+
+    governor.review_proposal(proposal_id)
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    assert summary["status"] == "REJECTED"
+    assert int(summary["reviewed_at"]) > 0
+    assert governor.get_candidate_hash(proposal_id) == candidate_hash_before
+
+
+def test_stale_evidence_is_repairable_and_cannot_authorize(
+    direct_vm, direct_deploy, direct_alice, direct_bob
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    now = int(time.time())
+    ci, audit = _evidence(governor, direct_bob, proposal_id, now=now)
+    ci["published_at"] = now - (2 * 24 * 60 * 60)
+    ci["expires_at"] = now + 3600
+
+    direct_vm.mock_web(
+        re.escape(PARENT_URL),
+        {"status": 200, "body": PARENT_BYTES.decode()},
+    )
+    direct_vm.mock_web(
+        re.escape(CANDIDATE_URL),
+        {"status": 200, "body": CANDIDATE_BYTES.decode()},
+    )
+    direct_vm.mock_web(re.escape(CI_URL), {"status": 200, "body": json.dumps(ci)})
+    direct_vm.mock_web(
+        re.escape(AUDIT_URL),
+        {"status": 200, "body": json.dumps(audit)},
+    )
+
+    governor.review_proposal(proposal_id)
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    assert summary["status"] == "EVIDENCE_REPAIR_REQUIRED"
+    assert summary["last_review_code"] == "CI_EVIDENCE_STALE"
+
+
+def test_evidence_identity_is_isolated_by_target(
+    direct_vm, direct_deploy, direct_alice, direct_bob, direct_charlie
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    first = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    _register(governor, direct_vm, direct_charlie, direct_alice)
+    second = _create(governor, direct_vm, direct_charlie, direct_alice)
+
+    assert int(first) == 1
+    assert int(second) == 2
+    assert int(governor.get_active_proposal(_address_arg(direct_bob))) == 1
+    assert int(governor.get_active_proposal(_address_arg(direct_charlie))) == 2
+
+
+def test_validator_rejects_single_consequential_binding_mutation(
+    direct_vm, direct_deploy, direct_alice, direct_bob
+):
+    direct_vm.check_pickling = True
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+    _mock_valid_evidence(
+        direct_vm, governor, direct_bob, proposal_id, semantic_all_true=False
+    )
+
+    governor.review_proposal(proposal_id)
+    assert governor.get_proposal_status(proposal_id) == "REJECTED"
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    forged = {
+        "target": summary["target"],
+        "proposal_id": int(proposal_id),
+        "parent_code_hash": summary["parent_code_hash"],
+        "candidate_code_hash": "0" * 64,
+        "policy_fingerprint": summary["policy_fingerprint"],
+        "evidence_set_hash": summary["evidence_set_hash"],
+        "kind": "DECISION",
+        "error_code": "",
+        "decision": "REJECT",
+        **_semantic_checks(False),
+    }
+
+    assert direct_vm.run_validator(leader_result=forged) is False
+
+
+def test_validator_agrees_on_exact_all_true_approval_vector(
+    direct_vm, direct_deploy, direct_alice, direct_bob
+):
+    direct_vm.check_pickling = True
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    # Capture the real ProofPatch validator closure without pretending that
+    # Direct Mode can execute the finalized IC->IC child upgrade.
+    _mock_valid_evidence(
+        direct_vm, governor, direct_bob, proposal_id, semantic_all_true=False
+    )
+    governor.review_proposal(proposal_id)
+    assert governor.get_proposal_status(proposal_id) == "REJECTED"
+
+    direct_vm.clear_mocks()
+    _mock_valid_evidence(
+        direct_vm, governor, direct_bob, proposal_id, semantic_all_true=True
+    )
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    approval = {
+        "target": summary["target"],
+        "proposal_id": int(proposal_id),
+        "parent_code_hash": summary["parent_code_hash"],
+        "candidate_code_hash": summary["candidate_code_hash"],
+        "policy_fingerprint": summary["policy_fingerprint"],
+        "evidence_set_hash": summary["evidence_set_hash"],
+        "kind": "DECISION",
+        "error_code": "",
+        "decision": "APPROVE",
+        **_semantic_checks(True),
+    }
+
+    assert direct_vm.run_validator(leader_result=approval) is True
