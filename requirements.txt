@@ -1,0 +1,6 @@
+# Reproducible GenLayer development toolchain snapshot.
+# genlayer-test 0.29.2 is the current PyPI release verified on 2026-08-31.
+genlayer-test==0.29.2
+# Pin the GenVM linter to the exact reviewed upstream commit.
+genvm-linter @ git+https://github.com/genlayerlabs/genvm-linter.git@fa4a4d4536b28fdc2730e13a983ba01b69ccc6f3
+pytest==8.4.2

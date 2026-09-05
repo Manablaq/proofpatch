@@ -1,0 +1,14 @@
+{
+  "schema": "proofpatch-evidence-v1",
+  "kind": "audit",
+  "evidence_id": "release-2.0.0-audit-0001",
+  "issuer": "independent-audit-publisher",
+  "target": "0x0000000000000000000000000000000000000000",
+  "parent_sha256": "REPLACE_WITH_64_HEX",
+  "candidate_sha256": "REPLACE_WITH_64_HEX",
+  "policy_fingerprint": "REPLACE_WITH_64_HEX",
+  "published_at": 0,
+  "expires_at": 0,
+  "verdict": "PASS",
+  "independent_review": true
+}

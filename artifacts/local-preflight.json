@@ -1,0 +1,20 @@
+{
+  "contract_sha256": {
+    "contracts/proofpatch_governor.py": "3f6f3b2c75582a47230a1d860d79645a16428000ae60f695deba878bf55fdcde",
+    "contracts/protected_target_v1.py": "6488e9d44acfac9997d41ce8c324fb410a469af68b96d8dbf20c50ce34b3df00",
+    "contracts/protected_target_v2_safe.py": "013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea"
+  },
+  "direct_test_suite": "tests/direct",
+  "python": "3.12.14",
+  "status": "PASS",
+  "strict_typecheck_artifacts": [
+    "artifacts/strict-typecheck/proofpatch_governor.json",
+    "artifacts/strict-typecheck/protected_target_v1.json",
+    "artifacts/strict-typecheck/protected_target_v2_safe.json"
+  ],
+  "strict_typecheck_sha256": {
+    "artifacts/strict-typecheck/proofpatch_governor.json": "0512328c3583d649f1c54d0b5cf0a44db54ead8538e4900ee5ce5504855d5608",
+    "artifacts/strict-typecheck/protected_target_v1.json": "6a1364bf86a9e5160a01c9fef987de4f9e9674c43aa65af23bb44b7406d4088e",
+    "artifacts/strict-typecheck/protected_target_v2_safe.json": "92d5aa7902920fd4416a234d28e470df29458bad7c8155fccc6199063bbf5abb"
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "cancel_proposal": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "confirm_install": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "candidate_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "create_proposal": {
+      "params": [
+        [
+          "target",
+          "string"
+        ],
+        [
+          "candidate_version",
+          "string"
+        ],
+        [
+          "candidate_source_url",
+          "string"
+        ],
+        [
+          "candidate_code",
+          "bytes"
+        ],
+        [
+          "ci_evidence_url",
+          "string"
+        ],
+        [
+          "ci_evidence_id",
+          "string"
+        ],
+        [
+          "audit_evidence_url",
+          "string"
+        ],
+        [
+          "audit_evidence_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "int",
+      "payable": false
+    },
+    "expire_proposal": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "get_active_proposal": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "get_candidate_code": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bytes"
+    },
+    "get_candidate_hash": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_code_hash": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_version": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_evidence_set_hash": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_policy_fingerprint": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_count": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "get_proposal_status": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_summary": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "is_upgrade_authorized": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "target",
+          "string"
+        ],
+        [
+          "candidate_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "mark_execution_timeout": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "reconcile_install": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "register_target": {
+      "params": [
+        [
+          "owner",
+          "string"
+        ],
+        [
+          "constitution",
+          "string"
+        ],
+        [
+          "source_authority",
+          "string"
+        ],
+        [
+          "ci_authority",
+          "string"
+        ],
+        [
+          "audit_authority",
+          "string"
+        ],
+        [
+          "source_prefix",
+          "string"
+        ],
+        [
+          "ci_prefix",
+          "string"
+        ],
+        [
+          "audit_prefix",
+          "string"
+        ],
+        [
+          "current_version",
+          "string"
+        ],
+        [
+          "current_source_url",
+          "string"
+        ],
+        [
+          "current_code_hash",
+          "string"
+        ],
+        [
+          "max_evidence_age_seconds",
+          "int"
+        ],
+        [
+          "proposal_ttl_seconds",
+          "int"
+        ],
+        [
+          "execution_timeout_seconds",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "repair_evidence": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "candidate_source_url",
+          "string"
+        ],
+        [
+          "ci_evidence_url",
+          "string"
+        ],
+        [
+          "ci_evidence_id",
+          "string"
+        ],
+        [
+          "audit_evidence_url",
+          "string"
+        ],
+        [
+          "audit_evidence_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "review_proposal": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    }
+  }
+}

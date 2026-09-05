@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ProofPatch — consensus-gated upgrades for GenLayer Intelligent Contracts." />
+  <title>ProofPatch — No code upgrade without consensus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="app-shell">
+    <aside class="rail">
+      <a class="brand" href="#" aria-label="ProofPatch home">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span>ProofPatch</span>
+      </a>
+      <nav class="nav-stack" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-dot"></span><span>Overview</span></button>
+        <button class="nav-item" data-view="release"><span class="nav-dot"></span><span>Release #084</span></button>
+        <button class="nav-item" data-view="evidence"><span class="nav-dot"></span><span>Evidence</span></button>
+        <button class="nav-item" data-view="policy"><span class="nav-dot"></span><span>Constitution</span></button>
+      </nav>
+      <div class="rail-footer">
+        <div class="network-pill"><span class="pulse"></span> Bradbury / prototype</div>
+        <p>Local interface prototype.<br>Live bindings follow deployment.</p>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SEMANTIC UPGRADE FIREWALL</p>
+          <h1>Release control, without the admin-key blind spot.</h1>
+        </div>
+        <div class="top-actions">
+          <button class="ghost-button" id="copyHash">Copy candidate hash</button>
+          <button class="primary-button" id="openProposal">Inspect release</button>
+        </div>
+      </header>
+
+      <section class="hero-grid" id="overview">
+        <article class="release-card panel">
+          <div class="panel-kicker">
+            <span>ACTIVE RELEASE</span>
+            <span class="status status-appealable"><b></b> APPEALABLE</span>
+          </div>
+          <div class="release-title-row">
+            <div>
+              <p class="muted">VaultCore</p>
+              <h2>2.3.1 <span>→</span> 2.4.0</h2>
+            </div>
+            <div class="release-id">#084</div>
+          </div>
+
+          <div class="hash-route">
+            <div class="route-node">
+              <span>PARENT</span>
+              <code>17a8…61c2</code>
+            </div>
+            <div class="route-line"><i></i></div>
+            <div class="route-node active-node">
+              <span>CANDIDATE</span>
+              <code id="candidateHashShort">91ab…7fd4</code>
+            </div>
+            <div class="route-line"><i></i></div>
+            <div class="route-node">
+              <span>POLICY</span>
+              <code>c83d…10ea</code>
+            </div>
+          </div>
+
+          <div class="countdown-wrap">
+            <div>
+              <p>Native appeal window</p>
+              <strong id="countdown">00 : 18 : 42</strong>
+            </div>
+            <button class="appeal-button" id="appealBtn">Appeal decision</button>
+          </div>
+        </article>
+
+        <article class="trust-card panel">
+          <div class="panel-kicker"><span>TRUST CHAIN</span><span>3 / 3</span></div>
+          <div class="trust-row">
+            <div class="trust-icon">01</div>
+            <div><strong>Source publisher</strong><p>Immutable commit authority</p></div>
+            <span class="verified">VERIFIED</span>
+          </div>
+          <div class="trust-row">
+            <div class="trust-icon">02</div>
+            <div><strong>CI publisher</strong><p>Exact candidate + interface gates</p></div>
+            <span class="verified">VERIFIED</span>
+          </div>
+          <div class="trust-row">
+            <div class="trust-icon">03</div>
+            <div><strong>Independent audit</strong><p>Distinct publisher namespace</p></div>
+            <span class="verified">VERIFIED</span>
+          </div>
+          <div class="trust-foot">
+            <span>Evidence set</span>
+            <code>77af1c…8d93</code>
+          </div>
+        </article>
+      </section>
+
+      <section class="metrics-grid">
+        <article class="metric panel"><span>VALIDATOR RESULT</span><strong>5 / 5</strong><p>exact consequential agreement</p></article>
+        <article class="metric panel"><span>INVARIANTS</span><strong>10 / 10</strong><p>semantic safety vector</p></article>
+        <article class="metric panel"><span>EVIDENCE AGE</span><strong>04m</strong><p>within 24h policy ceiling</p></article>
+        <article class="metric panel"><span>ADMIN BYPASS</span><strong>NONE</strong><p>ProofPatch is sole upgrader</p></article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel semantic-panel">
+          <div class="section-head">
+            <div><p class="eyebrow">SEMANTIC DIFF</p><h3>What consensus actually checked</h3></div>
+            <span class="fingerprint">policy c83d…10ea</span>
+          </div>
+          <div class="matrix" id="semanticMatrix"></div>
+        </article>
+
+        <article class="panel timeline-panel">
+          <div class="section-head">
+            <div><p class="eyebrow">EXECUTION PATH</p><h3>Finality before consequence</h3></div>
+          </div>
+          <ol class="timeline">
+            <li class="done"><i></i><div><strong>Candidate frozen</strong><p>Exact bytes + SHA-256 committed</p></div><time>12:02:18</time></li>
+            <li class="done"><i></i><div><strong>Evidence verified</strong><p>Provenance, freshness, corroboration</p></div><time>12:03:06</time></li>
+            <li class="done"><i></i><div><strong>Consensus accepted</strong><p>Full semantic vector matched</p></div><time>12:04:31</time></li>
+            <li class="current"><i></i><div><strong>Appeal window</strong><p>No upgrade emitted on acceptance</p></div><time>NOW</time></li>
+            <li><i></i><div><strong>Finalized install</strong><p>Target rechecks exact authorization</p></div><time>—</time></li>
+            <li><i></i><div><strong>Post-install proof</strong><p>Installed hash → VERIFIED</p></div><time>—</time></li>
+          </ol>
+        </article>
+      </section>
+
+      <section class="panel manifesto">
+        <div>
+          <p class="eyebrow">THE PROOFPATCH RULE</p>
+          <h3>A hash proves bytes.<br><em>Consensus must prove permission.</em></h3>
+        </div>
+        <p>ProofPatch refuses to confuse integrity with provenance, schema validity with semantic agreement, acceptance with finality, or repository fixes with deployed reality.</p>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="releaseDialog" class="release-dialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Close">×</button>
+      <p class="eyebrow">RELEASE #084</p>
+      <h2>Authorization envelope</h2>
+      <div class="detail-grid">
+        <div><span>Target</span><code>0x71F0…A921</code></div>
+        <div><span>Candidate SHA-256</span><code id="candidateHashFull">91ab2b88f1d8b2f08bb35d7f86c17d6fc12f0bea753f6167e687c9641c1b7fd4</code></div>
+        <div><span>Policy fingerprint</span><code>c83d06f4…10ea</code></div>
+        <div><span>Evidence set</span><code>77af1cd1…8d93</code></div>
+      </div>
+      <div class="dialog-note"><b>Execution lock:</b> the exact candidate cannot install until the review transaction is finalized. The target re-fetches these frozen bytes and hashes them again immediately before replacing its code slot.</div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="./app.js"></script>
+</body>
+</html>

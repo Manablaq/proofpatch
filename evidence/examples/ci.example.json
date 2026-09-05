@@ -1,0 +1,20 @@
+{
+  "schema": "proofpatch-evidence-v1",
+  "kind": "ci",
+  "evidence_id": "release-2.0.0-ci-0001",
+  "issuer": "approved-ci-publisher",
+  "target": "0x0000000000000000000000000000000000000000",
+  "parent_sha256": "REPLACE_WITH_64_HEX",
+  "candidate_sha256": "REPLACE_WITH_64_HEX",
+  "policy_fingerprint": "REPLACE_WITH_64_HEX",
+  "published_at": 0,
+  "expires_at": 0,
+  "checks": {
+    "genvm_lint": true,
+    "typecheck": true,
+    "schema": true,
+    "direct_tests": true,
+    "adversarial_tests": true,
+    "proofpatch_interface_tests": true
+  }
+}

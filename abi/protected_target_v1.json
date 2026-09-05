@@ -1,0 +1,145 @@
+{
+  "ctor": {
+    "params": [
+      [
+        "proofpatch_governor",
+        "string"
+      ],
+      [
+        "product_name",
+        "string"
+      ],
+      [
+        "initial_value",
+        "string"
+      ]
+    ],
+    "kwparams": {}
+  },
+  "methods": {
+    "get_owner": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "address"
+    },
+    "get_product_name": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proofpatch_governor": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "address"
+    },
+    "get_protected_value": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "proofpatch_installed_candidate_hash": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "proofpatch_installed_proposal_id": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "proofpatch_upgrade": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "candidate_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "register_with_proofpatch": {
+      "params": [
+        [
+          "constitution",
+          "string"
+        ],
+        [
+          "source_authority",
+          "string"
+        ],
+        [
+          "ci_authority",
+          "string"
+        ],
+        [
+          "audit_authority",
+          "string"
+        ],
+        [
+          "source_prefix",
+          "string"
+        ],
+        [
+          "ci_prefix",
+          "string"
+        ],
+        [
+          "audit_prefix",
+          "string"
+        ],
+        [
+          "current_version",
+          "string"
+        ],
+        [
+          "current_source_url",
+          "string"
+        ],
+        [
+          "current_code_hash",
+          "string"
+        ],
+        [
+          "max_evidence_age_seconds",
+          "int"
+        ],
+        [
+          "proposal_ttl_seconds",
+          "int"
+        ],
+        [
+          "execution_timeout_seconds",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "set_protected_value": {
+      "params": [
+        [
+          "value",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    }
+  }
+}

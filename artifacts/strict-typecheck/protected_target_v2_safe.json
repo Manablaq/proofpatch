@@ -1,0 +1,8 @@
+{
+  "blocking_diagnostic_count": 0,
+  "contract": "contracts/protected_target_v2_safe.py",
+  "diagnostics": [],
+  "informational_diagnostic_count": 0,
+  "tool_exit_code": 0,
+  "unknown_severity_count": 0
+}
