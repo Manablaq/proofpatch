@@ -36,7 +36,7 @@ function normalize(value: string) {
 
 function isTerminal(status: string) {
   const normalized = normalize(status);
-  return normalized === "FINALIZED" || normalized === "CANCELED";
+  return normalized === "FINALIZED" || normalized === "CANCELED" || normalized === "CANCELLED";
 }
 
 export function TransactionTrackerProvider({
@@ -118,6 +118,9 @@ export function TransactionTrackerProvider({
         });
         await queryClient.invalidateQueries({
           queryKey: ["proofpatch", "finality-chain"],
+        });
+        await queryClient.invalidateQueries({
+          queryKey: ["proofpatch", "proposal-workspace"],
         });
       }
     }

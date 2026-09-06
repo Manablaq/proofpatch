@@ -12,7 +12,6 @@ import {
   Gauge,
   Hash,
   LayoutDashboard,
-  Network,
   RefreshCw,
   ShieldCheck,
   TerminalSquare,
@@ -28,7 +27,8 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import { WalletButton } from "@/components/wallet-button";
 import { CommandPalette } from "@/components/command-palette";
-import { useTransactionTracker } from "@/lib/transaction-tracker";
+import { ProposalWorkspace } from "@/components/proposal-workspace";
+import { TransactionCenter } from "@/components/transaction-center";
 
 function short(value: string, head = 10, tail = 8) {
   if (!value) return "—";
@@ -73,7 +73,6 @@ function DataValue({
 export function Dashboard() {
   const live = useProofPatchLiveState();
   const finality = useCanonicalFinalityChain();
-  const tracker = useTransactionTracker();
 
   const state = live.data;
 
@@ -239,6 +238,8 @@ export function Dashboard() {
             </article>
           </section>
 
+          <ProposalWorkspace />
+
           <section className="dashboard-grid two">
             <article className="dash-card" id="finality">
               <div className="dash-card-head">
@@ -377,42 +378,7 @@ export function Dashboard() {
               </div>
               <Gauge size={20} />
             </div>
-            {tracker.transactions.length === 0 ? (
-              <div className="transaction-empty">
-                <Network size={28} />
-                <div>
-                  <strong>No tracked wallet transactions.</strong>
-                  <p>
-                    When a future ProofPatch write returns a transaction ID, the app
-                    stores it immediately, resumes tracking after navigation/reopen,
-                    refreshes state as consensus changes, and never treats a client
-                    timeout as permission to submit the same write again.
-                  </p>
-                </div>
-                <span className="status-chip">Auto-refresh enabled</span>
-              </div>
-            ) : (
-              <div className="tracked-transactions">
-                {tracker.transactions.map((tx) => (
-                  <div className="tracked-transaction" key={tx.hash}>
-                    <div>
-                      <strong>{tx.label}</strong>
-                      <code>{short(tx.hash, 14, 10)}</code>
-                    </div>
-                    <div>
-                      <span>{tx.status}</span>
-                      <small>{tx.execution || "tracking execution"}</small>
-                    </div>
-                    <button
-                      onClick={() => tracker.removeTransaction(tx.hash)}
-                      aria-label={`Remove ${tx.label} from local tracker`}
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
+            <TransactionCenter />
           </section>
 
           <section className="security-grid">

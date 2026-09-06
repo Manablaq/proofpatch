@@ -1,35 +1,39 @@
 "use client";
 
-import { Wallet } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle2, Wallet } from "lucide-react";
 import { toast } from "sonner";
-import { connectBradburyWallet } from "@/lib/genlayer";
+import { useWallet } from "@/lib/wallet-context";
 
 function short(value: string) {
   return value ? `${value.slice(0, 6)}…${value.slice(-4)}` : "";
 }
 
 export function WalletButton() {
-  const [address, setAddress] = useState("");
-  const [busy, setBusy] = useState(false);
+  const wallet = useWallet();
 
   async function connect() {
-    setBusy(true);
     try {
-      const connected = await connectBradburyWallet();
-      setAddress(connected);
+      await wallet.connect();
       toast.success("Wallet connected to Bradbury");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Wallet connection failed");
-    } finally {
-      setBusy(false);
     }
   }
 
   return (
-    <button className="wallet-button" onClick={connect} disabled={busy}>
-      <Wallet size={16} />
-      <span>{address ? short(address) : busy ? "Connecting…" : "Connect wallet"}</span>
+    <button
+      className={`wallet-button ${wallet.isOwner ? "owner-wallet" : ""}`}
+      onClick={() => void connect()}
+      disabled={wallet.connecting}
+    >
+      {wallet.isOwner ? <CheckCircle2 size={16} /> : <Wallet size={16} />}
+      <span>
+        {wallet.address
+          ? short(wallet.address)
+          : wallet.connecting
+            ? "Connecting…"
+            : "Connect wallet"}
+      </span>
     </button>
   );
 }

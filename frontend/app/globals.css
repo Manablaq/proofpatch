@@ -662,6 +662,385 @@
     .transaction-empty .status-chip { grid-column:2; }
   }
 
+  /* Live proposal workflow */
+  .proposal-workspace {
+    scroll-margin-top: 90px;
+    margin-top: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--surface);
+  }
+  .proposal-workspace-head {
+    min-height: 132px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 28px;
+    padding: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .proposal-workspace-head h2 {
+    margin-top: 8px;
+    font-size: 28px;
+    letter-spacing: -.045em;
+  }
+  .proposal-workspace-head p {
+    max-width: 720px;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .proposal-workspace button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .proposal-history-head {
+    min-height: 42px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 22px;
+    border-bottom: 1px solid var(--line);
+    color: var(--faint);
+    font: 500 9px var(--font-mono), monospace;
+    letter-spacing: .09em;
+  }
+  .proposal-loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 22px;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .proposal-row {
+    display: grid;
+    grid-template-columns: 80px minmax(180px,1fr) minmax(180px,.75fr) minmax(160px,.7fr);
+    align-items: center;
+    gap: 18px;
+    min-height: 86px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .proposal-row:last-child { border-bottom: 0; }
+  .proposal-id, .proposal-main, .proposal-state {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+  }
+  .proposal-id strong { font: 650 15px var(--font-display), sans-serif; }
+  .proposal-id small {
+    color: var(--faint);
+    font: 500 8px var(--font-mono), monospace;
+    text-transform: uppercase;
+  }
+  .proposal-main strong { font-size: 12px; }
+  .proposal-main code {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--faint);
+    font-size: 9px;
+  }
+  .proposal-state span {
+    width: max-content;
+    padding: 5px 7px;
+    border-radius: 999px;
+    background: var(--success-soft);
+    color: var(--success);
+    font: 600 8px var(--font-mono), monospace;
+  }
+  .proposal-state small { color: var(--faint); font-size: 9px; }
+  .proposal-action-lock {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 1.4;
+  }
+  .proposal-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 180;
+    overflow-y: auto;
+    display: grid;
+    place-items: start center;
+    padding: 5vh 18px;
+    background: rgba(3,7,6,.62);
+    backdrop-filter: blur(10px);
+  }
+  .proposal-modal {
+    width: min(900px,100%);
+    margin-bottom: 5vh;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: 22px;
+    background: var(--surface);
+    box-shadow: 0 35px 120px rgba(0,0,0,.35);
+  }
+  .proposal-modal-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 26px 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .proposal-modal-head h2 {
+    margin-top: 8px;
+    font-size: 27px;
+    letter-spacing: -.045em;
+  }
+  .modal-x {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    cursor: pointer;
+  }
+  .proposal-form { padding: 28px; }
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+  }
+  .form-grid label {
+    display: grid;
+    gap: 7px;
+    min-width: 0;
+  }
+  .form-grid label > span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .form-grid .wide { grid-column: 1 / -1; }
+  .form-grid input, .form-grid textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: 0;
+    background: var(--surface-strong);
+    color: var(--ink);
+  }
+  .form-grid input {
+    min-height: 42px;
+    padding: 0 11px;
+    font-size: 11px;
+  }
+  .form-grid textarea {
+    resize: vertical;
+    min-height: 180px;
+    padding: 12px;
+    font: 500 10px/1.6 var(--font-mono), monospace;
+  }
+  .candidate-upload-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .candidate-upload-row small {
+    color: var(--faint);
+    font: 500 9px var(--font-mono), monospace;
+  }
+  .file-picker {
+    width: max-content;
+    min-height: 34px;
+    display: inline-flex !important;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 7px !important;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 9px !important;
+  }
+  .file-picker input { display: none; }
+  .preflight-list {
+    margin-top: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(192,58,56,.2);
+    border-radius: 14px;
+    background: rgba(192,58,56,.035);
+  }
+  .preflight-list.passed {
+    border-color: rgba(8,124,104,.22);
+    background: var(--success-soft);
+  }
+  .preflight-summary {
+    min-height: 56px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .preflight-summary code {
+    max-width: 310px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--faint);
+    font-size: 8px;
+  }
+  .preflight-checks {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .preflight-checks > div {
+    min-height: 40px;
+    display: grid;
+    grid-template-columns: 18px minmax(150px,.65fr) 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .preflight-checks > div:last-child { border-bottom: 0; }
+  .preflight-checks .ok svg { color: var(--success); }
+  .preflight-checks .bad svg { color: var(--danger); }
+  .preflight-checks span { font-size: 10px; font-weight: 600; }
+  .preflight-checks small {
+    overflow-wrap: anywhere;
+    color: var(--muted);
+    font: 500 8px/1.4 var(--font-mono), monospace;
+  }
+  .proposal-submit-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .owner-proof {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+    font-size: 10px;
+  }
+  .owner-proof svg { color: var(--success); }
+  .write-safety-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(168,105,4,.2);
+    border-radius: 10px;
+    background: rgba(168,105,4,.06);
+    color: var(--warning);
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .tracked-transactions { padding: 0 22px; }
+  .tracked-transaction {
+    display: grid;
+    grid-template-columns: 38px minmax(180px,1fr) minmax(170px,.7fr) auto;
+    align-items: center;
+    gap: 12px;
+    min-height: 76px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tracked-transaction:last-child { border-bottom: 0; }
+  .tracked-icon {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: rgba(168,105,4,.08);
+    color: var(--warning);
+  }
+  .tracked-icon.done {
+    background: var(--success-soft);
+    color: var(--success);
+  }
+  .tracked-main, .tracked-state {
+    min-width: 0;
+    display: grid;
+    gap: 4px;
+  }
+  .tracked-main strong { font-size: 11px; }
+  .tracked-main code {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--faint);
+    font-size: 8px;
+  }
+  .tracked-state span { font: 600 9px var(--font-mono), monospace; }
+  .tracked-state small { color: var(--faint); font-size: 9px; }
+  .tracked-actions { display: flex; gap: 5px; }
+  .tracked-actions button {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    cursor: pointer;
+  }
+  .wallet-button.owner-wallet {
+    background: var(--success-soft);
+    color: var(--success);
+    border-color: rgba(8,124,104,.22);
+  }
+  .spin { animation: proofpatchSpin .9s linear infinite; }
+  @keyframes proofpatchSpin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 800px) {
+    .proposal-workspace-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .proposal-workspace-head .button { width: 100%; }
+    .proposal-row { grid-template-columns: 60px 1fr; }
+    .proposal-state, .proposal-action-lock { grid-column: 2; }
+    .proposal-submit-row { grid-template-columns: 1fr; }
+    .tracked-transaction { grid-template-columns: 34px 1fr auto; }
+    .tracked-state { grid-column: 2; }
+    .tracked-actions {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .proposal-row {
+      grid-template-columns: 1fr;
+      padding: 18px;
+    }
+    .proposal-state, .proposal-action-lock { grid-column: 1; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-grid .wide { grid-column: 1; }
+    .proposal-modal-backdrop { padding: 0; }
+    .proposal-modal {
+      min-height: 100vh;
+      border: 0;
+      border-radius: 0;
+    }
+    .proposal-modal-head, .proposal-form { padding: 20px; }
+    .preflight-summary { grid-template-columns: auto 1fr; }
+    .preflight-summary code { grid-column: 1 / -1; }
+    .preflight-checks > div { grid-template-columns: 18px 1fr; }
+    .preflight-checks small { grid-column: 2; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
     *, *::before, *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }

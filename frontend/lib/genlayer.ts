@@ -47,17 +47,31 @@ function text(value: unknown): string {
   return String(value);
 }
 
+let finalizedReadTail: Promise<void> = Promise.resolve();
+
 async function readFinal(
   address: string,
   functionName: string,
   args: unknown[] = [],
 ): Promise<unknown> {
-  return publicClient.readContract({
-    address: address as HexAddress,
-    functionName,
-    args: args as never[],
-    transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
-  } as never);
+  const previous = finalizedReadTail;
+  let release!: () => void;
+  finalizedReadTail = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+
+  await previous;
+  try {
+    return await publicClient.readContract({
+      address: address as HexAddress,
+      functionName,
+      args: args as never[],
+      transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
+    } as never);
+  } finally {
+    await new Promise((resolve) => setTimeout(resolve, 160));
+    release();
+  }
 }
 
 export async function getProofPatchLiveState(): Promise<ProofPatchLiveState> {
@@ -231,4 +245,116 @@ export async function connectBradburyWallet(): Promise<string> {
 
   await walletClient.connect("testnetBradbury");
   return address;
+}
+
+export type ProposalSummary = {
+  proposal_id?: number | string;
+  target?: string;
+  parent_version?: string;
+  parent_code_hash?: string;
+  candidate_version?: string;
+  candidate_code_hash?: string;
+  policy_fingerprint?: string;
+  evidence_set_hash?: string;
+  status?: string;
+  last_review_code?: string;
+  created_at?: number | string;
+  expires_at?: number | string;
+  reviewed_at?: number | string;
+  execution_deadline?: number | string;
+  [key: string]: unknown;
+};
+
+export type ProposalWorkspaceState = {
+  proposalCount: number;
+  activeProposal: string;
+  proposals: ProposalSummary[];
+};
+
+function parseProposalSummary(value: unknown): ProposalSummary | null {
+  try {
+    const raw = text(value);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as unknown;
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return null;
+    return parsed as ProposalSummary;
+  } catch {
+    return null;
+  }
+}
+
+export async function getProposalWorkspaceState(): Promise<ProposalWorkspaceState> {
+  const countRaw = await readFinal(PROOFPATCH.governor, "get_proposal_count");
+  const activeRaw = await readFinal(PROOFPATCH.governor, "get_active_proposal", [
+    PROOFPATCH.target,
+  ]);
+  const proposalCount = Number(text(countRaw) || "0");
+  const proposals: ProposalSummary[] = [];
+  const first = Math.max(1, proposalCount - 7);
+
+  for (let id = proposalCount; id >= first; id -= 1) {
+    const raw = await readFinal(PROOFPATCH.governor, "get_proposal_summary", [id]);
+    const summary = parseProposalSummary(raw);
+    if (summary) proposals.push(summary);
+  }
+
+  return {
+    proposalCount,
+    activeProposal: text(activeRaw),
+    proposals,
+  };
+}
+
+async function getBradburyWriteClient(address: string) {
+  if (typeof window === "undefined" || !window.ethereum) {
+    throw new Error("No browser wallet detected.");
+  }
+
+  const client = createClient({
+    chain: testnetBradbury,
+    account: address as HexAddress,
+    provider: window.ethereum as never,
+  });
+
+  await client.connect("testnetBradbury");
+  return client;
+}
+
+export async function createProofPatchProposal(
+  draft: import("@/lib/proposal-workflow").ProposalDraft,
+  address: string,
+): Promise<string> {
+  const client = await getBradburyWriteClient(address);
+  const candidateBytes = new TextEncoder().encode(draft.candidateCode);
+
+  await client.simulateWriteContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "create_proposal",
+    args: [
+      PROOFPATCH.target,
+      draft.candidateVersion,
+      draft.candidateSourceUrl,
+      candidateBytes,
+      draft.ciEvidenceUrl,
+      draft.ciEvidenceId,
+      draft.auditEvidenceUrl,
+      draft.auditEvidenceId,
+    ] as never[],
+    transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
+  } as never);
+
+  return (await client.writeContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "create_proposal",
+    args: [
+      PROOFPATCH.target,
+      draft.candidateVersion,
+      draft.candidateSourceUrl,
+      candidateBytes,
+      draft.ciEvidenceUrl,
+      draft.ciEvidenceId,
+      draft.auditEvidenceUrl,
+      draft.auditEvidenceId,
+    ] as never[],
+  } as never)) as string;
 }

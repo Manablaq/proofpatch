@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   getCanonicalFinalityChain,
   getProofPatchLiveState,
+  getProposalWorkspaceState,
 } from "@/lib/genlayer";
 
 export function useProofPatchLiveState() {
@@ -23,6 +24,17 @@ export function useCanonicalFinalityChain() {
     queryFn: getCanonicalFinalityChain,
     staleTime: 45_000,
     refetchInterval: 90_000,
+    refetchOnWindowFocus: true,
+    retry: 1,
+  });
+}
+
+export function useProposalWorkspaceState() {
+  return useQuery({
+    queryKey: ["proofpatch", "proposal-workspace"],
+    queryFn: getProposalWorkspaceState,
+    staleTime: 20_000,
+    refetchInterval: 45_000,
     refetchOnWindowFocus: true,
     retry: 1,
   });
