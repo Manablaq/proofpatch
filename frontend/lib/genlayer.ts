@@ -505,3 +505,39 @@ export async function expireProofPatchProposal(
     args: args as never[],
   } as never)) as string;
 }
+
+export async function reconcileProofPatchInstall(
+  proposalId: number,
+  address: string,
+): Promise<string> {
+  requireWritableProposal(proposalId);
+  requireOwnerAddress(address);
+  const client = await getBradburyWriteClient(address);
+  const args = [proposalId];
+
+  await simulateGovernorWrite(client, "reconcile_install", args);
+
+  return (await client.writeContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "reconcile_install",
+    args: args as never[],
+  } as never)) as string;
+}
+
+export async function markProofPatchExecutionTimeout(
+  proposalId: number,
+  address: string,
+): Promise<string> {
+  requireWritableProposal(proposalId);
+  requireOwnerAddress(address);
+  const client = await getBradburyWriteClient(address);
+  const args = [proposalId];
+
+  await simulateGovernorWrite(client, "mark_execution_timeout", args);
+
+  return (await client.writeContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "mark_execution_timeout",
+    args: args as never[],
+  } as never)) as string;
+}

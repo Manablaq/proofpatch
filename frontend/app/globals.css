@@ -1061,8 +1061,8 @@
     color: var(--warning);
   }
   .proposal-state.queued span {
-    background: rgba(64,108,210,.09);
-    color: var(--ink);
+    background: rgba(168,105,4,.08);
+    color: var(--warning);
   }
   .proposal-state.danger span {
     background: rgba(192,58,56,.08);
@@ -1203,6 +1203,101 @@
     .lifecycle-row .proposal-lifecycle-cell { grid-column: 1; }
     .lifecycle-confirm-actions { flex-direction: column-reverse; }
     .lifecycle-confirm-actions .button { width: 100%; }
+  }
+
+  /* Queued install recovery + transaction truth v1 */
+  .queued-recovery-signal {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 650;
+  }
+  .queued-recovery-signal.installed {
+    background: var(--success-soft);
+    border-color: rgba(8,124,104,.2);
+    color: var(--success);
+  }
+  .queued-recovery-signal.timeout {
+    background: rgba(168,105,4,.07);
+    border-color: rgba(168,105,4,.18);
+    color: var(--warning);
+  }
+  .transaction-truth-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 14px 22px 2px;
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--muted);
+  }
+  .transaction-truth-note svg {
+    flex: 0 0 auto;
+    margin-top: 1px;
+    color: var(--success);
+  }
+  .transaction-truth-note p {
+    margin: 0;
+    font-size: 9px;
+    line-height: 1.5;
+  }
+  .transaction-truth-note strong {
+    margin-right: 4px;
+    color: var(--ink);
+  }
+  .tracked-main small {
+    color: var(--faint);
+    font-size: 8px;
+  }
+  .tracked-state {
+    gap: 5px;
+  }
+  .tracked-state small {
+    display: grid;
+    grid-template-columns: 64px minmax(0,1fr);
+    gap: 7px;
+    overflow-wrap: anywhere;
+  }
+  .tracked-state small strong {
+    color: var(--muted);
+    font-size: 8px;
+    font-weight: 650;
+  }
+  .tracked-phase {
+    width: max-content;
+    max-width: 100%;
+    padding: 4px 7px;
+    border-radius: 999px;
+    background: rgba(168,105,4,.07);
+    color: var(--warning);
+    font: 650 8px var(--font-mono), monospace !important;
+  }
+  .tracked-phase.done {
+    background: var(--success-soft);
+    color: var(--success);
+  }
+
+  @media (max-width: 800px) {
+    .transaction-truth-note {
+      margin-inline: 14px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tracked-state small {
+      grid-template-columns: 58px minmax(0,1fr);
+    }
+    .queued-recovery-signal,
+    .lifecycle-button {
+      width: 100%;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

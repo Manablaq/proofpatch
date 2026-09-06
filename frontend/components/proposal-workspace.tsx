@@ -23,6 +23,8 @@ import {
   cancelProofPatchProposal,
   createProofPatchProposal,
   expireProofPatchProposal,
+  markProofPatchExecutionTimeout,
+  reconcileProofPatchInstall,
   repairProofPatchEvidence,
   reviewProofPatchProposal,
   type ProposalSummary,
@@ -45,7 +47,7 @@ import { useTransactionTracker } from "@/lib/transaction-tracker";
 import { useWallet } from "@/lib/wallet-context";
 import { PROOFPATCH } from "@/lib/constants";
 
-type LifecycleKind = "review" | "cancel" | "expire";
+type LifecycleKind = "review" | "cancel" | "expire" | "reconcile" | "timeout";
 
 type LifecycleSelection = {
   kind: LifecycleKind;
@@ -358,13 +360,59 @@ export function ProposalWorkspace() {
       toast.error("This proposal already has a transaction being tracked.");
       return;
     }
-    if (lifecycle.kind === "cancel" && !wallet.isOwner) {
-      toast.error("Only the registered owner can cancel this proposal.");
+    if (
+      ["cancel", "reconcile", "timeout"].includes(lifecycle.kind) &&
+      !wallet.isOwner
+    ) {
+      toast.error("This recovery action requires the registered owner wallet.");
       return;
     }
     if (lifecycle.kind === "review" && !reviewAcknowledged) {
       toast.error("Confirm the finality consequence before starting review.");
       return;
+    }
+
+    if (lifecycle.kind === "reconcile" || lifecycle.kind === "timeout") {
+      const refreshed = await live.refetch();
+      const state = refreshed.data;
+      if (!state) {
+        toast.error("Finalized target installation state is unavailable.");
+        return;
+      }
+
+      const proposalHash = String(
+        lifecycle.proposal.candidate_code_hash ?? "",
+      ).toLowerCase();
+      const targetMatches =
+        Number(state.installedProposalId) === proposalId &&
+        state.installedCandidateHash.toLowerCase() === proposalHash;
+
+      if (lifecycle.kind === "reconcile" && !targetMatches) {
+        toast.error(
+          "Reconciliation blocked: the finalized target does not report this exact proposal and candidate hash.",
+        );
+        return;
+      }
+
+      if (lifecycle.kind === "timeout") {
+        const executionDeadline = Number(
+          lifecycle.proposal.execution_deadline ?? 0,
+        );
+        const deadlinePassed =
+          executionDeadline > 0 &&
+          Math.floor(Date.now() / 1000) > executionDeadline;
+
+        if (!deadlinePassed) {
+          toast.error("Execution timeout is not available before the deadline.");
+          return;
+        }
+        if (targetMatches) {
+          toast.error(
+            "Timeout blocked: the finalized target already reports the exact queued installation. Reconcile it instead.",
+          );
+          return;
+        }
+      }
     }
 
     setLifecycleBusy(true);
@@ -378,9 +426,15 @@ export function ProposalWorkspace() {
       } else if (lifecycle.kind === "cancel") {
         hash = await cancelProofPatchProposal(proposalId, wallet.address);
         label = `Cancel proposal #${proposalId}`;
-      } else {
+      } else if (lifecycle.kind === "expire") {
         hash = await expireProofPatchProposal(proposalId, wallet.address);
         label = `Expire proposal #${proposalId}`;
+      } else if (lifecycle.kind === "reconcile") {
+        hash = await reconcileProofPatchInstall(proposalId, wallet.address);
+        label = `Reconcile install proposal #${proposalId}`;
+      } else {
+        hash = await markProofPatchExecutionTimeout(proposalId, wallet.address);
+        label = `Mark execution timeout proposal #${proposalId}`;
       }
 
       tracker.trackTransaction(hash, label);
@@ -420,6 +474,22 @@ export function ProposalWorkspace() {
           body:
             "Expiry is permissionless only after the proposal deadline. The contract rejects an early attempt. Successful expiry is terminal and releases the active proposal slot.",
           button: "Sign expiry transaction",
+          icon: <TimerOff size={17} />,
+        },
+        reconcile: {
+          eyebrow: "POST-INSTALL RECOVERY",
+          title: "Reconcile the verified installation?",
+          body:
+            "The finalized protected target already reports this exact proposal ID and candidate hash. Reconciliation updates the governor's bookkeeping only; it does not execute the upgrade again.",
+          button: "Sign reconciliation",
+          icon: <RefreshCw size={17} />,
+        },
+        timeout: {
+          eyebrow: "EXECUTION LIVENESS RECOVERY",
+          title: "Mark execution timeout?",
+          body:
+            "The execution deadline has passed and the finalized target does not report this queued proposal as installed. This terminal recovery releases the active proposal slot. ProofPatch blocks this action if the exact installation is already visible and requires reconciliation instead.",
+          button: "Sign execution timeout",
           icon: <TimerOff size={17} />,
         },
       }[lifecycle.kind]
@@ -477,6 +547,27 @@ export function ProposalWorkspace() {
           const executionDeadline = Number(proposal.execution_deadline ?? 0);
           const timeReady = now > 0;
           const expired = timeReady && expiresAt > 0 && now > expiresAt;
+          const recoveryStateReady = Boolean(live.data);
+          const proposalHash = String(
+            proposal.candidate_code_hash ?? "",
+          ).toLowerCase();
+          const targetInstalledProposalId = Number(
+            live.data?.installedProposalId ?? 0,
+          );
+          const targetInstalledHash = String(
+            live.data?.installedCandidateHash ?? "",
+          ).toLowerCase();
+          const targetMatchesQueued =
+            recoveryStateReady &&
+            status === "UPGRADE_QUEUED" &&
+            targetInstalledProposalId === proposalId &&
+            targetInstalledHash === proposalHash;
+          const executionTimedOut =
+            recoveryStateReady &&
+            timeReady &&
+            status === "UPGRADE_QUEUED" &&
+            executionDeadline > 0 &&
+            now > executionDeadline;
 
           const activeStatuses = [
             "PROPOSED",
@@ -595,10 +686,51 @@ export function ProposalWorkspace() {
                       </button>
                     ) : null}
 
-                    {status === "UPGRADE_QUEUED" ? (
+                    {status === "UPGRADE_QUEUED" && targetMatchesQueued ? (
+                      <>
+                        <div className="queued-recovery-signal installed">
+                          <CheckCircle2 size={13} />
+                          Target reports exact install
+                        </div>
+                        <button
+                          className="lifecycle-button primary-action"
+                          onClick={() => openLifecycle("reconcile", proposal)}
+                          disabled={!wallet.isOwner}
+                        >
+                          <RefreshCw size={13} />
+                          Reconcile
+                        </button>
+                      </>
+                    ) : null}
+
+                    {status === "UPGRADE_QUEUED" &&
+                    executionTimedOut &&
+                    !targetMatchesQueued ? (
+                      <>
+                        <div className="queued-recovery-signal timeout">
+                          <TimerOff size={13} />
+                          Deadline passed · target reports #
+                          {targetInstalledProposalId || "—"}
+                        </div>
+                        <button
+                          className="lifecycle-button warning-action"
+                          onClick={() => openLifecycle("timeout", proposal)}
+                          disabled={!wallet.isOwner}
+                        >
+                          <TimerOff size={13} />
+                          Mark timeout
+                        </button>
+                      </>
+                    ) : null}
+
+                    {status === "UPGRADE_QUEUED" &&
+                    !targetMatchesQueued &&
+                    !executionTimedOut ? (
                       <div className="proposal-action-lock queued">
                         <RefreshCw size={13} />
-                        Finality / install pending
+                        {recoveryStateReady
+                          ? "Awaiting finality-triggered installation"
+                          : "Checking finalized target installation"}
                       </div>
                     ) : null}
 
@@ -887,7 +1019,11 @@ export function ProposalWorkspace() {
                   Keep proposal unchanged
                 </button>
                 <button
-                  className={`button ${lifecycle.kind === "cancel" ? "danger-button" : "primary"}`}
+                  className={`button ${
+                    lifecycle.kind === "cancel" || lifecycle.kind === "timeout"
+                      ? "danger-button"
+                      : "primary"
+                  }`}
                   onClick={() => void executeLifecycle()}
                   disabled={
                     lifecycleBusy ||

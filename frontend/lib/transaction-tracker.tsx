@@ -20,6 +20,7 @@ export type TrackedTransaction = {
   createdAt: number;
   status: string;
   execution: string;
+  lifecycle?: string;
 };
 
 type TrackerContextValue = {
@@ -99,7 +100,8 @@ export function TransactionTrackerProvider({
 
           if (
             snapshot.status !== tx.status ||
-            snapshot.execution !== tx.execution
+            snapshot.execution !== tx.execution ||
+            snapshot.lifecycle !== (tx.lifecycle ?? "")
           ) {
             shouldRefreshLiveState = true;
           }
@@ -108,6 +110,7 @@ export function TransactionTrackerProvider({
             ...tx,
             status: snapshot.status || tx.status,
             execution: snapshot.execution || tx.execution,
+            lifecycle: snapshot.lifecycle || tx.lifecycle || "",
           };
         }),
       );
@@ -149,6 +152,7 @@ export function TransactionTrackerProvider({
           createdAt: Date.now(),
           status: "Pending",
           execution: "",
+          lifecycle: "",
         },
         ...current,
       ];
