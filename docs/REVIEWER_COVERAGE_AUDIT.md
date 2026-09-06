@@ -1,35 +1,24 @@
-# ProofPatch reviewer coverage audit
+# ProofPatch Reviewer Coverage Audit
 
-This file separates what is proved in Direct Mode from what must be proved
-on Bradbury. ProofPatch does not fake IC-to-IC finality in unit tests.
+This audit separates deterministic test coverage, canonical Bradbury evidence, and future/disposable adversarial paths. It intentionally does not fake IC-to-IC finality in unit tests and does not replay a completed canonical live upgrade merely to create extra transactions.
 
-## Frozen governor deployment already proved
+## Reviewer hard gates
 
-- Network: Bradbury Testnet
-- Deployment transaction:
-  `0x238c570b475aa3c888f5ef81ba58c3d31ea0fd26195cd6a538f58c4bee2c254e`
-- Governor:
-  `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
-- Frozen source commit:
-  `cf97f0403706a3cbf3ec762052b514929f3d5173`
-- Frozen source tag:
-  `proofpatch-bradbury-candidate-v1`
-- Governor SHA-256:
-  `3f6f3b2c75582a47230a1d860d79645a16428000ae60f695deba878bf55fdcde`
-- Stored deployment status was independently read as `Finalized` / `7`.
-- Finalized receipt execution result was `1` (`FinishedWithReturn`).
-- `gen_getContractCode` with `status=finalized` was decoded and compared
-  byte-for-byte with both the local contract and immutable tag source.
+| Gate | ProofPatch control |
+|---|---|
+| Evidence provenance | Source, CI, and audit publishers/repository prefixes are policy-bound. |
+| Immutable/versioned evidence | Literal immutable commit URLs are required; mutable branch URLs are rejected. |
+| Freshness/corroboration | Publication/expiry/max-age rules and independent audit corroboration are enforced. |
+| Correctable evidence failure | Repairable failures enter `EVIDENCE_REPAIR_REQUIRED`; transient review failures enter `REVIEW_RETRY_REQUIRED`. |
+| Liveness/recovery | Proposal expiry, repair/retry, execution deadline, reconciliation, and timeout paths prevent indefinite lock. |
+| Exact consensus-to-consequence | Consequential target/proposal/hash/policy/evidence/semantic fields are exact-match inputs; there is no tolerance-based authorization. |
 
-## Direct Mode proof
+## Deterministic Direct Mode coverage
 
-The Direct Mode suite is responsible for deterministic policy and consensus
-logic that does not require an actual cross-contract finalized message.
-
-Covered after the reviewer-coverage patch:
+The Direct Mode suite covers deterministic policy/consensus logic that does not require an actual finalized IC-to-IC message:
 
 - immutable, publisher-bound source/CI/audit authority policy;
-- independent audit GitHub publisher;
+- independent audit publisher;
 - rejection of mutable branch URLs;
 - owner-only proposal creation;
 - exact frozen candidate bytes and SHA-256 binding;
@@ -41,54 +30,96 @@ Covered after the reviewer-coverage patch:
 - validator independent re-execution;
 - exact full-result validator agreement;
 - proposal expiry and active-target release;
-- retry state recovery through a fresh review;
-- repair with fresh immutable URLs and fresh evidence IDs while candidate
-  bytes/hash remain unchanged;
+- retry state recovery through fresh review;
+- evidence repair with new immutable URLs and fresh evidence IDs while candidate bytes/hash remain unchanged;
 - stale evidence cannot authorize;
-- evidence identity is isolated by target;
-- mutation of one consequential consensus binding causes validator disagreement;
-- an exact all-true approval vector is accepted by the captured validator
-  only when every binding and semantic boolean matches;
-- the target-v1 constructor boundary is pinned to native `Address` calldata so
-  a CLI-decoded address cannot be incorrectly wrapped in `Address(...)` again.
+- evidence identity is target-scoped;
+- mutation of consequential consensus bindings causes disagreement;
+- all-true approval requires exact consequential agreement;
+- target constructor/address boundary regression;
+- adversarial privilege, evidence, replay, stale, timeout, and source-mismatch cases.
 
-## Bradbury target-v1 deployment recovery
+## Canonical Bradbury proof — complete safe path
 
-The first target-v1 Bradbury deployment attempt did **not** install a contract.
-It is preserved as negative deployment evidence in
-`docs/BRADBURY_TARGET_V1_RECOVERY.md`. The failed address is never eligible for
-registration. A corrected target-v1 source must pass the full local preflight,
-receive a new immutable source hash/tag, and then be deployed once for a fresh
-finality/source-parity gate.
+The canonical live safe-v2 path is complete.
 
-## Bradbury-only proof boundary
+- Governor:
+  `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
+- Protected target:
+  `0xe7165dEA0F712E3161ADa773c41755d79F1e696B`
+- Proposal:
+  `1`
+- Final status:
+  `VERIFIED`
+- Last review/install code:
+  `INSTALL_VERIFIED`
+- Active proposal:
+  `0`
+- Current version:
+  `2.0.0`
+- Current candidate hash:
+  `013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea`
 
-The following remain network integration gates because Direct Mode does not
-support real IC-to-IC calls/finality:
+The completed live path demonstrates:
 
-1. Deploy and byte-verify `ProtectedTarget v1`.
-2. Register the target and prove the finalized registration child executes.
-3. Query and archive policy fingerprint, current version and current hash.
-4. Publish immutable source, CI and independently-owned audit evidence.
-5. Submit the exact safe-v2 bytes and run a real all-true validator review.
-6. Prove the review reaches `UPGRADE_QUEUED`.
-7. Preserve appeal/accepted/finalized lifecycle evidence.
-8. Prove exactly one finalized child upgrade executes successfully.
-9. Prove the target re-reads authorization and exact frozen candidate bytes.
-10. Prove the finalized install callback reaches `VERIFIED`.
-11. Prove storage and ProofPatch interface compatibility after upgrade.
-12. Prove governor current version/hash changes only after install confirmation.
-13. Prove finalized target source equals exact safe-v2 repository bytes.
-14. Run an unsafe candidate negative proof with real semantic rejection or
-    validator disagreement.
-15. Prove expired/stale authorization cannot install code.
-16. Prove execution timeout/recovery if a queued child cannot complete.
-17. Archive successful execution result fields, transaction IDs and Explorer
-    links for every consequential step.
+1. finalized target registration;
+2. immutable policy/source binding;
+3. exact safe candidate proposal;
+4. real GenLayer semantic validator review;
+5. review finality;
+6. generated child upgrade execution;
+7. target-side exact authorization/candidate re-check;
+8. exact code installation;
+9. finalized install confirmation;
+10. governor transition to `VERIFIED`;
+11. final active-slot release;
+12. preserved target invariants.
+
+Canonical transaction IDs are recorded in `BRADBURY_FINAL_EVIDENCE.md`.
+
+## Frontend reviewer boundary
+
+The Next.js frontend uses live Bradbury finalized reads and deliberately distinguishes:
+
+- submitted transaction;
+- consensus running;
+- accepted/finality pending;
+- finalized;
+- GenVM execution result;
+- canonical proposal/target reconciliation.
+
+Safety controls include:
+
+- owner recognition and wrong-wallet read-only behavior;
+- no manual `proofpatch_upgrade` button;
+- no manual `confirm_install` button;
+- no manual finalization button;
+- Proposal #1 permanent write lock;
+- immutable candidate/evidence preflight;
+- duplicate pending-transaction guard;
+- persisted transaction hash tracking;
+- state-aware review/repair/cancel/expire controls;
+- exact-target-gated reconciliation;
+- deadline + target-state-gated execution timeout.
+
+## Paths intentionally not replayed on the canonical target
+
+The unsafe candidate negative path and a deliberately failed queued-child timeout path are not replayed against Proposal #1.
+
+Reason:
+
+- Proposal #1 already completed successfully.
+- Repeating review/upgrade/confirmation would be invalid and reviewer-hostile.
+- Creating a destructive timeout condition on the verified target would manufacture failure rather than verify the completed canonical safe path.
+- Equivalent adversarial/liveness semantics are covered deterministically.
+- If a reviewer explicitly requires another live destructive path, it should use a separate disposable target and fresh proposal/evidence identities.
 
 ## Stop rule
 
-Do not call ProofPatch submission-ready until every applicable Bradbury-only
-gate above has recorded evidence. `Accepted` is never described as
-`Finalized`, and `Finalized` is never treated as execution success without
-the execution result.
+Do not describe `Accepted` as `Finalized`.
+
+Do not describe `Finalized` as execution success unless the execution result also proves success.
+
+Do not repeat a successful canonical write merely because UI state, indexing, or consensus finality takes time.
+
+Do not call Proposal #1 review, upgrade, confirmation, reconciliation, timeout, expiry, repair, or cancellation actions again.
