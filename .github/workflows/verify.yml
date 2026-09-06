@@ -21,6 +21,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # genlayer-test 0.29.2 still expects the pre-0.3 cache filename.
+      # GenVM 0.3 renamed the runner bundle to genvm-runners-all.tar.xz.
+      # Seed the exact official v0.3.0-rc7 bundle under the legacy cache
+      # filename so Direct Mode is reproducible on a clean CI runner.
+      - name: Seed pinned GenVM Direct Mode runner bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          GENVM_VERSION="v0.3.0-rc7"
+          GENVM_SHA256="e218a1854214681560351051f76fe2b878545cf3409455ef372d57014a88ca67"
+          CACHE_DIR="$HOME/.cache/gltest-direct"
+          CACHE_FILE="$CACHE_DIR/genvm-universal-$GENVM_VERSION.tar.xz"
+
+          mkdir -p "$CACHE_DIR"
+
+          curl -fL --retry 3             "https://github.com/genlayerlabs/genvm/releases/download/$GENVM_VERSION/genvm-runners-all.tar.xz"             -o "$CACHE_FILE"
+
+          echo "$GENVM_SHA256  $CACHE_FILE" | sha256sum -c -
+
       - name: Run authoritative contract preflight
         run: python scripts/preflight.py
 
