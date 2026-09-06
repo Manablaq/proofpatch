@@ -2,67 +2,104 @@
 
 **No code upgrade without consensus.**
 
-ProofPatch is a GenLayer-native semantic upgrade firewall for Intelligent Contracts. A protected target makes ProofPatch its sole GenVM upgrader. An exact candidate can replace live code only after immutable source/evidence binding, independent semantic validator review, GenLayer finality, exact-byte installation, and post-install verification.
+[![ProofPatch verify](https://github.com/Manablaq/proofpatch/actions/workflows/verify.yml/badge.svg)](https://github.com/Manablaq/proofpatch/actions/workflows/verify.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Production](https://img.shields.io/badge/Production-proofpatch.vercel.app-0b7a68)](https://proofpatch.vercel.app)
 
-## Current status
+ProofPatch is a GenLayer-native semantic upgrade firewall for Intelligent Contracts. A protected target designates ProofPatch as its sole GenVM upgrader, so an exact candidate can replace live code only after immutable evidence binding, independent validator semantic review, GenLayer finality, exact-byte installation, and post-install verification.
 
-The canonical Bradbury safe-upgrade path is complete and preserved as reviewer evidence.
+## Live deployment
 
-- Network: Bradbury Testnet
-- Governor: `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
-- Protected target: `0xe7165dEA0F712E3161ADa773c41755d79F1e696B`
-- Registered owner: `0x1f87Ae197af539253978d435aD45cCf28Fb95024`
-- Parent version: `1.0.0`
-- Installed version: `2.0.0`
-- Proposal: `#1`
-- Proposal status: `VERIFIED`
-- Last review/install code: `INSTALL_VERIFIED`
-- Active proposal: `0`
-- Release label: `ProtectedTarget/v2-safe`
+- **Application:** https://proofpatch.vercel.app
+- **Dashboard:** https://proofpatch.vercel.app/app
+- **Network:** Bradbury Testnet
+- **Governor:** `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
+- **Protected target:** `0xe7165dEA0F712E3161ADa773c41755d79F1e696B`
+- **Registered owner:** `0x1f87Ae197af539253978d435aD45cCf28Fb95024`
+- **Installed version:** `2.0.0`
+- **Canonical proposal:** `#1`
+- **Final proposal state:** `VERIFIED`
+- **Last review/install code:** `INSTALL_VERIFIED`
+- **Active proposal:** `0`
+- **Release:** `ProtectedTarget/v2-safe`
 
-The live proposal #1 path must **not** be replayed. Its review, generated upgrade, confirmation, and final verification already completed successfully.
+Proposal #1 is canonical reviewer evidence and is permanently historical/read-only. Its registration, review, generated upgrade, confirmation, and final verification are complete and must not be replayed.
 
-Frontend work is on branch `frontend/live-bradbury-v1`. It is connected to live finalized Bradbury reads, implements owner-aware proposal creation, evidence repair, review/cancel/expiry controls, queued-install recovery, persistent transaction tracking, and separate consensus/finality/execution presentation. Production promotion remains intentionally pending until the final browser/reviewer audit is complete.
+## What ProofPatch proves
 
-## Why this is GenLayer-native
+ProofPatch combines deterministic bindings with validator semantic review:
 
-A deterministic contract can compare hashes. It cannot safely decide whether arbitrary replacement source code semantically preserves human-written security invariants, avoids alternate privilege paths, retains evidence trust rules, and keeps consequential consensus correctly bound. ProofPatch puts that semantic judgment behind independent GenLayer validator consensus and uses the exact result to control GenVM's native code-upgrade capability.
+1. Register a protected target and immutable upgrade policy.
+2. Freeze exact candidate bytes and SHA-256 before review.
+3. Bind source, CI, and independent audit evidence to immutable publisher/version identities.
+4. Enforce freshness, expiry, stable evidence IDs, and independent corroboration.
+5. Have leader and validators independently repeat evidence verification and semantic policy evaluation.
+6. Require exact agreement on every authorization-driving field and semantic safety boolean.
+7. Emit the upgrade consequence only on GenLayer finality.
+8. Re-check authorization and exact candidate bytes immediately before installation.
+9. Persist installed proposal/hash metadata and verify the completed installation.
+10. Provide repair, retry, expiry, reconciliation, and timeout paths so consequential state cannot remain locked indefinitely.
 
-## Repository
+There is no fuzzy confidence threshold or tolerance that can authorize code installation.
+
+## Reviewer-facing evidence
+
+Start here:
+
+- [`docs/SUBMISSION.md`](docs/SUBMISSION.md) — compact reviewer handoff and submission checklist
+- [`docs/BRADBURY_FINAL_EVIDENCE.md`](docs/BRADBURY_FINAL_EVIDENCE.md) — canonical addresses, hashes, transactions, and final state
+- [`docs/REVIEWER_COVERAGE_AUDIT.md`](docs/REVIEWER_COVERAGE_AUDIT.md) — deterministic vs Bradbury proof boundary
+- [`docs/REVIEWER_GATES.md`](docs/REVIEWER_GATES.md) — reviewer-readiness hard gates
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — trust chain and consensus boundary
+- [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) — security assumptions and adversarial model
+- [`docs/BRADBURY_PLAN.md`](docs/BRADBURY_PLAN.md) — canonical Bradbury verification record
+- [`docs/BRADBURY_TARGET_V1_RECOVERY.md`](docs/BRADBURY_TARGET_V1_RECOVERY.md) — preserved failed-deployment diagnosis and resolution
+- [`docs/TYPECHECK_GATE.md`](docs/TYPECHECK_GATE.md) — strict GenVM typecheck evidence policy
+
+## Repository layout
 
 ```text
+.github/workflows/
+  verify.yml                       contract + frontend CI
+
 contracts/
-  proofpatch_governor.py
-  protected_target_v1.py
-  protected_target_v2_safe.py
-  protected_target_v2_unsafe.py
+  proofpatch_governor.py           immutable semantic upgrade governor
+  protected_target_v1.py          canonical protected target base
+  protected_target_v2_safe.py     installed compatible candidate
+  protected_target_v2_unsafe.py   adversarial fixture; never deploy canonically
+
+abi/
+  proofpatch_governor.json
+  protected_target_v1.json
+  protected_target_v2_safe.json
 
 tests/
-  direct/
-  integration/
+  direct/                          deterministic Direct Mode regression suite
+  integration/                     explicit Bradbury integration boundary
 
 scripts/
-  preflight.py
-  hash_source.py
-  build_evidence.py
-  verify_deployed_source.py
+  preflight.py                     lint + typecheck + schema + Direct Mode
+  hash_source.py                   exact SHA-256 helper
+  build_evidence.py                canonical evidence envelopes
+  verify_deployed_source.py        finalized RPC byte-for-byte parity
+
+artifacts/
+  local-preflight.json
+  strict-typecheck/
 
 docs/
-  ARCHITECTURE.md
-  THREAT_MODEL.md
-  REVIEWER_GATES.md
-  REVIEWER_COVERAGE_AUDIT.md
-  BRADBURY_PLAN.md
-  BRADBURY_FINAL_EVIDENCE.md
+  ...
 
 frontend/
-  app/
-  components/
-  lib/
+  app/                             Next.js App Router routes
+  components/                      product UI
+  lib/                             GenLayer reads/writes, wallet, tx tracking
   package.json
 ```
 
-## Local contract verification
+## Verification
+
+### Contracts and Direct Mode
 
 Requires Python 3.12+ and Git.
 
@@ -78,81 +115,70 @@ pip install -r requirements.txt
 python scripts/preflight.py
 ```
 
-`preflight.py` is intentionally fail-fast. It runs the configured GenVM lint/type/schema gates and the complete deterministic Direct Mode suite, and only records a successful artifact if every step succeeds.
+A passing preflight performs the GenVM lint/type/schema gates and the complete Direct Mode suite, then writes reviewer-facing verification artifacts only after every gate succeeds.
 
-To run only the Direct Mode suite:
+Run only the deterministic suite with:
 
 ```bash
 source .venv/bin/activate
 pytest tests/direct -v
 ```
 
-## Frontend
+### Frontend
 
-The current frontend is a Next.js 16 / React 19 application using GenLayerJS, TanStack Query, next-themes, Sonner, and Lucide.
+The production frontend uses Next.js 16, React 19, GenLayerJS, TanStack Query, next-themes, Sonner, and Lucide.
 
 ```bash
 cd ~/Downloads/proofpatch/frontend
 
-npm install
+npm ci
 npm run typecheck
 npm run build
 npm run dev -- -p 4173
 ```
 
-Open:
+`npm run typecheck` generates Next.js route/type declarations before running TypeScript, so clean checkouts do not rely on a committed generated `next-env.d.ts`.
 
-```text
-http://localhost:4173/
-http://localhost:4173/app
-```
+## Frontend safety model
 
-The app uses live Bradbury reads. It does **not** present demo proposal state as canonical chain state.
-
-Safety rules in the UI:
+The application uses live Bradbury reads and does not present demo proposal data as canonical chain state.
 
 - Proposal #1 is permanently historical/read-only.
-- A transaction hash is persisted as soon as a write is submitted.
-- A pending transaction is tracked rather than blindly resubmitted.
-- `Accepted`, `Finalized`, and execution success are displayed as distinct facts.
-- `proofpatch_upgrade`, `confirm_install`, and manual finalization are not exposed as operator buttons.
-- Reconciliation is only offered when finalized target metadata reports the exact queued proposal ID and candidate hash.
-- Execution timeout is only offered after the deadline and only when the exact installation is not already visible.
+- Owner and non-owner wallet states are separated.
+- Immutable candidate/evidence preflight runs before proposal submission.
+- Editing proposal fields invalidates prior preflight results.
+- A finalized active-slot re-check runs immediately before proposal creation.
+- A returned transaction hash is persisted immediately and tracked instead of blindly resubmitted.
+- Consensus, finality/lifecycle, and GenVM execution are displayed separately.
+- `proofpatch_upgrade`, `confirm_install`, and manual finalization are not exposed as operator actions.
+- Reconciliation requires finalized target metadata for the exact proposal ID and candidate hash.
+- Execution timeout requires the deadline to have passed and is blocked when the exact installation is already visible.
 - Evidence repair cannot change frozen candidate bytes/hash.
 
-## Canonical Bradbury evidence
+## Canonical bindings
 
-See `docs/BRADBURY_FINAL_EVIDENCE.md` for the preserved canonical addresses, hashes, proposal state, transaction IDs, and replay prohibition.
+```text
+Parent code hash
+7607cce754d8f7905eed629b0e8af0f3ce51bd405b3b4ba9db19e5d831209f19
 
-Key bindings:
+Installed candidate hash
+013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea
 
-- Parent hash:
-  `7607cce754d8f7905eed629b0e8af0f3ce51bd405b3b4ba9db19e5d831209f19`
-- Installed candidate hash:
-  `013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea`
-- Policy fingerprint:
-  `0f30dea3a111d4d6ba13b68bb667338618c963ea5258049303a2492be73fc1ab`
-- Evidence-set hash:
-  `c252fd77fb2209cf65a5d47fbb3079218c6d1d196461c6f72573b3fcdd046ec5`
+Policy fingerprint
+0f30dea3a111d4d6ba13b68bb667338618c963ea5258049303a2492be73fc1ab
 
-## Security model summary
+Evidence-set hash
+c252fd77fb2209cf65a5d47fbb3079218c6d1d196461c6f72573b3fcdd046ec5
+```
 
-- ProofPatch is the target's sole upgrader.
-- Policy is immutable in v1.
-- Candidate bytes/hash are frozen before review.
-- Mutable branch URLs are rejected.
-- Source/CI/audit publishers are policy-bound.
-- Independent audit publisher ownership must differ from source publisher ownership.
-- Evidence IDs cannot be replayed within their target/issuer/kind scope.
-- Evidence has explicit publication, expiry, and maximum-age rules.
-- Evidence/hash failures are repairable; transient provider failures are retryable.
-- Leader and validators independently repeat the complete evidence + semantic review.
-- Authorization-driving result fields match exactly.
-- No fuzzy confidence/tolerance controls upgrade execution.
-- Upgrade consequence is finality-bound.
-- Target re-checks exact authorization and candidate bytes immediately before replacement.
-- Installation is confirmed and reconciled against target-persisted metadata.
-- Every locked/active path has expiry or recovery logic.
-- Repository/deployment/source parity is a submission gate.
+## Submission safety
 
-Read `docs/REVIEWER_GATES.md`, `docs/REVIEWER_COVERAGE_AUDIT.md`, and `docs/BRADBURY_FINAL_EVIDENCE.md` before submission.
+Before submission:
+
+- keep `main` clean and synchronized with `origin/main`;
+- require contract preflight and frontend typecheck/build to pass;
+- use the stable production URL `https://proofpatch.vercel.app`;
+- use the canonical Bradbury addresses and evidence record;
+- never replay Proposal #1 or its generated child transactions merely to produce new screenshots or logs.
+
+See [`docs/SUBMISSION.md`](docs/SUBMISSION.md) for the final reviewer handoff.

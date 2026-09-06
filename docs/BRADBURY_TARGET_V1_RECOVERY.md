@@ -65,3 +65,23 @@ replacement deployment:
 
 The already-deployed governor and its original
 `proofpatch-bradbury-candidate-v1` source tag remain unchanged.
+
+## Resolution
+
+The corrective sequence above is now historical: it was completed successfully.
+
+The corrected canonical target was deployed at:
+
+```text
+0xe7165dEA0F712E3161ADa773c41755d79F1e696B
+```
+
+Canonical corrected target deployment transaction:
+
+```text
+0x2ab59d543d453a487e9a863bcde18d8bb501171a9827d52f476a11e789fa6dc1
+```
+
+That corrected target passed the required deployment/finality/source-parity gate, was registered with ProofPatch, and later completed the canonical safe-v2 path to `VERIFIED / INSTALL_VERIFIED`.
+
+The failed ghost address in this document remains negative evidence only. It must never be registered, reused, or presented as the canonical target.

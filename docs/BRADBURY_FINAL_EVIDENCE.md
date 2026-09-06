@@ -105,6 +105,18 @@ Final audit v2 log SHA-256
 1270ae8e13fc8877613bde4c674ffbb7e1b1628db8d8e085fb93dbb6b5baa176
 ```
 
+## Production frontend
+
+```text
+Production URL   https://proofpatch.vercel.app
+Dashboard URL    https://proofpatch.vercel.app/app
+Status           LIVE
+```
+
+The production frontend reads the canonical Bradbury state, keeps Proposal #1 historical/read-only, persists returned transaction hashes, and presents consensus, finality/lifecycle, and execution as separate facts.
+
+Production promotion has completed. Temporary Preview URLs are not submission URLs.
+
 ## Replay prohibition
 
 The following canonical actions are complete and must not be repeated:
@@ -120,9 +132,3 @@ The following canonical actions are complete and must not be repeated:
 - manually finalize any completed canonical transaction.
 
 A returned transaction hash must be tracked through consensus, finality, and execution rather than blindly resubmitted.
-
-## Frontend status
-
-The live frontend reads the canonical Bradbury state and keeps Proposal #1 historical/read-only.
-
-Production Vercel promotion is intentionally performed only after the final browser/reviewer audit passes. Preview deployment URLs are temporary and are not the final public submission URL.
