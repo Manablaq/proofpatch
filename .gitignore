@@ -33,3 +33,5 @@ artifacts/*
 !artifacts/strict-typecheck/
 artifacts/strict-typecheck/*
 !artifacts/strict-typecheck/*.json
+frontend/.next/
+frontend/tsconfig.tsbuildinfo
