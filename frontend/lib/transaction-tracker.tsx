@@ -40,6 +40,50 @@ function isTerminal(status: string) {
   return normalized === "FINALIZED" || normalized === "CANCELED" || normalized === "CANCELLED";
 }
 
+function sanitizeTrackedTransactions(value: unknown): TrackedTransaction[] {
+  if (!Array.isArray(value)) return [];
+
+  const safe: TrackedTransaction[] = [];
+  const seen = new Set<string>();
+
+  for (const item of value) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) continue;
+    const record = item as Record<string, unknown>;
+
+    const hash = typeof record.hash === "string" ? record.hash.trim() : "";
+    const label = typeof record.label === "string" ? record.label.trim() : "";
+    const createdAt =
+      typeof record.createdAt === "number" && Number.isFinite(record.createdAt)
+        ? record.createdAt
+        : 0;
+    const status =
+      typeof record.status === "string" && record.status.trim()
+        ? record.status
+        : "Pending";
+    const execution =
+      typeof record.execution === "string" ? record.execution : "";
+    const lifecycle =
+      typeof record.lifecycle === "string" ? record.lifecycle : "";
+
+    if (!/^0x[0-9a-f]+$/i.test(hash) || !label || createdAt <= 0) continue;
+
+    const normalizedHash = hash.toLowerCase();
+    if (seen.has(normalizedHash)) continue;
+    seen.add(normalizedHash);
+
+    safe.push({
+      hash,
+      label,
+      createdAt,
+      status,
+      execution,
+      lifecycle,
+    });
+  }
+
+  return safe;
+}
+
 export function TransactionTrackerProvider({
   children,
 }: {
@@ -53,8 +97,8 @@ export function TransactionTrackerProvider({
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const parsed = JSON.parse(raw) as TrackedTransaction[];
-        if (Array.isArray(parsed)) setTransactions(parsed);
+        const parsed = JSON.parse(raw) as unknown;
+        setTransactions(sanitizeTrackedTransactions(parsed));
       }
     } catch {
       // A storage failure must never block app rendering.

@@ -3,6 +3,7 @@
 import { CheckCircle2, Wallet } from "lucide-react";
 import { toast } from "sonner";
 import { useWallet } from "@/lib/wallet-context";
+import { PROOFPATCH } from "@/lib/constants";
 
 function short(value: string) {
   return value ? `${value.slice(0, 6)}…${value.slice(-4)}` : "";
@@ -13,9 +14,12 @@ export function WalletButton() {
 
   async function connect() {
     try {
-      await wallet.connect();
+      const connected = await wallet.connect();
+      const ownerConnected =
+        connected.toLowerCase() === PROOFPATCH.owner.toLowerCase();
+
       toast.success(
-        wallet.isOwner
+        ownerConnected
           ? "Registered owner wallet connected"
           : "Wallet connected in read-only mode",
       );
