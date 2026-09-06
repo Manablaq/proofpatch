@@ -25,6 +25,7 @@ import {
 } from "@/lib/proposal-workflow";
 import {
   useProofPatchLiveState,
+  useProposalActionGateState,
   useProposalWorkspaceState,
 } from "@/lib/use-proofpatch";
 import { useTransactionTracker } from "@/lib/transaction-tracker";
@@ -41,6 +42,7 @@ function idOf(summary: ProposalSummary) {
 
 export function ProposalWorkspace() {
   const live = useProofPatchLiveState();
+  const actionGate = useProposalActionGateState();
   const workspace = useProposalWorkspaceState();
   const wallet = useWallet();
   const tracker = useTransactionTracker();
@@ -50,10 +52,19 @@ export function ProposalWorkspace() {
   const [preflight, setPreflight] = useState<ProposalPreflight | null>(null);
   const [busy, setBusy] = useState<"preflight" | "submit" | "">("");
 
+  const pendingCreate = tracker.transactions.some((tx) => {
+    const status = tx.status.replaceAll("_", "").replaceAll(" ", "").toUpperCase();
+    const terminal =
+      status === "FINALIZED" ||
+      status === "CANCELED" ||
+      status === "CANCELLED";
+    return tx.label.startsWith("Create candidate v") && !terminal;
+  });
+
   const canCreate =
     wallet.isOwner &&
-    live.data?.activeProposal === "0" &&
-    Boolean(live.data);
+    actionGate.data === "0" &&
+    !pendingCreate;
 
   function update<K extends keyof ProposalDraft>(key: K, value: ProposalDraft[K]) {
     setDraft((current) => ({ ...current, [key]: value }));
@@ -97,8 +108,14 @@ export function ProposalWorkspace() {
       toast.error("Only the registered target owner can create a proposal.");
       return;
     }
-    if (live.data?.activeProposal !== "0") {
-      toast.error("This target already has an active proposal.");
+    if (pendingCreate) {
+      toast.error("A proposal creation transaction is already being tracked.");
+      return;
+    }
+
+    const freshGate = await actionGate.refetch();
+    if (freshGate.data !== "0") {
+      toast.error("This target does not have a free finalized proposal slot.");
       return;
     }
 
@@ -128,9 +145,13 @@ export function ProposalWorkspace() {
           <h2>Prepare the next release.</h2>
           <p>
             {wallet.isOwner
-              ? live.data?.activeProposal === "0"
-                ? "Registered owner verified. The target is free for a new proposal."
-                : `Proposal #${live.data?.activeProposal} already holds the active slot.`
+              ? pendingCreate
+                ? "A proposal creation transaction is already being tracked."
+                : actionGate.isLoading
+                  ? "Owner verified. Checking the finalized proposal slot…"
+                  : actionGate.data === "0"
+                    ? "Registered owner verified. The target is free for a new proposal."
+                    : `Proposal #${actionGate.data || "?"} already holds the active slot.`
               : wallet.isConnected
                 ? `Read-only wallet. Registered owner: ${short(PROOFPATCH.owner)}.`
                 : "Connect the registered owner wallet to create an upgrade."}

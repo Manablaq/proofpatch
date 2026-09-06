@@ -74,6 +74,15 @@ async function readFinal(
   }
 }
 
+export async function getProposalActionGateState(): Promise<string> {
+  const activeProposal = await readFinal(
+    PROOFPATCH.governor,
+    "get_active_proposal",
+    [PROOFPATCH.target],
+  );
+  return text(activeProposal);
+}
+
 export async function getProofPatchLiveState(): Promise<ProofPatchLiveState> {
   const governor = PROOFPATCH.governor;
   const target = PROOFPATCH.target;

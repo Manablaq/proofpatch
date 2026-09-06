@@ -122,6 +122,9 @@ export function TransactionTrackerProvider({
         await queryClient.invalidateQueries({
           queryKey: ["proofpatch", "proposal-workspace"],
         });
+        await queryClient.invalidateQueries({
+          queryKey: ["proofpatch", "proposal-action-gate"],
+        });
       }
     }
 
