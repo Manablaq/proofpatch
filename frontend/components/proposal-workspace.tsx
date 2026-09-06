@@ -344,7 +344,8 @@ export function ProposalWorkspace() {
               <div className="write-safety-note">
                 <AlertTriangle size={15} />
                 This button submits a real Bradbury transaction only after you click it
-                and approve the wallet signature. A returned transaction hash is stored
+                and approve the wallet request. Bradbury network / GenLayer Snap setup is
+                completed at that write step. A returned transaction hash is stored
                 immediately and will not be blindly resubmitted.
               </div>
             </div>

@@ -246,13 +246,6 @@ export async function connectBradburyWallet(): Promise<string> {
     throw new Error("The wallet did not return an account.");
   }
 
-  const walletClient = createClient({
-    chain: testnetBradbury,
-    account: address as HexAddress,
-    provider: window.ethereum as never,
-  });
-
-  await walletClient.connect("testnetBradbury");
   return address;
 }
 
@@ -314,6 +307,28 @@ export async function getProposalWorkspaceState(): Promise<ProposalWorkspaceStat
   };
 }
 
+function walletErrorMessage(error: unknown): string {
+  if (error instanceof Error && error.message) return error.message;
+
+  if (typeof error === "string" && error.trim()) return error;
+
+  if (error && typeof error === "object") {
+    const value = error as Record<string, unknown>;
+    if (typeof value.message === "string" && value.message.trim()) {
+      return value.message;
+    }
+    if (
+      value.data &&
+      typeof value.data === "object" &&
+      typeof (value.data as Record<string, unknown>).message === "string"
+    ) {
+      return String((value.data as Record<string, unknown>).message);
+    }
+  }
+
+  return "Wallet provider rejected or could not complete the request.";
+}
+
 async function getBradburyWriteClient(address: string) {
   if (typeof window === "undefined" || !window.ethereum) {
     throw new Error("No browser wallet detected.");
@@ -325,7 +340,16 @@ async function getBradburyWriteClient(address: string) {
     provider: window.ethereum as never,
   });
 
-  await client.connect("testnetBradbury");
+  try {
+    // This is intentionally deferred until a real write is attempted.
+    // GenLayerJS adds/switches Bradbury and ensures the GenLayer Snap here.
+    await client.connect("testnetBradbury");
+  } catch (error) {
+    throw new Error(
+      `GenLayer write setup could not complete: ${walletErrorMessage(error)}`,
+    );
+  }
+
   return client;
 }
 

@@ -14,9 +14,17 @@ export function WalletButton() {
   async function connect() {
     try {
       await wallet.connect();
-      toast.success("Wallet connected to Bradbury");
+      toast.success(
+        wallet.isOwner
+          ? "Registered owner wallet connected"
+          : "Wallet connected in read-only mode",
+      );
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Wallet connection failed");
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "Wallet account connection failed";
+      toast.error(message);
     }
   }
 
