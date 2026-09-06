@@ -391,3 +391,117 @@ export async function createProofPatchProposal(
     ] as never[],
   } as never)) as string;
 }
+function requireWritableProposal(proposalId: number) {
+  if (proposalId === PROOFPATCH.proposalId) {
+    throw new Error(
+      "Proposal #1 is finalized historical evidence and is permanently write-locked.",
+    );
+  }
+  if (!Number.isInteger(proposalId) || proposalId <= 0) {
+    throw new Error("Invalid proposal identifier.");
+  }
+}
+
+function requireOwnerAddress(address: string) {
+  if (address.toLowerCase() !== PROOFPATCH.owner.toLowerCase()) {
+    throw new Error("This action requires the registered target owner wallet.");
+  }
+}
+
+async function simulateGovernorWrite(
+  client: Awaited<ReturnType<typeof getBradburyWriteClient>>,
+  functionName: string,
+  args: unknown[],
+) {
+  await client.simulateWriteContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName,
+    args: args as never[],
+    transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
+  } as never);
+}
+
+export async function reviewProofPatchProposal(
+  proposalId: number,
+  address: string,
+): Promise<string> {
+  requireWritableProposal(proposalId);
+  const client = await getBradburyWriteClient(address);
+
+  // review_proposal runs GenLayer nondeterministic consensus work, so do not
+  // pre-simulate it. The governor validates proposal state itself.
+  return (await client.writeContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "review_proposal",
+    args: [proposalId] as never[],
+  } as never)) as string;
+}
+
+export type RepairEvidenceDraft = {
+  candidateSourceUrl: string;
+  ciEvidenceUrl: string;
+  ciEvidenceId: string;
+  auditEvidenceUrl: string;
+  auditEvidenceId: string;
+};
+
+export async function repairProofPatchEvidence(
+  proposalId: number,
+  draft: RepairEvidenceDraft,
+  address: string,
+): Promise<string> {
+  requireWritableProposal(proposalId);
+  requireOwnerAddress(address);
+  const client = await getBradburyWriteClient(address);
+  const args = [
+    proposalId,
+    draft.candidateSourceUrl,
+    draft.ciEvidenceUrl,
+    draft.ciEvidenceId,
+    draft.auditEvidenceUrl,
+    draft.auditEvidenceId,
+  ];
+
+  await simulateGovernorWrite(client, "repair_evidence", args);
+
+  return (await client.writeContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "repair_evidence",
+    args: args as never[],
+  } as never)) as string;
+}
+
+export async function cancelProofPatchProposal(
+  proposalId: number,
+  address: string,
+): Promise<string> {
+  requireWritableProposal(proposalId);
+  requireOwnerAddress(address);
+  const client = await getBradburyWriteClient(address);
+  const args = [proposalId];
+
+  await simulateGovernorWrite(client, "cancel_proposal", args);
+
+  return (await client.writeContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "cancel_proposal",
+    args: args as never[],
+  } as never)) as string;
+}
+
+export async function expireProofPatchProposal(
+  proposalId: number,
+  address: string,
+): Promise<string> {
+  requireWritableProposal(proposalId);
+  const client = await getBradburyWriteClient(address);
+  const args = [proposalId];
+
+  await simulateGovernorWrite(client, "expire_proposal", args);
+
+  return (await client.writeContract({
+    address: PROOFPATCH.governor as HexAddress,
+    functionName: "expire_proposal",
+    args: args as never[],
+  } as never)) as string;
+}

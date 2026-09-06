@@ -288,3 +288,148 @@ export async function runProposalPreflight(
     passed: checks.every((check) => check.ok),
   };
 }
+export type RepairEvidenceDraft = {
+  candidateSourceUrl: string;
+  ciEvidenceUrl: string;
+  ciEvidenceId: string;
+  auditEvidenceUrl: string;
+  auditEvidenceId: string;
+};
+
+export const EMPTY_REPAIR_EVIDENCE_DRAFT: RepairEvidenceDraft = {
+  candidateSourceUrl: "",
+  ciEvidenceUrl: "",
+  ciEvidenceId: "",
+  auditEvidenceUrl: "",
+  auditEvidenceId: "",
+};
+
+export async function runRepairEvidencePreflight(
+  draft: RepairEvidenceDraft,
+  proposal: {
+    target?: string;
+    parent_code_hash?: string;
+    candidate_code_hash?: string;
+    policy_fingerprint?: string;
+    status?: string;
+    expires_at?: number | string;
+  },
+): Promise<ProposalPreflight> {
+  const candidateHash = String(proposal.candidate_code_hash ?? "").toLowerCase();
+  const parentHash = String(proposal.parent_code_hash ?? "").toLowerCase();
+  const policyFingerprint = String(proposal.policy_fingerprint ?? "");
+  const expiresAt = Number(proposal.expires_at ?? 0);
+  const now = Math.floor(Date.now() / 1000);
+
+  const source = immutableRawGitHub(draft.candidateSourceUrl);
+  const ci = immutableRawGitHub(draft.ciEvidenceUrl);
+  const audit = immutableRawGitHub(draft.auditEvidenceUrl);
+  const repos = [source, ci, audit].map((item) =>
+    item ? `${item.owner.toLowerCase()}/${item.repo.toLowerCase()}` : "",
+  );
+
+  const checks: PreflightCheck[] = [
+    {
+      label: "Proposal requires repair",
+      ok: proposal.status === "EVIDENCE_REPAIR_REQUIRED",
+      detail: String(proposal.status ?? "unknown"),
+    },
+    {
+      label: "Proposal repair window",
+      ok: expiresAt > 0 && now <= expiresAt,
+      detail: expiresAt > 0 ? `${now} <= ${expiresAt}` : "missing expiry",
+    },
+    {
+      label: "Frozen candidate hash present",
+      ok: /^[0-9a-f]{64}$/.test(candidateHash),
+      detail: candidateHash || "missing",
+    },
+    {
+      label: "Immutable replacement candidate URL",
+      ok: Boolean(source),
+      detail: source ? `${source.owner}/${source.repo}@${source.commit}` : "invalid",
+    },
+    {
+      label: "Immutable replacement CI URL",
+      ok: Boolean(ci),
+      detail: ci ? `${ci.owner}/${ci.repo}@${ci.commit}` : "invalid",
+    },
+    {
+      label: "Immutable replacement audit URL",
+      ok: Boolean(audit),
+      detail: audit ? `${audit.owner}/${audit.repo}@${audit.commit}` : "invalid",
+    },
+    {
+      label: "Distinct publisher repositories",
+      ok: repos.every(Boolean) && new Set(repos).size === 3,
+      detail: repos.filter(Boolean).join(" · ") || "missing",
+    },
+    {
+      label: "Independent audit owner",
+      ok:
+        Boolean(source && audit) &&
+        source!.owner.toLowerCase() !== audit!.owner.toLowerCase(),
+      detail: source && audit ? `${source.owner} != ${audit.owner}` : "missing",
+    },
+    {
+      label: "Replacement evidence IDs",
+      ok:
+        bytes(draft.ciEvidenceId).length >= 8 &&
+        bytes(draft.ciEvidenceId).length <= 160 &&
+        bytes(draft.auditEvidenceId).length >= 8 &&
+        bytes(draft.auditEvidenceId).length <= 160 &&
+        draft.ciEvidenceId !== draft.auditEvidenceId,
+      detail: `${draft.ciEvidenceId || "missing"} / ${draft.auditEvidenceId || "missing"}`,
+    },
+  ];
+
+  if (source && candidateHash) {
+    try {
+      const remoteHash = await sha256Hex(await fetchBytes(draft.candidateSourceUrl));
+      checks.push({
+        label: "Replacement source preserves frozen candidate",
+        ok: remoteHash === candidateHash,
+        detail: remoteHash,
+      });
+    } catch (error) {
+      checks.push({
+        label: "Replacement candidate source fetch",
+        ok: false,
+        detail: error instanceof Error ? error.message : "fetch failed",
+      });
+    }
+  }
+
+  for (const [kind, url, id] of [
+    ["ci", draft.ciEvidenceUrl, draft.ciEvidenceId],
+    ["audit", draft.auditEvidenceUrl, draft.auditEvidenceId],
+  ] as const) {
+    if (!immutableRawGitHub(url)) continue;
+    try {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const evidence = (await response.json()) as unknown;
+      checks.push(
+        ...checkEvidenceEnvelope(evidence, {
+          kind,
+          id,
+          candidateHash,
+          parentHash,
+          policyFingerprint,
+        }),
+      );
+    } catch (error) {
+      checks.push({
+        label: `${kind.toUpperCase()} replacement evidence fetch`,
+        ok: false,
+        detail: error instanceof Error ? error.message : "fetch failed",
+      });
+    }
+  }
+
+  return {
+    candidateHash,
+    checks,
+    passed: checks.every((check) => check.ok),
+  };
+}
