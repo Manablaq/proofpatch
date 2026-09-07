@@ -1,11 +1,33 @@
 {
+  "checks": {
+    "adversarial_tests": true,
+    "direct_tests": true,
+    "genvm_lint": true,
+    "proofpatch_interface_tests": true,
+    "reviewer_timeout_regressions": true,
+    "schema": true,
+    "typecheck": true
+  },
   "contract_sha256": {
-    "contracts/proofpatch_governor.py": "3f6f3b2c75582a47230a1d860d79645a16428000ae60f695deba878bf55fdcde",
+    "contracts/proofpatch_governor.py": "de46bd437aca3d92c9c1602c4ec8291bee65543b2260e4f0fb43a2a48bc7c128",
     "contracts/protected_target_v1.py": "7607cce754d8f7905eed629b0e8af0f3ce51bd405b3b4ba9db19e5d831209f19",
     "contracts/protected_target_v2_safe.py": "013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea"
   },
+  "direct_test_sha256": {
+    "tests/direct/test_proofpatch_governor.py": "c38278f58b9ee1e763193425d09d6b7067edcc0716c3500b876682b350d9ba72",
+    "tests/direct/test_protected_target_source_guards.py": "7101f1c18e01b59a645093010a338cfb86ee75bed7f3611b1c6d14296f103419"
+  },
   "direct_test_suite": "tests/direct",
   "python": "3.12.14",
+  "reviewer_document_sha256": {
+    "docs/BRADBURY_FINAL_EVIDENCE.md": "4e0b549fcd8f5a1c3043c1b9efbf6b8de12b7040c405c2966ce2e79720e8f11c",
+    "docs/REVIEWER_COVERAGE_AUDIT.md": "159f14cc2fdb58f5f0ab8679a14c02bd9ce9ae7fa077e779df3afb797cbfde12"
+  },
+  "reviewer_regressions": [
+    "test_timeout_reconciles_installed_but_unconfirmed_exact_install",
+    "test_timeout_marks_genuinely_uninstalled_proposal_failed_and_releases_slot",
+    "test_timeout_keeps_slot_locked_on_partial_install_attestation_mismatch"
+  ],
   "status": "PASS",
   "strict_typecheck_artifacts": [
     "artifacts/strict-typecheck/proofpatch_governor.json",

@@ -44,6 +44,16 @@ jobs:
       - name: Run authoritative contract preflight
         run: python scripts/preflight.py
 
+      - name: Upload reviewer verification artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: proofpatch-contract-preflight-${{ github.sha }}
+          path: |
+            artifacts/local-preflight.json
+            artifacts/strict-typecheck/*.json
+          if-no-files-found: error
+          retention-days: 90
+
   frontend:
     name: Frontend typecheck + build
     runs-on: ubuntu-latest

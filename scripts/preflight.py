@@ -182,6 +182,20 @@ def main() -> int:
         str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
         for p in CONTRACTS
     }
+    direct_test_files = sorted((ROOT / "tests" / "direct").glob("*.py"))
+    direct_test_hashes = {
+        str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in direct_test_files
+    }
+    reviewer_docs = [
+        ROOT / "docs" / "REVIEWER_COVERAGE_AUDIT.md",
+        ROOT / "docs" / "BRADBURY_FINAL_EVIDENCE.md",
+    ]
+    reviewer_doc_hashes = {
+        str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in reviewer_docs
+        if path.exists()
+    }
     strict_hashes = {
         str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
         for path, _ in staged_strict_audits
@@ -192,8 +206,24 @@ def main() -> int:
         {
             "status": "PASS",
             "python": sys.version.split()[0],
+            "checks": {
+                "genvm_lint": True,
+                "typecheck": True,
+                "schema": True,
+                "direct_tests": True,
+                "adversarial_tests": True,
+                "proofpatch_interface_tests": True,
+                "reviewer_timeout_regressions": True,
+            },
             "direct_test_suite": "tests/direct",
             "contract_sha256": hashes,
+            "direct_test_sha256": direct_test_hashes,
+            "reviewer_document_sha256": reviewer_doc_hashes,
+            "reviewer_regressions": [
+                "test_timeout_reconciles_installed_but_unconfirmed_exact_install",
+                "test_timeout_marks_genuinely_uninstalled_proposal_failed_and_releases_slot",
+                "test_timeout_keeps_slot_locked_on_partial_install_attestation_mismatch",
+            ],
             "strict_typecheck_artifacts": [
                 str(path.relative_to(ROOT))
                 for path, _ in staged_strict_audits

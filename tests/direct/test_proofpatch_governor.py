@@ -664,3 +664,152 @@ def test_validator_agrees_on_exact_all_true_approval_vector(
     }
 
     assert direct_vm.run_validator(leader_result=approval) is True
+
+# ---------------------------------------------------------------------------
+# Reviewer regression: timeout must reconcile observable target truth first.
+# Direct Mode does not route real address-based cross-contract calls, so these
+# tests replace only the contract-interface adapter with a deterministic fake
+# while exercising the real public governor timeout method and real storage.
+# ---------------------------------------------------------------------------
+
+def _queue_timeout_regression(governor, direct_vm, proposal_id):
+    import sys
+
+    contract_module = sys.modules[governor.__class__.__module__]
+    proposal = governor.proposals[proposal_id]
+    proposal.status = "UPGRADE_QUEUED"
+
+    deadline = int(proposal.created_at) + 60
+    proposal.execution_deadline = contract_module.u64(deadline)
+
+    warped = time.strftime(
+        "%Y-%m-%dT%H:%M:%SZ",
+        time.gmtime(deadline + 1),
+    )
+    direct_vm.warp(warped)
+    contract_module.gl.message_raw["datetime"] = warped
+    return contract_module
+
+
+def _mock_timeout_target_view(
+    monkeypatch,
+    contract_module,
+    installed_proposal_id,
+    installed_candidate_hash,
+):
+    class _TargetView:
+        def proofpatch_installed_proposal_id(self):
+            return contract_module.u256(int(installed_proposal_id))
+
+        def proofpatch_installed_candidate_hash(self):
+            return installed_candidate_hash
+
+    class _TargetInterface:
+        def __init__(self, _address):
+            pass
+
+        def view(self):
+            return _TargetView()
+
+    monkeypatch.setattr(contract_module, "ProofPatchTarget", _TargetInterface)
+
+
+def test_timeout_reconciles_installed_but_unconfirmed_exact_install(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        proposal_id,
+        CANDIDATE_HASH,
+    )
+
+    direct_vm.sender = direct_alice
+    governor.mark_execution_timeout(proposal_id)
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    assert summary["status"] == "VERIFIED"
+    assert summary["last_review_code"] == "INSTALL_RECONCILED_TIMEOUT"
+    assert governor.get_current_version(_address_arg(direct_bob)) == "2.0.0"
+    assert governor.get_current_code_hash(_address_arg(direct_bob)) == CANDIDATE_HASH
+    assert int(governor.get_active_proposal(_address_arg(direct_bob))) == 0
+
+
+def test_timeout_marks_genuinely_uninstalled_proposal_failed_and_releases_slot(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        0,
+        "",
+    )
+
+    direct_vm.sender = direct_alice
+    governor.mark_execution_timeout(proposal_id)
+
+    summary = json.loads(governor.get_proposal_summary(proposal_id))
+    assert summary["status"] == "EXECUTION_FAILED"
+    assert summary["last_review_code"] == "EXECUTION_TIMEOUT"
+    assert governor.get_current_version(_address_arg(direct_bob)) == "1.0.0"
+    assert governor.get_current_code_hash(_address_arg(direct_bob)) == PARENT_HASH
+    assert int(governor.get_active_proposal(_address_arg(direct_bob))) == 0
+
+
+def test_timeout_keeps_slot_locked_on_partial_install_attestation_mismatch(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        proposal_id,
+        "0" * 64,
+    )
+
+    direct_vm.sender = direct_alice
+    with direct_vm.expect_revert(
+        "Target installation attestation is inconsistent; active proposal remains locked"
+    ):
+        governor.mark_execution_timeout(proposal_id)
+
+    assert governor.get_proposal_status(proposal_id) == "UPGRADE_QUEUED"
+    assert int(governor.get_active_proposal(_address_arg(direct_bob))) == int(proposal_id)

@@ -513,6 +513,27 @@ class ProofPatchGovernor(gl.Contract):
     def _installed_candidate_key(self, target: Address, candidate_hash: str) -> str:
         return self._hash_text_parts([str(target), candidate_hash])
 
+    def _record_verified_install(
+        self,
+        proposal_id: u256,
+        proposal: UpgradeProposal,
+        review_code: str,
+    ) -> None:
+        """Apply the single canonical state transition for an exact completed install."""
+        policy = self.policies[proposal.target]
+        if policy.current_code_hash != proposal.parent_code_hash:
+            raise gl.vm.UserError("Target policy parent changed before installation reconciliation")
+
+        policy.current_version = proposal.candidate_version
+        policy.current_source_url = proposal.candidate_source_url
+        policy.current_code_hash = proposal.candidate_code_hash
+        proposal.status = STATUS_VERIFIED
+        proposal.last_review_code = review_code
+        self.installed_candidate_hashes[
+            self._installed_candidate_key(proposal.target, proposal.candidate_code_hash)
+        ] = True
+        self._release_active(proposal.target, proposal_id)
+
     # ---------------------------------------------------------------------
     # Registration and immutable policy
     # ---------------------------------------------------------------------
@@ -977,17 +998,7 @@ class ProofPatchGovernor(gl.Contract):
         if installed_candidate_hash != proposal.candidate_code_hash:
             raise gl.vm.UserError("Target reports a different installed code hash")
 
-        policy = self.policies[proposal.target]
-        if policy.current_code_hash != proposal.parent_code_hash:
-            raise gl.vm.UserError("Target policy parent changed before confirmation")
-
-        policy.current_version = proposal.candidate_version
-        policy.current_source_url = proposal.candidate_source_url
-        policy.current_code_hash = proposal.candidate_code_hash
-        proposal.status = STATUS_VERIFIED
-        proposal.last_review_code = "INSTALL_VERIFIED"
-        self.installed_candidate_hashes[self._installed_candidate_key(proposal.target, proposal.candidate_code_hash)] = True
-        self._release_active(proposal.target, proposal_id)
+        self._record_verified_install(proposal_id, proposal, "INSTALL_VERIFIED")
 
     @gl.public.write
     def reconcile_install(self, proposal_id: u256) -> None:
@@ -995,31 +1006,65 @@ class ProofPatchGovernor(gl.Contract):
         self._require_policy_owner(proposal.target)
         if proposal.status != STATUS_QUEUED:
             raise gl.vm.UserError("Proposal is not awaiting installation")
-        target = ProofPatchTarget(proposal.target)
-        if target.view().proofpatch_installed_proposal_id() != proposal_id:
+
+        target_view = ProofPatchTarget(proposal.target).view()
+        installed_proposal_id = target_view.proofpatch_installed_proposal_id()
+        installed_candidate_hash = target_view.proofpatch_installed_candidate_hash()
+
+        if installed_proposal_id != proposal_id:
             raise gl.vm.UserError("Target has not installed this proposal")
-        if target.view().proofpatch_installed_candidate_hash() != proposal.candidate_code_hash:
+        if installed_candidate_hash != proposal.candidate_code_hash:
             raise gl.vm.UserError("Target installed hash does not match approved candidate")
 
-        policy = self.policies[proposal.target]
-        if policy.current_code_hash != proposal.parent_code_hash:
-            raise gl.vm.UserError("Target policy parent changed before reconciliation")
-        policy.current_version = proposal.candidate_version
-        policy.current_source_url = proposal.candidate_source_url
-        policy.current_code_hash = proposal.candidate_code_hash
-        proposal.status = STATUS_VERIFIED
-        proposal.last_review_code = "INSTALL_RECONCILED"
-        self.installed_candidate_hashes[self._installed_candidate_key(proposal.target, proposal.candidate_code_hash)] = True
-        self._release_active(proposal.target, proposal_id)
+        self._record_verified_install(proposal_id, proposal, "INSTALL_RECONCILED")
 
     @gl.public.write
     def mark_execution_timeout(self, proposal_id: u256) -> None:
         proposal = self._require_proposal(proposal_id)
-        self._require_policy_owner(proposal.target)
+        policy = self._require_policy_owner(proposal.target)
         if proposal.status != STATUS_QUEUED:
             raise gl.vm.UserError("Proposal is not awaiting installation")
         if self._now() <= int(proposal.execution_deadline):
             raise gl.vm.UserError("Execution deadline has not passed")
+
+        # Timeout is a recovery path, not permission to overwrite observable truth.
+        # Read BOTH target attestations before releasing the active slot. If the
+        # exact approved install already completed but its confirmation child was
+        # delayed/lost, reconcile it instead of falsely recording execution failure.
+        target_view = ProofPatchTarget(proposal.target).view()
+        installed_proposal_id = target_view.proofpatch_installed_proposal_id()
+        installed_candidate_hash = target_view.proofpatch_installed_candidate_hash()
+
+        if (
+            installed_proposal_id == proposal_id
+            and installed_candidate_hash == proposal.candidate_code_hash
+        ):
+            self._record_verified_install(
+                proposal_id,
+                proposal,
+                "INSTALL_RECONCILED_TIMEOUT",
+            )
+            return
+
+        # A genuinely uninstalled current proposal may leave either the target's
+        # initial empty attestation or the last successfully installed candidate.
+        # Any partial/current-proposal mismatch is ambiguous and must fail closed:
+        # do NOT release the slot while target truth conflicts with governor truth.
+        target_still_on_known_parent = (
+            (
+                installed_proposal_id == self._inactive_proposal()
+                and installed_candidate_hash == ""
+            )
+            or (
+                installed_proposal_id != proposal_id
+                and installed_candidate_hash == policy.current_code_hash
+            )
+        )
+        if not target_still_on_known_parent:
+            raise gl.vm.UserError(
+                "Target installation attestation is inconsistent; active proposal remains locked"
+            )
+
         proposal.status = STATUS_EXECUTION_FAILED
         proposal.last_review_code = "EXECUTION_TIMEOUT"
         self._release_active(proposal.target, proposal_id)
