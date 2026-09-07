@@ -189,6 +189,8 @@ def main() -> int:
     }
     reviewer_docs = [
         ROOT / "docs" / "REVIEWER_COVERAGE_AUDIT.md",
+        ROOT / "docs" / "REVIEWER_GATES.md",
+        ROOT / "docs" / "THREAT_MODEL.md",
         ROOT / "docs" / "BRADBURY_FINAL_EVIDENCE.md",
     ]
     reviewer_doc_hashes = {
@@ -214,6 +216,7 @@ def main() -> int:
                 "adversarial_tests": True,
                 "proofpatch_interface_tests": True,
                 "reviewer_timeout_regressions": True,
+                "reviewer_url_canonicalization_regressions": True,
             },
             "direct_test_suite": "tests/direct",
             "contract_sha256": hashes,
@@ -223,6 +226,10 @@ def main() -> int:
                 "test_timeout_reconciles_installed_but_unconfirmed_exact_install",
                 "test_timeout_marks_genuinely_uninstalled_proposal_failed_and_releases_slot",
                 "test_timeout_keeps_slot_locked_on_partial_install_attestation_mismatch",
+                "test_registration_rejects_noncanonical_authority_prefixes",
+                "test_registration_rejects_normalization_sensitive_current_source_urls",
+                "test_candidate_url_canonicalization_aliases_are_rejected",
+                "test_evidence_url_canonicalization_aliases_are_rejected",
             ],
             "strict_typecheck_artifacts": [
                 str(path.relative_to(ROOT))

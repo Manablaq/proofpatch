@@ -26,6 +26,10 @@ REQUIRED_CHECKS = (
 REQUIRED_REVIEWER_REGRESSIONS = (
     "test_timeout_reconciles_installed_but_unconfirmed_exact_install",
     "test_timeout_marks_genuinely_uninstalled_proposal_failed_and_releases_slot",
+    "test_registration_rejects_noncanonical_authority_prefixes",
+    "test_registration_rejects_normalization_sensitive_current_source_urls",
+    "test_candidate_url_canonicalization_aliases_are_rejected",
+    "test_evidence_url_canonicalization_aliases_are_rejected",
 )
 
 

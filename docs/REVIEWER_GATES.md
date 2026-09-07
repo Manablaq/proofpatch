@@ -5,7 +5,7 @@ A release is **not submission-ready** unless every applicable gate below passes.
 | Gate | Required proof |
 |---|---|
 | Evidence provenance | Exact approved source/CI/audit publisher identities and immutable repository prefixes are policy-bound. |
-| Immutability/versioning | Every source/evidence URL resolves through a literal 40-hex commit path; branches such as `main` are rejected. |
+| Immutability/versioning | Every source/evidence URL must use the canonical approved raw-GitHub prefix, an exact lowercase 40-hex commit, and parser-stable ASCII path segments. Dot segments, percent encoding, backslashes, repeated separators, queries/fragments, and mutable branches are rejected before fetch. |
 | Freshness | Evidence publication/expiry values satisfy the registered maximum age. |
 | Independent corroboration | Audit publisher owner differs from source publisher owner; audit verdict and independence flag are bound. |
 | Stable evidence identity | Evidence IDs are non-reusable within target/issuer/kind. |

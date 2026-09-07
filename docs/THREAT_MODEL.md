@@ -31,9 +31,9 @@
 
 The protected target adds only ProofPatch to `root.upgraders`. Owner is intentionally excluded. The review checks preservation of that design and CI must assert ProofPatch interface compatibility.
 
-### Mutable or stale evidence
+### Mutable, stale, or parser-aliased evidence
 
-All accepted evidence URLs must contain a literal 40-hex Git commit segment under an approved raw GitHub repository prefix. Evidence envelopes carry publication and expiry times and must be within the policy's maximum age.
+All accepted source/evidence URLs must use a single canonical raw-GitHub representation: an approved canonical repository prefix, an exact lowercase 40-hex Git commit, and parser-stable ASCII path segments. Dot segments (`.` / `..`), percent-encoded aliases, backslashes, repeated separators, queries/fragments, control/space aliases, and mutable branch paths are rejected before the URL reaches GenVM's HTTP parser. Evidence envelopes carry publication and expiry times and must be within the policy's maximum age.
 
 ### Hash without provenance
 

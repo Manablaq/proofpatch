@@ -7,7 +7,7 @@ This audit separates deterministic test coverage, canonical Bradbury evidence, a
 | Gate | ProofPatch control |
 |---|---|
 | Evidence provenance | Source, CI, and audit publishers/repository prefixes are policy-bound. |
-| Immutable/versioned evidence | Literal immutable commit URLs are required; mutable branch URLs are rejected. |
+| Immutable/versioned evidence | Canonical raw-GitHub URLs require an exact lowercase 40-hex commit and parser-stable ASCII path segments; mutable branches and URL-normalization aliases are rejected before fetch. |
 | Freshness/corroboration | Publication/expiry/max-age rules and independent audit corroboration are enforced. |
 | Correctable evidence failure | Repairable failures enter `EVIDENCE_REPAIR_REQUIRED`; transient review failures enter `REVIEW_RETRY_REQUIRED`. |
 | Liveness/recovery | Proposal expiry, repair/retry, execution deadline, reconciliation, and timeout paths prevent indefinite lock. |
@@ -20,6 +20,7 @@ The Direct Mode suite covers deterministic policy/consensus logic that does not 
 - immutable, publisher-bound source/CI/audit authority policy;
 - independent audit publisher;
 - rejection of mutable branch URLs;
+- rejection of dot-segment, percent-encoding, backslash, repeated-separator, uppercase-commit, and other URL-canonicalization aliases;
 - owner-only proposal creation;
 - exact frozen candidate bytes and SHA-256 binding;
 - evidence-ID replay prevention;

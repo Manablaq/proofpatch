@@ -396,17 +396,43 @@ class ProofPatchGovernor(gl.Contract):
         if encoded_len < minimum or encoded_len > maximum:
             raise gl.vm.UserError(f"{label} length is invalid")
 
+    def _is_canonical_raw_segment(self, value: str) -> bool:
+        """Accept only a single parser-stable raw-GitHub path representation.
+
+        ProofPatch compares the raw URL before GenVM hands it to an HTTP URL
+        parser. Restricting every path component to this canonical ASCII form
+        prevents dot-segment, percent-encoding, backslash, control-character,
+        repeated-separator, and Unicode-normalization aliases from changing the
+        resource that is actually fetched.
+        """
+        if not value or value in (".", ".."):
+            return False
+
+        allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-"
+        for char in value:
+            if char not in allowed:
+                return False
+        return True
+
     def _raw_github_owner(self, prefix: str) -> str:
         base = "https://raw.githubusercontent.com/"
         if not prefix.startswith(base) or not prefix.endswith("/"):
             return ""
+
         rest = prefix[len(base):]
         parts = rest.split("/")
-        if len(parts) != 3 or parts[2] != "" or not parts[0] or not parts[1]:
+        if len(parts) != 3 or parts[2] != "":
             return ""
-        if any(ch in prefix for ch in ("?", "#", "\\")):
+
+        owner = parts[0]
+        repository = parts[1]
+
+        if not self._is_canonical_raw_segment(owner):
             return ""
-        return parts[0]
+        if not self._is_canonical_raw_segment(repository):
+            return ""
+
+        return owner
 
     def _is_authority_prefix(self, prefix: str) -> bool:
         return self._raw_github_owner(prefix) != ""
@@ -414,20 +440,34 @@ class ProofPatchGovernor(gl.Contract):
     def _is_immutable_url(self, url: str, prefix: str) -> bool:
         if len(url.encode("utf-8")) > MAX_URL_BYTES:
             return False
+
+        if not self._is_authority_prefix(prefix):
+            return False
+
         if not url.startswith(prefix):
             return False
+
         suffix = url[len(prefix):]
         parts = suffix.split("/", 1)
         if len(parts) != 2:
             return False
+
         commit, path = parts
-        if len(commit) != 40 or not path:
+
+        if len(commit) != 40:
             return False
-        for char in commit.lower():
+        for char in commit:
             if char not in "0123456789abcdef":
                 return False
-        if "?" in path or "#" in path or path.startswith("/"):
+
+        path_segments = path.split("/")
+        if not path_segments:
             return False
+
+        for segment in path_segments:
+            if not self._is_canonical_raw_segment(segment):
+                return False
+
         return True
 
     def _policy_fingerprint(
