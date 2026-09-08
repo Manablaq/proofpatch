@@ -13,8 +13,8 @@ ProofPatch is a GenLayer-native semantic upgrade firewall for Intelligent Contra
 - **Application:** https://proofpatch.vercel.app
 - **Dashboard:** https://proofpatch.vercel.app/app
 - **Network:** Bradbury Testnet
-- **Governor:** `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
-- **Protected target:** `0xe7165dEA0F712E3161ADa773c41755d79F1e696B`
+- **Governor:** `0x20a14189cb68d1878eaA9253b14983ace1684aA6`
+- **Protected target:** `0x7e22B7c72B196e0db60785344570Fb558bD3b33A`
 - **Registered owner:** `0x1f87Ae197af539253978d435aD45cCf28Fb95024`
 - **Installed version:** `2.0.0`
 - **Canonical proposal:** `#1`
@@ -47,7 +47,7 @@ There is no fuzzy confidence threshold or tolerance that can authorize code inst
 Start here:
 
 - [`docs/SUBMISSION.md`](docs/SUBMISSION.md) — compact reviewer handoff and submission checklist
-- [`docs/BRADBURY_FINAL_EVIDENCE.md`](docs/BRADBURY_FINAL_EVIDENCE.md) — canonical addresses, hashes, transactions, and final state
+- [`docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md`](docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md) — current canonical addresses, hashes, transactions, and final state
 - [`docs/REVIEWER_COVERAGE_AUDIT.md`](docs/REVIEWER_COVERAGE_AUDIT.md) — deterministic vs Bradbury proof boundary
 - [`docs/REVIEWER_GATES.md`](docs/REVIEWER_GATES.md) — reviewer-readiness hard gates
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — trust chain and consensus boundary
@@ -165,10 +165,10 @@ Installed candidate hash
 013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea
 
 Policy fingerprint
-0f30dea3a111d4d6ba13b68bb667338618c963ea5258049303a2492be73fc1ab
+18c5d7e9852799896fb7fe3ee11ce8abc1104122adbb4afcee22e163fb424e50
 
 Evidence-set hash
-c252fd77fb2209cf65a5d47fbb3079218c6d1d196461c6f72573b3fcdd046ec5
+bb4f2a6092e32f9ec67c2508f243a09036bfd1ad1d4b505f26766df65250cb5d
 ```
 
 ## Submission safety

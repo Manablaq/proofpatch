@@ -7,9 +7,9 @@ This document now distinguishes the canonical safe-upgrade path that is already 
 The canonical live contracts are:
 
 - Governor:
-  `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
+  `0x20a14189cb68d1878eaA9253b14983ace1684aA6`
 - Protected target:
-  `0xe7165dEA0F712E3161ADa773c41755d79F1e696B`
+  `0x7e22B7c72B196e0db60785344570Fb558bD3b33A`
 - Registered owner:
   `0x1f87Ae197af539253978d435aD45cCf28Fb95024`
 
@@ -49,28 +49,36 @@ This path is canonical evidence and must not be repeated merely for UI testing.
 
 ## Transaction evidence
 
+Deployments:
+
+- Governor:
+  `0x68ae65eee7a25430c70007fd9f587b3be97364aee82f57f3c63a1763e6e02bfe`
+- Protected target:
+  `0x604f8d63e246f6e190d753e3b23a19c9340909f7d06418f50407e1432c2a11aa`
+
 Registration:
 
 - Parent:
-  `0xac7f7997622ea75a0330dd9027349a6cadd3e9cc36ad787939c85e651d9f8153`
-- Finality-generated registration child:
-  `0x1599b7bfdcb569f84e423ae8cb051d6884a6a295b42d59e623bd8b0d9484e92d`
+  `0xa0b19fe09cb2faed06d02c48b4b47e661f2c73f1585538cf1ec5f094e1fc09ae`
+
+Proposal:
+
+- Creation:
+  `0x1c32f5beb67fad804eea8c79f061c11ca16d402d119ea133e1a59e34541e801c`
 
 Review:
 
-- Outer EVM transaction:
-  `0x4ff466bf5ea4c29123b92ccd98fb28777f0124b700a3b2dee7479f9b197de97e`
 - Review parent:
-  `0xdaf2daf536913570bb7b2b9a81b6a05f85cc5e8fde38e95519bfae1a38891345`
+  `0x0a6b3c9275dc12fb9f98f7ceb52cc165db74444b4c27de10dcdd235ca338e34b`
 
 Generated install path:
 
 - Upgrade child:
-  `0x12296f35e3e570d4c828022a769dc32c9c4d18ca5bb2c1a736a5f01ffdbcdb33`
+  `0xd196ac64c42e48e944f6ca85b79ab0a74fcc6100235e8b6e3015a604a57e5e59`
 - Confirmation child:
-  `0x9715daa0308bffc9a7b439f99ddcf9337eae186b16564c93570f7174cf17b475`
+  `0xdd8118477147a0d8a9b65442b87d31ec0f8916e116e8ca89804901828a1462a5`
 
-The review and upgrade evidence must be interpreted with both consensus/finality status and execution result. `Accepted` alone is never treated as proof of successful code installation.
+The review, generated upgrade, and confirmation are all finalized successful transactions. `Accepted` alone is never treated as proof of successful code installation.
 
 ## Recovery semantics
 
@@ -111,4 +119,4 @@ Preserve:
 - final `VERIFIED` proposal summary;
 - final audit log hash.
 
-See `BRADBURY_FINAL_EVIDENCE.md`.
+See `BRADBURY_CURRENT_FINAL_EVIDENCE.md` for the current canonical record. `BRADBURY_FINAL_EVIDENCE.md` is retained only as superseded historical provenance.

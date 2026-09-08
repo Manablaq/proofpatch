@@ -40,14 +40,14 @@ The Direct Mode suite covers deterministic policy/consensus logic that does not 
 - target constructor/address boundary regression;
 - adversarial privilege, evidence, replay, stale, timeout, and source-mismatch cases.
 
-## Historical Bradbury proof — superseded
+## Current Bradbury replacement proof — complete
 
-The following live safe-v2 path completed historically. It is superseded and MUST NOT be used as the current submission deployment.
+The corrected replacement deployment is the current submission deployment.
 
 - Governor:
-  `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
+  `0x20a14189cb68d1878eaA9253b14983ace1684aA6`
 - Protected target:
-  `0xe7165dEA0F712E3161ADa773c41755d79F1e696B`
+  `0x7e22B7c72B196e0db60785344570Fb558bD3b33A`
 - Proposal:
   `1`
 - Final status:
@@ -60,10 +60,25 @@ The following live safe-v2 path completed historically. It is superseded and MUS
   `2.0.0`
 - Current candidate hash:
   `013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea`
+- Policy fingerprint:
+  `18c5d7e9852799896fb7fe3ee11ce8abc1104122adbb4afcee22e163fb424e50`
+- Evidence-set hash:
+  `bb4f2a6092e32f9ec67c2508f243a09036bfd1ad1d4b505f26766df65250cb5d`
 
-The historical completed path demonstrates:
+Canonical consequential transaction chain:
 
-1. finalized target registration;
+- Review parent:
+  `0x0a6b3c9275dc12fb9f98f7ceb52cc165db74444b4c27de10dcdd235ca338e34b`
+- Finality-generated target upgrade:
+  `0xd196ac64c42e48e944f6ca85b79ab0a74fcc6100235e8b6e3015a604a57e5e59`
+- Finality-generated install confirmation:
+  `0xdd8118477147a0d8a9b65442b87d31ec0f8916e116e8ca89804901828a1462a5`
+
+All three consequential transactions reached `FINALIZED`, `AGREE`, and `FINISHED_WITH_RETURN`.
+
+This completed replacement path demonstrates:
+
+1. finalized replacement target deployment and registration;
 2. immutable policy/source binding;
 3. exact safe candidate proposal;
 4. real GenLayer semantic validator review;
@@ -76,7 +91,7 @@ The historical completed path demonstrates:
 11. final active-slot release;
 12. preserved target invariants.
 
-Historical transaction IDs are retained in `BRADBURY_FINAL_EVIDENCE.md` for provenance only. A fresh corrected governor/target path must supply the eventual submission evidence.
+Current canonical chain evidence is recorded in `BRADBURY_CURRENT_FINAL_EVIDENCE.md`. The older deployment and its transaction IDs remain preserved in `BRADBURY_FINAL_EVIDENCE.md` as superseded historical provenance only.
 
 ## Frontend reviewer boundary
 
@@ -103,7 +118,7 @@ Safety controls include:
 - exact-target-gated reconciliation;
 - deadline + target-state-gated execution timeout.
 
-## Paths intentionally not replayed on the historical target
+## Paths intentionally not replayed on the verified current target
 
 The unsafe candidate negative path and a deliberately failed queued-child timeout path are not replayed against Proposal #1.
 
@@ -111,13 +126,13 @@ Reason:
 
 - Proposal #1 already completed successfully.
 - Repeating review/upgrade/confirmation would be invalid and reviewer-hostile.
-- Creating a destructive timeout condition on the verified historical target would manufacture failure rather than verify the completed historical safe path.
+- Creating a destructive timeout condition on the verified current target would manufacture failure rather than verify the completed safe path.
 - Equivalent adversarial/liveness semantics are covered deterministically.
 - If a reviewer explicitly requires another live destructive path, it should use a separate disposable target and fresh proposal/evidence identities.
 
 ## Stop rule
 
-Do not use the historical contract addresses above as the current submission deployment.
+Do not use the superseded historical deployment recorded in `BRADBURY_FINAL_EVIDENCE.md` as the current submission deployment.
 
 Do not describe `Accepted` as `Finalized`.
 

@@ -191,6 +191,7 @@ def main() -> int:
         ROOT / "docs" / "REVIEWER_COVERAGE_AUDIT.md",
         ROOT / "docs" / "REVIEWER_GATES.md",
         ROOT / "docs" / "THREAT_MODEL.md",
+        ROOT / "docs" / "BRADBURY_CURRENT_FINAL_EVIDENCE.md",
         ROOT / "docs" / "BRADBURY_FINAL_EVIDENCE.md",
     ]
     reviewer_doc_hashes = {

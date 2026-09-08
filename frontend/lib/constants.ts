@@ -6,8 +6,8 @@ export const PROOFPATCH = {
     chainId: 4221,
     symbol: "GEN",
   },
-  governor: "0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade",
-  target: "0xe7165dEA0F712E3161ADa773c41755d79F1e696B",
+  governor: "0x20a14189cb68d1878eaA9253b14983ace1684aA6",
+  target: "0x7e22B7c72B196e0db60785344570Fb558bD3b33A",
   owner: "0x1f87Ae197af539253978d435aD45cCf28Fb95024",
   proposalId: 1,
   parentVersion: "1.0.0",
@@ -17,29 +17,27 @@ export const PROOFPATCH = {
   candidateCodeHash:
     "013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea",
   policyFingerprint:
-    "0f30dea3a111d4d6ba13b68bb667338618c963ea5258049303a2492be73fc1ab",
+    "18c5d7e9852799896fb7fe3ee11ce8abc1104122adbb4afcee22e163fb424e50",
   evidenceSetHash:
-    "c252fd77fb2209cf65a5d47fbb3079218c6d1d196461c6f72573b3fcdd046ec5",
+    "bb4f2a6092e32f9ec67c2508f243a09036bfd1ad1d4b505f26766df65250cb5d",
   releaseLabel: "ProtectedTarget/v2-safe",
   productName: "ProofPatch Protected Target",
   protectedValue: "proofpatch-bradbury-baseline-v1",
   transactions: {
     registrationParent:
-      "0xac7f7997622ea75a0330dd9027349a6cadd3e9cc36ad787939c85e651d9f8153",
-    registrationChild:
-      "0x1599b7bfdcb569f84e423ae8cb051d6884a6a295b42d59e623bd8b0d9484e92d",
-    reviewOuter:
-      "0x4ff466bf5ea4c29123b92ccd98fb28777f0124b700a3b2dee7479f9b197de97e",
+      "0xa0b19fe09cb2faed06d02c48b4b47e661f2c73f1585538cf1ec5f094e1fc09ae",
+    proposalCreate:
+      "0x1c32f5beb67fad804eea8c79f061c11ca16d402d119ea133e1a59e34541e801c",
     reviewParent:
-      "0xdaf2daf536913570bb7b2b9a81b6a05f85cc5e8fde38e95519bfae1a38891345",
+      "0x0a6b3c9275dc12fb9f98f7ceb52cc165db74444b4c27de10dcdd235ca338e34b",
     upgradeChild:
-      "0x12296f35e3e570d4c828022a769dc32c9c4d18ca5bb2c1a736a5f01ffdbcdb33",
+      "0xd196ac64c42e48e944f6ca85b79ab0a74fcc6100235e8b6e3015a604a57e5e59",
     confirmationChild:
-      "0x9715daa0308bffc9a7b439f99ddcf9337eae186b16564c93570f7174cf17b475",
+      "0xdd8118477147a0d8a9b65442b87d31ec0f8916e116e8ca89804901828a1462a5",
   },
   evidence: {
     finalAuditSha256:
-      "1270ae8e13fc8877613bde4c674ffbb7e1b1628db8d8e085fb93dbb6b5baa176",
+      "4f0cf58ad0f8a76c74fadb0aa90870e407c0b749983cf7437930e8aa7e94005d",
   },
 } as const;
 

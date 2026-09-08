@@ -66,22 +66,34 @@ replacement deployment:
 The already-deployed governor and its original
 `proofpatch-bradbury-candidate-v1` source tag remain unchanged.
 
-## Resolution
+## Historical resolution — superseded by replacement deployment
 
-The corrective sequence above is now historical: it was completed successfully.
+The corrective sequence above was completed successfully for the historical deployment.
 
-The corrected canonical target was deployed at:
+The historical corrected target was:
 
 ```text
 0xe7165dEA0F712E3161ADa773c41755d79F1e696B
 ```
 
-Canonical corrected target deployment transaction:
+Historical corrected target deployment transaction:
 
 ```text
 0x2ab59d543d453a487e9a863bcde18d8bb501171a9827d52f476a11e789fa6dc1
 ```
 
-That corrected target passed the required deployment/finality/source-parity gate, was registered with ProofPatch, and later completed the canonical safe-v2 path to `VERIFIED / INSTALL_VERIFIED`.
+That historical corrected target passed its deployment/finality/source-parity gate and later completed a safe-v2 path. It is no longer the current submission target.
 
-The failed ghost address in this document remains negative evidence only. It must never be registered, reused, or presented as the canonical target.
+The current replacement deployment is:
+
+```text
+Governor
+0x20a14189cb68d1878eaA9253b14983ace1684aA6
+
+Protected target
+0x7e22B7c72B196e0db60785344570Fb558bD3b33A
+```
+
+The replacement target independently completed registration and the safe-v2 path to `VERIFIED / INSTALL_VERIFIED`. Current canonical evidence is recorded in `BRADBURY_CURRENT_FINAL_EVIDENCE.md`.
+
+The failed ghost address and the historical corrected target in this document remain provenance only. Neither must be registered, reused, or presented as the current canonical target.

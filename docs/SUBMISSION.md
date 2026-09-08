@@ -19,8 +19,8 @@ ProofPatch is a GenLayer-native semantic upgrade firewall for Intelligent Contra
 
 ```text
 Network           Bradbury Testnet
-Governor          0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade
-Protected target  0xe7165dEA0F712E3161ADa773c41755d79F1e696B
+Governor          0x20a14189cb68d1878eaA9253b14983ace1684aA6
+Protected target  0x7e22B7c72B196e0db60785344570Fb558bD3b33A
 Registered owner  0x1f87Ae197af539253978d435aD45cCf28Fb95024
 
 Proposal           1
@@ -41,36 +41,38 @@ Candidate code hash
 013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea
 
 Policy fingerprint
-0f30dea3a111d4d6ba13b68bb667338618c963ea5258049303a2492be73fc1ab
+18c5d7e9852799896fb7fe3ee11ce8abc1104122adbb4afcee22e163fb424e50
 
 Evidence-set hash
-c252fd77fb2209cf65a5d47fbb3079218c6d1d196461c6f72573b3fcdd046ec5
+bb4f2a6092e32f9ec67c2508f243a09036bfd1ad1d4b505f26766df65250cb5d
 ```
 
 ## Canonical transaction chain
 
 ```text
+Governor deployment
+0x68ae65eee7a25430c70007fd9f587b3be97364aee82f57f3c63a1763e6e02bfe
+
 Target deployment
-0x2ab59d543d453a487e9a863bcde18d8bb501171a9827d52f476a11e789fa6dc1
+0x604f8d63e246f6e190d753e3b23a19c9340909f7d06418f50407e1432c2a11aa
 
 Registration parent
-0xac7f7997622ea75a0330dd9027349a6cadd3e9cc36ad787939c85e651d9f8153
+0xa0b19fe09cb2faed06d02c48b4b47e661f2c73f1585538cf1ec5f094e1fc09ae
 
-Registration child
-0x1599b7bfdcb569f84e423ae8cb051d6884a6a295b42d59e623bd8b0d9484e92d
-
-Review outer transaction
-0x4ff466bf5ea4c29123b92ccd98fb28777f0124b700a3b2dee7479f9b197de97e
+Proposal creation
+0x1c32f5beb67fad804eea8c79f061c11ca16d402d119ea133e1a59e34541e801c
 
 Review parent
-0xdaf2daf536913570bb7b2b9a81b6a05f85cc5e8fde38e95519bfae1a38891345
+0x0a6b3c9275dc12fb9f98f7ceb52cc165db74444b4c27de10dcdd235ca338e34b
 
 Finality-generated upgrade child
-0x12296f35e3e570d4c828022a769dc32c9c4d18ca5bb2c1a736a5f01ffdbcdb33
+0xd196ac64c42e48e944f6ca85b79ab0a74fcc6100235e8b6e3015a604a57e5e59
 
 Install confirmation child
-0x9715daa0308bffc9a7b439f99ddcf9337eae186b16564c93570f7174cf17b475
+0xdd8118477147a0d8a9b65442b87d31ec0f8916e116e8ca89804901828a1462a5
 ```
+
+The review, generated upgrade, and install confirmation each reached `FINALIZED`, `AGREE`, and `FINISHED_WITH_RETURN`.
 
 ## Reviewer hard gates
 
@@ -103,7 +105,8 @@ GitHub Actions runs both contract and frontend verification on pushes and pull r
 
 ## Evidence index
 
-- `docs/BRADBURY_FINAL_EVIDENCE.md` — canonical chain evidence
+- `docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md` — current canonical chain evidence
+- `docs/BRADBURY_FINAL_EVIDENCE.md` — superseded historical chain evidence
 - `docs/REVIEWER_COVERAGE_AUDIT.md` — proof coverage boundary
 - `docs/REVIEWER_GATES.md` — hard-gate checklist
 - `docs/ARCHITECTURE.md` — design and trust chain
