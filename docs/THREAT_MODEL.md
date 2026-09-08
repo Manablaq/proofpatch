@@ -65,11 +65,11 @@ Candidate bytes are stored when the proposal is created. Review verifies the imm
 
 ### Accepted-before-finalized side effects
 
-Upgrade message uses `on="finalized"`. ProofPatch relies on GenLayer's native appeal/finality lifecycle instead of inventing a redundant generic challenge window.
+Upgrade messages use `on="finalized"`. ProofPatch also refuses to promote provisional cross-contract state on the return path: `confirm_install` and `reconcile_install` read the target with `StorageType.LATEST_FINAL`. Timeout recovery first checks finalized target state and may use `LATEST_NON_FINAL` only to detect an installation that is still pending finality. A non-final-only candidate can never produce `VERIFIED`, update the current policy hash/version, or release the active proposal slot.
 
 ### Lost or delayed child message
 
-Authorization expires. Late installs fail. Completed-but-unconfirmed installs can be reconciled by checking target attestation.
+Authorization expires. Late installs fail. An exact finalized install whose confirmation child was delayed/lost can be reconciled. If the exact candidate exists only in non-final state, timeout fails closed and keeps the active proposal locked until finality resolves.
 
 ### Source/deployment mismatch
 

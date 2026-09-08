@@ -696,22 +696,57 @@ def _mock_timeout_target_view(
     contract_module,
     installed_proposal_id,
     installed_candidate_hash,
+    *,
+    nonfinal_proposal_id=None,
+    nonfinal_candidate_hash=None,
 ):
+    if nonfinal_proposal_id is None:
+        nonfinal_proposal_id = installed_proposal_id
+    if nonfinal_candidate_hash is None:
+        nonfinal_candidate_hash = installed_candidate_hash
+
     class _TargetView:
+        def __init__(self, proposal_id, candidate_hash):
+            self._proposal_id = proposal_id
+            self._candidate_hash = candidate_hash
+
         def proofpatch_installed_proposal_id(self):
-            return contract_module.u256(int(installed_proposal_id))
+            return contract_module.u256(int(self._proposal_id))
 
         def proofpatch_installed_candidate_hash(self):
-            return installed_candidate_hash
+            return self._candidate_hash
+
+    finalized_view = _TargetView(
+        installed_proposal_id,
+        installed_candidate_hash,
+    )
+    nonfinal_view = _TargetView(
+        nonfinal_proposal_id,
+        nonfinal_candidate_hash,
+    )
 
     class _TargetInterface:
         def __init__(self, _address):
             pass
 
-        def view(self):
-            return _TargetView()
+        def view(
+            self,
+            *,
+            state=contract_module.StorageType.LATEST_NON_FINAL,
+        ):
+            if state == contract_module.StorageType.LATEST_FINAL:
+                return finalized_view
+            if state == contract_module.StorageType.LATEST_NON_FINAL:
+                return nonfinal_view
+            raise AssertionError(
+                f"Unexpected target storage state: {state!r}"
+            )
 
-    monkeypatch.setattr(contract_module, "ProofPatchTarget", _TargetInterface)
+    monkeypatch.setattr(
+        contract_module,
+        "ProofPatchTarget",
+        _TargetInterface,
+    )
 
 
 def test_timeout_reconciles_installed_but_unconfirmed_exact_install(
@@ -807,9 +842,235 @@ def test_timeout_keeps_slot_locked_on_partial_install_attestation_mismatch(
 
     direct_vm.sender = direct_alice
     with direct_vm.expect_revert(
-        "Target installation attestation is inconsistent; active proposal remains locked"
+        "Finalized target installation attestation is inconsistent; active proposal remains locked"
     ):
         governor.mark_execution_timeout(proposal_id)
 
     assert governor.get_proposal_status(proposal_id) == "UPGRADE_QUEUED"
     assert int(governor.get_active_proposal(_address_arg(direct_bob))) == int(proposal_id)
+
+
+def test_confirm_install_accepts_exact_finalized_install(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        proposal_id,
+        CANDIDATE_HASH,
+    )
+
+    direct_vm.sender = direct_bob
+    governor.confirm_install(
+        proposal_id,
+        CANDIDATE_HASH,
+    )
+
+    summary = json.loads(
+        governor.get_proposal_summary(proposal_id)
+    )
+    assert summary["status"] == "VERIFIED"
+    assert summary["last_review_code"] == "INSTALL_VERIFIED"
+    assert (
+        governor.get_current_code_hash(_address_arg(direct_bob))
+        == CANDIDATE_HASH
+    )
+    assert int(
+        governor.get_active_proposal(_address_arg(direct_bob))
+    ) == 0
+
+
+def test_confirm_install_rejects_nonfinal_only_install(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        0,
+        "",
+        nonfinal_proposal_id=proposal_id,
+        nonfinal_candidate_hash=CANDIDATE_HASH,
+    )
+
+    direct_vm.sender = direct_bob
+
+    with direct_vm.expect_revert(
+        "Target has not finalized this proposal"
+    ):
+        governor.confirm_install(
+            proposal_id,
+            CANDIDATE_HASH,
+        )
+
+    assert (
+        governor.get_proposal_status(proposal_id)
+        == "UPGRADE_QUEUED"
+    )
+    assert (
+        governor.get_current_code_hash(_address_arg(direct_bob))
+        == PARENT_HASH
+    )
+    assert int(
+        governor.get_active_proposal(_address_arg(direct_bob))
+    ) == int(proposal_id)
+
+
+def test_reconcile_install_accepts_exact_finalized_install(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        proposal_id,
+        CANDIDATE_HASH,
+    )
+
+    direct_vm.sender = direct_alice
+    governor.reconcile_install(proposal_id)
+
+    summary = json.loads(
+        governor.get_proposal_summary(proposal_id)
+    )
+    assert summary["status"] == "VERIFIED"
+    assert summary["last_review_code"] == "INSTALL_RECONCILED"
+    assert (
+        governor.get_current_code_hash(_address_arg(direct_bob))
+        == CANDIDATE_HASH
+    )
+    assert int(
+        governor.get_active_proposal(_address_arg(direct_bob))
+    ) == 0
+
+
+def test_reconcile_install_rejects_nonfinal_only_install(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        0,
+        "",
+        nonfinal_proposal_id=proposal_id,
+        nonfinal_candidate_hash=CANDIDATE_HASH,
+    )
+
+    direct_vm.sender = direct_alice
+
+    with direct_vm.expect_revert(
+        "Target has not finalized this proposal"
+    ):
+        governor.reconcile_install(proposal_id)
+
+    assert (
+        governor.get_proposal_status(proposal_id)
+        == "UPGRADE_QUEUED"
+    )
+    assert (
+        governor.get_current_code_hash(_address_arg(direct_bob))
+        == PARENT_HASH
+    )
+    assert int(
+        governor.get_active_proposal(_address_arg(direct_bob))
+    ) == int(proposal_id)
+
+
+def test_timeout_keeps_slot_locked_while_exact_install_is_nonfinal(
+    direct_vm,
+    direct_deploy,
+    direct_alice,
+    direct_bob,
+    monkeypatch,
+):
+    governor = direct_deploy("contracts/proofpatch_governor.py")
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
+
+    contract_module = _queue_timeout_regression(
+        governor,
+        direct_vm,
+        proposal_id,
+    )
+    _mock_timeout_target_view(
+        monkeypatch,
+        contract_module,
+        0,
+        "",
+        nonfinal_proposal_id=proposal_id,
+        nonfinal_candidate_hash=CANDIDATE_HASH,
+    )
+
+    direct_vm.sender = direct_alice
+
+    with direct_vm.expect_revert(
+        "Target installation is pending finality; "
+        "active proposal remains locked"
+    ):
+        governor.mark_execution_timeout(proposal_id)
+
+    assert (
+        governor.get_proposal_status(proposal_id)
+        == "UPGRADE_QUEUED"
+    )
+    assert (
+        governor.get_current_version(_address_arg(direct_bob))
+        == "1.0.0"
+    )
+    assert (
+        governor.get_current_code_hash(_address_arg(direct_bob))
+        == PARENT_HASH
+    )
+    assert int(
+        governor.get_active_proposal(_address_arg(direct_bob))
+    ) == int(proposal_id)

@@ -3,6 +3,7 @@
 from genlayer import *
 from dataclasses import dataclass
 from datetime import datetime
+from genlayer.py.public_abi import StorageType
 import hashlib
 import json
 import typing
@@ -1030,13 +1031,17 @@ class ProofPatchGovernor(gl.Contract):
         if normalized_hash != proposal.candidate_code_hash:
             raise gl.vm.UserError("Installed hash does not match approved candidate")
 
-        target = ProofPatchTarget(proposal.target)
-        installed_proposal_id = target.view().proofpatch_installed_proposal_id()
-        installed_candidate_hash = target.view().proofpatch_installed_candidate_hash()
+        target_view = ProofPatchTarget(proposal.target).view(
+            state=StorageType.LATEST_FINAL
+        )
+        installed_proposal_id = target_view.proofpatch_installed_proposal_id()
+        installed_candidate_hash = target_view.proofpatch_installed_candidate_hash()
         if installed_proposal_id != proposal_id:
-            raise gl.vm.UserError("Target reports a different installed proposal")
+            raise gl.vm.UserError("Target has not finalized this proposal")
         if installed_candidate_hash != proposal.candidate_code_hash:
-            raise gl.vm.UserError("Target reports a different installed code hash")
+            raise gl.vm.UserError(
+                "Finalized target code hash does not match approved candidate"
+            )
 
         self._record_verified_install(proposal_id, proposal, "INSTALL_VERIFIED")
 
@@ -1047,14 +1052,18 @@ class ProofPatchGovernor(gl.Contract):
         if proposal.status != STATUS_QUEUED:
             raise gl.vm.UserError("Proposal is not awaiting installation")
 
-        target_view = ProofPatchTarget(proposal.target).view()
+        target_view = ProofPatchTarget(proposal.target).view(
+            state=StorageType.LATEST_FINAL
+        )
         installed_proposal_id = target_view.proofpatch_installed_proposal_id()
         installed_candidate_hash = target_view.proofpatch_installed_candidate_hash()
 
         if installed_proposal_id != proposal_id:
-            raise gl.vm.UserError("Target has not installed this proposal")
+            raise gl.vm.UserError("Target has not finalized this proposal")
         if installed_candidate_hash != proposal.candidate_code_hash:
-            raise gl.vm.UserError("Target installed hash does not match approved candidate")
+            raise gl.vm.UserError(
+                "Finalized target code hash does not match approved candidate"
+            )
 
         self._record_verified_install(proposal_id, proposal, "INSTALL_RECONCILED")
 
@@ -1067,17 +1076,22 @@ class ProofPatchGovernor(gl.Contract):
         if self._now() <= int(proposal.execution_deadline):
             raise gl.vm.UserError("Execution deadline has not passed")
 
-        # Timeout is a recovery path, not permission to overwrite observable truth.
-        # Read BOTH target attestations before releasing the active slot. If the
-        # exact approved install already completed but its confirmation child was
-        # delayed/lost, reconcile it instead of falsely recording execution failure.
-        target_view = ProofPatchTarget(proposal.target).view()
-        installed_proposal_id = target_view.proofpatch_installed_proposal_id()
-        installed_candidate_hash = target_view.proofpatch_installed_candidate_hash()
+        # Timeout is a recovery path, not permission to promote provisional
+        # cross-contract state. Only an exact FINALIZED target attestation may
+        # advance the governor to VERIFIED.
+        target = ProofPatchTarget(proposal.target)
+
+        finalized_view = target.view(state=StorageType.LATEST_FINAL)
+        finalized_proposal_id = (
+            finalized_view.proofpatch_installed_proposal_id()
+        )
+        finalized_candidate_hash = (
+            finalized_view.proofpatch_installed_candidate_hash()
+        )
 
         if (
-            installed_proposal_id == proposal_id
-            and installed_candidate_hash == proposal.candidate_code_hash
+            finalized_proposal_id == proposal_id
+            and finalized_candidate_hash == proposal.candidate_code_hash
         ):
             self._record_verified_install(
                 proposal_id,
@@ -1086,23 +1100,47 @@ class ProofPatchGovernor(gl.Contract):
             )
             return
 
-        # A genuinely uninstalled current proposal may leave either the target's
-        # initial empty attestation or the last successfully installed candidate.
-        # Any partial/current-proposal mismatch is ambiguous and must fail closed:
-        # do NOT release the slot while target truth conflicts with governor truth.
-        target_still_on_known_parent = (
+        finalized_still_on_known_parent = (
             (
-                installed_proposal_id == self._inactive_proposal()
-                and installed_candidate_hash == ""
+                finalized_proposal_id == self._inactive_proposal()
+                and finalized_candidate_hash == ""
             )
             or (
-                installed_proposal_id != proposal_id
-                and installed_candidate_hash == policy.current_code_hash
+                finalized_proposal_id != proposal_id
+                and finalized_candidate_hash == policy.current_code_hash
             )
         )
-        if not target_still_on_known_parent:
+
+        if not finalized_still_on_known_parent:
             raise gl.vm.UserError(
-                "Target installation attestation is inconsistent; active proposal remains locked"
+                "Finalized target installation attestation is inconsistent; "
+                "active proposal remains locked"
+            )
+
+        nonfinal_view = target.view(state=StorageType.LATEST_NON_FINAL)
+        nonfinal_proposal_id = (
+            nonfinal_view.proofpatch_installed_proposal_id()
+        )
+        nonfinal_candidate_hash = (
+            nonfinal_view.proofpatch_installed_candidate_hash()
+        )
+
+        if (
+            nonfinal_proposal_id == proposal_id
+            and nonfinal_candidate_hash == proposal.candidate_code_hash
+        ):
+            raise gl.vm.UserError(
+                "Target installation is pending finality; "
+                "active proposal remains locked"
+            )
+
+        if (
+            nonfinal_proposal_id != finalized_proposal_id
+            or nonfinal_candidate_hash != finalized_candidate_hash
+        ):
+            raise gl.vm.UserError(
+                "Target non-final installation attestation is inconsistent; "
+                "active proposal remains locked"
             )
 
         proposal.status = STATUS_EXECUTION_FAILED

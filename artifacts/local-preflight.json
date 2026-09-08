@@ -4,33 +4,39 @@
     "direct_tests": true,
     "genvm_lint": true,
     "proofpatch_interface_tests": true,
+    "reviewer_finality_attestation_regressions": true,
     "reviewer_timeout_regressions": true,
     "reviewer_url_canonicalization_regressions": true,
     "schema": true,
     "typecheck": true
   },
   "contract_sha256": {
-    "contracts/proofpatch_governor.py": "c9b51132da5685c992eaab5eadd1403a3fcb2adae608ad90cdddc9bd67636cbb",
+    "contracts/proofpatch_governor.py": "90e58eddf1f79e9f1ae81c4f890c33405e95f079c842f3875862c8cf4e8a309f",
     "contracts/protected_target_v1.py": "7607cce754d8f7905eed629b0e8af0f3ce51bd405b3b4ba9db19e5d831209f19",
     "contracts/protected_target_v2_safe.py": "013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea"
   },
   "direct_test_sha256": {
-    "tests/direct/test_proofpatch_governor.py": "c38278f58b9ee1e763193425d09d6b7067edcc0716c3500b876682b350d9ba72",
+    "tests/direct/test_proofpatch_governor.py": "b9162745b81bca5cb33110faea23e2fefbca0e8b23066b23fb70368471c014a5",
     "tests/direct/test_protected_target_source_guards.py": "7101f1c18e01b59a645093010a338cfb86ee75bed7f3611b1c6d14296f103419",
     "tests/direct/test_url_canonicalization_guards.py": "cd6f6c7430ff689bd9cec3e33952c2bb64bade11b2080b9b5acbdfc42e02c925"
   },
   "direct_test_suite": "tests/direct",
   "python": "3.12.14",
   "reviewer_document_sha256": {
-    "docs/BRADBURY_FINAL_EVIDENCE.md": "4e0b549fcd8f5a1c3043c1b9efbf6b8de12b7040c405c2966ce2e79720e8f11c",
-    "docs/REVIEWER_COVERAGE_AUDIT.md": "653f0b7a129bc2f01717bd46fbf9635bf974a1bfca0068eeb17ec8c12b8fb725",
-    "docs/REVIEWER_GATES.md": "3660a47b2252e6c71ca3c48f976867cb0406ba2c7ee5473655caa7060bfda61d",
-    "docs/THREAT_MODEL.md": "c85efd545aa4a05a01e42b45c2a41a6e0f363f8774a29f6c2f99ff0d3bb69e44"
+    "docs/BRADBURY_FINAL_EVIDENCE.md": "80d55c90d2ab76138b72b52d011907539fd72539df49e738eea95d597e3df4b9",
+    "docs/REVIEWER_COVERAGE_AUDIT.md": "200dd8b956ee25ac441c26c4785a579797f6dd2060231c844f71c93a3817c1dd",
+    "docs/REVIEWER_GATES.md": "82f3fa54ab395f66cde19271eed04ef846fe736a2c71129e2d9b2e89385fc39f",
+    "docs/THREAT_MODEL.md": "2d4863c3a3ab244109730189e92441b87ca1eb0bc97caad0f8b64932446d8263"
   },
   "reviewer_regressions": [
     "test_timeout_reconciles_installed_but_unconfirmed_exact_install",
     "test_timeout_marks_genuinely_uninstalled_proposal_failed_and_releases_slot",
     "test_timeout_keeps_slot_locked_on_partial_install_attestation_mismatch",
+    "test_confirm_install_accepts_exact_finalized_install",
+    "test_confirm_install_rejects_nonfinal_only_install",
+    "test_reconcile_install_accepts_exact_finalized_install",
+    "test_reconcile_install_rejects_nonfinal_only_install",
+    "test_timeout_keeps_slot_locked_while_exact_install_is_nonfinal",
     "test_registration_rejects_noncanonical_authority_prefixes",
     "test_registration_rejects_normalization_sensitive_current_source_urls",
     "test_candidate_url_canonicalization_aliases_are_rejected",

@@ -1,8 +1,8 @@
-# ProofPatch Canonical Bradbury Final Evidence
+# ProofPatch Historical Bradbury Final Evidence — Superseded
 
-This file is the compact reviewer-facing record for the completed canonical ProofPatch safe-upgrade path.
+This file preserves the completed historical ProofPatch safe-upgrade path for provenance. It is superseded and MUST NOT be used as the current submission deployment or current canonical evidence.
 
-## Network and contracts
+## Historical network and contracts
 
 ```text
 Network           Bradbury Testnet
@@ -34,7 +34,7 @@ Active proposal      0
 Release label        ProtectedTarget/v2-safe
 ```
 
-Canonical proposal summary:
+Historical proposal summary:
 
 ```json
 {
@@ -55,7 +55,7 @@ Canonical proposal summary:
 }
 ```
 
-## Canonical transactions
+## Historical transactions
 
 Target deployment:
 
@@ -93,7 +93,7 @@ Confirmation child
 0x9715daa0308bffc9a7b439f99ddcf9337eae186b16564c93570f7174cf17b475
 ```
 
-The review parent and generated upgrade path reached finality and successful execution. The canonical state afterward is `VERIFIED / INSTALL_VERIFIED`.
+The review parent and generated upgrade path reached finality and successful execution on this historical deployment. That historical result does not identify the corrected submission deployment.
 
 ## Final audit
 
@@ -113,22 +113,22 @@ Dashboard URL    https://proofpatch.vercel.app/app
 Status           LIVE
 ```
 
-The production frontend reads the canonical Bradbury state, keeps Proposal #1 historical/read-only, persists returned transaction hashes, and presents consensus, finality/lifecycle, and execution as separate facts.
+This section records the production/frontend state associated with the historical deployment. The corrected submission path must be wired only after the replacement governor/target deployment is finalized and independently verified.
 
 Production promotion has completed. Temporary Preview URLs are not submission URLs.
 
 ## Replay prohibition
 
-The following canonical actions are complete and must not be repeated:
+The following historical actions are complete and must not be repeated:
 
-- deploy the canonical target;
-- register the canonical target;
+- deploy the historical target;
+- register the historical target;
 - review Proposal #1;
 - manually call the generated upgrade path;
 - manually confirm installation;
 - reconcile Proposal #1;
 - mark Proposal #1 execution timeout;
 - expire/cancel/repair Proposal #1;
-- manually finalize any completed canonical transaction.
+- manually finalize any completed historical transaction.
 
 A returned transaction hash must be tracked through consensus, finality, and execution rather than blindly resubmitted.

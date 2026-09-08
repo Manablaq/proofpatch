@@ -15,12 +15,12 @@ A release is **not submission-ready** unless every applicable gate below passes.
 | Independent validator substance | Validator repeats the evidence fetch and semantic policy application; shape-only checks cannot pass. |
 | Bypass resistance | Target owner is not an upgrader; candidate review explicitly checks alternate privilege/upgrade paths. |
 | Storage compatibility | Safe fixture preserves exact storage field order; CI must run compatibility/interface regressions. |
-| Finality | Upgrade child message is emitted only `on="finalized"`. |
+| Finality | Upgrade child messages are emitted only `on="finalized"`; installation confirmation/reconciliation consumes target attestations only from `StorageType.LATEST_FINAL`. `LATEST_NON_FINAL` may only block/retry recovery and can never produce `VERIFIED` or release the active slot. |
 | Appeal visibility | UI surfaces accepted/appealable/finalized states separately; no claim that accepted equals final. |
 | Liveness | Proposal expiry, review retry/repair, execution deadline, timeout and reconciliation paths exist. |
 | Cross-case isolation | Proposal/evidence keys bind their target and exact evidence set. |
 | Post-review response | Repair creates a fresh review using new evidence IDs without changing candidate bytes/hash. |
-| Post-install verification | Target persists installed proposal/hash; governor checks both before `VERIFIED`. |
+| Post-install verification | Target persists installed proposal/hash; governor requires an exact finalized proposal/hash attestation before `VERIFIED`. An Accepted/non-final-only installation remains locked pending finality. |
 | Repository/deployment parity | Finalized `gen_getContractCode` bytes equal submitted source exactly. |
 | Explorer parity | The Explorer link used in submission must point to that exact corrected deployment, never an earlier one. |
 | Adversarial regression | Unsafe privilege, evidence, semantic disagreement, replay, stale, timeout and source-mismatch scenarios are tested. |

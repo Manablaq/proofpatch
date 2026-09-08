@@ -23,9 +23,21 @@ REQUIRED_CHECKS = (
     "proofpatch_interface_tests",
 )
 
+REQUIRED_PREFLIGHT_REVIEWER_FLAGS = (
+    "reviewer_timeout_regressions",
+    "reviewer_finality_attestation_regressions",
+    "reviewer_url_canonicalization_regressions",
+)
+
 REQUIRED_REVIEWER_REGRESSIONS = (
     "test_timeout_reconciles_installed_but_unconfirmed_exact_install",
     "test_timeout_marks_genuinely_uninstalled_proposal_failed_and_releases_slot",
+    "test_timeout_keeps_slot_locked_on_partial_install_attestation_mismatch",
+    "test_confirm_install_accepts_exact_finalized_install",
+    "test_confirm_install_rejects_nonfinal_only_install",
+    "test_reconcile_install_accepts_exact_finalized_install",
+    "test_reconcile_install_rejects_nonfinal_only_install",
+    "test_timeout_keeps_slot_locked_while_exact_install_is_nonfinal",
     "test_registration_rejects_noncanonical_authority_prefixes",
     "test_registration_rejects_normalization_sensitive_current_source_urls",
     "test_candidate_url_canonicalization_aliases_are_rejected",
@@ -66,6 +78,10 @@ def require_preflight(
     for check in REQUIRED_CHECKS:
         if checks.get(check) is not True:
             raise ValueError(f"preflight check is not proven: {check}")
+
+    for check in REQUIRED_PREFLIGHT_REVIEWER_FLAGS:
+        if checks.get(check) is not True:
+            raise ValueError(f"reviewer preflight proof is not proven: {check}")
 
     contract_hashes = preflight.get("contract_sha256")
     if not isinstance(contract_hashes, dict):

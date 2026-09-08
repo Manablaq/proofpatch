@@ -1,6 +1,6 @@
 # ProofPatch Reviewer Coverage Audit
 
-This audit separates deterministic test coverage, canonical Bradbury evidence, and future/disposable adversarial paths. It intentionally does not fake IC-to-IC finality in unit tests and does not replay a completed canonical live upgrade merely to create extra transactions.
+This audit separates deterministic test coverage, historical Bradbury evidence, and future/disposable adversarial paths. It intentionally does not fake IC-to-IC finality in unit tests and does not replay a completed historical live upgrade merely to create extra transactions.
 
 ## Reviewer hard gates
 
@@ -40,9 +40,9 @@ The Direct Mode suite covers deterministic policy/consensus logic that does not 
 - target constructor/address boundary regression;
 - adversarial privilege, evidence, replay, stale, timeout, and source-mismatch cases.
 
-## Canonical Bradbury proof — complete safe path
+## Historical Bradbury proof — superseded
 
-The canonical live safe-v2 path is complete.
+The following live safe-v2 path completed historically. It is superseded and MUST NOT be used as the current submission deployment.
 
 - Governor:
   `0xc0100eFD567CD9dCcC8b9D17E381774fC4113ade`
@@ -61,7 +61,7 @@ The canonical live safe-v2 path is complete.
 - Current candidate hash:
   `013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea`
 
-The completed live path demonstrates:
+The historical completed path demonstrates:
 
 1. finalized target registration;
 2. immutable policy/source binding;
@@ -76,7 +76,7 @@ The completed live path demonstrates:
 11. final active-slot release;
 12. preserved target invariants.
 
-Canonical transaction IDs are recorded in `BRADBURY_FINAL_EVIDENCE.md`.
+Historical transaction IDs are retained in `BRADBURY_FINAL_EVIDENCE.md` for provenance only. A fresh corrected governor/target path must supply the eventual submission evidence.
 
 ## Frontend reviewer boundary
 
@@ -87,7 +87,7 @@ The Next.js frontend uses live Bradbury finalized reads and deliberately disting
 - accepted/finality pending;
 - finalized;
 - GenVM execution result;
-- canonical proposal/target reconciliation.
+- proposal/target reconciliation.
 
 Safety controls include:
 
@@ -103,7 +103,7 @@ Safety controls include:
 - exact-target-gated reconciliation;
 - deadline + target-state-gated execution timeout.
 
-## Paths intentionally not replayed on the canonical target
+## Paths intentionally not replayed on the historical target
 
 The unsafe candidate negative path and a deliberately failed queued-child timeout path are not replayed against Proposal #1.
 
@@ -111,16 +111,18 @@ Reason:
 
 - Proposal #1 already completed successfully.
 - Repeating review/upgrade/confirmation would be invalid and reviewer-hostile.
-- Creating a destructive timeout condition on the verified target would manufacture failure rather than verify the completed canonical safe path.
+- Creating a destructive timeout condition on the verified historical target would manufacture failure rather than verify the completed historical safe path.
 - Equivalent adversarial/liveness semantics are covered deterministically.
 - If a reviewer explicitly requires another live destructive path, it should use a separate disposable target and fresh proposal/evidence identities.
 
 ## Stop rule
 
+Do not use the historical contract addresses above as the current submission deployment.
+
 Do not describe `Accepted` as `Finalized`.
 
 Do not describe `Finalized` as execution success unless the execution result also proves success.
 
-Do not repeat a successful canonical write merely because UI state, indexing, or consensus finality takes time.
+Do not repeat a successful historical write merely because UI state, indexing, or consensus finality takes time.
 
 Do not call Proposal #1 review, upgrade, confirmation, reconciliation, timeout, expiry, repair, or cancellation actions again.
