@@ -44,12 +44,34 @@ def _storage_fields(node: ast.ClassDef) -> set[str]:
     }
 
 
+def _public_methods(node: ast.ClassDef) -> set[str]:
+    return {
+        item.name
+        for item in node.body
+        if isinstance(item, ast.FunctionDef) and not item.name.startswith("_")
+    }
+
+
 def test_v3_compact_artifacts_preserve_contract_storage_fields():
     for stem, expected in CASES:
         readable = _storage_fields(_contract_class(ROOT / "contracts" / f"{stem}.py"))
         compact = _storage_fields(_contract_class(ROOT / "contracts" / f"{stem}_compact.py"))
         assert readable == expected
         assert compact == expected
+
+
+def test_v3_facade_preserves_the_v2_public_governor_surface():
+    original_tree = ast.parse((ROOT / "contracts" / "proofpatch_governor_v2.py").read_text())
+    original = next(node for node in original_tree.body if isinstance(node, ast.ClassDef) and node.name == "ProofPatchGovernorV2")
+    facade_paths = (
+        ROOT / "contracts" / "proofpatch_governor_v3_facade.py",
+        ROOT / "contracts" / "proofpatch_governor_v3_facade_compact.py",
+    )
+    expected = _public_methods(original)
+    for path in facade_paths:
+        tree = ast.parse(path.read_text())
+        facade = next(node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == "ProofPatchGovernorV2")
+        assert expected <= _public_methods(facade)
 
 
 def test_facade_summary_helper_keeps_the_cross_contract_read_boundary():
