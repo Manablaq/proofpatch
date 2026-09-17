@@ -69,4 +69,19 @@ Live source parity passed for all ten deployed graph contracts. The retrieved Br
 
 ## Finalization record
 
-The deployment and binding transactions were accepted at the time of submission. Their appeal deadlines are tracked from each receipt’s `validUntil` field. The finalization runner submits the public decision finalizer once the last deadline has passed, in dependency order, and records the resulting finalization transactions here. No accepted-only state is treated as final evidence.
+The deployment and binding transactions were accepted at the time of submission. Their appeal deadlines were tracked from each receipt’s `validUntil` field; the last deadline was `1789685439`. After that boundary, a direct `gen_getTransactionStatus` batch query returned `Finalized` with status code `7` for all 20 deployment and binding transactions.
+
+The installed legacy CLI briefly reported a reverted explicit finalizer call with `TransactionNotAcceptedNorUndetermined` while the queue was being materialized. The authoritative status query was already terminal for every transaction, so no duplicate finalization call was submitted.
+
+Finalized facade smoke results:
+
+```text
+get_proposal_count()                         -> 0
+get_current_version(zero address)            -> ""
+get_proposal_status(0)                       -> UNKNOWN
+get_proposal_summary(0)                      -> {"status":"UNKNOWN"}
+get_state_record("counts", "")              -> {"proposal_count":0,"release_count":0}
+get_state_record("proposal", "0")           -> {"status":"UNKNOWN"}
+```
+
+These reads execute through the finalized modular graph. No fallback value is used to represent a contract-verified state.
