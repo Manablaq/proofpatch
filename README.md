@@ -25,6 +25,10 @@ ProofPatch is a GenLayer-native semantic upgrade firewall for Intelligent Contra
 
 Proposal #1 is canonical reviewer evidence and is permanently historical/read-only. Its registration, review, generated upgrade, confirmation, and final verification are complete and must not be replayed.
 
+## V2 release candidate
+
+The continuous release assurance architecture is frozen locally at commit `408bf82f0aa0f9848828b2c454e65d69c880be59` with tree `e8707f1419a283236e20e40709b592e018ebb20c`. It has passed the local contract, schema, and frontend gates, but it has no deployed V2 addresses or on-chain claims. The release packet is [`docs/DEPLOYMENT_PACKET_V2.md`](docs/DEPLOYMENT_PACKET_V2.md); the `/v2` console stays fail-closed until a finalized packet exists.
+
 ## What ProofPatch proves
 
 ProofPatch combines deterministic bindings with validator semantic review:
@@ -55,6 +59,11 @@ Start here:
 - [`docs/BRADBURY_PLAN.md`](docs/BRADBURY_PLAN.md) — canonical Bradbury verification record
 - [`docs/BRADBURY_TARGET_V1_RECOVERY.md`](docs/BRADBURY_TARGET_V1_RECOVERY.md) — preserved failed-deployment diagnosis and resolution
 - [`docs/TYPECHECK_GATE.md`](docs/TYPECHECK_GATE.md) — strict GenVM typecheck evidence policy
+- [`docs/DEPLOYMENT_PACKET_V2.md`](docs/DEPLOYMENT_PACKET_V2.md) — frozen V2 release identity and deployment gates
+- [`docs/ARCHITECTURE_V2.md`](docs/ARCHITECTURE_V2.md) — continuous assurance architecture
+- [`docs/ASSURANCE_MODEL.md`](docs/ASSURANCE_MODEL.md) — post-install certification and health model
+- [`docs/INCIDENT_MODEL.md`](docs/INCIDENT_MODEL.md) — incident admission and review model
+- [`docs/RECOVERY_MODEL.md`](docs/RECOVERY_MODEL.md) — exact-parent and candidate recovery model
 
 ## Repository layout
 
