@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProofPatch Incident Evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "kind", "evidence_id", "issuer", "target", "release_id", "installed_code_hash", "incident_type", "policy_fingerprint", "published_at", "expires_at", "checks"],
+  "properties": {
+    "schema": {"const": "proofpatch-incident-v1"},
+    "kind": {"enum": ["incident_primary", "incident_corroboration"]},
+    "evidence_id": {"type": "string", "minLength": 8, "maxLength": 160},
+    "issuer": {"type": "string", "minLength": 3, "maxLength": 160},
+    "target": {"type": "string", "minLength": 1},
+    "release_id": {"type": "string", "minLength": 1},
+    "installed_code_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "incident_type": {"type": "string", "minLength": 1},
+    "policy_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "published_at": {"type": "integer"},
+    "expires_at": {"type": "integer"},
+    "checks": {"type": "object", "additionalProperties": {"type": "boolean"}}
+  }
+}

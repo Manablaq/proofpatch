@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProofPatch Assurance Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "target",
+    "candidate_sha256",
+    "policy_fingerprint",
+    "expected_kernel_hash",
+    "expected_release_version",
+    "required_state_checks",
+    "required_readback_checks",
+    "required_canary_checks",
+    "observation_delay_seconds",
+    "assurance_deadline_seconds",
+    "ci_assurance_evidence_required",
+    "independent_assurance_required"
+  ],
+  "properties": {
+    "schema": {"const": "proofpatch-assurance-v1"},
+    "target": {"type": "string", "minLength": 1},
+    "candidate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "expected_kernel_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "expected_release_version": {"type": "string", "minLength": 1, "maxLength": 96},
+    "required_state_checks": {"type": "array", "maxItems": 32, "items": {"type": "string", "maxLength": 160}},
+    "required_readback_checks": {"type": "array", "maxItems": 32, "items": {"type": "string", "maxLength": 160}},
+    "required_canary_checks": {"type": "array", "maxItems": 32, "items": {"type": "string", "maxLength": 160}},
+    "observation_delay_seconds": {"type": "integer", "minimum": 60},
+    "assurance_deadline_seconds": {"type": "integer", "minimum": 60},
+    "ci_assurance_evidence_required": {"const": true},
+    "independent_assurance_required": {"const": true}
+  }
+}

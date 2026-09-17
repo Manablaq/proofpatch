@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProofPatch Assurance Evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "kind", "evidence_id", "issuer", "target", "release_id", "proposal_id", "candidate_sha256", "policy_fingerprint", "manifest_sha256", "published_at", "expires_at", "checks"],
+  "properties": {
+    "schema": {"const": "proofpatch-assurance-v1"},
+    "kind": {"enum": ["assurance_primary", "assurance_corroboration"]},
+    "evidence_id": {"type": "string", "minLength": 8, "maxLength": 160},
+    "issuer": {"type": "string", "minLength": 3, "maxLength": 160},
+    "target": {"type": "string", "minLength": 1},
+    "release_id": {"type": "string", "minLength": 1},
+    "proposal_id": {"type": "integer", "minimum": 1},
+    "candidate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "published_at": {"type": "integer"},
+    "expires_at": {"type": "integer"},
+    "checks": {"type": "object", "additionalProperties": {"type": "boolean"}}
+  }
+}

@@ -128,6 +128,9 @@ export default function HomePage() {
 
         <div className="header-actions">
           <ThemeToggle />
+          <Link className="button secondary" href="/v2">
+            V2 console
+          </Link>
           <Link className="button header-launch" href="/app">
             Launch app <ArrowRight size={15} />
           </Link>

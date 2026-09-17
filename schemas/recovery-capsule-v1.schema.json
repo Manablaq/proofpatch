@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProofPatch Recovery Capsule v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "mode", "recovery_release_id", "recovery_version", "recovery_source_url", "recovery_code_sha256"],
+  "properties": {
+    "schema": {"const": "proofpatch-recovery-capsule-v1"},
+    "mode": {"enum": ["EXACT_PARENT", "RECOVERY_CANDIDATE"]},
+    "recovery_release_id": {"type": "string", "minLength": 1},
+    "recovery_version": {"type": "string", "minLength": 1, "maxLength": 96},
+    "recovery_source_url": {"type": "string", "minLength": 1, "maxLength": 1024},
+    "recovery_code_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

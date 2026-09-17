@@ -8,15 +8,23 @@
     "reviewer_timeout_regressions": true,
     "reviewer_url_canonicalization_regressions": true,
     "schema": true,
+    "schema_files": true,
     "typecheck": true
   },
   "contract_sha256": {
     "contracts/proofpatch_governor.py": "90e58eddf1f79e9f1ae81c4f890c33405e95f079c842f3875862c8cf4e8a309f",
+    "contracts/proofpatch_governor_v2.py": "f6783610250367e3b914d74f27a228ecee4c1b5b6388c4289ad97160df6cd019",
     "contracts/protected_target_v1.py": "7607cce754d8f7905eed629b0e8af0f3ce51bd405b3b4ba9db19e5d831209f19",
-    "contracts/protected_target_v2_safe.py": "013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea"
+    "contracts/protected_target_v2.py": "3674e1f165dd1ff2f51305492d5cfe9c77c44d2a9d7014c0d133d555e761846e",
+    "contracts/protected_target_v2_safe.py": "013f8ae10b9f38aaad7689168b94335a514a9c30882f4a03daa3eb546cda83ea",
+    "contracts/protected_target_v3_latent_regression.py": "eeda91b273de786076471cbadf2827b95fbaeedfcffb3f0f089d0aa87778c752",
+    "contracts/protected_target_v3_recovery.py": "5adbfa804d6cdb6720ffec5b4991daf1faca0df518d55280966def081e0d9a9d",
+    "contracts/protected_target_v3_safe.py": "b1708f0e9899ce66a62250cc84d127aec1a24e3575b8922343af878312be2f78"
   },
   "direct_test_sha256": {
     "tests/direct/test_proofpatch_governor.py": "b9162745b81bca5cb33110faea23e2fefbca0e8b23066b23fb70368471c014a5",
+    "tests/direct/test_proofpatch_governor_v2.py": "67cc8548e06a3d566701275f48344539f506ecdb6f7c659402091049ea31c779",
+    "tests/direct/test_proofpatch_v2_source_guards.py": "fcf9b1923436e69c8e1111eaed2edfc520b62616a59c643192bc57d2a62a6b6b",
     "tests/direct/test_protected_target_source_guards.py": "7101f1c18e01b59a645093010a338cfb86ee75bed7f3611b1c6d14296f103419",
     "tests/direct/test_url_canonicalization_guards.py": "cd6f6c7430ff689bd9cec3e33952c2bb64bade11b2080b9b5acbdfc42e02c925"
   },
@@ -43,15 +51,32 @@
     "test_candidate_url_canonicalization_aliases_are_rejected",
     "test_evidence_url_canonicalization_aliases_are_rejected"
   ],
+  "schema_sha256": {
+    "schemas/assurance-evidence-v1.schema.json": "f8a1fd061ce788f0d40bb655c89a87993aa75948d5e617d84ea3954f89332f61",
+    "schemas/assurance-manifest-v1.schema.json": "3e110fcdccecfb73e94424b5b303e4a0376637d2c7727bc4e45f79fe2f3f01cb",
+    "schemas/evidence-v2.schema.json": "8b9bf36d5f1171e9c17991d9812f6838ee98080728a4e16e3de6185d625a45e9",
+    "schemas/incident-evidence-v1.schema.json": "1e6d103937d155d72ab3ff5360b48bbb93e054309c4fa6f43b5210966d2ac1a8",
+    "schemas/recovery-capsule-v1.schema.json": "c3262ab4cb9d60e31b2b151a0631730382b32345bc5bd1b1a2d776fa84b1c536"
+  },
   "status": "PASS",
   "strict_typecheck_artifacts": [
     "artifacts/strict-typecheck/proofpatch_governor.json",
+    "artifacts/strict-typecheck/proofpatch_governor_v2.json",
     "artifacts/strict-typecheck/protected_target_v1.json",
-    "artifacts/strict-typecheck/protected_target_v2_safe.json"
+    "artifacts/strict-typecheck/protected_target_v2_safe.json",
+    "artifacts/strict-typecheck/protected_target_v2.json",
+    "artifacts/strict-typecheck/protected_target_v3_safe.json",
+    "artifacts/strict-typecheck/protected_target_v3_latent_regression.json",
+    "artifacts/strict-typecheck/protected_target_v3_recovery.json"
   ],
   "strict_typecheck_sha256": {
     "artifacts/strict-typecheck/proofpatch_governor.json": "0512328c3583d649f1c54d0b5cf0a44db54ead8538e4900ee5ce5504855d5608",
+    "artifacts/strict-typecheck/proofpatch_governor_v2.json": "6ac59fdf781c84063f11b22ac2dd221eab52370eec8493d4bd7768d517af22f4",
     "artifacts/strict-typecheck/protected_target_v1.json": "6a1364bf86a9e5160a01c9fef987de4f9e9674c43aa65af23bb44b7406d4088e",
-    "artifacts/strict-typecheck/protected_target_v2_safe.json": "92d5aa7902920fd4416a234d28e470df29458bad7c8155fccc6199063bbf5abb"
+    "artifacts/strict-typecheck/protected_target_v2.json": "b854d93037fc2b10bcb485fe7ae074d318fa3d8a77a8dc7922e2cbf3293f5ecb",
+    "artifacts/strict-typecheck/protected_target_v2_safe.json": "92d5aa7902920fd4416a234d28e470df29458bad7c8155fccc6199063bbf5abb",
+    "artifacts/strict-typecheck/protected_target_v3_latent_regression.json": "f1e12b6e05c8a029f68e37f8098fd5ec4acb306615c1bb82c707a5401272eddb",
+    "artifacts/strict-typecheck/protected_target_v3_recovery.json": "dd62d6f059419759e358da2602466efa13ea92a7543f26da61e51d5a6e87e12a",
+    "artifacts/strict-typecheck/protected_target_v3_safe.json": "c4a4c259f5b47c39ff45fd8f8b333248dde5e7e912f2828ab2585ef385c62f3b"
   }
 }

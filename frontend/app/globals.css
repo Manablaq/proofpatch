@@ -1075,6 +1075,14 @@
     justify-content: flex-end;
     gap: 6px;
   }
+  .appeal-panel { display: grid; gap: 12px; }
+  .appeal-panel > p { max-width: 760px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+  .field-label { color: var(--faint); font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }
+  .text-input { width: 100%; min-height: 42px; padding: 0 11px; border: 1px solid var(--line); border-radius: 10px; outline: 0; background: var(--surface-strong); color: var(--ink); }
+  .appeal-panel .lifecycle-actions { justify-content: flex-start; }
+  .appeal-metrics { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .appeal-metrics .data-value { min-height: 72px; }
+  .error-copy { color: var(--danger); font-size: 10px; line-height: 1.5; }
   .lifecycle-button {
     min-height: 32px;
     display: inline-flex;
@@ -1195,6 +1203,7 @@
     .lifecycle-row .proposal-state,
     .lifecycle-row .proposal-lifecycle-cell { grid-column: 2; }
     .lifecycle-actions { justify-content: flex-start; }
+    .appeal-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
   @media (max-width: 600px) {
@@ -1203,6 +1212,7 @@
     .lifecycle-row .proposal-lifecycle-cell { grid-column: 1; }
     .lifecycle-confirm-actions { flex-direction: column-reverse; }
     .lifecycle-confirm-actions .button { width: 100%; }
+    .appeal-metrics { grid-template-columns: 1fr; }
   }
 
   /* Queued install recovery + transaction truth v1 */

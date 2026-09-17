@@ -11,8 +11,13 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACTS = [
     ROOT / "contracts" / "proofpatch_governor.py",
+    ROOT / "contracts" / "proofpatch_governor_v2.py",
     ROOT / "contracts" / "protected_target_v1.py",
     ROOT / "contracts" / "protected_target_v2_safe.py",
+    ROOT / "contracts" / "protected_target_v2.py",
+    ROOT / "contracts" / "protected_target_v3_safe.py",
+    ROOT / "contracts" / "protected_target_v3_latent_regression.py",
+    ROOT / "contracts" / "protected_target_v3_recovery.py",
 ]
 STRICT_DIR = ROOT / "artifacts" / "strict-typecheck"
 
@@ -170,6 +175,7 @@ def main() -> int:
             str(abi_path.relative_to(ROOT)),
         ])
 
+    run([sys.executable, "scripts/validate_schemas.py"])
     run([sys.executable, "-m", "pytest", "tests/direct", "-v"])
 
     # genlayer-test clears ROOT/artifacts when Direct Mode starts. Only promote
@@ -203,6 +209,11 @@ def main() -> int:
         str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
         for path, _ in staged_strict_audits
     }
+    schema_files = sorted((ROOT / "schemas").glob("*.json"))
+    schema_hashes = {
+        str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in schema_files
+    }
     artifact = ROOT / "artifacts" / "local-preflight.json"
     _write_json(
         artifact,
@@ -216,6 +227,7 @@ def main() -> int:
                 "direct_tests": True,
                 "adversarial_tests": True,
                 "proofpatch_interface_tests": True,
+                "schema_files": True,
                 "reviewer_timeout_regressions": True,
                 "reviewer_finality_attestation_regressions": True,
                 "reviewer_url_canonicalization_regressions": True,
@@ -243,6 +255,7 @@ def main() -> int:
                 for path, _ in staged_strict_audits
             ],
             "strict_typecheck_sha256": strict_hashes,
+            "schema_sha256": schema_hashes,
         },
     )
     print(f"PREFLIGHT: PASS -> {artifact.relative_to(ROOT)}")

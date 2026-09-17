@@ -33,6 +33,11 @@ export type ChainTransactionSnapshot = {
   lifecycle: string;
 };
 
+export type NativeAppealState = ChainTransactionSnapshot & {
+  appealable: boolean;
+  appealBond: string;
+};
+
 export const publicClient = createClient({
   chain: testnetBradbury,
 });
@@ -173,6 +178,36 @@ export async function getTransactionSnapshot(
     ),
     lifecycle: text(transaction.lifecycle ?? ""),
   };
+}
+
+function requireTransactionHash(value: string): HexHash {
+  const normalized = value.trim();
+  if (!/^0x[0-9a-fA-F]{64}$/.test(normalized)) {
+    throw new Error("Enter a complete 32-byte GenLayer transaction hash.");
+  }
+  return normalized as HexHash;
+}
+
+export async function getNativeAppealState(hash: string): Promise<NativeAppealState> {
+  const txId = requireTransactionHash(hash);
+  const [snapshot, appealable, bond] = await Promise.all([
+    getTransactionSnapshot(txId),
+    publicClient.canAppeal({ txId }),
+    publicClient.getMinAppealBond({ txId }),
+  ]);
+  return {
+    ...snapshot,
+    appealable,
+    appealBond: bond.toString(),
+  };
+}
+
+export async function appealNativeTransaction(hash: string, address: string): Promise<string> {
+  const txId = requireTransactionHash(hash);
+  const client = await getBradburyWriteClient(address);
+  const bond = await client.getMinAppealBond({ txId });
+  await client.appealTransaction({ txId, value: bond });
+  return txId;
 }
 
 export async function getCanonicalFinalityChain() {

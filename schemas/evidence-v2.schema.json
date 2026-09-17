@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProofPatch Pre-install Evidence v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "kind", "evidence_id", "issuer", "target", "parent_sha256", "candidate_sha256", "policy_fingerprint", "published_at", "expires_at"],
+  "properties": {
+    "schema": {"const": "proofpatch-evidence-v2"},
+    "kind": {"enum": ["ci", "audit"]},
+    "evidence_id": {"type": "string", "minLength": 8, "maxLength": 160},
+    "issuer": {"type": "string", "minLength": 3, "maxLength": 160},
+    "target": {"type": "string", "minLength": 1},
+    "parent_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "candidate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "published_at": {"type": "integer"},
+    "expires_at": {"type": "integer"},
+    "checks": {"type": "object", "additionalProperties": {"type": "boolean"}},
+    "verdict": {"const": "PASS"},
+    "independent_review": {"const": true}
+  },
+  "allOf": [
+    {"if": {"properties": {"kind": {"const": "ci"}}}, "then": {"required": ["checks"]}},
+    {"if": {"properties": {"kind": {"const": "audit"}}}, "then": {"required": ["verdict", "independent_review"]}}
+  ]
+}
