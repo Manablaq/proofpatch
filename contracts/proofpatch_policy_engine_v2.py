@@ -1,0 +1,613 @@
+# { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+from genlayer import *
+from dataclasses import dataclass
+import hashlib
+import json
+SCHEMA_VERSION = 'proofpatch-v2'
+ASSURANCE_SCHEMA = 'proofpatch-assurance-v1'
+MODE_ACTIVE = 'ACTIVE'
+MODE_PROVISIONAL = 'PROVISIONAL'
+MODE_RECOVERED = 'RECOVERED'
+STATUS_PROPOSED = 'PROPOSED'
+STATUS_REPAIR = 'EVIDENCE_REPAIR_REQUIRED'
+STATUS_INSTALLED_PROVISIONAL = 'INSTALLED_PROVISIONAL'
+STATUS_ASSURANCE_PENDING = 'ASSURANCE_PENDING'
+STATUS_ASSURANCE_REPAIR = 'ASSURANCE_REPAIR_REQUIRED'
+STATUS_ASSURANCE_RETRY = 'ASSURANCE_RETRY_REQUIRED'
+STATUS_CERTIFIED = 'CERTIFIED'
+STATUS_INCIDENT_OPEN = 'INCIDENT_OPEN'
+MAX_CONSTITUTION_BYTES = 16000
+MAX_CANDIDATE_BYTES = 512000
+MAX_URL_BYTES = 1024
+MAX_ID_BYTES = 160
+MAX_VERSION_BYTES = 96
+MAX_EVIDENCE_AGE_SECONDS = 30 * 24 * 60 * 60
+MAX_PROPOSAL_TTL_SECONDS = 14 * 24 * 60 * 60
+MAX_EXECUTION_TIMEOUT_SECONDS = 7 * 24 * 60 * 60
+MIN_WINDOW_SECONDS = 60
+
+@allow_storage
+@dataclass
+class TargetPolicy:
+    owner: Address
+    target: Address
+    constitution: str
+    policy_fingerprint: str
+    source_authority: str
+    ci_authority: str
+    audit_authority: str
+    source_prefix: str
+    ci_prefix: str
+    audit_prefix: str
+    assurance_authority: str
+    assurance_prefix: str
+    assurance_corroboration_authority: str
+    assurance_corroboration_prefix: str
+    proofpatch_kernel_hash: str
+    current_version: str
+    current_source_url: str
+    current_code_hash: str
+    current_release_id: str
+    max_evidence_age_seconds: u64
+    proposal_ttl_seconds: u64
+    execution_timeout_seconds: u64
+    assurance_observation_delay_seconds: u64
+    assurance_deadline_seconds: u64
+    max_manifest_bytes: u64
+    max_capsule_bytes: u64
+    active: bool
+
+@allow_storage
+@dataclass
+class UpgradeProposal:
+    proposal_id: u256
+    target: Address
+    proposer: Address
+    parent_version: str
+    parent_source_url: str
+    parent_code_hash: str
+    candidate_version: str
+    candidate_source_url: str
+    candidate_code: bytes
+    candidate_code_hash: str
+    ci_evidence_url: str
+    ci_evidence_id: str
+    audit_evidence_url: str
+    audit_evidence_id: str
+    assurance_manifest: str
+    assurance_manifest_hash: str
+    recovery_mode: str
+    recovery_release_id: str
+    recovery_version: str
+    recovery_source_url: str
+    recovery_code: bytes
+    recovery_code_hash: str
+    recovery_capsule_hash: str
+    evidence_set_hash: str
+    policy_fingerprint: str
+    created_at: u64
+    expires_at: u64
+    reviewed_at: u64
+    execution_deadline: u64
+    status: str
+    last_review_code: str
+
+@allow_storage
+@dataclass
+class ReleaseRecord:
+    release_id: str
+    target: Address
+    version: str
+    parent_release_id: str
+    parent_code_hash: str
+    source_url: str
+    code_hash: str
+    proposal_id: u256
+    policy_fingerprint: str
+    evidence_set_hash: str
+    assurance_manifest_hash: str
+    recovery_capsule_hash: str
+    installed_at: u64
+    certified_at: u64
+    status: str
+    recovered_from_release_id: str
+    recovery_incident_id: str
+    lineage_hash: str
+
+@allow_storage
+@dataclass
+class IncidentRecord:
+    incident_id: str
+    target: Address
+    release_id: str
+    installed_code_hash: str
+    incident_type: str
+    primary_url: str
+    primary_evidence_id: str
+    corroboration_url: str
+    corroboration_evidence_id: str
+    policy_fingerprint: str
+    assurance_manifest_hash: str
+    recovery_capsule_hash: str
+    opened_at: u64
+    expires_at: u64
+    reviewed_at: u64
+    recovery_deadline: u64
+    status: str
+    last_review_code: str
+    recovery_authorized: bool
+
+class ProofPatchPolicyLogic:
+    """Immutable consensus governor for continuous release assurance.
+
+    Security model:
+    - each target self-registers an immutable policy;
+    - the target makes this governor its sole GenVM upgrader;
+    - every candidate is frozen by exact bytes + SHA-256 before review;
+    - authority prefixes are immutable raw GitHub repository prefixes;
+    - audit evidence must come from a GitHub owner distinct from the source owner;
+    - validators independently fetch and re-evaluate the exact evidence and source;
+    - all authorization-driving semantic booleans must match exactly;
+    - approved upgrade messages are emitted only on GenLayer finality;
+    - installation creates a PROVISIONAL release;
+    - only finalized assurance activates a release;
+    - only a precommitted recovery capsule can recover a release.
+
+    This contract intentionally has no self-upgrade entry point.
+    """
+
+    def __init__(self):
+        self.proposal_count = u256(0)
+        self.release_count = u256(0)
+
+    def _now(self) -> int:
+        return self.now
+
+    def _sha256_hex(self, data: bytes) -> str:
+        return hashlib.sha256(data).hexdigest()
+
+    def _hash_text_parts(self, parts: list[str]) -> str:
+        return hashlib.sha256('\x1f'.join(parts).encode('utf-8')).hexdigest()
+
+    def _is_hex_hash(self, value: str) -> bool:
+        if len(value) != 64:
+            return False
+        for char in value:
+            if char not in '0123456789abcdef':
+                return False
+        return True
+
+    def _canonical_json_hash(self, value: str) -> tuple[str, object]:
+        try:
+            parsed = json.loads(value)
+            canonical = json.dumps(parsed, sort_keys=True, separators=(',', ':'), ensure_ascii=False)
+            if canonical != value:
+                return ('NONCANONICAL', parsed)
+            return (self._sha256_hex(canonical.encode('utf-8')), parsed)
+        except Exception:
+            return ('INVALID', None)
+
+    def _validate_manifest(self, manifest: str, expected_target: Address, expected_candidate_hash: str, expected_policy_hash: str, expected_kernel_hash: str, policy: TargetPolicy) -> str:
+        if len(manifest.encode('utf-8')) > int(policy.max_manifest_bytes):
+            return 'MANIFEST_TOO_LARGE'
+        (manifest_hash, parsed) = self._canonical_json_hash(manifest)
+        if manifest_hash in ('INVALID', 'NONCANONICAL') or not isinstance(parsed, dict):
+            return 'MANIFEST_NOT_CANONICAL_JSON'
+        obj = typing.cast(dict[object, object], parsed)
+        required = ('schema', 'target', 'candidate_sha256', 'policy_fingerprint', 'expected_kernel_hash', 'expected_release_version', 'observation_delay_seconds', 'assurance_deadline_seconds', 'ci_assurance_evidence_required', 'independent_assurance_required')
+        for key in required:
+            if key not in obj:
+                return 'MANIFEST_MISSING_' + key.upper()
+        if obj.get('schema') != ASSURANCE_SCHEMA:
+            return 'MANIFEST_SCHEMA_MISMATCH'
+        target_value = obj.get('target')
+        if not isinstance(target_value, str) or target_value.lower() != str(expected_target).lower():
+            return 'MANIFEST_TARGET_MISMATCH'
+        if obj.get('candidate_sha256') != expected_candidate_hash:
+            return 'MANIFEST_CANDIDATE_HASH_MISMATCH'
+        if obj.get('policy_fingerprint') != expected_policy_hash:
+            return 'MANIFEST_POLICY_MISMATCH'
+        if obj.get('expected_kernel_hash') != expected_kernel_hash:
+            return 'MANIFEST_KERNEL_MISMATCH'
+        if type(obj.get('observation_delay_seconds')) is not int:
+            return 'MANIFEST_OBSERVATION_DELAY_INVALID'
+        if type(obj.get('assurance_deadline_seconds')) is not int:
+            return 'MANIFEST_ASSURANCE_DEADLINE_INVALID'
+        if obj.get('observation_delay_seconds') != int(policy.assurance_observation_delay_seconds):
+            return 'MANIFEST_OBSERVATION_DELAY_MISMATCH'
+        if obj.get('assurance_deadline_seconds') != int(policy.assurance_deadline_seconds):
+            return 'MANIFEST_ASSURANCE_DEADLINE_MISMATCH'
+        if obj.get('ci_assurance_evidence_required') is not True:
+            return 'MANIFEST_CI_ASSURANCE_REQUIRED'
+        if obj.get('independent_assurance_required') is not True:
+            return 'MANIFEST_INDEPENDENT_ASSURANCE_REQUIRED'
+        for list_key in ('required_state_checks', 'required_readback_checks', 'required_canary_checks'):
+            value_raw = obj.get(list_key, [])
+            if not isinstance(value_raw, list):
+                return 'MANIFEST_' + list_key.upper() + '_INVALID'
+            value = typing.cast(list[object], value_raw)
+            if len(value) > 32:
+                return 'MANIFEST_' + list_key.upper() + '_INVALID'
+            for item in value:
+                if not isinstance(item, str) or len(item.encode('utf-8')) > 160:
+                    return 'MANIFEST_' + list_key.upper() + '_ITEM_INVALID'
+        return ''
+
+    def _check_text(self, value: str, label: str, minimum: int, maximum: int) -> None:
+        encoded_len = len(value.encode('utf-8'))
+        if encoded_len < minimum or encoded_len > maximum:
+            raise gl.vm.UserError(f'{label} length is invalid')
+
+    def _check_range(self, value: int, label: str, minimum: int, maximum: int) -> None:
+        if value < minimum or value > maximum:
+            raise gl.vm.UserError(f'{label} is outside supported bounds')
+
+    def _is_canonical_raw_segment(self, value: str) -> bool:
+        """Accept only a single parser-stable raw-GitHub path representation.
+
+        ProofPatch compares the raw URL before GenVM hands it to an HTTP URL
+        parser. Restricting every path component to this canonical ASCII form
+        prevents dot-segment, percent-encoding, backslash, control-character,
+        repeated-separator, and Unicode-normalization aliases from changing the
+        resource that is actually fetched.
+        """
+        if not value or value in ('.', '..'):
+            return False
+        allowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-'
+        for char in value:
+            if char not in allowed:
+                return False
+        return True
+
+    def _raw_github_owner(self, prefix: str) -> str:
+        base = 'https://raw.githubusercontent.com/'
+        if not prefix.startswith(base) or not prefix.endswith('/'):
+            return ''
+        rest = prefix[len(base):]
+        parts = rest.split('/')
+        if len(parts) != 3 or parts[2] != '':
+            return ''
+        owner = parts[0]
+        repository = parts[1]
+        if not self._is_canonical_raw_segment(owner):
+            return ''
+        if not self._is_canonical_raw_segment(repository):
+            return ''
+        return owner
+
+    def _is_authority_prefix(self, prefix: str) -> bool:
+        return self._raw_github_owner(prefix) != ''
+
+    def _is_immutable_url(self, url: str, prefix: str) -> bool:
+        if len(url.encode('utf-8')) > MAX_URL_BYTES:
+            return False
+        if not self._is_authority_prefix(prefix):
+            return False
+        if not url.startswith(prefix):
+            return False
+        suffix = url[len(prefix):]
+        parts = suffix.split('/', 1)
+        if len(parts) != 2:
+            return False
+        (commit, path) = parts
+        if len(commit) != 40:
+            return False
+        for char in commit:
+            if char not in '0123456789abcdef':
+                return False
+        path_segments = path.split('/')
+        if not path_segments:
+            return False
+        for segment in path_segments:
+            if not self._is_canonical_raw_segment(segment):
+                return False
+        return True
+
+    def _policy_fingerprint(self, target: Address, owner: Address, constitution: str, source_authority: str, ci_authority: str, audit_authority: str, source_prefix: str, ci_prefix: str, audit_prefix: str, max_evidence_age_seconds: int, proposal_ttl_seconds: int, execution_timeout_seconds: int, assurance_authority: str, assurance_prefix: str, assurance_corroboration_authority: str, assurance_corroboration_prefix: str, proofpatch_kernel_hash: str, assurance_observation_delay_seconds: int, assurance_deadline_seconds: int, max_manifest_bytes: int, max_capsule_bytes: int) -> str:
+        return self._hash_text_parts([SCHEMA_VERSION, str(target), str(owner), constitution, source_authority, ci_authority, audit_authority, source_prefix, ci_prefix, audit_prefix, str(max_evidence_age_seconds), str(proposal_ttl_seconds), str(execution_timeout_seconds), assurance_authority, assurance_prefix, assurance_corroboration_authority, assurance_corroboration_prefix, proofpatch_kernel_hash, str(assurance_observation_delay_seconds), str(assurance_deadline_seconds), str(max_manifest_bytes), str(max_capsule_bytes)])
+
+    def _evidence_set_hash(self, candidate_source_url: str, ci_evidence_url: str, ci_evidence_id: str, audit_evidence_url: str, audit_evidence_id: str, assurance_manifest_hash: str, recovery_capsule_hash: str) -> str:
+        return self._hash_text_parts([SCHEMA_VERSION, candidate_source_url, ci_evidence_url, ci_evidence_id, audit_evidence_url, audit_evidence_id, assurance_manifest_hash, recovery_capsule_hash])
+
+    def _inactive_proposal(self) -> u256:
+        return u256(0)
+
+    def _require_policy_owner(self, target: Address) -> TargetPolicy:
+        if target not in self.policies:
+            raise gl.vm.UserError('Target is not registered')
+        policy = self.policies[target]
+        if self.actor != policy.owner:
+            raise gl.vm.UserError('Only the registered target owner may perform this action')
+        if not policy.active:
+            raise gl.vm.UserError('Target policy is inactive')
+        return policy
+
+    def _require_proposal(self, proposal_id: u256) -> UpgradeProposal:
+        if proposal_id not in self.proposals:
+            raise gl.vm.UserError('Unknown proposal')
+        return self.proposals[proposal_id]
+
+    def _reserve_evidence_id(self, target: Address, issuer: str, kind: str, evidence_id: str) -> None:
+        self._check_text(evidence_id, 'evidence_id', 8, MAX_ID_BYTES)
+        reuse_key = self._hash_text_parts([str(target), issuer, kind, evidence_id])
+        if self.used_evidence_ids.get(reuse_key, False):
+            raise gl.vm.UserError('Evidence identifier has already been used')
+        self.used_evidence_ids[reuse_key] = True
+
+    def _installed_candidate_key(self, target: Address, candidate_hash: str) -> str:
+        return self._hash_text_parts([str(target), candidate_hash])
+
+    def _lineage_hash(self, target: Address, previous_lineage_hash: str, release_id: str, parent_release_id: str, version: str, code_hash: str, policy_fingerprint: str, evidence_set_hash: str, assurance_manifest_hash: str, recovery_capsule_hash: str) -> str:
+        return self._hash_text_parts([SCHEMA_VERSION, str(target), previous_lineage_hash, release_id, parent_release_id, version, code_hash, policy_fingerprint, evidence_set_hash, assurance_manifest_hash, recovery_capsule_hash])
+
+    def _register_target(self, owner: str, constitution: str, source_authority: str, ci_authority: str, audit_authority: str, source_prefix: str, ci_prefix: str, audit_prefix: str, assurance_authority: str, assurance_prefix: str, assurance_corroboration_authority: str, assurance_corroboration_prefix: str, proofpatch_kernel_hash: str, current_version: str, current_source_url: str, current_code_hash: str, max_evidence_age_seconds: int, proposal_ttl_seconds: int, execution_timeout_seconds: int, assurance_observation_delay_seconds: int, assurance_deadline_seconds: int, max_manifest_bytes: int, max_capsule_bytes: int) -> None:
+        """Register the calling target itself; caller address becomes target identity.
+
+        The target should expose an owner-only registration method that emits this call
+        to ProofPatch on finality. A contract cannot register another target address.
+        """
+        target = self.actor
+        owner_address = Address(owner)
+        if target in self.policies:
+            raise gl.vm.UserError('Target is already registered; policy is immutable')
+        if owner_address == Address('0x0000000000000000000000000000000000000000'):
+            raise gl.vm.UserError('Owner cannot be the zero address')
+        self._check_text(constitution, 'constitution', 80, MAX_CONSTITUTION_BYTES)
+        self._check_text(source_authority, 'source_authority', 3, 160)
+        self._check_text(ci_authority, 'ci_authority', 3, 160)
+        self._check_text(audit_authority, 'audit_authority', 3, 160)
+        self._check_text(assurance_authority, 'assurance_authority', 3, 160)
+        self._check_text(assurance_corroboration_authority, 'assurance_corroboration_authority', 3, 160)
+        self._check_text(current_version, 'current_version', 1, MAX_VERSION_BYTES)
+        if len({source_authority, ci_authority, audit_authority, assurance_authority, assurance_corroboration_authority}) != 5:
+            raise gl.vm.UserError('Publisher authorities must be distinct')
+        if not self._is_authority_prefix(source_prefix):
+            raise gl.vm.UserError('Invalid immutable source authority prefix')
+        if not self._is_authority_prefix(ci_prefix):
+            raise gl.vm.UserError('Invalid immutable CI authority prefix')
+        if not self._is_authority_prefix(audit_prefix):
+            raise gl.vm.UserError('Invalid immutable audit authority prefix')
+        if not self._is_authority_prefix(assurance_prefix):
+            raise gl.vm.UserError('Invalid immutable assurance authority prefix')
+        if not self._is_authority_prefix(assurance_corroboration_prefix):
+            raise gl.vm.UserError('Invalid immutable assurance corroboration prefix')
+        if len({source_prefix, ci_prefix, audit_prefix, assurance_prefix, assurance_corroboration_prefix}) != 5:
+            raise gl.vm.UserError('Publisher repositories must be distinct')
+        if self._raw_github_owner(source_prefix).lower() == self._raw_github_owner(audit_prefix).lower():
+            raise gl.vm.UserError('Independent audit authority must have a distinct GitHub publisher')
+        if self._raw_github_owner(source_prefix).lower() == self._raw_github_owner(assurance_prefix).lower():
+            raise gl.vm.UserError('Independent assurance authority must have a distinct GitHub publisher')
+        if self._raw_github_owner(assurance_prefix).lower() == self._raw_github_owner(assurance_corroboration_prefix).lower():
+            raise gl.vm.UserError('Independent assurance corroboration must have a distinct GitHub publisher')
+        proofpatch_kernel_hash = proofpatch_kernel_hash.lower()
+        if not self._is_hex_hash(proofpatch_kernel_hash):
+            raise gl.vm.UserError('proofpatch_kernel_hash must be a lowercase SHA-256 hex digest')
+        current_code_hash = current_code_hash.lower()
+        if not self._is_hex_hash(current_code_hash):
+            raise gl.vm.UserError('current_code_hash must be a lowercase SHA-256 hex digest')
+        if not self._is_immutable_url(current_source_url, source_prefix):
+            raise gl.vm.UserError('Current source must use the approved immutable commit URL')
+        self._check_range(max_evidence_age_seconds, 'max_evidence_age_seconds', MIN_WINDOW_SECONDS, MAX_EVIDENCE_AGE_SECONDS)
+        self._check_range(proposal_ttl_seconds, 'proposal_ttl_seconds', MIN_WINDOW_SECONDS, MAX_PROPOSAL_TTL_SECONDS)
+        self._check_range(execution_timeout_seconds, 'execution_timeout_seconds', MIN_WINDOW_SECONDS, MAX_EXECUTION_TIMEOUT_SECONDS)
+        self._check_range(assurance_observation_delay_seconds, 'assurance_observation_delay_seconds', MIN_WINDOW_SECONDS, MAX_EXECUTION_TIMEOUT_SECONDS)
+        self._check_range(assurance_deadline_seconds, 'assurance_deadline_seconds', assurance_observation_delay_seconds, MAX_EXECUTION_TIMEOUT_SECONDS)
+        self._check_range(max_manifest_bytes, 'max_manifest_bytes', 256, 128000)
+        self._check_range(max_capsule_bytes, 'max_capsule_bytes', 1, MAX_CANDIDATE_BYTES)
+        fingerprint = self._policy_fingerprint(target, owner_address, constitution, source_authority, ci_authority, audit_authority, source_prefix, ci_prefix, audit_prefix, max_evidence_age_seconds, proposal_ttl_seconds, execution_timeout_seconds, assurance_authority, assurance_prefix, assurance_corroboration_authority, assurance_corroboration_prefix, proofpatch_kernel_hash, assurance_observation_delay_seconds, assurance_deadline_seconds, max_manifest_bytes, max_capsule_bytes)
+        self.policies[target] = TargetPolicy(owner=owner_address, target=target, constitution=constitution, policy_fingerprint=fingerprint, source_authority=source_authority, ci_authority=ci_authority, audit_authority=audit_authority, source_prefix=source_prefix, ci_prefix=ci_prefix, audit_prefix=audit_prefix, assurance_authority=assurance_authority, assurance_prefix=assurance_prefix, assurance_corroboration_authority=assurance_corroboration_authority, assurance_corroboration_prefix=assurance_corroboration_prefix, proofpatch_kernel_hash=proofpatch_kernel_hash, current_version=current_version, current_source_url=current_source_url, current_code_hash=current_code_hash, current_release_id='', max_evidence_age_seconds=u64(max_evidence_age_seconds), proposal_ttl_seconds=u64(proposal_ttl_seconds), execution_timeout_seconds=u64(execution_timeout_seconds), assurance_observation_delay_seconds=u64(assurance_observation_delay_seconds), assurance_deadline_seconds=u64(assurance_deadline_seconds), max_manifest_bytes=u64(max_manifest_bytes), max_capsule_bytes=u64(max_capsule_bytes), active=True)
+        root_release_id = 'root-' + current_code_hash[:16]
+        root_lineage_hash = self._lineage_hash(target, '', root_release_id, '', current_version, current_code_hash, fingerprint, '', '', '')
+        self.releases[root_release_id] = ReleaseRecord(release_id=root_release_id, target=target, version=current_version, parent_release_id='', parent_code_hash='', source_url=current_source_url, code_hash=current_code_hash, proposal_id=u256(0), policy_fingerprint=fingerprint, evidence_set_hash='', assurance_manifest_hash='', recovery_capsule_hash='', installed_at=u64(self.now), certified_at=u64(self.now), status='REGISTERED_PARENT', recovered_from_release_id='', recovery_incident_id='', lineage_hash=root_lineage_hash)
+        self.policies[target].current_release_id = root_release_id
+        self.active_proposal_by_target[target] = self._inactive_proposal()
+
+    def _create_proposal(self, target: str, candidate_version: str, candidate_source_url: str, candidate_code: bytes, ci_evidence_url: str, ci_evidence_id: str, audit_evidence_url: str, audit_evidence_id: str, assurance_manifest: str, recovery_mode: str, recovery_release_id: str, recovery_version: str, recovery_source_url: str, recovery_code: bytes) -> u256:
+        target_address = Address(target)
+        policy = self._require_policy_owner(target_address)
+        active = self.active_proposal_by_target.get(target_address, self._inactive_proposal())
+        if active != self._inactive_proposal():
+            raise gl.vm.UserError('Target already has an active proposal')
+        self._check_text(candidate_version, 'candidate_version', 1, MAX_VERSION_BYTES)
+        if candidate_version == policy.current_version:
+            raise gl.vm.UserError('Candidate version must differ from current version')
+        if len(candidate_code) == 0 or len(candidate_code) > MAX_CANDIDATE_BYTES:
+            raise gl.vm.UserError('Candidate source bytes are empty or too large')
+        if not self._is_immutable_url(candidate_source_url, policy.source_prefix):
+            raise gl.vm.UserError('Candidate source URL is not an approved immutable source')
+        if not self._is_immutable_url(ci_evidence_url, policy.ci_prefix):
+            raise gl.vm.UserError('CI evidence URL is not an approved immutable source')
+        if not self._is_immutable_url(audit_evidence_url, policy.audit_prefix):
+            raise gl.vm.UserError('Audit evidence URL is not an approved immutable source')
+        if not self._is_immutable_url(recovery_source_url, policy.source_prefix):
+            raise gl.vm.UserError('Recovery source URL is not an approved immutable source')
+        if ci_evidence_id == audit_evidence_id:
+            raise gl.vm.UserError('CI and audit evidence identifiers must be distinct')
+        if recovery_mode not in ('EXACT_PARENT', 'RECOVERY_CANDIDATE'):
+            raise gl.vm.UserError('Unsupported recovery mode')
+        if len(recovery_code) == 0 or len(recovery_code) > int(policy.max_capsule_bytes):
+            raise gl.vm.UserError('Recovery capsule is empty or too large')
+        self._check_text(recovery_version, 'recovery_version', 1, MAX_VERSION_BYTES)
+        candidate_hash = self._sha256_hex(candidate_code)
+        if candidate_hash == policy.current_code_hash:
+            raise gl.vm.UserError('Candidate code is identical to current code')
+        if self.installed_candidate_hashes.get(self._installed_candidate_key(target_address, candidate_hash), False):
+            raise gl.vm.UserError('This candidate hash has already been installed for this target')
+        recovery_hash = self._sha256_hex(recovery_code)
+        if recovery_mode == 'EXACT_PARENT':
+            if recovery_release_id != policy.current_release_id:
+                raise gl.vm.UserError('EXACT_PARENT recovery must name the current certified release')
+            if recovery_hash != policy.current_code_hash:
+                raise gl.vm.UserError('EXACT_PARENT capsule bytes must match the current release')
+            if recovery_version != policy.current_version:
+                raise gl.vm.UserError('EXACT_PARENT capsule version must match the current release')
+        else:
+            if recovery_release_id != 'recovery-' + recovery_hash[:16]:
+                raise gl.vm.UserError('Recovery candidate release ID must bind its capsule hash')
+            if recovery_hash == candidate_hash:
+                raise gl.vm.UserError('Recovery candidate must differ from the candidate')
+        (assurance_manifest_hash, _) = self._canonical_json_hash(assurance_manifest)
+        if assurance_manifest_hash in ('INVALID', 'NONCANONICAL'):
+            raise gl.vm.UserError('Assurance manifest must be canonical JSON')
+        manifest_error = self._validate_manifest(assurance_manifest, target_address, candidate_hash, policy.policy_fingerprint, policy.proofpatch_kernel_hash, policy)
+        if manifest_error:
+            raise gl.vm.UserError(manifest_error)
+        self._reserve_evidence_id(target_address, policy.ci_authority, 'ci', ci_evidence_id)
+        self._reserve_evidence_id(target_address, policy.audit_authority, 'audit', audit_evidence_id)
+        now = self.now
+        proposal_id = u256(int(self.proposal_count) + 1)
+        evidence_set_hash = self._evidence_set_hash(candidate_source_url, ci_evidence_url, ci_evidence_id, audit_evidence_url, audit_evidence_id, assurance_manifest_hash, recovery_hash)
+        self.proposals[proposal_id] = UpgradeProposal(proposal_id=proposal_id, target=target_address, proposer=policy.owner, parent_version=policy.current_version, parent_source_url=policy.current_source_url, parent_code_hash=policy.current_code_hash, candidate_version=candidate_version, candidate_source_url=candidate_source_url, candidate_code=candidate_code, candidate_code_hash=candidate_hash, ci_evidence_url=ci_evidence_url, ci_evidence_id=ci_evidence_id, audit_evidence_url=audit_evidence_url, audit_evidence_id=audit_evidence_id, assurance_manifest=assurance_manifest, assurance_manifest_hash=assurance_manifest_hash, recovery_mode=recovery_mode, recovery_release_id=recovery_release_id, recovery_version=recovery_version, recovery_source_url=recovery_source_url, recovery_code=recovery_code, recovery_code_hash=recovery_hash, recovery_capsule_hash=recovery_hash, evidence_set_hash=evidence_set_hash, policy_fingerprint=policy.policy_fingerprint, created_at=u64(now), expires_at=u64(now + int(policy.proposal_ttl_seconds)), reviewed_at=u64(0), execution_deadline=u64(0), status=STATUS_PROPOSED, last_review_code='')
+        self.proposal_count = proposal_id
+        self.active_proposal_by_target[target_address] = proposal_id
+        return proposal_id
+
+    def _repair_evidence(self, proposal_id: u256, candidate_source_url: str, ci_evidence_url: str, ci_evidence_id: str, audit_evidence_url: str, audit_evidence_id: str) -> None:
+        proposal = self._require_proposal(proposal_id)
+        policy = self._require_policy_owner(proposal.target)
+        if proposal.status != STATUS_REPAIR:
+            raise gl.vm.UserError('Evidence can only be replaced from EVIDENCE_REPAIR_REQUIRED')
+        if self.now > int(proposal.expires_at):
+            raise gl.vm.UserError('Proposal has expired')
+        if not self._is_immutable_url(candidate_source_url, policy.source_prefix):
+            raise gl.vm.UserError('Replacement candidate source URL is not approved and immutable')
+        if not self._is_immutable_url(ci_evidence_url, policy.ci_prefix):
+            raise gl.vm.UserError('Replacement CI evidence URL is not approved and immutable')
+        if not self._is_immutable_url(audit_evidence_url, policy.audit_prefix):
+            raise gl.vm.UserError('Replacement audit evidence URL is not approved and immutable')
+        if ci_evidence_id == audit_evidence_id:
+            raise gl.vm.UserError('CI and audit evidence identifiers must be distinct')
+        self._reserve_evidence_id(proposal.target, policy.ci_authority, 'ci', ci_evidence_id)
+        self._reserve_evidence_id(proposal.target, policy.audit_authority, 'audit', audit_evidence_id)
+        proposal.candidate_source_url = candidate_source_url
+        proposal.ci_evidence_url = ci_evidence_url
+        proposal.ci_evidence_id = ci_evidence_id
+        proposal.audit_evidence_url = audit_evidence_url
+        proposal.audit_evidence_id = audit_evidence_id
+        proposal.evidence_set_hash = self._evidence_set_hash(candidate_source_url, ci_evidence_url, ci_evidence_id, audit_evidence_url, audit_evidence_id, proposal.assurance_manifest_hash, proposal.recovery_capsule_hash)
+        proposal.status = STATUS_PROPOSED
+        proposal.last_review_code = ''
+
+    def _open_incident(self, target: str, release_id: str, incident_type: str, primary_url: str, primary_evidence_id: str, corroboration_url: str, corroboration_evidence_id: str) -> str:
+        target_address = Address(target)
+        if target_address not in self.policies or release_id not in self.releases:
+            raise gl.vm.UserError('Unknown target or release')
+        release = self.releases[release_id]
+        if release.target != target_address:
+            raise gl.vm.UserError('Incident release belongs to another target')
+        if incident_type not in ('STATE_INVARIANT_VIOLATION', 'AUTHORIZATION_REGRESSION', 'UPGRADE_BYPASS', 'CONSENSUS_BINDING_REGRESSION', 'EVIDENCE_TRUST_REGRESSION', 'FINALITY_REGRESSION', 'LIVENESS_REGRESSION', 'HIDDEN_VALUE_TRANSFER', 'KERNEL_INTEGRITY_FAILURE', 'REQUIRED_INTERFACE_FAILURE', 'OTHER_CONSTITUTIONAL_BREACH'):
+            raise gl.vm.UserError('Unsupported incident type')
+        policy = self.policies[target_address]
+        if not self._is_immutable_url(primary_url, policy.audit_prefix):
+            raise gl.vm.UserError('Incident primary evidence URL is not approved and immutable')
+        if not self._is_immutable_url(corroboration_url, policy.assurance_corroboration_prefix):
+            raise gl.vm.UserError('Incident corroboration URL is not approved and immutable')
+        if primary_evidence_id == corroboration_evidence_id:
+            raise gl.vm.UserError('Incident evidence identifiers must be distinct')
+        self._reserve_evidence_id(target_address, policy.audit_authority, 'incident_primary', primary_evidence_id)
+        self._reserve_evidence_id(target_address, policy.assurance_corroboration_authority, 'incident_corroboration', corroboration_evidence_id)
+        if self.target_release_id != release_id:
+            raise gl.vm.UserError("Incident release is not the target's finalized release")
+        if self.target_mode not in (MODE_ACTIVE, MODE_PROVISIONAL, MODE_RECOVERED):
+            raise gl.vm.UserError("Incident target is not in a challengeable release mode")
+        if release.recovery_capsule_hash == '':
+            raise gl.vm.UserError('Release has no precommitted recovery capsule')
+        if release.status not in (STATUS_CERTIFIED, STATUS_INSTALLED_PROVISIONAL, STATUS_ASSURANCE_PENDING, STATUS_ASSURANCE_REPAIR, STATUS_ASSURANCE_RETRY, STATUS_INCIDENT_OPEN):
+            raise gl.vm.UserError('Release is not challengeable in its current lifecycle state')
+        incident_id = 'incident-' + str(self.now) + '-' + primary_evidence_id
+        if incident_id in self.incidents:
+            raise gl.vm.UserError('Incident identifier already exists')
+        incident_replay_key = self._hash_text_parts([str(target_address), release_id, primary_evidence_id, corroboration_evidence_id])
+        if self.used_incident_ids.get(incident_replay_key, False):
+            raise gl.vm.UserError('Incident evidence has already been used for this release')
+        self.used_incident_ids[incident_replay_key] = True
+        self.incidents[incident_id] = IncidentRecord(incident_id=incident_id, target=target_address, release_id=release_id, installed_code_hash=release.code_hash, incident_type=incident_type, primary_url=primary_url, primary_evidence_id=primary_evidence_id, corroboration_url=corroboration_url, corroboration_evidence_id=corroboration_evidence_id, policy_fingerprint=release.policy_fingerprint, assurance_manifest_hash=release.assurance_manifest_hash, recovery_capsule_hash=release.recovery_capsule_hash, opened_at=u64(self.now), expires_at=u64(self.now + int(policy.proposal_ttl_seconds)), reviewed_at=u64(0), recovery_deadline=u64(0), status=STATUS_INCIDENT_OPEN, last_review_code='', recovery_authorized=False)
+        release.status = STATUS_INCIDENT_OPEN
+        return incident_id
+ZERO = '0x0000000000000000000000000000000000000000'
+
+@gl.contract_interface
+class ProofPatchGovernor:
+
+    class Write:
+
+        def apply_policy_result(self, operation: str, payload: str) -> None:
+            ...
+
+class ProofPatchPolicyEngine(gl.Contract):
+    admin: Address
+    governor: Address
+
+    def __init__(self):
+        self.admin = gl.message.sender_address
+        self.governor = Address(ZERO)
+
+    @gl.public.write
+    def bind_governor(self, governor: str) -> None:
+        if gl.message.sender_address != self.admin:
+            raise gl.vm.UserError('Only admin may bind governor')
+        if self.governor != Address(ZERO):
+            raise gl.vm.UserError('Governor is already bound')
+        self.governor = Address(governor)
+
+    def _encode(self, value: object) -> object:
+        if isinstance(value, Address):
+            return str(value)
+        if isinstance(value, bytes):
+            return value.hex()
+        if isinstance(value, (u256, u64)):
+            return int(value)
+        if isinstance(value, dict):
+            return {str(k): self._encode(v) for (k, v) in value.items()}
+        if isinstance(value, list):
+            return [self._encode(v) for v in value]
+        if hasattr(value, '__dict__'):
+            return {k: self._encode(v) for (k, v) in value.__dict__.items()}
+        return value
+
+    def _record(self, cls: object, raw: dict[object, object]) -> object:
+        value = dict(raw)
+        address_fields = {'TargetPolicy': ('owner', 'target'), 'UpgradeProposal': ('target', 'proposer'), 'ReleaseRecord': ('target',), 'IncidentRecord': ('target',)}
+        for field in address_fields.get(cls.__name__, ()):
+            value[field] = Address(value[field])
+        for field in ('candidate_code', 'recovery_code'):
+            if field in value and isinstance(value[field], str):
+                value[field] = bytes.fromhex(value[field])
+        return cls(**value)
+
+    def _load(self, logic: ProofPatchPolicyLogic, request: dict[object, object]) -> None:
+        state = request.get('state', {})
+        logic.policies = {Address(k): self._record(TargetPolicy, v) for (k, v) in state.get('policies', {}).items()}
+        logic.proposals = {u256(int(k)): self._record(UpgradeProposal, v) for (k, v) in state.get('proposals', {}).items()}
+        logic.releases = {k: self._record(ReleaseRecord, v) for (k, v) in state.get('releases', {}).items()}
+        logic.incidents = {k: self._record(IncidentRecord, v) for (k, v) in state.get('incidents', {}).items()}
+        logic.active_proposal_by_target = {Address(k): u256(v) for (k, v) in state.get('active_proposal_by_target', {}).items()}
+        logic.used_evidence_ids = dict(state.get('used_evidence_ids', {}))
+        logic.installed_candidate_hashes = dict(state.get('installed_candidate_hashes', {}))
+        logic.used_incident_ids = dict(state.get('used_incident_ids', {}))
+        logic.proposal_count = u256(state.get('proposal_count', 0))
+        logic.release_count = u256(state.get('release_count', 0))
+        logic.actor = Address(request['actor'])
+        logic.now = int(request['now'])
+        logic.target_release_id = str(request.get('target_release_id', ''))
+        logic.target_mode = str(request.get('target_mode', ''))
+
+    @gl.public.write
+    def execute(self, operation: str, request: str) -> None:
+        if gl.message.sender_address != self.governor:
+            raise gl.vm.UserError('Only the bound governor may execute policy logic')
+        data = json.loads(request)
+        logic = ProofPatchPolicyLogic()
+        self._load(logic, data)
+        if operation == 'register':
+            logic._register_target(*data['args'])
+        elif operation == 'create':
+            logic._create_proposal(*data['args'])
+        elif operation == 'repair':
+            logic._repair_evidence(*data['args'])
+        elif operation == 'incident':
+            logic._open_incident(*data['args'])
+        else:
+            raise gl.vm.UserError('Unknown policy operation')
+        payload = json.dumps(self._encode({'policies': logic.policies, 'proposals': logic.proposals, 'releases': logic.releases, 'incidents': logic.incidents, 'active_proposal_by_target': logic.active_proposal_by_target, 'used_evidence_ids': logic.used_evidence_ids, 'installed_candidate_hashes': logic.installed_candidate_hashes, 'used_incident_ids': logic.used_incident_ids, 'proposal_count': logic.proposal_count, 'release_count': logic.release_count}), sort_keys=True, separators=(',', ':'))
+        ProofPatchGovernor(self.governor).emit(on='finalized').apply_policy_result(operation, payload)

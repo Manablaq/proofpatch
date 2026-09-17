@@ -2,6 +2,7 @@ import hashlib
 import json
 import re
 import time
+import pytest
 
 
 CONSTITUTION = """
@@ -151,6 +152,19 @@ def test_v2_registration_creates_immutable_root_release(direct_vm, direct_deploy
     assert governor.get_current_version(_address_arg(direct_bob)) == "2.0.0"
 
 
+@pytest.mark.parametrize("contract_path", [
+    "contracts/proofpatch_governor_v2.py",
+    "contracts/proofpatch_governor_v2_compact.py",
+])
+def test_v2_readable_and_compact_artifacts_register_the_same_root_release(
+    direct_vm, direct_deploy, direct_alice, direct_bob, contract_path,
+):
+    governor = direct_deploy(contract_path)
+    _register(governor, direct_vm, direct_bob, direct_alice)
+    root_id = "root-" + PARENT_HASH[:16]
+    assert json.loads(governor.get_release_summary(root_id))["status"] == "REGISTERED_PARENT"
+
+
 def test_v2_proposal_requires_canonical_manifest_and_precommitted_recovery(direct_vm, direct_deploy, direct_alice, direct_bob):
     governor = direct_deploy("contracts/proofpatch_governor_v2.py")
     _register(governor, direct_vm, direct_bob, direct_alice)
@@ -211,11 +225,10 @@ def test_v2_recovery_candidate_release_id_is_bound_to_capsule_hash(direct_vm, di
         )
 
 
-def test_v2_review_approves_only_with_expanded_exact_vector(direct_vm, direct_deploy, direct_alice, direct_bob):
+def test_v2_review_queues_finality_bound_review_engine_callback(direct_vm, direct_deploy, direct_alice, direct_bob):
     governor = direct_deploy("contracts/proofpatch_governor_v2.py")
     _register(governor, direct_vm, direct_bob, direct_alice)
     proposal_id = _create(governor, direct_vm, direct_bob, direct_alice)
-    _mock_review(direct_vm, proposal_id, governor, direct_bob)
     direct_vm.sender = direct_alice
     governor.review_proposal(proposal_id)
-    assert governor.get_proposal_status(proposal_id) == "UPGRADE_QUEUED"
+    assert governor.get_proposal_status(proposal_id) == "REVIEW_PENDING"

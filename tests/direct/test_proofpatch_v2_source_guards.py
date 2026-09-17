@@ -94,7 +94,7 @@ def test_v2_has_explicit_assurance_incident_and_recovery_lifecycle():
         assert f"def {name}(" in source
     assert "status=STATUS_INSTALLED_PROVISIONAL" in source
     assert "STATUS_CERTIFIED" in source
-    assert re.search(r"incident_storage\.status\s*=\s*STATUS_INCIDENT_CONFIRMED", source)
+    assert re.search(r"incident\.status\s*=\s*STATUS_INCIDENT_CONFIRMED", source)
     assert "def reconcile_recovery(" in source
     assert "def retry_recovery(" in source
 

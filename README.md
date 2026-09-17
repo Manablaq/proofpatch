@@ -57,6 +57,7 @@ Start here:
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — trust chain and consensus boundary
 - [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) — security assumptions and adversarial model
 - [`docs/BRADBURY_PLAN.md`](docs/BRADBURY_PLAN.md) — canonical Bradbury verification record
+- [`docs/BRADBURY_V3_DEPLOYMENT.md`](docs/BRADBURY_V3_DEPLOYMENT.md) — corrected modular V3 deployment receipts and binding graph
 - [`docs/BRADBURY_TARGET_V1_RECOVERY.md`](docs/BRADBURY_TARGET_V1_RECOVERY.md) — preserved failed-deployment diagnosis and resolution
 - [`docs/TYPECHECK_GATE.md`](docs/TYPECHECK_GATE.md) — strict GenVM typecheck evidence policy
 - [`docs/DEPLOYMENT_PACKET_V2.md`](docs/DEPLOYMENT_PACKET_V2.md) — frozen V2 release identity and deployment gates
