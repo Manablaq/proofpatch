@@ -56,6 +56,14 @@ expected nonce: capture with eth_getTransactionCount(..., "pending") immediately
 
 The signer candidate is an inventory observation, not a deployment authorization. The signer must be unlocked and explicitly selected before deployment. The pending nonce is intentionally not guessed; the RPC query must succeed immediately before submission. Never substitute a different wallet after the packet is frozen.
 
+## Bradbury deployment attempt
+
+On 2026-09-17, the authorized deployment attempt was rejected before a GenLayer transaction was created. The original governor source is 113,888 bytes; a mechanically generated artifact preserving the same parsed behavior after removing comments, docstrings, and non-semantic whitespace was 103,616 bytes. Bradbury returned `BlockPubdataLimitReached` during gas estimation for both artifacts, and the CLI fallback returned `intrinsic gas too low`.
+
+The rejected EVM hashes were `0x1cba9a3a775df06c8ab1566db884b5b91ddde184114d15e6cc089543347d877f`, `0x7ee1b1ee20d347de58cb0fbac9f170e3e656f568fc771b2e642691fbb7016254`, and `0x9fa15b075c94718c89c430a7b67f69a256c823ca15ef6525c337c5a5e3ccfff5`; Bradbury returned no receipt for each. The worker nonce remained `0x396` for both `latest` and `pending`. No governor address, target address, accepted transaction, or deployed V2 state exists.
+
+The source packet therefore remains a release candidate only. A successful deployment requires a source artifact that fits Bradbury's pubdata limit while preserving the complete V2 interface and behavior, or a network with a compatible limit.
+
 ## Constructor and policy inputs
 
 Record the exact governor and target source paths, constructor arguments, immutable authority prefixes, kernel hash, policy fingerprint inputs, and root release source/hash. Record the fee envelope and the transaction hash immediately after submission. The current source-only packet does not contain deployment addresses, receipts, finality, consensus, appeal, incident, or recovery claims.
