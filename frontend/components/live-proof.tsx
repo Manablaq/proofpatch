@@ -19,6 +19,8 @@ export function LiveProof() {
 
   const state = live.data;
   const verified =
+    Boolean(state) &&
+    !live.isError &&
     state?.proposalStatus === "VERIFIED" &&
     state.currentVersion === PROOFPATCH.candidateVersion &&
     state.currentCodeHash === PROOFPATCH.candidateCodeHash &&
@@ -33,55 +35,52 @@ export function LiveProof() {
         </div>
         <div className={`proof-badge ${verified ? "ok" : ""}`}>
           {verified ? <CheckCircle2 size={15} /> : <RefreshCw size={15} />}
-          {live.isLoading ? "Reading chain" : verified ? "Verified live" : "Checking"}
+          {live.isLoading ? "Reading chain" : live.isError ? "Unavailable" : verified ? "Verified live" : "Checking"}
         </div>
       </div>
 
       <div className="proof-metrics">
         <div>
           <span>Current release</span>
-          <strong>{state?.currentVersion || PROOFPATCH.candidateVersion}</strong>
+          <strong>{state?.currentVersion || "—"}</strong>
         </div>
         <div>
           <span>Proposal</span>
-          <strong>{state?.proposalStatus || "VERIFIED"}</strong>
+          <strong>{state?.proposalStatus || "—"}</strong>
         </div>
         <div>
           <span>Active proposal</span>
-          <strong>{state?.activeProposal || "0"}</strong>
+          <strong>{state?.activeProposal || "—"}</strong>
         </div>
         <div>
           <span>Release label</span>
-          <strong>{state?.releaseLabel || PROOFPATCH.releaseLabel}</strong>
+          <strong>{state?.releaseLabel || "—"}</strong>
         </div>
       </div>
 
       <div className="proof-hash-row">
         <ShieldCheck size={16} />
         <span>Installed SHA-256</span>
-        <code>{short(state?.installedCandidateHash || PROOFPATCH.candidateCodeHash, 14, 12)}</code>
+        <code>{short(state?.installedCandidateHash || "", 14, 12)}</code>
       </div>
 
       <div className="finality-mini">
-        {(chain.data ?? [
-          { label: "Review consensus", status: "FINALIZED" },
-          { label: "Finality-triggered upgrade", status: "FINALIZED" },
-          { label: "Post-install confirmation", status: "FINALIZED" },
-        ]).map((step) => (
+        {(chain.data ?? []).map((step) => (
           <div className="finality-mini-step" key={step.label}>
             <i />
             <div>
               <strong>{step.label}</strong>
-              <span>{step.status || "FINALIZED"}</span>
+            <span>{step.status || "Unavailable"}</span>
             </div>
           </div>
         ))}
+        {!chain.data?.length ? <p className="chain-note">Finality reads are unavailable.</p> : null}
       </div>
 
       {live.error ? (
         <p className="chain-note">
-          Live RPC read is temporarily unavailable; canonical finalized evidence remains
-          displayed and the dashboard will retry automatically.
+          Live RPC read is temporarily unavailable; contract state remains hidden and the
+          dashboard will retry automatically.
         </p>
       ) : (
         <p className="chain-note">

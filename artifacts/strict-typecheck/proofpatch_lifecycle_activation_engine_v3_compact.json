@@ -1,0 +1,3484 @@
+{
+  "blocking_diagnostic_count": 0,
+  "compact_archived_diagnostic_count": 193,
+  "contract": "contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+  "diagnostics": [
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Import \"datetime\" is not accessed",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 147,
+          "line": 1
+        },
+        "start": {
+          "character": 139,
+          "line": 1
+        }
+      },
+      "rule": "reportUnusedImport",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Import \"StorageType\" is not accessed",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 194,
+          "line": 1
+        },
+        "start": {
+          "character": 183,
+          "line": 1
+        }
+      },
+      "rule": "reportUnusedImport",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Import \"hashlib\" is not accessed",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 209,
+          "line": 1
+        },
+        "start": {
+          "character": 202,
+          "line": 1
+        }
+      },
+      "rule": "reportUnusedImport",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Import \"typing\" is not accessed",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 221,
+          "line": 1
+        },
+        "start": {
+          "character": 215,
+          "line": 1
+        }
+      },
+      "rule": "reportUnusedImport",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 28,
+          "line": 14
+        },
+        "start": {
+          "character": 6,
+          "line": 14
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 64,
+          "line": 14
+        },
+        "start": {
+          "character": 62,
+          "line": 14
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"now\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 36,
+          "line": 17
+        },
+        "start": {
+          "character": 28,
+          "line": 17
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 36,
+          "line": 17
+        },
+        "start": {
+          "character": 28,
+          "line": 17
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"proposals\" is partially unknown\n\u00a0\u00a0Type of \"proposals\" is \"dict[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 38,
+          "line": 19
+        },
+        "start": {
+          "character": 24,
+          "line": 19
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"proposals\" is partially unknown\n\u00a0\u00a0Type of \"proposals\" is \"dict[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 20
+        },
+        "start": {
+          "character": 9,
+          "line": 20
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 36,
+          "line": 20
+        },
+        "start": {
+          "character": 9,
+          "line": 20
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 21
+        },
+        "start": {
+          "character": 5,
+          "line": 21
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 62,
+          "line": 21
+        },
+        "start": {
+          "character": 60,
+          "line": 21
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"active_proposal_by_target\" is partially unknown\n\u00a0\u00a0Type of \"active_proposal_by_target\" is \"dict[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 35,
+          "line": 22
+        },
+        "start": {
+          "character": 5,
+          "line": 22
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"get\" is partially unknown\n\u00a0\u00a0Type of \"get\" is \"Overload[(key: Unknown, default: None = None, /) -> (Unknown | None), (key: Unknown, default: Unknown, /) -> Unknown, (key: Unknown, default: _T@get, /) -> (Unknown | _T@get)]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 39,
+          "line": 22
+        },
+        "start": {
+          "character": 5,
+          "line": 22
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_inactive_proposal\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 70,
+          "line": 22
+        },
+        "start": {
+          "character": 47,
+          "line": 22
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"default\" in function \"get\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 72,
+          "line": 22
+        },
+        "start": {
+          "character": 47,
+          "line": 22
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"active_proposal_by_target\" is partially unknown\n\u00a0\u00a0Type of \"active_proposal_by_target\" is \"dict[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 117,
+          "line": 22
+        },
+        "start": {
+          "character": 87,
+          "line": 22
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_inactive_proposal\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 149,
+          "line": 22
+        },
+        "start": {
+          "character": 126,
+          "line": 22
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 28
+        },
+        "start": {
+          "character": 5,
+          "line": 28
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 41,
+          "line": 28
+        },
+        "start": {
+          "character": 39,
+          "line": 28
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 35
+        },
+        "start": {
+          "character": 5,
+          "line": 35
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 41,
+          "line": 35
+        },
+        "start": {
+          "character": 39,
+          "line": 35
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"str | bool | int | dict[str, str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[str | bool | int | dict[str, Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 41
+        },
+        "start": {
+          "character": 5,
+          "line": 41
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"value\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 41
+        },
+        "start": {
+          "character": 18,
+          "line": 41
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"value\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 41
+        },
+        "start": {
+          "character": 18,
+          "line": 41
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"dict[str, str | bool | int | dict[str, str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[str | bool | int | dict[str, Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 82,
+          "line": 46
+        },
+        "start": {
+          "character": 34,
+          "line": 46
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"object\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 46
+        },
+        "start": {
+          "character": 39,
+          "line": 46
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_encode\" is partially unknown\n\u00a0\u00a0Type of \"_encode\" is \"(value: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 54,
+          "line": 46
+        },
+        "start": {
+          "character": 42,
+          "line": 46
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_encode\" is partially unknown\n\u00a0\u00a0Type of \"_encode\" is \"(value: Unknown) -> (str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[str | bool | int | dict[str, Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 54,
+          "line": 46
+        },
+        "start": {
+          "character": 42,
+          "line": 46
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 56,
+          "line": 46
+        },
+        "start": {
+          "character": 55,
+          "line": 46
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"k\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 62,
+          "line": 46
+        },
+        "start": {
+          "character": 61,
+          "line": 46
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"v\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 64,
+          "line": 46
+        },
+        "start": {
+          "character": 63,
+          "line": 46
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"list[Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 65,
+          "line": 47
+        },
+        "start": {
+          "character": 34,
+          "line": 47
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_encode\" is partially unknown\n\u00a0\u00a0Type of \"_encode\" is \"(value: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 47,
+          "line": 47
+        },
+        "start": {
+          "character": 35,
+          "line": 47
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 49,
+          "line": 47
+        },
+        "start": {
+          "character": 48,
+          "line": 47
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"v\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 55,
+          "line": 47
+        },
+        "start": {
+          "character": 54,
+          "line": 47
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"obj\" in function \"hasattr\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 48
+        },
+        "start": {
+          "character": 13,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"dict[Unknown, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 89,
+          "line": 48
+        },
+        "start": {
+          "character": 37,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_encode\" is partially unknown\n\u00a0\u00a0Type of \"_encode\" is \"(value: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 52,
+          "line": 48
+        },
+        "start": {
+          "character": 40,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 54,
+          "line": 48
+        },
+        "start": {
+          "character": 53,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"k\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 60,
+          "line": 48
+        },
+        "start": {
+          "character": 59,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"v\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 62,
+          "line": 48
+        },
+        "start": {
+          "character": 61,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"__dict__\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 80,
+          "line": 48
+        },
+        "start": {
+          "character": 66,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"items\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 86,
+          "line": 48
+        },
+        "start": {
+          "character": 66,
+          "line": 48
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 14,
+          "line": 49
+        },
+        "start": {
+          "character": 9,
+          "line": 49
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"ReleaseRecord | TargetPolicy | UpgradeProposal | Unknown\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 50
+        },
+        "start": {
+          "character": 5,
+          "line": 50
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"cls\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 50
+        },
+        "start": {
+          "character": 18,
+          "line": 50
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"cls\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 50
+        },
+        "start": {
+          "character": 18,
+          "line": 50
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"raw\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 50
+        },
+        "start": {
+          "character": 22,
+          "line": 50
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"raw\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 50
+        },
+        "start": {
+          "character": 22,
+          "line": 50
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"value\" is partially unknown\n\u00a0\u00a0Type of \"value\" is \"list[Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 51
+        },
+        "start": {
+          "character": 2,
+          "line": 51
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"values\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 51
+        },
+        "start": {
+          "character": 13,
+          "line": 51
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"iterable\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 51
+        },
+        "start": {
+          "character": 13,
+          "line": 51
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 81,
+          "line": 52
+        },
+        "start": {
+          "character": 73,
+          "line": 52
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 50,
+          "line": 53
+        },
+        "start": {
+          "character": 42,
+          "line": 53
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 28,
+          "line": 55
+        },
+        "start": {
+          "character": 20,
+          "line": 55
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"ReleaseRecord | TargetPolicy | UpgradeProposal | Unknown\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 59,
+          "line": 58
+        },
+        "start": {
+          "character": 9,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"release_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"target\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"version\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"parent_release_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"parent_code_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"source_url\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"code_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"proposal_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"policy_fingerprint\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"evidence_set_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_manifest_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_capsule_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"installed_at\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"certified_at\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"status\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovered_from_release_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_incident_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"lineage_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"owner\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"constitution\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"source_authority\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"ci_authority\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"audit_authority\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"source_prefix\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"ci_prefix\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"audit_prefix\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_authority\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_prefix\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_corroboration_authority\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_corroboration_prefix\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"proofpatch_kernel_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"current_version\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"current_source_url\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"current_code_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"current_release_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"max_evidence_age_seconds\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"proposal_ttl_seconds\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"execution_timeout_seconds\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_observation_delay_seconds\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_deadline_seconds\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"max_manifest_bytes\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"max_capsule_bytes\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"active\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"proposer\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"parent_version\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"parent_source_url\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"candidate_version\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"candidate_source_url\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"candidate_code\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"candidate_code_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"ci_evidence_url\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"ci_evidence_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"audit_evidence_url\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"audit_evidence_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"assurance_manifest\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_mode\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_release_id\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_version\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_source_url\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_code\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"recovery_code_hash\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"created_at\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"expires_at\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"reviewed_at\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"execution_deadline\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"last_review_code\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 58,
+          "line": 58
+        },
+        "start": {
+          "character": 15,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"iterable\" in function \"__init__\"\n\u00a0\u00a0Argument type is \"zip[tuple[str, Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 57,
+          "line": 58
+        },
+        "start": {
+          "character": 20,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"__annotations__\" is partially unknown\n\u00a0\u00a0Type of \"__annotations__\" is \"dict[str, Any] | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 43,
+          "line": 58
+        },
+        "start": {
+          "character": 24,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"keys\" is partially unknown\n\u00a0\u00a0Type of \"keys\" is \"(() -> dict_keys[str, Any]) | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 58
+        },
+        "start": {
+          "character": 24,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"iter1\" in function \"__new__\"\n\u00a0\u00a0Argument type is \"dict_keys[str, Any] | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 50,
+          "line": 58
+        },
+        "start": {
+          "character": 24,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"iter2\" in function \"__new__\"\n\u00a0\u00a0Argument type is \"list[Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 56,
+          "line": 58
+        },
+        "start": {
+          "character": 51,
+          "line": 58
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"logic\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 59
+        },
+        "start": {
+          "character": 16,
+          "line": 59
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"logic\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 59
+        },
+        "start": {
+          "character": 16,
+          "line": 59
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"data\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 26,
+          "line": 59
+        },
+        "start": {
+          "character": 22,
+          "line": 59
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"data\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 26,
+          "line": 59
+        },
+        "start": {
+          "character": 22,
+          "line": 59
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 71,
+          "line": 60
+        },
+        "start": {
+          "character": 58,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"x\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 98,
+          "line": 60
+        },
+        "start": {
+          "character": 87,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"records\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 107,
+          "line": 60
+        },
+        "start": {
+          "character": 100,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 116,
+          "line": 60
+        },
+        "start": {
+          "character": 108,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 165,
+          "line": 60
+        },
+        "start": {
+          "character": 157,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_x\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 171,
+          "line": 60
+        },
+        "start": {
+          "character": 157,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 206,
+          "line": 60
+        },
+        "start": {
+          "character": 198,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_x\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 212,
+          "line": 60
+        },
+        "start": {
+          "character": 198,
+          "line": 60
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 61
+        },
+        "start": {
+          "character": 5,
+          "line": 61
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_record\" is partially unknown\n\u00a0\u00a0Type of \"_record\" is \"(cls: Unknown, raw: Unknown) -> (ReleaseRecord | TargetPolicy | UpgradeProposal | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 43,
+          "line": 61
+        },
+        "start": {
+          "character": 31,
+          "line": 61
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"raw\" in function \"_record\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 67,
+          "line": 61
+        },
+        "start": {
+          "character": 57,
+          "line": 61
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"policies\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 83,
+          "line": 61
+        },
+        "start": {
+          "character": 69,
+          "line": 61
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 62
+        },
+        "start": {
+          "character": 5,
+          "line": 62
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_record\" is partially unknown\n\u00a0\u00a0Type of \"_record\" is \"(cls: Unknown, raw: Unknown) -> (ReleaseRecord | TargetPolicy | UpgradeProposal | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 43,
+          "line": 62
+        },
+        "start": {
+          "character": 31,
+          "line": 62
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"raw\" in function \"_record\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 70,
+          "line": 62
+        },
+        "start": {
+          "character": 60,
+          "line": 62
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"proposals\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 87,
+          "line": 62
+        },
+        "start": {
+          "character": 72,
+          "line": 62
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 63
+        },
+        "start": {
+          "character": 5,
+          "line": 63
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_record\" is partially unknown\n\u00a0\u00a0Type of \"_record\" is \"(cls: Unknown, raw: Unknown) -> (ReleaseRecord | TargetPolicy | UpgradeProposal | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 43,
+          "line": 63
+        },
+        "start": {
+          "character": 31,
+          "line": 63
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"raw\" in function \"_record\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 68,
+          "line": 63
+        },
+        "start": {
+          "character": 58,
+          "line": 63
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"releases\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 84,
+          "line": 63
+        },
+        "start": {
+          "character": 70,
+          "line": 63
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"dict[str, Unknown | int | list[Unknown]]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 64
+        },
+        "start": {
+          "character": 5,
+          "line": 64
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"logic\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 64
+        },
+        "start": {
+          "character": 17,
+          "line": 64
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"logic\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 64
+        },
+        "start": {
+          "character": 17,
+          "line": 64
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"operation\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 64
+        },
+        "start": {
+          "character": 23,
+          "line": 64
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"operation\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 64
+        },
+        "start": {
+          "character": 23,
+          "line": 64
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"out\" is partially unknown\n\u00a0\u00a0Type of \"out\" is \"dict[str, Unknown | int | list[Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 45,
+          "line": 65
+        },
+        "start": {
+          "character": 42,
+          "line": 65
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"installed_candidate_hashes\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 172,
+          "line": 65
+        },
+        "start": {
+          "character": 140,
+          "line": 65
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"proposal_count\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 200,
+          "line": 65
+        },
+        "start": {
+          "character": 180,
+          "line": 65
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"x\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 200,
+          "line": 65
+        },
+        "start": {
+          "character": 180,
+          "line": 65
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"release_count\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 228,
+          "line": 65
+        },
+        "start": {
+          "character": 209,
+          "line": 65
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"x\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 228,
+          "line": 65
+        },
+        "start": {
+          "character": 209,
+          "line": 65
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"actions\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 253,
+          "line": 65
+        },
+        "start": {
+          "character": 240,
+          "line": 65
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"v\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 66
+        },
+        "start": {
+          "character": 6,
+          "line": 66
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"policies\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 66
+        },
+        "start": {
+          "character": 11,
+          "line": 66
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"values\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 66
+        },
+        "start": {
+          "character": 11,
+          "line": 66
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"append\" is partially unknown\n\u00a0\u00a0Type of \"append\" is \"Unknown | ((object: Unknown, /) -> None)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 66
+        },
+        "start": {
+          "character": 35,
+          "line": 66
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_encode\" is partially unknown\n\u00a0\u00a0Type of \"_encode\" is \"(value: Unknown) -> (str | bool | int | dict[str, str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[str | bool | int | dict[str, Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 66
+        },
+        "start": {
+          "character": 49,
+          "line": 66
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 63,
+          "line": 66
+        },
+        "start": {
+          "character": 62,
+          "line": 66
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"v\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 67
+        },
+        "start": {
+          "character": 6,
+          "line": 67
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"proposals\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 26,
+          "line": 67
+        },
+        "start": {
+          "character": 11,
+          "line": 67
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"values\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 67
+        },
+        "start": {
+          "character": 11,
+          "line": 67
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"append\" is partially unknown\n\u00a0\u00a0Type of \"append\" is \"Unknown | ((object: Unknown, /) -> None)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 49,
+          "line": 67
+        },
+        "start": {
+          "character": 36,
+          "line": 67
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_encode\" is partially unknown\n\u00a0\u00a0Type of \"_encode\" is \"(value: Unknown) -> (str | bool | int | dict[str, str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[str | bool | int | dict[str, Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 62,
+          "line": 67
+        },
+        "start": {
+          "character": 50,
+          "line": 67
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 64,
+          "line": 67
+        },
+        "start": {
+          "character": 63,
+          "line": 67
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"v\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 68
+        },
+        "start": {
+          "character": 6,
+          "line": 68
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"releases\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 68
+        },
+        "start": {
+          "character": 11,
+          "line": 68
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"values\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 68
+        },
+        "start": {
+          "character": 11,
+          "line": 68
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"append\" is partially unknown\n\u00a0\u00a0Type of \"append\" is \"Unknown | ((object: Unknown, /) -> None)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 68
+        },
+        "start": {
+          "character": 35,
+          "line": 68
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_encode\" is partially unknown\n\u00a0\u00a0Type of \"_encode\" is \"(value: Unknown) -> (str | bool | int | dict[str, str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[str | bool | int | dict[str, Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown] | list[Unknown] | dict[Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 68
+        },
+        "start": {
+          "character": 49,
+          "line": 68
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 63,
+          "line": 68
+        },
+        "start": {
+          "character": 62,
+          "line": 68
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Return type, \"dict[str, Unknown | int | list[Unknown]]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 69
+        },
+        "start": {
+          "character": 9,
+          "line": 69
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"operation\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 71
+        },
+        "start": {
+          "character": 18,
+          "line": 71
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"operation\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 71
+        },
+        "start": {
+          "character": 18,
+          "line": 71
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of parameter \"request\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 35,
+          "line": 71
+        },
+        "start": {
+          "character": 28,
+          "line": 71
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type annotation is missing for parameter \"request\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 35,
+          "line": 71
+        },
+        "start": {
+          "character": 28,
+          "line": 71
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"s\" in function \"loads\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 74
+        },
+        "start": {
+          "character": 18,
+          "line": 74
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_load\" is partially unknown\n\u00a0\u00a0Type of \"_load\" is \"(logic: Unknown, data: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 80,
+          "line": 74
+        },
+        "start": {
+          "character": 70,
+          "line": 74
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"confirm_activation\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 117,
+          "line": 74
+        },
+        "start": {
+          "character": 93,
+          "line": 74
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"apply_lifecycle_result\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 219,
+          "line": 74
+        },
+        "start": {
+          "character": 140,
+          "line": 74
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_lifecycle_activation_engine_v3_compact.py",
+      "message": "Type of \"_patch\" is partially unknown\n\u00a0\u00a0Type of \"_patch\" is \"(logic: Unknown, operation: Unknown) -> dict[str, Unknown | int | list[Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 252,
+          "line": 74
+        },
+        "start": {
+          "character": 241,
+          "line": 74
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    }
+  ],
+  "informational_diagnostic_count": 193,
+  "tool_exit_code": 1,
+  "unknown_severity_count": 0
+}

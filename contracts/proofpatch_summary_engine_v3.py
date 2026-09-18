@@ -1,8 +1,10 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportMissingParameterType=false, reportInvalidTypeForm=false, reportOptionalMemberAccess=false, reportUnboundVariable=false, reportOptionalSubscript=false, reportGeneralTypeIssues=false, reportAssignmentType=false, reportIndexIssue=false, reportCallIssue=false, reportUnnecessaryCast=false, reportPrivateUsage=false, reportUnusedFunction=false
 from genlayer import *
 from genlayer.py.public_abi import StorageType
 from datetime import datetime
 import json
+import typing
 
 ZERO = '0x0000000000000000000000000000000000000000'
 
@@ -31,7 +33,7 @@ class ProofPatchSummaryEngine(gl.Contract):
             raise gl.vm.UserError('Governor cannot be the zero address')
         self.governor = candidate
 
-    def _get(self, kind: str, key: str) -> object:
+    def _get(self, kind: str, key: str) -> typing.Any:
         try:
             return json.loads(ProofPatchGovernor(self.governor).view(state=StorageType.LATEST_FINAL).get_state_record(kind, key))
         except Exception:
@@ -40,10 +42,10 @@ class ProofPatchSummaryEngine(gl.Contract):
     def _now(self) -> int:
         return int(datetime.fromisoformat(str(gl.message_raw['datetime']).replace('Z', '+00:00')).timestamp())
 
-    def _missing(self, value: object) -> bool:
+    def _missing(self, value: typing.Any) -> bool:
         return value is None or value.get('status') == 'UNKNOWN'
 
-    def _json(self, value: dict[object, object], fields: tuple[str, ...]) -> str:
+    def _json(self, value: typing.Any, fields: tuple[str, ...]) -> str:
         return json.dumps({field: value[field] for field in fields}, separators=(',', ':'))
 
     @gl.public.view

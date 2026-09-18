@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { getTransactionSnapshot } from "@/lib/genlayer";
+import { getTransactionSnapshot, type ChainTransactionSnapshot } from "@/lib/genlayer";
 
 const STORAGE_KEY = "proofpatch:tracked-transactions:v1";
 
@@ -21,6 +21,7 @@ export type TrackedTransaction = {
   status: string;
   execution: string;
   lifecycle?: string;
+  children: ChainTransactionSnapshot[];
 };
 
 type TrackerContextValue = {
@@ -64,6 +65,19 @@ function sanitizeTrackedTransactions(value: unknown): TrackedTransaction[] {
       typeof record.execution === "string" ? record.execution : "";
     const lifecycle =
       typeof record.lifecycle === "string" ? record.lifecycle : "";
+    const children = Array.isArray(record.children)
+      ? record.children.filter((child): child is ChainTransactionSnapshot => {
+          if (!child || typeof child !== "object" || Array.isArray(child)) return false;
+          const value = child as Record<string, unknown>;
+          return typeof value.hash === "string" && typeof value.status === "string" && typeof value.execution === "string";
+        }).map((child) => ({
+          hash: child.hash,
+          status: child.status,
+          execution: child.execution,
+          lifecycle: typeof child.lifecycle === "string" ? child.lifecycle : "",
+          children: [],
+        }))
+      : [];
 
     if (!/^0x[0-9a-f]+$/i.test(hash) || !label || createdAt <= 0) continue;
 
@@ -78,6 +92,7 @@ function sanitizeTrackedTransactions(value: unknown): TrackedTransaction[] {
       status,
       execution,
       lifecycle,
+      children,
     });
   }
 
@@ -126,7 +141,20 @@ export function TransactionTrackerProvider({
       const snapshots = await Promise.all(
         active.map(async (tx) => {
           try {
-            return await getTransactionSnapshot(tx.hash);
+            const snapshot = await getTransactionSnapshot(tx.hash);
+            const children = await Promise.all(
+              snapshot.children.map(async (child) => {
+                try {
+                  return await getTransactionSnapshot(child);
+                } catch {
+                  return null;
+                }
+              }),
+            );
+            return {
+              ...snapshot,
+              childSnapshots: children.filter((child): child is ChainTransactionSnapshot => Boolean(child)),
+            };
           } catch {
             return null;
           }
@@ -145,7 +173,8 @@ export function TransactionTrackerProvider({
           if (
             snapshot.status !== tx.status ||
             snapshot.execution !== tx.execution ||
-            snapshot.lifecycle !== (tx.lifecycle ?? "")
+            snapshot.lifecycle !== (tx.lifecycle ?? "") ||
+            JSON.stringify(snapshot.childSnapshots) !== JSON.stringify(tx.children)
           ) {
             shouldRefreshLiveState = true;
           }
@@ -155,6 +184,7 @@ export function TransactionTrackerProvider({
             status: snapshot.status || tx.status,
             execution: snapshot.execution || tx.execution,
             lifecycle: snapshot.lifecycle || tx.lifecycle || "",
+            children: snapshot.childSnapshots,
           };
         }),
       );
@@ -197,6 +227,7 @@ export function TransactionTrackerProvider({
           status: "Pending",
           execution: "",
           lifecycle: "",
+          children: [],
         },
         ...current,
       ];

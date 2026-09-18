@@ -1,140 +1,59 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
-_s0='ProofPatch invariant'
-_s1='proposal'
-_s2='proposal_id'
-_s3='incident'
-_s4='expire_provisional'
-_s5='candidate_hash'
-_s6='proposal_count'
-_s7='release_count'
-_s8='release_id'
-from genlayer import*
-_aa='EVIDENCE_'
-_ac='MANIFEST_'
-_y='ASSURANCE_'
-_ab='INCIDENT_'
-_ad='RECOVERY_'
-_z='CANDIDATE_'
-_w='CI_'
-_v='AUDIT_'
-from genlayer.py.public_abi import StorageType
-import hashlib
-import json
-_k='0x0000000000000000000000000000000000000000'
-_s='0x8948b524adbfA84eBDEb39bFF925695fF111FCbD'
-
+_J='timeout';_I='reconcile_install';_H='confirm_install';_G='confirm_activation';_F='retry_recovery';_E='expire_recovery';_D='reconcile_recovery';_C='confirm_recovery';_B='expire_provisional';_A=None;from genlayer import*;from genlayer.py.public_abi import StorageType;import hashlib,json;ZERO='0x0000000000000000000000000000000000000000';INSTALL_LIFECYCLE_ENGINE='0xE7F337c2Bc992a94f213C41B66d7E49381F31145';TIMEOUT_LIFECYCLE_ENGINE='0xd73FF76b1A2438eAD59DA4072F9484aED25C7865';ACTIVATION_LIFECYCLE_ENGINE='0x429A733D5949bCB0DE97E32Da58E8d192acC41Ca';RECOVERY_LIFECYCLE_ENGINE='0xebf47F06759481606910dA564FF48203e386b95E'
 @gl.contract_interface
-class _aj:
-
-    class _ap:
-
-        def get_state_record(self,_j:str,_f:str)->str:
-            ...
-
+class ProofPatchGovernor:
+	class View:
+		def get_state_record(self,kind:str,key:str)->str:...
 @gl.contract_interface
-class _al:
-
-    class _ap:
-
-        def proofpatch_installed_proposal_id(self)->u256:
-            ...
-
-        def proofpatch_installed_candidate_hash(self)->str:
-            ...
-
-        def proofpatch_installed_release_id(self)->str:
-            ...
-
-        def proofpatch_release_mode(self)->str:
-            ...
-
-        def get_proofpatch_kernel_hash(self)->str:
-            ...
-
+class ProofPatchTarget:
+	class View:
+		def proofpatch_installed_proposal_id(self)->u256:...
+		def proofpatch_installed_candidate_hash(self)->str:...
+		def proofpatch_installed_release_id(self)->str:...
+		def proofpatch_release_mode(self)->str:...
+		def get_proofpatch_kernel_hash(self)->str:...
 @gl.contract_interface
-class _ah:
-
-    class _an:
-
-        def execute(self,_d:str,_p:str)->None:
-            ...
-
-class _af(gl.Contract):
-    admin:Address
-    governor:Address
-
-    def __init__(self):
-        self.admin=gl.message.sender_address
-        self.governor=Address(_k)
-
-    @gl.public.write
-    def bind_governor(self,governor:str)->None:
-        if gl.message.sender_address!=self.admin:
-            raise gl.vm.UserError(_s0)
-        if self.governor!=Address(_k):
-            raise gl.vm.UserError(_s0)
-        _o=Address(governor)
-        if _o==Address(_k):
-            raise gl.vm.UserError(_s0)
-        self.governor=_o
-
-    def _ae(self,_b,_j,_f):
-        return json.loads(_b.get_state_record(_j,_f))
-
-    def _x(self,_b,_j,_f):
-        try:
-            return self._ae(_b,_j,_f)
-        except Exception:
-            return None
-
-    def _u(self,_d,_l):
-        _b=_aj(self.governor).view(state=StorageType.LATEST_FINAL)
-        _h=_l['args']
-        _a={}
-        if _d==_s4:
-            _a['release']=self._ae(_b,'release',_h[0])
-            _e=_a['release']['target']
-            _a[_s1]=self._ae(_b,_s1,str(_a['release'][_s2]))
-        elif _d in('confirm_recovery','reconcile_recovery','expire_recovery','retry_recovery'):
-            _a[_s3]=self._ae(_b,_s3,_h[0])
-            _a['release']=self._ae(_b,'release',_a[_s3][_s8])
-            _a[_s1]=self._ae(_b,_s1,str(_a['release'][_s2]))
-            _e=_a[_s3]['target']
-        else:
-            _a[_s1]=self._ae(_b,_s1,str(int(_h[0])))
-            _e=_a[_s1]['target']
-            if _d=='confirm_activation':
-                _a['release']=self._ae(_b,'release',_h[1])
-        _a['policy']=self._ae(_b,'policy',_e)
-        _g=_a.get(_s1)
-        if _g is not None and _d in('confirm_install','reconcile_install','timeout'):
-            _a['parent_release']=self._ae(_b,'release',_a['policy']['current_release_id'])
-        if _g is not None and _g['recovery_mode']==_ad+'CANDIDATE':
-            _m=self._x(_b,'release',_g['recovery_release_id'])
-            if _m is not None:
-                _a['recovery_release']=_m
-        _c={'args':_h,'actor':_l['actor'],'now':_l['now'],'records':_a}
-        _q=self._ae(_b,'counts','')
-        _c[_s6]=_q[_s6]
-        _c[_s7]=_q[_s7]
-        _t=self._ae(_b,'active',_e)
-        _c['active_target']=_e
-        _c['active_value']=_t['value']
-        if _g is not None:
-            _f=hashlib.sha256('\x1f'.join([_e,_g['candidate_code_hash']]).encode()).hexdigest()
-            _r=self._x(_b,'candidate',_f)
-            _c['installed_candidate_hashes']={_f:True}if _r is not None and _r.get('value',False)else{}
-        if _d==_s4:
-            _c['incident_exists']=self._x(_b,_s3,'timeout-'+_h[0])is not None
-        _i=_al(Address(_e)).view(state=StorageType.LATEST_FINAL)
-        _c['target_final']={_s2:int(_i.proofpatch_installed_proposal_id()),_s5:_i.proofpatch_installed_candidate_hash(),_s8:_i.proofpatch_installed_release_id(),'mode':_i.proofpatch_release_mode(),'kernel_hash':_i.get_proofpatch_kernel_hash()}
-        _n=_al(Address(_e)).view(state=StorageType.LATEST_NON_FINAL)
-        _c['target_nonfinal']={_s2:int(_n.proofpatch_installed_proposal_id()),_s5:_n.proofpatch_installed_candidate_hash()}
-        return _c
-
-    @gl.public.write
-    def execute(self,_d:str,_p:str)->None:
-        if gl.message.sender_address!=self.governor:
-            raise gl.vm.UserError(_s0)
-        _c=self._u(_d,json.loads(_p))
-        _ah(Address(_s)).emit(on='finalized').execute(_d,json.dumps(_c,sort_keys=True,separators=(',',':')))
+class ProofPatchLifecycleEngine:
+	class Write:
+		def execute(self,operation:str,request:str)->_A:...
+class ProofPatchLifecycleRequestEngine(gl.Contract):
+	admin:Address;governor:Address
+	def __init__(self):self.admin=gl.message.sender_address;self.governor=Address(ZERO)
+	@gl.public.write
+	def bind_governor(self,governor:str)->_A:
+		if gl.message.sender_address!=self.admin:raise gl.vm.UserError('Only admin may bind governor')
+		if self.governor!=Address(ZERO):raise gl.vm.UserError('Governor is already bound')
+		candidate=Address(governor)
+		if candidate==Address(ZERO):raise gl.vm.UserError('Governor cannot be the zero address')
+		self.governor=candidate
+	def _read(self,view,kind,key):return json.loads(view.get_state_record(kind,key))
+	def _maybe(self,view,kind,key):
+		try:return self._read(view,kind,key)
+		except Exception:return
+	def _prepare(self,operation,data):
+		N='candidate_hash';M='value';L='release_count';K='proposal_count';J='now';I='actor';H='release_id';G='args';F='policy';E='target';D='proposal_id';C='incident';B='proposal';A='release';view=ProofPatchGovernor(self.governor).view(state=StorageType.LATEST_FINAL);args=data[G];records={}
+		if operation==_B:
+			records[A]=self._read(view,A,args[0]);target=records[A][E];records[B]=self._read(view,B,str(records[A][D]));existing_incident=self._maybe(view,C,'timeout-'+args[0])
+			if existing_incident is not _A:records[C]=existing_incident
+		elif operation in(_C,_D,_E,_F):records[C]=self._read(view,C,args[0]);records[A]=self._read(view,A,records[C][H]);records[B]=self._read(view,B,str(records[A][D]));target=records[C][E]
+		else:
+			records[B]=self._read(view,B,str(int(args[0])));target=records[B][E]
+			if operation==_G:records[A]=self._read(view,A,args[1])
+		records[F]=self._read(view,F,target);proposal=records.get(B)
+		if proposal is not _A and operation in(_H,_I,_J):records['parent_release']=self._read(view,A,records[F]['current_release_id'])
+		if proposal is not _A and proposal['recovery_mode']=='RECOVERY_CANDIDATE':
+			recovery_release=self._maybe(view,A,proposal['recovery_release_id'])
+			if recovery_release is not _A:records['recovery_release']=recovery_release
+		prepared={G:args,I:data[I],J:data[J],'records':records};counts=self._read(view,'counts','');prepared[K]=counts[K];prepared[L]=counts[L];active=self._read(view,'active',target);prepared['active_target']=target;prepared['active_value']=active[M]
+		if proposal is not _A:key=hashlib.sha256('\x1f'.join([target,proposal['candidate_code_hash']]).encode()).hexdigest();used=self._maybe(view,'candidate',key);prepared['installed_candidate_hashes']={key:True}if used is not _A and used.get(M,False)else{}
+		target_view=ProofPatchTarget(Address(target)).view(state=StorageType.LATEST_FINAL);prepared['target_final']={D:int(target_view.proofpatch_installed_proposal_id()),N:target_view.proofpatch_installed_candidate_hash(),H:target_view.proofpatch_installed_release_id(),'mode':target_view.proofpatch_release_mode(),'kernel_hash':target_view.get_proofpatch_kernel_hash()};nonfinal_view=ProofPatchTarget(Address(target)).view(state=StorageType.LATEST_NON_FINAL);prepared['target_nonfinal']={D:int(nonfinal_view.proofpatch_installed_proposal_id()),N:nonfinal_view.proofpatch_installed_candidate_hash()};return prepared
+	@gl.public.write
+	def execute(self,operation:str,request:str)->_A:
+		if gl.message.sender_address!=self.governor:raise gl.vm.UserError('Only the bound governor may prepare lifecycle execution')
+		prepared=self._prepare(operation,json.loads(request))
+		if operation in('cancel','expire',_H,_I):engine=INSTALL_LIFECYCLE_ENGINE
+		elif operation==_J:engine=TIMEOUT_LIFECYCLE_ENGINE
+		elif operation==_G:engine=ACTIVATION_LIFECYCLE_ENGINE
+		elif operation in(_B,_C,_D,_E,_F):engine=RECOVERY_LIFECYCLE_ENGINE
+		else:raise gl.vm.UserError('Unknown lifecycle operation')
+		ProofPatchLifecycleEngine(Address(engine)).emit(on='finalized').execute(operation,json.dumps(prepared,sort_keys=True,separators=(',',':')))

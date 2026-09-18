@@ -1,4 +1,5 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportMissingParameterType=false, reportInvalidTypeForm=false, reportOptionalMemberAccess=false, reportUnboundVariable=false, reportOptionalSubscript=false, reportGeneralTypeIssues=false, reportAssignmentType=false, reportIndexIssue=false, reportCallIssue=false, reportUnnecessaryCast=false, reportPrivateUsage=false, reportUnusedFunction=false, reportUnusedImport=false
 from genlayer import *
 from dataclasses import dataclass
 from datetime import datetime
@@ -55,7 +56,8 @@ MAX_PROPOSAL_TTL_SECONDS = 14 * 24 * 60 * 60
 MAX_EXECUTION_TIMEOUT_SECONDS = 7 * 24 * 60 * 60
 MIN_WINDOW_SECONDS = 60
 SEMANTIC_KEYS = ('storage_layout_compatible', 'forward_storage_compatible', 'reverse_storage_compatible_or_recovery_safe', 'user_rights_preserved', 'no_privilege_escalation', 'proofpatch_kernel_preserved', 'upgrade_authority_preserved', 'provisional_guard_preserved', 'consensus_binding_preserved', 'evidence_trust_preserved', 'finality_safety_preserved', 'liveness_preserved', 'no_hidden_value_transfer', 'assurance_manifest_sufficient', 'assurance_path_preserved', 'recovery_capsule_valid', 'recovery_path_preserved', 'constitution_satisfied')
-REVIEW_ENGINE = '0xD0dFE03E1bFe2EC221Cb505B6a9321e1dA2bD333'
+REVIEW_ENGINE = '0x9840cCf5DBdf4AE5945Ca73367e8336cCBEF578e'
+ASSURANCE_REVIEW_ENGINE = '0x32E5eFAF7558B65f72dA2B2B27f040e74fA148BC'
 STATUS_REVIEW_PENDING = 'REVIEW_PENDING'
 STATUS_INCIDENT_REVIEW_PENDING = 'INCIDENT_REVIEW_PENDING'
 
@@ -293,6 +295,17 @@ class ProofPatchReviewEngine:
             ...
 
 @gl.contract_interface
+class ProofPatchAssuranceIncidentEngine:
+
+    class View:
+
+        def get_assurance_result(self, proposal_id: u256) -> str:
+            ...
+
+        def get_incident_result(self, incident_id: str) -> str:
+            ...
+
+@gl.contract_interface
 class ProofPatchTarget:
 
     class View:
@@ -386,7 +399,7 @@ class ProofPatchReviewCommitEngine(gl.Contract):
         if operation == 'assurance':
             proposal = self._state(view, 'proposal', str(int(args[0])))
             policy = self._state(view, 'policy', proposal['target'])
-            result = self._result(ProofPatchReviewEngine(Address(REVIEW_ENGINE)).view(state=StorageType.LATEST_FINAL).get_assurance_result(u256(args[0])), {'target': proposal['target'], 'proposal_id': int(args[0]), 'release_id': 'release-' + str(proposal['proposal_id']) + '-' + proposal['candidate_code_hash'][:16], 'candidate_code_hash': proposal['candidate_code_hash'], 'policy_fingerprint': proposal['policy_fingerprint'], 'assurance_manifest_hash': proposal['assurance_manifest_hash']})
+            result = self._result(ProofPatchAssuranceIncidentEngine(Address(ASSURANCE_REVIEW_ENGINE)).view(state=StorageType.LATEST_FINAL).get_assurance_result(u256(args[0])), {'target': proposal['target'], 'proposal_id': int(args[0]), 'release_id': 'release-' + str(proposal['proposal_id']) + '-' + proposal['candidate_code_hash'][:16], 'candidate_code_hash': proposal['candidate_code_hash'], 'policy_fingerprint': proposal['policy_fingerprint'], 'assurance_manifest_hash': proposal['assurance_manifest_hash']})
             if proposal['status'] != STATUS_ASSURANCE_PENDING:
                 raise gl.vm.UserError('Release is not awaiting assurance callback')
             return {'proposal': proposal, 'policy': policy, 'release': self._state(view, 'release', 'release-' + str(proposal['proposal_id']) + '-' + proposal['candidate_code_hash'][:16]), 'result': result}
@@ -395,7 +408,7 @@ class ProofPatchReviewCommitEngine(gl.Contract):
             release = self._state(view, 'release', incident['release_id'])
             proposal = self._state(view, 'proposal', str(release['proposal_id']))
             policy = self._state(view, 'policy', incident['target'])
-            result = self._result(ProofPatchReviewEngine(Address(REVIEW_ENGINE)).view(state=StorageType.LATEST_FINAL).get_incident_result(args[0]), {'incident_id': args[0], 'target': incident['target'], 'release_id': incident['release_id'], 'installed_code_hash': incident['installed_code_hash'], 'policy_fingerprint': incident['policy_fingerprint'], 'recovery_capsule_hash': incident['recovery_capsule_hash']})
+            result = self._result(ProofPatchAssuranceIncidentEngine(Address(ASSURANCE_REVIEW_ENGINE)).view(state=StorageType.LATEST_FINAL).get_incident_result(args[0]), {'incident_id': args[0], 'target': incident['target'], 'release_id': incident['release_id'], 'installed_code_hash': incident['installed_code_hash'], 'policy_fingerprint': incident['policy_fingerprint'], 'recovery_capsule_hash': incident['recovery_capsule_hash']})
             if incident['status'] != STATUS_INCIDENT_REVIEW_PENDING:
                 raise gl.vm.UserError('Incident is not awaiting review callback')
             target_mode = ProofPatchTarget(Address(incident['target'])).view(state=StorageType.LATEST_FINAL).proofpatch_release_mode()

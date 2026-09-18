@@ -31,6 +31,7 @@ export type ChainTransactionSnapshot = {
   status: string;
   execution: string;
   lifecycle: string;
+  children: string[];
 };
 
 export type NativeAppealState = ChainTransactionSnapshot & {
@@ -158,25 +159,28 @@ export async function getProofPatchLiveState(): Promise<ProofPatchLiveState> {
 export async function getTransactionSnapshot(
   hash: string,
 ): Promise<ChainTransactionSnapshot> {
-  const transaction = (await publicClient.getTransaction({
-    hash: hash as HexHash,
-  } as never)) as unknown as Record<string, unknown>;
+  const [transaction, childIds] = await Promise.all([
+    publicClient.getTransaction({ hash: hash as HexHash } as never),
+    publicClient.getTriggeredTransactionIds({ hash: hash as never }).catch(() => []),
+  ]);
+  const record = transaction as unknown as Record<string, unknown>;
 
   return {
     hash,
     status: text(
-      transaction.statusName ??
-        transaction.status ??
-        transaction.consensusStatus ??
+      record.statusName ??
+        record.status ??
+        record.consensusStatus ??
         "Unknown",
     ),
     execution: text(
-      transaction.txExecutionResultName ??
-        transaction.executionResult ??
-        transaction.result ??
+      record.txExecutionResultName ??
+        record.executionResult ??
+        record.result ??
         "Unknown",
     ),
-    lifecycle: text(transaction.lifecycle ?? ""),
+    lifecycle: text(record.lifecycle ?? ""),
+    children: childIds.map((child) => String(child)),
   };
 }
 
@@ -240,6 +244,7 @@ export async function getCanonicalFinalityChain() {
           status: "Unavailable",
           execution: "",
           lifecycle: "",
+          children: [],
           available: false,
         };
       }

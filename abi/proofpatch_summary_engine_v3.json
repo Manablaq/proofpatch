@@ -1,0 +1,293 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "bind_governor": {
+      "params": [
+        [
+          "governor",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "get_active_proposal": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "get_candidate_code": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bytes"
+    },
+    "get_candidate_hash": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_code_hash": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_release_id": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_version": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_evidence_set_hash": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_incident_summary": {
+      "params": [
+        [
+          "incident_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_policy_fingerprint": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_policy_kernel_hash": {
+      "params": [
+        [
+          "target",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_count": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "get_proposal_release_id": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_status": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_summary": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_recovery_code": {
+      "params": [
+        [
+          "incident_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bytes"
+    },
+    "get_recovery_release_id": {
+      "params": [
+        [
+          "incident_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_release_summary": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "is_activation_authorized": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "candidate_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "is_recovery_authorized": {
+      "params": [
+        [
+          "incident_id",
+          "string"
+        ],
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "recovery_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "is_registration_authorized": {
+      "params": [
+        [
+          "target",
+          "string"
+        ],
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "code_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "is_upgrade_authorized": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "target",
+          "string"
+        ],
+        [
+          "candidate_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "read": {
+      "params": [
+        [
+          "kind",
+          "string"
+        ],
+        [
+          "key",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "blocking_diagnostic_count": 0,
+  "compact_archived_diagnostic_count": 24,
+  "contract": "contracts/proofpatch_summary_engine_v3_compact.py",
+  "diagnostics": [
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"get_state_record\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 111,
+          "line": 17
+        },
+        "start": {
+          "character": 24,
+          "line": 17
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"s\" in function \"loads\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 121,
+          "line": 17
+        },
+        "start": {
+          "character": 24,
+          "line": 17
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 22
+        },
+        "start": {
+          "character": 2,
+          "line": 22
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 27
+        },
+        "start": {
+          "character": 2,
+          "line": 27
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 32
+        },
+        "start": {
+          "character": 2,
+          "line": 32
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 37
+        },
+        "start": {
+          "character": 2,
+          "line": 37
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 44
+        },
+        "start": {
+          "character": 2,
+          "line": 44
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 51
+        },
+        "start": {
+          "character": 2,
+          "line": 51
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 57
+        },
+        "start": {
+          "character": 2,
+          "line": 57
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 62
+        },
+        "start": {
+          "character": 2,
+          "line": 62
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 64
+        },
+        "start": {
+          "character": 2,
+          "line": 64
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 66
+        },
+        "start": {
+          "character": 2,
+          "line": 66
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 68
+        },
+        "start": {
+          "character": 2,
+          "line": 68
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 70
+        },
+        "start": {
+          "character": 2,
+          "line": 70
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 72
+        },
+        "start": {
+          "character": 2,
+          "line": 72
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 74
+        },
+        "start": {
+          "character": 2,
+          "line": 74
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 76
+        },
+        "start": {
+          "character": 2,
+          "line": 76
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 78
+        },
+        "start": {
+          "character": 2,
+          "line": 78
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 80
+        },
+        "start": {
+          "character": 2,
+          "line": 80
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 82
+        },
+        "start": {
+          "character": 2,
+          "line": 82
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 84
+        },
+        "start": {
+          "character": 2,
+          "line": 84
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 86
+        },
+        "start": {
+          "character": 2,
+          "line": 86
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 88
+        },
+        "start": {
+          "character": 2,
+          "line": 88
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_summary_engine_v3_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 90
+        },
+        "start": {
+          "character": 2,
+          "line": 90
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    }
+  ],
+  "informational_diagnostic_count": 24,
+  "tool_exit_code": 1,
+  "unknown_severity_count": 0
+}

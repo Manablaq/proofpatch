@@ -2,6 +2,10 @@
 
 This is the reviewer-facing entry point for the completed ProofPatch release.
 
+## Current submission packet
+
+The corrected Bradbury artifact is the modular graph documented in [`BRADBURY_V3_DEPLOYMENT.md`](BRADBURY_V3_DEPLOYMENT.md), with facade `0x1DB03E1F4D7F1F9af5C6f0Abc1A320CA2506F4A6`. The facade source was corrected to restore both review callback addresses, then the full component graph and one-time bindings were redeployed from matching compact artifacts. Local verification is complete: 71 direct tests, full contract preflight, frontend typecheck/build, and source parity for all 16 fresh artifacts passed. Bradbury receipts are accepted and awaiting finality; finality-sensitive reads are intentionally fail-closed until finalization.
+
 ## Project
 
 **ProofPatch — No code upgrade without consensus.**
@@ -15,7 +19,7 @@ ProofPatch is a GenLayer-native semantic upgrade firewall for Intelligent Contra
 - Repository: https://github.com/Manablaq/proofpatch
 - Default branch: `main`
 
-## Canonical Bradbury deployment
+## Historical single-facade deployment
 
 ```text
 Network           Bradbury Testnet
@@ -105,7 +109,8 @@ GitHub Actions runs both contract and frontend verification on pushes and pull r
 
 ## Evidence index
 
-- `docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md` — current canonical chain evidence
+- `docs/BRADBURY_V3_DEPLOYMENT.md` — current modular deployment, binding transactions, source parity, and finality status
+- `docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md` — superseded historical chain evidence
 - `docs/BRADBURY_FINAL_EVIDENCE.md` — superseded historical chain evidence
 - `docs/REVIEWER_COVERAGE_AUDIT.md` — proof coverage boundary
 - `docs/REVIEWER_GATES.md` — hard-gate checklist

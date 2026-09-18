@@ -1,8 +1,15 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportUnnecessaryIsInstance=false
+
+# The contract receives canonical JSON and GenLayer's dynamically typed
+# nondeterministic return values. Runtime schema checks below validate every
+# boundary before values influence a decision; Pyright cannot infer those
+# runtime refinements from the SDK's dynamic interfaces.
 
 from genlayer import *
 import hashlib
 import json
+import typing
 
 
 EVIDENCE_SCHEMA = "proofpatch-evidence-v2"
@@ -36,6 +43,17 @@ SEMANTIC_KEYS = (
     "assurance_manifest_sufficient", "assurance_path_preserved",
     "recovery_capsule_valid", "recovery_path_preserved", "constitution_satisfied",
 )
+ASSURANCE_SEMANTIC_KEYS = (
+    "critical_state_preserved", "canary_requirements_hold", "runtime_evidence_valid",
+    "no_post_install_security_regression",
+)
+INCIDENT_SEMANTIC_KEYS = (
+    "incident_reproducible_or_sufficiently_established", "constitution_breached",
+    "continued_operation_unsafe", "recovery_safer_than_continuation",
+    "recovery_path_preserves_rights", "recovery_path_preserves_governance",
+)
+MAX_FACT_ITEM_BYTES = 8192
+MAX_FACT_LIST_ITEMS = 32
 ZERO = "0x0000000000000000000000000000000000000000"
 
 
@@ -43,13 +61,10 @@ ZERO = "0x0000000000000000000000000000000000000000"
 class ProofPatchGovernorV2:
     class Write:
         def review_proposal(self, proposal_id: u256) -> None: ...
-        def assure_release(self, proposal_id: u256, primary_url: str, primary_evidence_id: str, corroboration_url: str, corroboration_evidence_id: str) -> None: ...
-        def review_incident(self, incident_id: str) -> None: ...
 
 
 def _sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
-
 
 def _fetch(url: str) -> tuple[str, bytes]:
     try:
@@ -64,10 +79,8 @@ def _fetch(url: str) -> tuple[str, bytes]:
     except Exception:
         return "RETRY_FETCH_EXCEPTION", b""
 
-
 def _json(raw: bytes) -> object:
     return json.loads(raw.decode("utf-8"))
-
 
 def _time_error(obj: dict[object, object], now: int, max_age: int) -> str:
     published = obj.get("published_at")
@@ -83,7 +96,6 @@ def _time_error(obj: dict[object, object], now: int, max_age: int) -> str:
     if expires < published:
         return "EVIDENCE_EXPIRY_INVALID"
     return ""
-
 
 def _common(data: object, kind: str, evidence_id: str, issuer: str, p: dict[object, object], now: int, max_age: int) -> str:
     if not isinstance(data, dict):
@@ -115,23 +127,13 @@ def _common(data: object, kind: str, evidence_id: str, issuer: str, p: dict[obje
         return "EVIDENCE_POLICY_MISMATCH"
     return _time_error(obj, now, max_age)
 
-
-def _normalize(value: object, keys: tuple[str, ...]) -> dict[str, bool] | None:
-    if not isinstance(value, dict) or set(value.keys()) != set(keys):
-        return None
-    if any(type(value[k]) is not bool for k in keys):
-        return None
-    return {k: value[k] for k in keys}
-
-
 def _same(a: object, b: object, keys: tuple[str, ...]) -> bool:
     if not isinstance(a, dict) or not isinstance(b, dict):
         return False
-    binding = ("target", "proposal_id", "parent_code_hash", "candidate_code_hash", "policy_fingerprint", "evidence_set_hash", "assurance_manifest_hash", "recovery_capsule_hash", "kind", "error_code", "decision")
+    binding = ("incident_id", "target", "proposal_id", "release_id", "parent_code_hash", "candidate_code_hash", "policy_fingerprint", "evidence_set_hash", "assurance_manifest_hash", "recovery_capsule_hash", "kind", "error_code", "decision")
     if any(a.get(k) != b.get(k) for k in binding):
         return False
     return a.get("kind") != REVIEW_DECISION or all(a.get(k) == b.get(k) for k in keys)
-
 
 def _manifest_error(p: dict[object, object]) -> str:
     try:
@@ -154,8 +156,11 @@ def _manifest_error(p: dict[object, object]) -> str:
     }
     if any(value.get(k) != v for k, v in expected.items()):
         return "MANIFEST_BINDING_MISMATCH"
+    for key in ("required_state_checks", "required_readback_checks", "required_canary_checks"):
+        list_value = value.get(key)
+        if not isinstance(list_value, list) or not list_value or len(list_value) > MAX_FACT_LIST_ITEMS or any(not isinstance(item, str) or not item for item in list_value) or len(set(list_value)) != len(list_value):
+            return "MANIFEST_CHECK_LIST_INVALID"
     return ""
-
 
 def _base(p: dict[object, object]) -> dict[str, object]:
     return {
@@ -165,12 +170,10 @@ def _base(p: dict[object, object]) -> dict[str, object]:
         "assurance_manifest_hash": p["assurance_manifest_hash"], "recovery_capsule_hash": p["recovery_capsule_hash"],
     }
 
-
 def _proposal_result(p: dict[object, object], kind: str, code: str = "", decision: str = "") -> dict[str, object]:
     result = _base(p)
     result.update({"kind": kind, "error_code": code, "decision": decision})
     return result
-
 
 def _semantic_prompt(p: dict[object, object], parent: str, candidate: str, recovery: str) -> str:
     return f"""
@@ -195,14 +198,11 @@ Return exactly these boolean keys:
 {json.dumps({k: True for k in SEMANTIC_KEYS}, separators=(',', ':'))}
 """
 
-
 @allow_storage
 class ReviewEngine(gl.Contract):
     admin: Address
     governor: Address
     proposal_results: TreeMap[u256, str]
-    assurance_results: TreeMap[u256, str]
-    incident_results: TreeMap[str, str]
 
     def __init__(self):
         self.admin = gl.message.sender_address
@@ -212,7 +212,7 @@ class ReviewEngine(gl.Contract):
         if self.governor == Address(ZERO) or gl.message.sender_address != self.governor:
             raise gl.vm.UserError("Only the bound governor may call the review engine")
 
-    def _store(self, store: object, key: object, value: dict[str, object]) -> None:
+    def _store(self, store: typing.Any, key: typing.Any, value: dict[str, object]) -> None:
         store[key] = json.dumps(value, sort_keys=True, separators=(",", ":"))
 
     @gl.public.write
@@ -229,14 +229,6 @@ class ReviewEngine(gl.Contract):
     @gl.public.view
     def get_proposal_result(self, proposal_id: u256) -> str:
         return self.proposal_results.get(proposal_id, "")
-
-    @gl.public.view
-    def get_assurance_result(self, proposal_id: u256) -> str:
-        return self.assurance_results.get(proposal_id, "")
-
-    @gl.public.view
-    def get_incident_result(self, incident_id: str) -> str:
-        return self.incident_results.get(incident_id, "")
 
     @gl.public.write
     def review_proposal(self, proposal_id: u256, snapshot: str) -> None:
@@ -319,128 +311,3 @@ class ReviewEngine(gl.Contract):
 
         self._store(self.proposal_results, proposal_id, gl.vm.run_nondet_unsafe(leader, validator))
         ProofPatchGovernorV2(self.governor).emit(on="finalized").review_proposal(proposal_id)
-
-    @gl.public.write
-    def assure_release(self, proposal_id: u256, snapshot: str) -> None:
-        self._only_governor()
-        p = json.loads(snapshot)
-        release_id = p["release_id"]
-
-        def result(kind: str, code: str = "", decision: str = "") -> dict[str, object]:
-            return {"target": p["target"], "proposal_id": p["proposal_id"], "release_id": release_id, "candidate_code_hash": p["candidate_code_hash"], "policy_fingerprint": p["policy_fingerprint"], "assurance_manifest_hash": p["assurance_manifest_hash"], "kind": kind, "error_code": code, "decision": decision}
-
-        def leader() -> dict[str, object]:
-            a, primary_bytes = _fetch(p["primary_url"])
-            if a.startswith("RETRY"):
-                return result(REVIEW_RETRY, "PRIMARY_" + a)
-            if a != "OK":
-                return result(REVIEW_REPAIR, "PRIMARY_" + a)
-            b, corroboration_bytes = _fetch(p["corroboration_url"])
-            if b.startswith("RETRY"):
-                return result(REVIEW_RETRY, "CORROBORATION_" + b)
-            if b != "OK":
-                return result(REVIEW_REPAIR, "CORROBORATION_" + b)
-            try:
-                primary, corroboration = _json(primary_bytes), _json(corroboration_bytes)
-            except Exception:
-                return result(REVIEW_REPAIR, "ASSURANCE_JSON_INVALID")
-            vectors = []
-            for item, kind, evidence_id, issuer in ((primary, "assurance_primary", p["primary_evidence_id"], p["assurance_authority"]), (corroboration, "assurance_corroboration", p["corroboration_evidence_id"], p["corroboration_authority"])):
-                if not isinstance(item, dict):
-                    return result(REVIEW_REPAIR, "ASSURANCE_ENVELOPE_INVALID")
-                required = ("schema", "kind", "evidence_id", "issuer", "target", "release_id", "proposal_id", "candidate_sha256", "policy_fingerprint", "manifest_sha256", "published_at", "expires_at", "checks")
-                if any(k not in item for k in required):
-                    return result(REVIEW_REPAIR, "ASSURANCE_FIELD_MISSING")
-                if item.get("schema") != ASSURANCE_SCHEMA or item.get("kind") != kind:
-                    return result(REVIEW_REPAIR, "ASSURANCE_SCHEMA_OR_KIND_MISMATCH")
-                if item.get("evidence_id") != evidence_id or item.get("issuer") != issuer:
-                    return result(REVIEW_REPAIR, "ASSURANCE_IDENTITY_MISMATCH")
-                if item.get("target") != p["target"] or item.get("release_id") != release_id:
-                    return result(REVIEW_REPAIR, "ASSURANCE_RELEASE_MISMATCH")
-                if item.get("proposal_id") != p["proposal_id"] or item.get("candidate_sha256") != p["candidate_code_hash"]:
-                    return result(REVIEW_REPAIR, "ASSURANCE_CANDIDATE_HASH_MISMATCH")
-                if item.get("policy_fingerprint") != p["policy_fingerprint"] or item.get("manifest_sha256") != p["assurance_manifest_hash"]:
-                    return result(REVIEW_REPAIR, "ASSURANCE_MANIFEST_MISMATCH")
-                error = _time_error(item, p["review_now"], p["max_evidence_age_seconds"])
-                if error:
-                    return result(REVIEW_REPAIR, "ASSURANCE_" + error)
-                vector = _normalize(item.get("checks"), ASSURANCE_KEYS)
-                if vector is None:
-                    return result(REVIEW_REPAIR, "ASSURANCE_CHECK_VECTOR_INVALID")
-                vectors.append(vector)
-            if vectors[0] != vectors[1]:
-                return result(REVIEW_DECISION, "", DECISION_REJECT)
-            checks = vectors[0]
-            checks["installed_hash_matches"] = checks["installed_hash_matches"] and p["installed_candidate_hash"] == p["candidate_code_hash"]
-            checks["kernel_binding_matches"] = checks["kernel_binding_matches"] and p["installed_kernel_hash"] == p["kernel_hash"]
-            checks["governor_binding_matches"] = checks["governor_binding_matches"] and p["installed_proposal_id"] == p["proposal_id"]
-            checks["interface_requirements_hold"] = checks["interface_requirements_hold"] and p["installed_release_id"] == release_id
-            checks["assurance_manifest_satisfied"] = checks["assurance_manifest_satisfied"] and p["installed_mode"] == "PROVISIONAL"
-            output = result(REVIEW_DECISION, "", DECISION_APPROVE if all(checks[k] for k in ASSURANCE_KEYS) else DECISION_REJECT)
-            output.update(checks)
-            return output
-
-        def validator(leader_result: object) -> bool:
-            return isinstance(leader_result, gl.vm.Return) and leader_result.calldata == leader()
-
-        self._store(self.assurance_results, proposal_id, gl.vm.run_nondet_unsafe(leader, validator))
-        ProofPatchGovernorV2(self.governor).emit(on="finalized").assure_release(proposal_id, p["primary_url"], p["primary_evidence_id"], p["corroboration_url"], p["corroboration_evidence_id"])
-
-    @gl.public.write
-    def review_incident(self, incident_id: str, snapshot: str) -> None:
-        self._only_governor()
-        p = json.loads(snapshot)
-
-        def result(kind: str, code: str = "", decision: str = "") -> dict[str, object]:
-            return {"incident_id": incident_id, "target": p["target"], "release_id": p["release_id"], "installed_code_hash": p["installed_code_hash"], "policy_fingerprint": p["policy_fingerprint"], "recovery_capsule_hash": p["recovery_capsule_hash"], "kind": kind, "error_code": code, "decision": decision}
-
-        def leader() -> dict[str, object]:
-            a, primary_bytes = _fetch(p["primary_url"])
-            if a.startswith("RETRY"):
-                return result(REVIEW_RETRY, "PRIMARY_" + a)
-            if a != "OK":
-                return result(REVIEW_REPAIR, "PRIMARY_" + a)
-            b, corroboration_bytes = _fetch(p["corroboration_url"])
-            if b.startswith("RETRY"):
-                return result(REVIEW_RETRY, "CORROBORATION_" + b)
-            if b != "OK":
-                return result(REVIEW_REPAIR, "CORROBORATION_" + b)
-            try:
-                primary, corroboration = _json(primary_bytes), _json(corroboration_bytes)
-            except Exception:
-                return result(REVIEW_REPAIR, "INCIDENT_JSON_INVALID")
-            vectors = []
-            for item, kind, evidence_id, issuer in ((primary, "incident_primary", p["primary_evidence_id"], p["audit_authority"]), (corroboration, "incident_corroboration", p["corroboration_evidence_id"], p["corroboration_authority"])):
-                if not isinstance(item, dict):
-                    return result(REVIEW_REPAIR, "INCIDENT_ENVELOPE_INVALID")
-                if item.get("schema") != INCIDENT_SCHEMA or item.get("kind") != kind:
-                    return result(REVIEW_REPAIR, "INCIDENT_SCHEMA_OR_KIND_MISMATCH")
-                if item.get("evidence_id") != evidence_id or item.get("issuer") != issuer:
-                    return result(REVIEW_REPAIR, "INCIDENT_IDENTITY_MISMATCH")
-                if item.get("target") != p["target"] or item.get("release_id") != p["release_id"]:
-                    return result(REVIEW_REPAIR, "INCIDENT_RELEASE_MISMATCH")
-                if item.get("installed_code_hash") != p["installed_code_hash"] or item.get("incident_type") != p["incident_type"]:
-                    return result(REVIEW_REPAIR, "INCIDENT_HASH_OR_TYPE_MISMATCH")
-                if item.get("policy_fingerprint") != p["policy_fingerprint"]:
-                    return result(REVIEW_REPAIR, "INCIDENT_POLICY_MISMATCH")
-                error = _time_error(item, p["review_now"], p["max_evidence_age_seconds"])
-                if error:
-                    return result(REVIEW_REPAIR, "INCIDENT_" + error)
-                vector = _normalize(item.get("checks"), INCIDENT_KEYS)
-                if vector is None:
-                    return result(REVIEW_REPAIR, "INCIDENT_CHECK_VECTOR_INVALID")
-                vectors.append(vector)
-            if vectors[0] != vectors[1]:
-                return result(REVIEW_DECISION, "", DECISION_REJECT)
-            checks = vectors[0]
-            checks["incident_affects_exact_release"] = checks["incident_affects_exact_release"] and p["release_code_hash"] == p["installed_code_hash"]
-            checks["recovery_capsule_applicable"] = checks["recovery_capsule_applicable"] and p["proposal_recovery_capsule_hash"] == p["recovery_capsule_hash"]
-            output = result(REVIEW_DECISION, "", DECISION_APPROVE if all(checks[k] for k in INCIDENT_KEYS) else DECISION_REJECT)
-            output.update(checks)
-            return output
-
-        def validator(leader_result: object) -> bool:
-            return isinstance(leader_result, gl.vm.Return) and leader_result.calldata == leader()
-
-        self._store(self.incident_results, incident_id, gl.vm.run_nondet_unsafe(leader, validator))
-        ProofPatchGovernorV2(self.governor).emit(on="finalized").review_incident(incident_id)

@@ -1,5 +1,7 @@
 # ProofPatch Reviewer Coverage Audit
 
+> The current deployment address set is the corrected modular graph in [`BRADBURY_V3_DEPLOYMENT.md`](BRADBURY_V3_DEPLOYMENT.md). The single-facade address references below describe historical evidence only.
+
 This audit separates deterministic test coverage, historical Bradbury evidence, and future/disposable adversarial paths. It intentionally does not fake IC-to-IC finality in unit tests and does not replay a completed historical live upgrade merely to create extra transactions.
 
 ## Reviewer hard gates

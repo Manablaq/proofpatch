@@ -1,10 +1,12 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportMissingParameterType=false, reportInvalidTypeForm=false, reportOptionalMemberAccess=false, reportUnboundVariable=false, reportOptionalSubscript=false, reportGeneralTypeIssues=false, reportAssignmentType=false, reportIndexIssue=false, reportCallIssue=false, reportUnnecessaryCast=false, reportPrivateUsage=false, reportUnusedFunction=false, reportUnusedImport=false
 from genlayer import *
 from dataclasses import dataclass
 from datetime import datetime
 from genlayer.py.public_abi import StorageType
 import json
-REVIEW_ENGINE = '0xD0dFE03E1bFe2EC221Cb505B6a9321e1dA2bD333'
+REVIEW_ENGINE = '0x9840cCf5DBdf4AE5945Ca73367e8336cCBEF578e'
+ASSURANCE_REVIEW_ENGINE = '0x32E5eFAF7558B65f72dA2B2B27f040e74fA148BC'
 
 @gl.contract_interface
 class ProofPatchReviewEngine:
@@ -178,31 +180,20 @@ class ProofPatchTarget:
 
         def proofpatch_recover(self, incident_id: str, release_id: str, recovery_hash: str) -> None:
             ...
-POLICY_ENGINE = '0x658Dc4E784836bB7C4Ae27029703C873fbb3D16a'
-REGISTRATION_ENGINE = '0xFF9315eE07aB08F20224BAE4e85283B1DD5F73C5'
-ASSURANCE_ENGINE = '0x4fD4Ce9733D96f0fF6BD53018d2bbdd5B86898dD'
-SUMMARY_ENGINE = '0x232B09567e83Ed76F225f653b6D485381963578C'
-LIFECYCLE_ENGINE = '0x8948b524adbfA84eBDEb39bFF925695fF111FCbD'
-LIFECYCLE_REQUEST_ENGINE = '0x6553ce6cca1C55789E119Bedf66C26Ff4617A0b1'
+POLICY_ENGINE = '0xCe91B262d6358dFd95A32a56fd577b71FB0DdC7F'
+INCIDENT_POLICY_ENGINE = '0x3De9294a39A4b9e31975a74426a3f29C32E0829E'
+REPAIR_POLICY_ENGINE = '0x59A065F97a4d475Fc60AC350aDF5163AbfE27F91'
+REGISTRATION_ENGINE = '0xF7e1F1D31f60e866E2f0a1367834BEF7abC77b43'
+ASSURANCE_ENGINE = '0x6740374AA335c4e02EC079d3d1E5A2198A28320F'
+SUMMARY_ENGINE = '0x209343F604Ec7A53339C3F555D5Cf333F4BEf4FD'
+INSTALL_LIFECYCLE_ENGINE = '0xE7F337c2Bc992a94f213C41B66d7E49381F31145'
+TIMEOUT_LIFECYCLE_ENGINE = '0xd73FF76b1A2438eAD59DA4072F9484aED25C7865'
+ACTIVATION_LIFECYCLE_ENGINE = '0x429A733D5949bCB0DE97E32Da58E8d192acC41Ca'
+RECOVERY_LIFECYCLE_ENGINE = '0xebf47F06759481606910dA564FF48203e386b95E'
+LIFECYCLE_REQUEST_ENGINE = '0xC01B9D36B3eEe2A563A4E7FA688b9a799fa759E2'
 
 @gl.contract_interface
 class ProofPatchPolicyEngine:
-
-    class Write:
-
-        def execute(self, operation: str, request: str) -> None:
-            ...
-
-@gl.contract_interface
-class ProofPatchRegistrationEngine:
-
-    class Write:
-
-        def execute(self, operation: str, request: str) -> None:
-            ...
-
-@gl.contract_interface
-class ProofPatchAssuranceEngine:
 
     class Write:
 
@@ -217,39 +208,8 @@ class ProofPatchSummaryEngine:
         def read(self, kind: str, key: str) -> str:
             ...
 
-@gl.contract_interface
-class ProofPatchLifecycleEngine:
-
-    class Write:
-
-        def execute(self, operation: str, request: str) -> None:
-            ...
-
-@gl.contract_interface
-class ProofPatchLifecycleRequestEngine:
-
-    class Write:
-
-        def execute(self, operation: str, request: str) -> None:
-            ...
-REVIEW_COMMIT_ENGINE = '0x1240C476C1543D2156C57A8Ba16AF51052b5d039'
-
-@gl.contract_interface
-class ProofPatchReviewCommitEngine:
-
-    class Write:
-
-        def execute(self, operation: str, request: str) -> None:
-            ...
-REVIEW_REQUEST_ENGINE = '0x692EF6b95D76eb7a5002B4aDEF446d0Acd6d25d5'
-
-@gl.contract_interface
-class ProofPatchReviewRequestEngine:
-
-    class Write:
-
-        def execute(self, operation: str, request: str) -> None:
-            ...
+REVIEW_COMMIT_ENGINE = '0xef8F5C807117b2A606B861e947F2ff5756Db8CE7'
+REVIEW_REQUEST_ENGINE = '0x50d787E2078683Bbc27462208475578cE7295aF9'
 class ProofPatchGovernorV2(gl.Contract):
     policies: TreeMap[Address, TargetPolicy]
     proposals: TreeMap[u256, UpgradeProposal]
@@ -272,6 +232,9 @@ class ProofPatchGovernorV2(gl.Contract):
 
     def _engine(self):
         return ProofPatchReviewEngine(Address(REVIEW_ENGINE))
+
+    def _fact_engine(self):
+        return ProofPatchReviewEngine(Address(ASSURANCE_REVIEW_ENGINE))
 
     def _summary(self, kind: str, key: str) -> str:
         return ProofPatchSummaryEngine(Address(SUMMARY_ENGINE)).view(state=StorageType.LATEST_FINAL).read(kind, str(key))
@@ -301,7 +264,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def review_incident(self, incident_id: str) -> None:
-        if gl.message.sender_address == Address(REVIEW_ENGINE):
+        if gl.message.sender_address == Address(ASSURANCE_REVIEW_ENGINE):
             self._submit_review('incident', [incident_id], str(gl.message.sender_address))
             return
         self._submit_review_request('incident', [incident_id])
@@ -450,28 +413,32 @@ class ProofPatchGovernorV2(gl.Contract):
         for (key, value) in fields.items():
             data[key] = self._encode(value)
         if operation == 'register':
-            engine = ProofPatchRegistrationEngine(Address(REGISTRATION_ENGINE))
+            address = REGISTRATION_ENGINE
         elif operation == 'assure':
-            engine = ProofPatchAssuranceEngine(Address(ASSURANCE_ENGINE))
+            address = ASSURANCE_ENGINE
+        elif operation in ('incident', 'repair_incident'):
+            address = INCIDENT_POLICY_ENGINE
+        elif operation == 'repair':
+            address = REPAIR_POLICY_ENGINE
         else:
-            engine = ProofPatchPolicyEngine(Address(POLICY_ENGINE))
-        engine.emit(on='finalized').execute(operation, json.dumps(data, sort_keys=True, separators=(',', ':')))
+            address = POLICY_ENGINE
+        ProofPatchPolicyEngine(Address(address)).emit(on='finalized').execute(operation, json.dumps(data, sort_keys=True, separators=(',', ':')))
 
     def _submit_lifecycle(self, operation: str, args: list[object], actor: str, **fields: object) -> None:
         data = {'args': self._encode(args), 'actor': actor, 'now': self._now()}
         for (key, value) in fields.items():
             data[key] = self._encode(value)
-        ProofPatchLifecycleRequestEngine(Address(LIFECYCLE_REQUEST_ENGINE)).emit(on='finalized').execute(operation, json.dumps(data, sort_keys=True, separators=(',', ':')))
+        ProofPatchPolicyEngine(Address(LIFECYCLE_REQUEST_ENGINE)).emit(on='finalized').execute(operation, json.dumps(data, sort_keys=True, separators=(',', ':')))
 
     def _submit_review_request(self, operation: str, args: list[object]) -> None:
         request = {'args': self._encode(args), 'now': self._now()}
-        ProofPatchReviewRequestEngine(Address(REVIEW_REQUEST_ENGINE)).emit(on='finalized').execute(operation, json.dumps(request, separators=(',', ':')))
+        ProofPatchPolicyEngine(Address(REVIEW_REQUEST_ENGINE)).emit(on='finalized').execute(operation, json.dumps(request, separators=(',', ':')))
 
     def _submit_review(self, operation: str, args: list[object], actor: str, **fields: object) -> None:
         data = {'args': self._encode(args), 'actor': actor, 'now': self._now()}
         for (key, value) in fields.items():
             data[key] = self._encode(value)
-        ProofPatchReviewCommitEngine(Address(REVIEW_COMMIT_ENGINE)).emit(on='finalized').execute(operation, json.dumps(data, sort_keys=True, separators=(',', ':')))
+        ProofPatchPolicyEngine(Address(REVIEW_COMMIT_ENGINE)).emit(on='finalized').execute(operation, json.dumps(data, sort_keys=True, separators=(',', ':')))
 
     def _emit_actions(self, actions: list[object]) -> None:
         for action in actions:
@@ -499,9 +466,9 @@ class ProofPatchGovernorV2(gl.Contract):
         if operation == 'proposal':
             self._engine().emit(on='finalized').review_proposal(u256(args[0]), snapshot)
         elif operation == 'assurance':
-            self._engine().emit(on='finalized').assure_release(u256(args[0]), snapshot)
+            self._fact_engine().emit(on='finalized').assure_release(u256(args[0]), snapshot)
         elif operation == 'incident':
-            self._engine().emit(on='finalized').review_incident(args[0], snapshot)
+            self._fact_engine().emit(on='finalized').review_incident(args[0], snapshot)
         else:
             raise gl.vm.UserError('Unknown review request')
 
@@ -514,7 +481,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def apply_policy_result(self, operation: str, payload: str) -> None:
-        if gl.message.sender_address not in (Address(POLICY_ENGINE), Address(REGISTRATION_ENGINE), Address(ASSURANCE_ENGINE)):
+        if gl.message.sender_address not in (Address(POLICY_ENGINE), Address(INCIDENT_POLICY_ENGINE), Address(REPAIR_POLICY_ENGINE), Address(REGISTRATION_ENGINE), Address(ASSURANCE_ENGINE)):
             raise gl.vm.UserError('Only a bound policy engine may apply state')
         patch = self._apply_patch(payload)
         if operation == 'register':
@@ -527,8 +494,8 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def apply_lifecycle_result(self, operation: str, payload: str) -> None:
-        if gl.message.sender_address != Address(LIFECYCLE_ENGINE):
-            raise gl.vm.UserError('Only lifecycle engine may apply state')
+        if gl.message.sender_address not in (Address(INSTALL_LIFECYCLE_ENGINE), Address(TIMEOUT_LIFECYCLE_ENGINE), Address(ACTIVATION_LIFECYCLE_ENGINE), Address(RECOVERY_LIFECYCLE_ENGINE)):
+            raise gl.vm.UserError('Only a bound lifecycle engine may apply state')
         patch = self._apply_patch(payload)
         for action in patch.get('actions', []):
             if action.get('kind') == 'recover':
@@ -552,7 +519,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def assure_release(self, proposal_id: u256, primary_url: str, primary_evidence_id: str, corroboration_url: str, corroboration_evidence_id: str) -> None:
-        if gl.message.sender_address == Address(REVIEW_ENGINE):
+        if gl.message.sender_address == Address(ASSURANCE_REVIEW_ENGINE):
             self._submit_review('assurance', [proposal_id, primary_url, primary_evidence_id, corroboration_url, corroboration_evidence_id], str(gl.message.sender_address))
             return
         self._submit_policy('assure', [proposal_id, primary_url, primary_evidence_id, corroboration_url, corroboration_evidence_id], str(gl.message.sender_address))
@@ -562,6 +529,10 @@ class ProofPatchGovernorV2(gl.Contract):
         now = self._now()
         self._submit_policy('incident', [target, release_id, incident_type, primary_url, primary_evidence_id, corroboration_url, corroboration_evidence_id], str(gl.message.sender_address))
         return 'incident-' + str(now) + '-' + primary_evidence_id
+
+    @gl.public.write
+    def repair_incident(self, incident_id: str, primary_url: str, primary_evidence_id: str, corroboration_url: str, corroboration_evidence_id: str) -> None:
+        self._submit_policy('repair_incident', [incident_id, primary_url, primary_evidence_id, corroboration_url, corroboration_evidence_id], str(gl.message.sender_address))
 
     @gl.public.write
     def cancel_proposal(self, proposal_id: u256):

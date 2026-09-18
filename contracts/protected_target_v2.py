@@ -17,6 +17,21 @@ PROOFPATCH_KERNEL_SOURCE = "\n".join((
     "pending_code_hash: str",
     "last_recovery_incident_id: str",
     "last_recovery_release_id: str",
+    "method:_kernel_method_digest:a16e3dd87e652f28ed622b1e2d8e16677dd61f5de6036300c5832d267bdf93cd",
+    "method:_only_owner:12632df4486f8159733db9fcb434f5ce995f04c5811443cbd2ab4d13348f7ac5",
+    "method:_only_governor:6aafabb1c65bee4198588d92fad908ce041b240caac7d98e5d2d8ff14f449004",
+    "method:_require_active_release:7c24465b0aef58865edaaebb926825e37d8ed6dc0bcc970b9fd42421492b9f5c",
+    "method:_require_kernel_binding:6ea876d1cd6e7a548bc50727d1e9fad65eac1231c2979f7bec93423b0a786e71",
+    "method:proofpatch_confirm_registration:b8729d963a677dd093c586927dfdebfaa0cdbdfe7a65a07ea96a08c3834c86ff",
+    "method:proofpatch_upgrade:229fa0c58ef8eb73d46c64bd5235a7ddb044ef77de2607f67ce8b42e9af7a89c",
+    "method:proofpatch_activate:5eef835283b3f14ea78a3ff1c42cb2cbbb2ce02681ba3a4ae9f88493d2d27983",
+    "method:proofpatch_recover:33be12f2dfac13ef60ec25fd0176fb1db712db0ba016ffce61ba14c6dad7b696",
+    "method:get_proofpatch_governor:f80077cd0f6e72975cf1965087b92a66df5b01b83e48645cc72214dfa89b8ada",
+    "method:proofpatch_installed_proposal_id:1eb453af4aeb1971a3ee55970002f9213a49d0f98f656d309f7ee53cbd0024c9",
+    "method:proofpatch_installed_candidate_hash:e4997fef5abf8697a21f5383b77820d73a8c69e8f8e4f79e4d726b86e2282ac8",
+    "method:proofpatch_installed_release_id:3367fd4c16c8409ae2695e8321830a24761ab9813b994414ea76ee3471965e76",
+    "method:proofpatch_release_mode:602abb31465bc9ad120ca258eca3d825788391a870c3fd9e8a9a9e233bf9ab94",
+    "method:get_proofpatch_kernel_hash:1d0fbad12f87eb719bbb0606a65192249bc66a48a8722e43976e09ab5bcb5d13",
 )) + "\n"
 PROOFPATCH_KERNEL_HASH = hashlib.sha256(PROOFPATCH_KERNEL_SOURCE.encode("utf-8")).hexdigest()
 
@@ -117,6 +132,23 @@ class ProtectedTarget(gl.Contract):
         if self.release_mode not in ("ACTIVE", "RECOVERED"):
             raise gl.vm.UserError("Protected writes are disabled until release certification")
 
+    def _kernel_method_digest(self, source: str, name: str) -> str:
+        lines = source.splitlines()
+        matches = [index for index, line in enumerate(lines) if line.startswith("    def " + name + "(")]
+        if len(matches) != 1:
+            raise gl.vm.UserError("Candidate ProofPatch kernel method is not unique")
+        index = matches[0]
+        start = index
+        while start > 0 and lines[start - 1].startswith("    @"):
+            start -= 1
+        end = len(lines)
+        for cursor in range(index + 1, len(lines)):
+            if lines[cursor].startswith("    def ") or lines[cursor].startswith("    @gl.public"):
+                end = cursor
+                break
+        normalized = "\n".join(line.rstrip() for line in lines[start:end]).strip() + "\n"
+        return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
     def _require_kernel_binding(self, code: bytes, expected_hash: str) -> None:
         try:
             source = code.decode("utf-8")
@@ -134,19 +166,23 @@ class ProtectedTarget(gl.Contract):
             if line.strip() and not line.strip().startswith("#")
         ]
         actual_kernel_source = "\n".join(normalized_lines) + "\n"
-        required_methods = (
-            "proofpatch_confirm_registration(",
-            "proofpatch_upgrade(",
-            "proofpatch_activate(",
-            "proofpatch_recover(",
-            "get_proofpatch_kernel_hash(",
-        )
-        if actual_kernel_source != PROOFPATCH_KERNEL_SOURCE:
+        storage_source = "\n".join(PROOFPATCH_KERNEL_SOURCE.splitlines()[:12]) + "\n"
+        if actual_kernel_source != storage_source:
             raise gl.vm.UserError("Candidate ProofPatch kernel storage prefix changed")
-        if any(source.count("def " + method) != 1 for method in required_methods):
-            raise gl.vm.UserError("Candidate ProofPatch kernel interface is not unique")
-        if expected_hash.lower() != PROOFPATCH_KERNEL_HASH:
+        if hashlib.sha256(PROOFPATCH_KERNEL_SOURCE.encode("utf-8")).hexdigest() != expected_hash.lower():
             raise gl.vm.UserError("Candidate does not preserve the registered ProofPatch kernel")
+        entries: list[tuple[str, str]] = []
+        for line in PROOFPATCH_KERNEL_SOURCE.splitlines():
+            if line.startswith("method:"):
+                parts = line.split(":")
+                if len(parts) != 3:
+                    raise gl.vm.UserError("ProofPatch kernel manifest is malformed")
+                entries.append((parts[1], parts[2]))
+        if len(entries) != 15:
+            raise gl.vm.UserError("ProofPatch kernel manifest is incomplete")
+        for name, digest in entries:
+            if self._kernel_method_digest(source, name) != digest:
+                raise gl.vm.UserError("Candidate ProofPatch security implementation changed")
 
     @gl.public.write
     def set_protected_value(self, value: str) -> None:

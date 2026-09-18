@@ -1,0 +1,100 @@
+{
+  "blocking_diagnostic_count": 0,
+  "compact_archived_diagnostic_count": 5,
+  "contract": "contracts/proofpatch_assurance_engine_v3_compact.py",
+  "diagnostics": [
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_assurance_engine_v3_compact.py",
+      "message": "Type of \"patch\" is partially unknown\n\u00a0\u00a0Type of \"patch\" is \"dict[str, str | list[Any] | dict[Unknown, Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 40
+        },
+        "start": {
+          "character": 2,
+          "line": 40
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_assurance_engine_v3_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"patch\" in function \"_reserve\"\n\u00a0\u00a0Argument type is \"dict[str, str | list[Any] | dict[Unknown, Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 115,
+          "line": 40
+        },
+        "start": {
+          "character": 110,
+          "line": 40
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_assurance_engine_v3_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"patch\" in function \"_reserve\"\n\u00a0\u00a0Argument type is \"dict[str, str | list[Any] | dict[Unknown, Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 218,
+          "line": 40
+        },
+        "start": {
+          "character": 213,
+          "line": 40
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_assurance_engine_v3_compact.py",
+      "message": "Return type, \"dict[str, str | list[Any] | dict[Unknown, Unknown]]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 637,
+          "line": 40
+        },
+        "start": {
+          "character": 632,
+          "line": 40
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_assurance_engine_v3_compact.py",
+      "message": "\"_assure\" is protected and used outside of the class in which it is declared",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 145,
+          "line": 55
+        },
+        "start": {
+          "character": 138,
+          "line": 55
+        }
+      },
+      "rule": "reportPrivateUsage",
+      "severity": "error"
+    }
+  ],
+  "informational_diagnostic_count": 5,
+  "tool_exit_code": 1,
+  "unknown_severity_count": 0
+}

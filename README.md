@@ -8,7 +8,11 @@
 
 ProofPatch is a GenLayer-native semantic upgrade firewall for Intelligent Contracts. A protected target designates ProofPatch as its sole GenVM upgrader, so an exact candidate can replace live code only after immutable evidence binding, independent validator semantic review, GenLayer finality, exact-byte installation, and post-install verification.
 
-## Live deployment
+## Current Bradbury modular deployment
+
+The current corrected graph uses facade `0x1DB03E1F4D7F1F9af5C6f0Abc1A320CA2506F4A6` and the component addresses recorded in [`docs/BRADBURY_V3_DEPLOYMENT.md`](docs/BRADBURY_V3_DEPLOYMENT.md). Its compact facade includes both review callback bindings, and each component is bound to that facade with a state-changing transaction. The deployment and bindings are accepted and awaiting Bradbury finality; finality-sensitive reads remain fail-closed until that state is terminal.
+
+## Historical single-facade deployment
 
 - **Application:** https://proofpatch.vercel.app
 - **Dashboard:** https://proofpatch.vercel.app/app
@@ -51,7 +55,8 @@ There is no fuzzy confidence threshold or tolerance that can authorize code inst
 Start here:
 
 - [`docs/SUBMISSION.md`](docs/SUBMISSION.md) — compact reviewer handoff and submission checklist
-- [`docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md`](docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md) — current canonical addresses, hashes, transactions, and final state
+- [`docs/BRADBURY_V3_DEPLOYMENT.md`](docs/BRADBURY_V3_DEPLOYMENT.md) — current modular addresses, deployment/binding transactions, parity, and finality status
+- [`docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md`](docs/BRADBURY_CURRENT_FINAL_EVIDENCE.md) — superseded historical upgrade evidence
 - [`docs/REVIEWER_COVERAGE_AUDIT.md`](docs/REVIEWER_COVERAGE_AUDIT.md) — deterministic vs Bradbury proof boundary
 - [`docs/REVIEWER_GATES.md`](docs/REVIEWER_GATES.md) — reviewer-readiness hard gates
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — trust chain and consensus boundary

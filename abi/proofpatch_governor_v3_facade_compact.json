@@ -1,0 +1,809 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "apply_lifecycle_result": {
+      "params": [
+        [
+          "_e",
+          "string"
+        ],
+        [
+          "_o",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "apply_policy_result": {
+      "params": [
+        [
+          "_e",
+          "string"
+        ],
+        [
+          "_o",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "apply_review_request": {
+      "params": [
+        [
+          "_e",
+          "string"
+        ],
+        [
+          "_l",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "apply_review_result": {
+      "params": [
+        [
+          "_e",
+          "string"
+        ],
+        [
+          "_o",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "assure_release": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ],
+        [
+          "_u",
+          "string"
+        ],
+        [
+          "_q",
+          "string"
+        ],
+        [
+          "_t",
+          "string"
+        ],
+        [
+          "_s",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "cancel_proposal": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "confirm_activation": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ],
+        [
+          "_h",
+          "string"
+        ],
+        [
+          "_m",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "confirm_install": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ],
+        [
+          "_m",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "confirm_recovery": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ],
+        [
+          "_h",
+          "string"
+        ],
+        [
+          "_ag",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "create_proposal": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ],
+        [
+          "_bc",
+          "string"
+        ],
+        [
+          "_z",
+          "string"
+        ],
+        [
+          "_bl",
+          "bytes"
+        ],
+        [
+          "_ac",
+          "string"
+        ],
+        [
+          "_ad",
+          "string"
+        ],
+        [
+          "_aa",
+          "string"
+        ],
+        [
+          "_ab",
+          "string"
+        ],
+        [
+          "_az",
+          "string"
+        ],
+        [
+          "_bp",
+          "string"
+        ],
+        [
+          "_ax",
+          "string"
+        ],
+        [
+          "_bh",
+          "string"
+        ],
+        [
+          "_ay",
+          "string"
+        ],
+        [
+          "_bo",
+          "bytes"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "int",
+      "payable": false
+    },
+    "expire_proposal": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "expire_provisional_release": {
+      "params": [
+        [
+          "_h",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "expire_recovery": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "get_active_proposal": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "get_candidate_code": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bytes"
+    },
+    "get_candidate_hash": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_code_hash": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_release_id": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_current_version": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_evidence_set_hash": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_incident_summary": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_policy_fingerprint": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_policy_kernel_hash": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_count": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "get_proposal_release_id": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_status": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_proposal_summary": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_recovery_code": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bytes"
+    },
+    "get_recovery_release_id": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_release_summary": {
+      "params": [
+        [
+          "_h",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_state_record": {
+      "params": [
+        [
+          "_i",
+          "string"
+        ],
+        [
+          "_f",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "is_activation_authorized": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ],
+        [
+          "_h",
+          "string"
+        ],
+        [
+          "_m",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "is_recovery_authorized": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ],
+        [
+          "_h",
+          "string"
+        ],
+        [
+          "_ag",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "is_registration_authorized": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ],
+        [
+          "_h",
+          "string"
+        ],
+        [
+          "_ah",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "is_upgrade_authorized": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ],
+        [
+          "_c",
+          "string"
+        ],
+        [
+          "_m",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "bool"
+    },
+    "mark_execution_timeout": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "open_incident": {
+      "params": [
+        [
+          "_c",
+          "string"
+        ],
+        [
+          "_h",
+          "string"
+        ],
+        [
+          "_bn",
+          "string"
+        ],
+        [
+          "_u",
+          "string"
+        ],
+        [
+          "_q",
+          "string"
+        ],
+        [
+          "_t",
+          "string"
+        ],
+        [
+          "_s",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "string",
+      "payable": false
+    },
+    "reconcile_install": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "reconcile_recovery": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "register_target": {
+      "params": [
+        [
+          "_bv",
+          "string"
+        ],
+        [
+          "_bt",
+          "string"
+        ],
+        [
+          "_bi",
+          "string"
+        ],
+        [
+          "_bs",
+          "string"
+        ],
+        [
+          "_bj",
+          "string"
+        ],
+        [
+          "_bq",
+          "string"
+        ],
+        [
+          "_bu",
+          "string"
+        ],
+        [
+          "_br",
+          "string"
+        ],
+        [
+          "_aw",
+          "string"
+        ],
+        [
+          "_bg",
+          "string"
+        ],
+        [
+          "_am",
+          "string"
+        ],
+        [
+          "_an",
+          "string"
+        ],
+        [
+          "_ar",
+          "string"
+        ],
+        [
+          "_bk",
+          "string"
+        ],
+        [
+          "_ba",
+          "string"
+        ],
+        [
+          "_bd",
+          "string"
+        ],
+        [
+          "_aq",
+          "int"
+        ],
+        [
+          "_au",
+          "int"
+        ],
+        [
+          "_ap",
+          "int"
+        ],
+        [
+          "_al",
+          "int"
+        ],
+        [
+          "_ao",
+          "int"
+        ],
+        [
+          "_bb",
+          "int"
+        ],
+        [
+          "_be",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "repair_evidence": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ],
+        [
+          "_z",
+          "string"
+        ],
+        [
+          "_ac",
+          "string"
+        ],
+        [
+          "_ad",
+          "string"
+        ],
+        [
+          "_aa",
+          "string"
+        ],
+        [
+          "_ab",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "repair_incident": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ],
+        [
+          "_u",
+          "string"
+        ],
+        [
+          "_q",
+          "string"
+        ],
+        [
+          "_t",
+          "string"
+        ],
+        [
+          "_s",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "retry_recovery": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "any",
+      "payable": false
+    },
+    "review_incident": {
+      "params": [
+        [
+          "_g",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "review_proposal": {
+      "params": [
+        [
+          "_b",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    }
+  }
+}

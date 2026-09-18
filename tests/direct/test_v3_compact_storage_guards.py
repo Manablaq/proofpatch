@@ -12,6 +12,10 @@ CASES = (
     ("proofpatch_summary_engine_v3", {"admin", "governor"}),
     ("proofpatch_lifecycle_request_engine_v3", {"admin", "governor"}),
     ("proofpatch_lifecycle_engine_v3", {"admin", "governor", "executor"}),
+    ("proofpatch_lifecycle_install_engine_v3", {"admin", "governor", "executor"}),
+    ("proofpatch_lifecycle_timeout_engine_v3", {"admin", "governor", "executor"}),
+    ("proofpatch_lifecycle_activation_engine_v3", {"admin", "governor", "executor"}),
+    ("proofpatch_lifecycle_recovery_engine_v3", {"admin", "governor", "executor"}),
     ("proofpatch_review_commit_engine_v3", {"admin", "governor"}),
     ("proofpatch_review_request_engine_v3", {"admin", "governor"}),
     ("proofpatch_governor_v3_facade", {

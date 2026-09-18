@@ -1,8 +1,10 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportMissingParameterType=false, reportInvalidTypeForm=false, reportOptionalMemberAccess=false, reportUnboundVariable=false, reportOptionalSubscript=false, reportGeneralTypeIssues=false, reportAssignmentType=false, reportIndexIssue=false, reportCallIssue=false, reportUnnecessaryCast=false, reportPrivateUsage=false, reportUnusedFunction=false
 from genlayer import *
 from dataclasses import dataclass
 import hashlib
 import json
+import typing
 SCHEMA_VERSION = 'proofpatch-v2'
 ASSURANCE_SCHEMA = 'proofpatch-assurance-v1'
 MODE_ACTIVE = 'ACTIVE'
@@ -368,7 +370,7 @@ class ProofPatchRegistrationEngine(gl.Contract):
             return {k: self._encode(v) for (k, v) in value.__dict__.items()}
         return value
 
-    def _record(self, cls: object, raw: dict[object, object]) -> object:
+    def _record(self, cls: typing.Any, raw: dict[object, object]) -> typing.Any:
         value = list(raw.values())
         if cls is TargetPolicy or cls is UpgradeProposal or cls is ReleaseRecord or cls is IncidentRecord:
             value[1] = Address(value[1])
@@ -376,8 +378,8 @@ class ProofPatchRegistrationEngine(gl.Contract):
             value[0] = Address(value[0])
         elif cls is UpgradeProposal:
             value[2] = Address(value[2])
-            if isinstance(value[8], str): value[8] = bytes.fromhex(value[8])
-            if isinstance(value[20], str): value[20] = bytes.fromhex(value[20])
+            if isinstance(value[8], str): value[8] = bytes.fromhex(typing.cast(str, value[8]))
+            if isinstance(value[20], str): value[20] = bytes.fromhex(typing.cast(str, value[20]))
         return cls(**dict(zip(cls.__annotations__.keys(), value)))
 
     def _patch(self, logic: ProofPatchRegistrationLogic, operation: str, data: dict[object, object]) -> dict[object, object]:

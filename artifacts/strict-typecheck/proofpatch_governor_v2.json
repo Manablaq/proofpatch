@@ -1,5 +1,6 @@
 {
   "blocking_diagnostic_count": 0,
+  "compact_archived_diagnostic_count": 0,
   "contract": "contracts/proofpatch_governor_v2.py",
   "diagnostics": [],
   "informational_diagnostic_count": 0,

@@ -1,0 +1,1594 @@
+{
+  "blocking_diagnostic_count": 0,
+  "compact_archived_diagnostic_count": 88,
+  "contract": "contracts/proofpatch_policy_engine_v3_compact.py",
+  "diagnostics": [
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 14
+        },
+        "start": {
+          "character": 6,
+          "line": 14
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 14
+        },
+        "start": {
+          "character": 59,
+          "line": 14
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 52
+        },
+        "start": {
+          "character": 5,
+          "line": 52
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 70,
+          "line": 52
+        },
+        "start": {
+          "character": 68,
+          "line": 52
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"policies\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 89
+        },
+        "start": {
+          "character": 19,
+          "line": 89
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"policy\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 90
+        },
+        "start": {
+          "character": 2,
+          "line": 90
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"policies\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 90
+        },
+        "start": {
+          "character": 9,
+          "line": 90
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"actor\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 91
+        },
+        "start": {
+          "character": 5,
+          "line": 91
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"owner\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 29,
+          "line": 91
+        },
+        "start": {
+          "character": 17,
+          "line": 91
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"active\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 92
+        },
+        "start": {
+          "character": 9,
+          "line": 92
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 93
+        },
+        "start": {
+          "character": 9,
+          "line": 93
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"proposals\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 38,
+          "line": 95
+        },
+        "start": {
+          "character": 24,
+          "line": 95
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"proposals\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 96
+        },
+        "start": {
+          "character": 9,
+          "line": 96
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 36,
+          "line": 96
+        },
+        "start": {
+          "character": 9,
+          "line": 96
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 97
+        },
+        "start": {
+          "character": 5,
+          "line": 97
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 86,
+          "line": 97
+        },
+        "start": {
+          "character": 84,
+          "line": 97
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"_check_text\" is partially unknown\n\u00a0\u00a0Type of \"_check_text\" is \"(value: str, label: str, minimum: int, maximum: int) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 98
+        },
+        "start": {
+          "character": 2,
+          "line": 98
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"used_evidence_ids\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 99
+        },
+        "start": {
+          "character": 5,
+          "line": 99
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 31,
+          "line": 99
+        },
+        "start": {
+          "character": 5,
+          "line": 99
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"used_evidence_ids\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 24,
+          "line": 100
+        },
+        "start": {
+          "character": 2,
+          "line": 100
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"active\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 106,
+          "line": 103
+        },
+        "start": {
+          "character": 100,
+          "line": 103
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"active_proposal_by_target\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 137,
+          "line": 103
+        },
+        "start": {
+          "character": 107,
+          "line": 103
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 141,
+          "line": 103
+        },
+        "start": {
+          "character": 107,
+          "line": 103
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"_check_text\" is partially unknown\n\u00a0\u00a0Type of \"_check_text\" is \"(value: str, label: str, minimum: int, maximum: int) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 105
+        },
+        "start": {
+          "character": 2,
+          "line": 105
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"_check_text\" is partially unknown\n\u00a0\u00a0Type of \"_check_text\" is \"(value: str, label: str, minimum: int, maximum: int) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 115
+        },
+        "start": {
+          "character": 2,
+          "line": 115
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"installed_candidate_hashes\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 36,
+          "line": 117
+        },
+        "start": {
+          "character": 5,
+          "line": 117
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 117
+        },
+        "start": {
+          "character": 5,
+          "line": 117
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"_reserve_evidence_id\" is partially unknown\n\u00a0\u00a0Type of \"_reserve_evidence_id\" is \"(target: Address, issuer: str, kind: str, evidence_id: str) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 130
+        },
+        "start": {
+          "character": 2,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"_reserve_evidence_id\" is partially unknown\n\u00a0\u00a0Type of \"_reserve_evidence_id\" is \"(target: Address, issuer: str, kind: str, evidence_id: str) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 109,
+          "line": 130
+        },
+        "start": {
+          "character": 84,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"now\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 178,
+          "line": 130
+        },
+        "start": {
+          "character": 175,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"now\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 187,
+          "line": 130
+        },
+        "start": {
+          "character": 179,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"proposals\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 417,
+          "line": 130
+        },
+        "start": {
+          "character": 403,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_x\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 1342,
+          "line": 130
+        },
+        "start": {
+          "character": 1339,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_x\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 1395,
+          "line": 130
+        },
+        "start": {
+          "character": 1359,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"active_proposal_by_target\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 1548,
+          "line": 130
+        },
+        "start": {
+          "character": 1518,
+          "line": 130
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 135
+        },
+        "start": {
+          "character": 5,
+          "line": 135
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 41,
+          "line": 135
+        },
+        "start": {
+          "character": 39,
+          "line": 135
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 141
+        },
+        "start": {
+          "character": 5,
+          "line": 141
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 73,
+          "line": 141
+        },
+        "start": {
+          "character": 71,
+          "line": 141
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__setitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 24,
+          "line": 144
+        },
+        "start": {
+          "character": 20,
+          "line": 144
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 46,
+          "line": 144
+        },
+        "start": {
+          "character": 42,
+          "line": 144
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"string\" in function \"fromhex\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 49,
+          "line": 144
+        },
+        "start": {
+          "character": 42,
+          "line": 144
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__setitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 55,
+          "line": 144
+        },
+        "start": {
+          "character": 51,
+          "line": 144
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 78,
+          "line": 144
+        },
+        "start": {
+          "character": 74,
+          "line": 144
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"string\" in function \"fromhex\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 82,
+          "line": 144
+        },
+        "start": {
+          "character": 74,
+          "line": 144
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 146
+        },
+        "start": {
+          "character": 6,
+          "line": 146
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 146
+        },
+        "start": {
+          "character": 46,
+          "line": 146
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__setitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 47,
+          "line": 147
+        },
+        "start": {
+          "character": 30,
+          "line": 147
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 149
+        },
+        "start": {
+          "character": 13,
+          "line": 149
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"object\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 149
+        },
+        "start": {
+          "character": 13,
+          "line": 149
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 177,
+          "line": 149
+        },
+        "start": {
+          "character": 171,
+          "line": 149
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"issuer\" in function \"evidence_key\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 193,
+          "line": 149
+        },
+        "start": {
+          "character": 171,
+          "line": 149
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 203,
+          "line": 149
+        },
+        "start": {
+          "character": 199,
+          "line": 149
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"evidence_id\" in function \"evidence_key\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 206,
+          "line": 149
+        },
+        "start": {
+          "character": 199,
+          "line": 149
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 245,
+          "line": 149
+        },
+        "start": {
+          "character": 239,
+          "line": 149
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"issuer\" in function \"evidence_key\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 264,
+          "line": 149
+        },
+        "start": {
+          "character": 239,
+          "line": 149
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 277,
+          "line": 149
+        },
+        "start": {
+          "character": 273,
+          "line": 149
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"evidence_id\" in function \"evidence_key\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 280,
+          "line": 149
+        },
+        "start": {
+          "character": 273,
+          "line": 149
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"__getitem__\" method not defined on type \"object\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 320,
+          "line": 149
+        },
+        "start": {
+          "character": 316,
+          "line": 149
+        }
+      },
+      "rule": "reportIndexIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"policies\" is partially unknown\n\u00a0\u00a0Type of \"policies\" is \"dict[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 753,
+          "line": 149
+        },
+        "start": {
+          "character": 739,
+          "line": 149
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"active_proposal_by_target\" is partially unknown\n\u00a0\u00a0Type of \"active_proposal_by_target\" is \"dict[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 57,
+          "line": 150
+        },
+        "start": {
+          "character": 26,
+          "line": 150
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"object\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 42,
+          "line": 157
+        },
+        "start": {
+          "character": 39,
+          "line": 157
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 157
+        },
+        "start": {
+          "character": 57,
+          "line": 157
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"key\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 69,
+          "line": 157
+        },
+        "start": {
+          "character": 66,
+          "line": 157
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"item\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 74,
+          "line": 157
+        },
+        "start": {
+          "character": 70,
+          "line": 157
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 52,
+          "line": 158
+        },
+        "start": {
+          "character": 48,
+          "line": 158
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"item\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 158
+        },
+        "start": {
+          "character": 57,
+          "line": 158
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"result\" is partially unknown\n\u00a0\u00a0Type of \"result\" is \"dict[str, str | Unknown | int | list[Unknown] | dict[Unknown, Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 166
+        },
+        "start": {
+          "character": 15,
+          "line": 166
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"used_evidence_ids\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 110,
+          "line": 166
+        },
+        "start": {
+          "character": 87,
+          "line": 166
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"installed_candidate_hashes\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 146,
+          "line": 166
+        },
+        "start": {
+          "character": 114,
+          "line": 166
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"value\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 167
+        },
+        "start": {
+          "character": 6,
+          "line": 167
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"policies\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 29,
+          "line": 167
+        },
+        "start": {
+          "character": 15,
+          "line": 167
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"values\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 36,
+          "line": 167
+        },
+        "start": {
+          "character": 15,
+          "line": 167
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"append\" is partially unknown\n\u00a0\u00a0Type of \"append\" is \"Unknown | ((object: Unknown, /) -> None)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 55,
+          "line": 167
+        },
+        "start": {
+          "character": 39,
+          "line": 167
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"value\" in function \"_encode\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 74,
+          "line": 167
+        },
+        "start": {
+          "character": 69,
+          "line": 167
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"target\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 168
+        },
+        "start": {
+          "character": 6,
+          "line": 168
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"value\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 168
+        },
+        "start": {
+          "character": 13,
+          "line": 168
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"active_proposal_by_target\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 53,
+          "line": 168
+        },
+        "start": {
+          "character": 22,
+          "line": 168
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"items\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 59,
+          "line": 168
+        },
+        "start": {
+          "character": 22,
+          "line": 168
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"append\" is partially unknown\n\u00a0\u00a0Type of \"append\" is \"Unknown | ((object: Unknown, /) -> None)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 79,
+          "line": 168
+        },
+        "start": {
+          "character": 62,
+          "line": 168
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"object\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 91,
+          "line": 168
+        },
+        "start": {
+          "character": 85,
+          "line": 168
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"x\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 102,
+          "line": 168
+        },
+        "start": {
+          "character": 97,
+          "line": 168
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type, \"dict[str, str | Unknown | int | list[Unknown] | dict[Unknown, Unknown]]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 169
+        },
+        "start": {
+          "character": 9,
+          "line": 169
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 171
+        },
+        "start": {
+          "character": 5,
+          "line": 171
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Variable not allowed in type expression",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 171
+        },
+        "start": {
+          "character": 46,
+          "line": 171
+        }
+      },
+      "rule": "reportInvalidTypeForm",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"_load\" is partially unknown\n\u00a0\u00a0Type of \"_load\" is \"(logic: ProofPatchPolicyLogic, data: dict[object, object]) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 86,
+          "line": 174
+        },
+        "start": {
+          "character": 76,
+          "line": 174
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "\"_create_proposal\" is protected and used outside of the class in which it is declared",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 121,
+          "line": 174
+        },
+        "start": {
+          "character": 105,
+          "line": 174
+        }
+      },
+      "rule": "reportPrivateUsage",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_policy_engine_v3_compact.py",
+      "message": "Type of \"apply_policy_result\" is partially unknown\n\u00a0\u00a0Type of \"apply_policy_result\" is \"(operation: str, payload: str) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 211,
+          "line": 174
+        },
+        "start": {
+          "character": 137,
+          "line": 174
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    }
+  ],
+  "informational_diagnostic_count": 88,
+  "tool_exit_code": 1,
+  "unknown_severity_count": 0
+}

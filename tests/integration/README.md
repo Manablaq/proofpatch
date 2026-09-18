@@ -2,6 +2,18 @@
 
 ProofPatch deliberately does **not** fake IC→IC finality in Direct Mode.
 
+The repository-level graph checks can be run with:
+
+```bash
+source .venv/bin/activate
+pytest tests/integration/test_modular_graph_wiring.py -q
+```
+
+The opt-in Bradbury test requires `PROOFPATCH_BRADBURY_INTEGRATION=1` and a
+checked-in `artifacts/bradbury-integration.json` containing finalized receipt
+evidence for the current deployment. It fails closed when that evidence is
+missing. No synthetic transaction status is accepted.
+
 The Bradbury integration suite will be added after the first local GenVM lint/Direct Mode pass and will prove, with real transaction receipts:
 
 1. `ProtectedTarget.register_with_proofpatch()` emits a finalized registration to the governor.

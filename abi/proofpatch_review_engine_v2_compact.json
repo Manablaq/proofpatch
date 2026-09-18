@@ -1,0 +1,47 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "bind_governor": {
+      "params": [
+        [
+          "governor",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "get_proposal_result": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "review_proposal": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "snapshot",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    }
+  }
+}

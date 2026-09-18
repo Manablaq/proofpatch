@@ -1,0 +1,36 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "bind_governor": {
+      "params": [
+        [
+          "governor",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "execute": {
+      "params": [
+        [
+          "_h",
+          "string"
+        ],
+        [
+          "_m",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    }
+  }
+}

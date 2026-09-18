@@ -1,5 +1,5 @@
-import { Dashboard } from "@/components/dashboard";
+import { V3Console } from "@/components/v3-console";
 
 export default function AppPage() {
-  return <Dashboard />;
+  return <V3Console />;
 }

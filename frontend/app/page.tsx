@@ -128,10 +128,10 @@ export default function HomePage() {
 
         <div className="header-actions">
           <ThemeToggle />
-          <Link className="button secondary" href="/v2">
-            V2 console
+          <Link className="button secondary" href="/v3">
+            V3 console
           </Link>
-          <Link className="button header-launch" href="/app">
+          <Link className="button header-launch" href="/v3">
             Launch app <ArrowRight size={15} />
           </Link>
         </div>
@@ -166,7 +166,7 @@ export default function HomePage() {
             evidence, validator consensus, finality and post-install proof.
           </p>
           <div className="hero-cta">
-            <Link href="/app" className="button primary large">
+            <Link href="/v3" className="button primary large">
               Launch ProofPatch <ArrowRight size={17} />
             </Link>
             <a href="#documentation" className="button secondary large">

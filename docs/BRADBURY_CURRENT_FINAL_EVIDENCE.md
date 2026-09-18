@@ -1,6 +1,8 @@
-# ProofPatch Current Bradbury Final Evidence
+# ProofPatch Historical Bradbury Final Evidence
 
-This is the canonical final-evidence record for the current ProofPatch replacement deployment on GenLayer Bradbury Testnet.
+> Superseded by the corrected modular deployment in [`BRADBURY_V3_DEPLOYMENT.md`](BRADBURY_V3_DEPLOYMENT.md). This file preserves the earlier single-facade upgrade evidence and is not the current submission address set.
+
+This is the preserved final-evidence record for the historical ProofPatch replacement deployment on GenLayer Bradbury Testnet.
 
 `docs/BRADBURY_FINAL_EVIDENCE.md` is historical and superseded.
 

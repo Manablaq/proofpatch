@@ -1,0 +1,74 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "assure_release": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ],
+        [
+          "snapshot",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "bind_governor": {
+      "params": [
+        [
+          "governor",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "get_assurance_result": {
+      "params": [
+        [
+          "proposal_id",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_incident_result": {
+      "params": [
+        [
+          "incident_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "review_incident": {
+      "params": [
+        [
+          "incident_id",
+          "string"
+        ],
+        [
+          "snapshot",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    }
+  }
+}

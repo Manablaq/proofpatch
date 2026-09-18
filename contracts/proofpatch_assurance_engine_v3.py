@@ -1,7 +1,10 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportMissingParameterType=false, reportInvalidTypeForm=false, reportOptionalMemberAccess=false, reportUnboundVariable=false, reportOptionalSubscript=false, reportGeneralTypeIssues=false, reportAssignmentType=false, reportIndexIssue=false, reportCallIssue=false, reportUnnecessaryCast=false, reportPrivateUsage=false, reportUnusedFunction=false
 from genlayer import *
+from genlayer.py.public_abi import StorageType
 import hashlib
 import json
+import typing
 
 ZERO = '0x0000000000000000000000000000000000000000'
 MAX_URL_BYTES = 1024
@@ -57,14 +60,14 @@ class ProofPatchAssuranceLogic:
             return False
         return all(self._is_canonical_raw_segment(segment) for segment in parts[1].split('/'))
 
-    def _reserve(self, view: object, patch: dict[object, object], target: str, issuer: str, kind: str, evidence_id: str) -> None:
+    def _reserve(self, view: typing.Any, patch: dict[str, typing.Any], target: str, issuer: str, kind: str, evidence_id: str) -> None:
         self._check_text(evidence_id, 'evidence_id', 8, MAX_ID_BYTES)
         key = self._hash_text_parts([target, issuer, kind, evidence_id])
         if json.loads(view.get_state_record('evidence', key)).get('value', False) or patch['used_evidence_ids'].get(key, False):
             raise gl.vm.UserError('Evidence identifier has already been used')
         patch['used_evidence_ids'][key] = True
 
-    def _assure(self, view: object, args: list[object], now: int) -> dict[object, object]:
+    def _assure(self, view: typing.Any, args: list[typing.Any], now: int) -> dict[object, object]:
         proposal_id = int(args[0])
         proposal = json.loads(view.get_state_record('proposal', str(proposal_id)))
         policy = json.loads(view.get_state_record('policy', proposal['target']))

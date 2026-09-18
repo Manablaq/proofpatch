@@ -115,6 +115,12 @@ export function TransactionCenter() {
                     {tx.lifecycle}
                   </small>
                 ) : null}
+                {tx.children.map((child) => (
+                  <small key={child.hash}>
+                    <strong>Finality child</strong>
+                    {short(child.hash)} · {child.status || "Pending"} · {child.execution || "awaiting execution"}
+                  </small>
+                ))}
               </div>
 
               <div className="tracked-actions">

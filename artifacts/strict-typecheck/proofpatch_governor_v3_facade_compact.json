@@ -1,0 +1,5248 @@
+{
+  "blocking_diagnostic_count": 0,
+  "compact_archived_diagnostic_count": 291,
+  "contract": "contracts/proofpatch_governor_v3_facade_compact.py",
+  "diagnostics": [
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"ContractProxy[Unknown, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 252
+        },
+        "start": {
+          "character": 8,
+          "line": 252
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"ContractProxy[Unknown, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 253
+        },
+        "start": {
+          "character": 15,
+          "line": 253
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"ContractProxy[Unknown, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 255
+        },
+        "start": {
+          "character": 8,
+          "line": 255
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Method declaration \"_ck\" is obscured by a declaration of the same name",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 255
+        },
+        "start": {
+          "character": 8,
+          "line": 255
+        }
+      },
+      "rule": "reportRedeclaration",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"ContractProxy[Unknown, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 256
+        },
+        "start": {
+          "character": 15,
+          "line": 256
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 258
+        },
+        "start": {
+          "character": 8,
+          "line": 258
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_i\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 258
+        },
+        "start": {
+          "character": 17,
+          "line": 258
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_i\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 258
+        },
+        "start": {
+          "character": 17,
+          "line": 258
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_f\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 258
+        },
+        "start": {
+          "character": 20,
+          "line": 258
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_f\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 258
+        },
+        "start": {
+          "character": 20,
+          "line": 258
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"read\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 74,
+          "line": 259
+        },
+        "start": {
+          "character": 15,
+          "line": 259
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 86,
+          "line": 259
+        },
+        "start": {
+          "character": 15,
+          "line": 259
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"object\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 84,
+          "line": 259
+        },
+        "start": {
+          "character": 82,
+          "line": 259
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cg\" is partially unknown\n\u00a0\u00a0Type of \"_cg\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 264
+        },
+        "start": {
+          "character": 12,
+          "line": 264
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cd\" is partially unknown\n\u00a0\u00a0Type of \"_cd\" is \"(_e: Unknown, _d: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 266
+        },
+        "start": {
+          "character": 8,
+          "line": 266
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 268
+        },
+        "start": {
+          "character": 5,
+          "line": 268
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 270
+        },
+        "start": {
+          "character": 15,
+          "line": 270
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 102,
+          "line": 270
+        },
+        "start": {
+          "character": 15,
+          "line": 270
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 272
+        },
+        "start": {
+          "character": 5,
+          "line": 272
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 37,
+          "line": 274
+        },
+        "start": {
+          "character": 29,
+          "line": 274
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"string\" in function \"fromhex\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 68,
+          "line": 274
+        },
+        "start": {
+          "character": 29,
+          "line": 274
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 276
+        },
+        "start": {
+          "character": 5,
+          "line": 276
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 278
+        },
+        "start": {
+          "character": 15,
+          "line": 278
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 105,
+          "line": 278
+        },
+        "start": {
+          "character": 15,
+          "line": 278
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 280
+        },
+        "start": {
+          "character": 5,
+          "line": 280
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 282
+        },
+        "start": {
+          "character": 15,
+          "line": 282
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 103,
+          "line": 282
+        },
+        "start": {
+          "character": 15,
+          "line": 282
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cg\" is partially unknown\n\u00a0\u00a0Type of \"_cg\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 287
+        },
+        "start": {
+          "character": 12,
+          "line": 287
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cd\" is partially unknown\n\u00a0\u00a0Type of \"_cd\" is \"(_e: Unknown, _d: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 289
+        },
+        "start": {
+          "character": 8,
+          "line": 289
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 291
+        },
+        "start": {
+          "character": 5,
+          "line": 291
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 293
+        },
+        "start": {
+          "character": 15,
+          "line": 293
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 99,
+          "line": 293
+        },
+        "start": {
+          "character": 15,
+          "line": 293
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 295
+        },
+        "start": {
+          "character": 5,
+          "line": 295
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 297
+        },
+        "start": {
+          "character": 15,
+          "line": 297
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 49,
+          "line": 297
+        },
+        "start": {
+          "character": 15,
+          "line": 297
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 299
+        },
+        "start": {
+          "character": 5,
+          "line": 299
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 37,
+          "line": 301
+        },
+        "start": {
+          "character": 29,
+          "line": 301
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"string\" in function \"fromhex\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 57,
+          "line": 301
+        },
+        "start": {
+          "character": 29,
+          "line": 301
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 303
+        },
+        "start": {
+          "character": 5,
+          "line": 303
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 305
+        },
+        "start": {
+          "character": 24,
+          "line": 305
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"x\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 305
+        },
+        "start": {
+          "character": 24,
+          "line": 305
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 307
+        },
+        "start": {
+          "character": 5,
+          "line": 307
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 309
+        },
+        "start": {
+          "character": 15,
+          "line": 309
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 55,
+          "line": 309
+        },
+        "start": {
+          "character": 15,
+          "line": 309
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 311
+        },
+        "start": {
+          "character": 5,
+          "line": 311
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 313
+        },
+        "start": {
+          "character": 15,
+          "line": 313
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 54,
+          "line": 313
+        },
+        "start": {
+          "character": 15,
+          "line": 313
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 315
+        },
+        "start": {
+          "character": 5,
+          "line": 315
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 317
+        },
+        "start": {
+          "character": 15,
+          "line": 317
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 59,
+          "line": 317
+        },
+        "start": {
+          "character": 15,
+          "line": 317
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 319
+        },
+        "start": {
+          "character": 5,
+          "line": 319
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 321
+        },
+        "start": {
+          "character": 15,
+          "line": 321
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 57,
+          "line": 321
+        },
+        "start": {
+          "character": 15,
+          "line": 321
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 323
+        },
+        "start": {
+          "character": 5,
+          "line": 323
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 325
+        },
+        "start": {
+          "character": 15,
+          "line": 325
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 325
+        },
+        "start": {
+          "character": 15,
+          "line": 325
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 327
+        },
+        "start": {
+          "character": 5,
+          "line": 327
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 329
+        },
+        "start": {
+          "character": 15,
+          "line": 329
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 329
+        },
+        "start": {
+          "character": 15,
+          "line": 329
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 331
+        },
+        "start": {
+          "character": 5,
+          "line": 331
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 333
+        },
+        "start": {
+          "character": 15,
+          "line": 333
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 47,
+          "line": 333
+        },
+        "start": {
+          "character": 15,
+          "line": 333
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 335
+        },
+        "start": {
+          "character": 5,
+          "line": 335
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 337
+        },
+        "start": {
+          "character": 15,
+          "line": 337
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 45,
+          "line": 337
+        },
+        "start": {
+          "character": 15,
+          "line": 337
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 339
+        },
+        "start": {
+          "character": 5,
+          "line": 339
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 341
+        },
+        "start": {
+          "character": 15,
+          "line": 341
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 48,
+          "line": 341
+        },
+        "start": {
+          "character": 15,
+          "line": 341
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 343
+        },
+        "start": {
+          "character": 5,
+          "line": 343
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 345
+        },
+        "start": {
+          "character": 24,
+          "line": 345
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"x\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 54,
+          "line": 345
+        },
+        "start": {
+          "character": 24,
+          "line": 345
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 347
+        },
+        "start": {
+          "character": 5,
+          "line": 347
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 349
+        },
+        "start": {
+          "character": 15,
+          "line": 349
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 56,
+          "line": 349
+        },
+        "start": {
+          "character": 15,
+          "line": 349
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 351
+        },
+        "start": {
+          "character": 5,
+          "line": 351
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 353
+        },
+        "start": {
+          "character": 15,
+          "line": 353
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 45,
+          "line": 353
+        },
+        "start": {
+          "character": 15,
+          "line": 353
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 355
+        },
+        "start": {
+          "character": 5,
+          "line": 355
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cj\" is partially unknown\n\u00a0\u00a0Type of \"_cj\" is \"(_i: Unknown, _f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 357
+        },
+        "start": {
+          "character": 15,
+          "line": 357
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 46,
+          "line": 357
+        },
+        "start": {
+          "character": 15,
+          "line": 357
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"view\" is partially unknown\n\u00a0\u00a0Type of \"view\" is \"(f: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 359
+        },
+        "start": {
+          "character": 5,
+          "line": 359
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 34,
+          "line": 380
+        },
+        "start": {
+          "character": 26,
+          "line": 380
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 382
+        },
+        "start": {
+          "character": 8,
+          "line": 382
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_a\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 382
+        },
+        "start": {
+          "character": 17,
+          "line": 382
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_a\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 382
+        },
+        "start": {
+          "character": 17,
+          "line": 382
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"dict[str, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 65,
+          "line": 392
+        },
+        "start": {
+          "character": 18,
+          "line": 392
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"object\" in function \"__new__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 26,
+          "line": 392
+        },
+        "start": {
+          "character": 23,
+          "line": 392
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 36,
+          "line": 392
+        },
+        "start": {
+          "character": 28,
+          "line": 392
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 39,
+          "line": 392
+        },
+        "start": {
+          "character": 37,
+          "line": 392
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ak\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 47,
+          "line": 392
+        },
+        "start": {
+          "character": 44,
+          "line": 392
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_y\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 50,
+          "line": 392
+        },
+        "start": {
+          "character": 48,
+          "line": 392
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"list[Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 44,
+          "line": 394
+        },
+        "start": {
+          "character": 18,
+          "line": 394
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 394
+        },
+        "start": {
+          "character": 19,
+          "line": 394
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 394
+        },
+        "start": {
+          "character": 28,
+          "line": 394
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_y\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 37,
+          "line": 394
+        },
+        "start": {
+          "character": 35,
+          "line": 394
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"obj\" in function \"hasattr\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 395
+        },
+        "start": {
+          "character": 19,
+          "line": 395
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"dict[str, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 80,
+          "line": 398
+        },
+        "start": {
+          "character": 22,
+          "line": 398
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 34,
+          "line": 398
+        },
+        "start": {
+          "character": 26,
+          "line": 398
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"__dict__\" is partially unknown\n\u00a0\u00a0Type of \"__dict__\" is \"dict[str, Any] | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 69,
+          "line": 398
+        },
+        "start": {
+          "character": 58,
+          "line": 398
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"values\" is partially unknown\n\u00a0\u00a0Type of \"values\" is \"(() -> dict_values[str, Any]) | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 76,
+          "line": 398
+        },
+        "start": {
+          "character": 58,
+          "line": 398
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"iter2\" in function \"__new__\"\n\u00a0\u00a0Argument type is \"dict_values[str, Any] | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 78,
+          "line": 398
+        },
+        "start": {
+          "character": 58,
+          "line": 398
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"dict[str | Unknown, Unknown]\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 69,
+          "line": 399
+        },
+        "start": {
+          "character": 18,
+          "line": 399
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 31,
+          "line": 399
+        },
+        "start": {
+          "character": 23,
+          "line": 399
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ak\" is partially unknown\n\u00a0\u00a0Type of \"_ak\" is \"str | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 42,
+          "line": 399
+        },
+        "start": {
+          "character": 39,
+          "line": 399
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_y\" is partially unknown\n\u00a0\u00a0Type of \"_y\" is \"Any | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 45,
+          "line": 399
+        },
+        "start": {
+          "character": 43,
+          "line": 399
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"__dict__\" is partially unknown\n\u00a0\u00a0Type of \"__dict__\" is \"dict[str, Any] | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 60,
+          "line": 399
+        },
+        "start": {
+          "character": 49,
+          "line": 399
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"items\" is partially unknown\n\u00a0\u00a0Type of \"items\" is \"(() -> dict_items[str, Any]) | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 66,
+          "line": 399
+        },
+        "start": {
+          "character": 49,
+          "line": 399
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 400
+        },
+        "start": {
+          "character": 15,
+          "line": 400
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"_dq | _dw | Unknown\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 11,
+          "line": 402
+        },
+        "start": {
+          "character": 8,
+          "line": 402
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"cls\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 402
+        },
+        "start": {
+          "character": 17,
+          "line": 402
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"cls\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 402
+        },
+        "start": {
+          "character": 17,
+          "line": 402
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_p\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 402
+        },
+        "start": {
+          "character": 21,
+          "line": 402
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_p\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 23,
+          "line": 402
+        },
+        "start": {
+          "character": 21,
+          "line": 402
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_a\" is partially unknown\n\u00a0\u00a0Type of \"_a\" is \"list[Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 403
+        },
+        "start": {
+          "character": 8,
+          "line": 403
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"values\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 403
+        },
+        "start": {
+          "character": 16,
+          "line": 403
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"iterable\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 403
+        },
+        "start": {
+          "character": 16,
+          "line": 403
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 404
+        },
+        "start": {
+          "character": 22,
+          "line": 404
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 31,
+          "line": 406
+        },
+        "start": {
+          "character": 26,
+          "line": 406
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 31,
+          "line": 408
+        },
+        "start": {
+          "character": 26,
+          "line": 408
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Return type, \"_dq | _dw | Unknown\", is partially unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 62,
+          "line": 413
+        },
+        "start": {
+          "character": 15,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbc\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbw\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbe\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fax\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"faw\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fau\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fq\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fp\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fn\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fo\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fu\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"ft\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fl\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fk\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"ff\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fg\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbm\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbn\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbp\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbo\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbi\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbj\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbh\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"faf\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fay\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"faa\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fai\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbr\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fag\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbv\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fan\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fat\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fx\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbs\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fs\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fj\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbt\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fv\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fm\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fb\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fi\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fc\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fd\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbb\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fae\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fad\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fab\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fac\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"faq\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fbd\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fah\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fh\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fe\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"far\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fap\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"fa\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 61,
+          "line": 413
+        },
+        "start": {
+          "character": 21,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"iterable\" in function \"__init__\"\n\u00a0\u00a0Argument type is \"zip[tuple[str, Unknown]]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 60,
+          "line": 413
+        },
+        "start": {
+          "character": 26,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"__annotations__\" is partially unknown\n\u00a0\u00a0Type of \"__annotations__\" is \"dict[str, Any] | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 49,
+          "line": 413
+        },
+        "start": {
+          "character": 30,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"keys\" is partially unknown\n\u00a0\u00a0Type of \"keys\" is \"(() -> dict_keys[str, Any]) | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 54,
+          "line": 413
+        },
+        "start": {
+          "character": 30,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"iter1\" in function \"__new__\"\n\u00a0\u00a0Argument type is \"dict_keys[str, Any] | Unknown\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 56,
+          "line": 413
+        },
+        "start": {
+          "character": 30,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is partially unknown\n\u00a0\u00a0Argument corresponds to parameter \"iter2\" in function \"__new__\"\n\u00a0\u00a0Argument type is \"list[Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 59,
+          "line": 413
+        },
+        "start": {
+          "character": 57,
+          "line": 413
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_o\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 415
+        },
+        "start": {
+          "character": 17,
+          "line": 415
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_o\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 415
+        },
+        "start": {
+          "character": 17,
+          "line": 415
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"s\" in function \"loads\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 24,
+          "line": 416
+        },
+        "start": {
+          "character": 22,
+          "line": 416
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cm\" is partially unknown\n\u00a0\u00a0Type of \"_cm\" is \"(cls: Unknown, _p: Unknown) -> (_dq | _dw | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 419
+        },
+        "start": {
+          "character": 19,
+          "line": 419
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_e\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 432
+        },
+        "start": {
+          "character": 17,
+          "line": 432
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_e\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 432
+        },
+        "start": {
+          "character": 17,
+          "line": 432
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_d\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 432
+        },
+        "start": {
+          "character": 20,
+          "line": 432
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_d\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 432
+        },
+        "start": {
+          "character": 20,
+          "line": 432
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_x\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 432
+        },
+        "start": {
+          "character": 23,
+          "line": 432
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_x\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 432
+        },
+        "start": {
+          "character": 23,
+          "line": 432
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_n\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 432
+        },
+        "start": {
+          "character": 28,
+          "line": 432
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_n\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 432
+        },
+        "start": {
+          "character": 28,
+          "line": 432
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_k\" is partially unknown\n\u00a0\u00a0Type of \"_k\" is \"dict[str, str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 433
+        },
+        "start": {
+          "character": 8,
+          "line": 433
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 433
+        },
+        "start": {
+          "character": 19,
+          "line": 433
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 433
+        },
+        "start": {
+          "character": 28,
+          "line": 433
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_a\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 434
+        },
+        "start": {
+          "character": 15,
+          "line": 434
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 435
+        },
+        "start": {
+          "character": 19,
+          "line": 435
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 435
+        },
+        "start": {
+          "character": 28,
+          "line": 435
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ai\" is partially unknown\n\u00a0\u00a0Type of \"_ai\" is \"ContractProxy[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 437
+        },
+        "start": {
+          "character": 12,
+          "line": 437
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ai\" is partially unknown\n\u00a0\u00a0Type of \"_ai\" is \"ContractProxy[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 439
+        },
+        "start": {
+          "character": 12,
+          "line": 439
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ai\" is partially unknown\n\u00a0\u00a0Type of \"_ai\" is \"ContractProxy[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 441
+        },
+        "start": {
+          "character": 12,
+          "line": 441
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ai\" is partially unknown\n\u00a0\u00a0Type of \"_ai\" is \"ContractProxy[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 443
+        },
+        "start": {
+          "character": 12,
+          "line": 443
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ai\" is partially unknown\n\u00a0\u00a0Type of \"_ai\" is \"ContractProxy[Unknown, Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 445
+        },
+        "start": {
+          "character": 12,
+          "line": 445
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"execute\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 32,
+          "line": 446
+        },
+        "start": {
+          "character": 8,
+          "line": 446
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_e\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 448
+        },
+        "start": {
+          "character": 17,
+          "line": 448
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_e\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 448
+        },
+        "start": {
+          "character": 17,
+          "line": 448
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_d\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 448
+        },
+        "start": {
+          "character": 20,
+          "line": 448
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_d\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 448
+        },
+        "start": {
+          "character": 20,
+          "line": 448
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_x\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 448
+        },
+        "start": {
+          "character": 23,
+          "line": 448
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_x\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 448
+        },
+        "start": {
+          "character": 23,
+          "line": 448
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_n\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 448
+        },
+        "start": {
+          "character": 28,
+          "line": 448
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_n\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 448
+        },
+        "start": {
+          "character": 28,
+          "line": 448
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_k\" is partially unknown\n\u00a0\u00a0Type of \"_k\" is \"dict[str, str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 449
+        },
+        "start": {
+          "character": 8,
+          "line": 449
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 449
+        },
+        "start": {
+          "character": 19,
+          "line": 449
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 449
+        },
+        "start": {
+          "character": 28,
+          "line": 449
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_a\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 450
+        },
+        "start": {
+          "character": 15,
+          "line": 450
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 451
+        },
+        "start": {
+          "character": 19,
+          "line": 451
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 451
+        },
+        "start": {
+          "character": 28,
+          "line": 451
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"execute\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 46,
+          "line": 452
+        },
+        "start": {
+          "character": 8,
+          "line": 452
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_e\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 454
+        },
+        "start": {
+          "character": 17,
+          "line": 454
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_e\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 454
+        },
+        "start": {
+          "character": 17,
+          "line": 454
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_d\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 454
+        },
+        "start": {
+          "character": 20,
+          "line": 454
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_d\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 454
+        },
+        "start": {
+          "character": 20,
+          "line": 454
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_l\" is partially unknown\n\u00a0\u00a0Type of \"_l\" is \"dict[str, str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 455
+        },
+        "start": {
+          "character": 8,
+          "line": 455
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown] | list[Unknown] | dict[str, Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 455
+        },
+        "start": {
+          "character": 19,
+          "line": 455
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 455
+        },
+        "start": {
+          "character": 28,
+          "line": 455
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"execute\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 46,
+          "line": 456
+        },
+        "start": {
+          "character": 8,
+          "line": 456
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_e\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 458
+        },
+        "start": {
+          "character": 17,
+          "line": 458
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_e\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 458
+        },
+        "start": {
+          "character": 17,
+          "line": 458
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_d\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 458
+        },
+        "start": {
+          "character": 20,
+          "line": 458
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_d\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 458
+        },
+        "start": {
+          "character": 20,
+          "line": 458
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_x\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 458
+        },
+        "start": {
+          "character": 23,
+          "line": 458
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_x\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 458
+        },
+        "start": {
+          "character": 23,
+          "line": 458
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_n\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 458
+        },
+        "start": {
+          "character": 28,
+          "line": 458
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_n\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 458
+        },
+        "start": {
+          "character": 28,
+          "line": 458
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_k\" is partially unknown\n\u00a0\u00a0Type of \"_k\" is \"dict[str, str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown]\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 459
+        },
+        "start": {
+          "character": 8,
+          "line": 459
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, str | bool | int | dict[str, Unknown] | list[str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown] | dict[str | Unknown, Unknown] | Unknown] | list[Unknown] | dict[str, Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 459
+        },
+        "start": {
+          "character": 19,
+          "line": 459
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 459
+        },
+        "start": {
+          "character": 28,
+          "line": 459
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_a\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 460
+        },
+        "start": {
+          "character": 15,
+          "line": 460
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 461
+        },
+        "start": {
+          "character": 19,
+          "line": 461
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_a\" in function \"_ck\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 461
+        },
+        "start": {
+          "character": 28,
+          "line": 461
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"execute\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 46,
+          "line": 462
+        },
+        "start": {
+          "character": 8,
+          "line": 462
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of parameter \"_ca\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 464
+        },
+        "start": {
+          "character": 17,
+          "line": 464
+        }
+      },
+      "rule": "reportUnknownParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type annotation is missing for parameter \"_ca\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 464
+        },
+        "start": {
+          "character": 17,
+          "line": 464
+        }
+      },
+      "rule": "reportMissingParameterType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_v\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 14,
+          "line": 465
+        },
+        "start": {
+          "character": 12,
+          "line": 465
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_i\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 14,
+          "line": 466
+        },
+        "start": {
+          "character": 12,
+          "line": 466
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 466
+        },
+        "start": {
+          "character": 15,
+          "line": 466
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_d\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 14,
+          "line": 467
+        },
+        "start": {
+          "character": 12,
+          "line": 467
+        }
+      },
+      "rule": "reportUnknownVariableType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"get\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 467
+        },
+        "start": {
+          "character": 15,
+          "line": 467
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"proofpatch_upgrade\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 67,
+          "line": 469
+        },
+        "start": {
+          "character": 16,
+          "line": 469
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 469
+        },
+        "start": {
+          "character": 28,
+          "line": 469
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"_x\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 78,
+          "line": 469
+        },
+        "start": {
+          "character": 73,
+          "line": 469
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"proofpatch_activate\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 68,
+          "line": 471
+        },
+        "start": {
+          "character": 16,
+          "line": 471
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument type is unknown\n\u00a0\u00a0Argument corresponds to parameter \"val\" in function \"__init__\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 471
+        },
+        "start": {
+          "character": 28,
+          "line": 471
+        }
+      },
+      "rule": "reportUnknownArgumentType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"proofpatch_recover\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 78,
+          "line": 473
+        },
+        "start": {
+          "character": 16,
+          "line": 473
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ci\" is partially unknown\n\u00a0\u00a0Type of \"_ci\" is \"(_o: Unknown) -> Any\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 485
+        },
+        "start": {
+          "character": 12,
+          "line": 485
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"review_proposal\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 51,
+          "line": 488
+        },
+        "start": {
+          "character": 12,
+          "line": 488
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 490
+        },
+        "start": {
+          "character": 12,
+          "line": 490
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument missing for parameter \"_a\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 490
+        },
+        "start": {
+          "character": 12,
+          "line": 490
+        }
+      },
+      "rule": "reportCallIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"emit\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 490
+        },
+        "start": {
+          "character": 12,
+          "line": 490
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"assure_release\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 50,
+          "line": 490
+        },
+        "start": {
+          "character": 12,
+          "line": 490
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ck\" is partially unknown\n\u00a0\u00a0Type of \"_ck\" is \"(_a: Unknown) -> (str | bool | int | dict[str, Unknown] | list[Unknown] | dict[str | Unknown, Unknown] | Unknown)\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 492
+        },
+        "start": {
+          "character": 12,
+          "line": 492
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Argument missing for parameter \"_a\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 492
+        },
+        "start": {
+          "character": 12,
+          "line": 492
+        }
+      },
+      "rule": "reportCallIssue",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"emit\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 492
+        },
+        "start": {
+          "character": 12,
+          "line": 492
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"review_incident\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 51,
+          "line": 492
+        },
+        "start": {
+          "character": 12,
+          "line": 492
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ci\" is partially unknown\n\u00a0\u00a0Type of \"_ci\" is \"(_o: Unknown) -> Any\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 500
+        },
+        "start": {
+          "character": 11,
+          "line": 500
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ch\" is partially unknown\n\u00a0\u00a0Type of \"_ch\" is \"(_ca: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 501
+        },
+        "start": {
+          "character": 8,
+          "line": 501
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ci\" is partially unknown\n\u00a0\u00a0Type of \"_ci\" is \"(_o: Unknown) -> Any\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 507
+        },
+        "start": {
+          "character": 11,
+          "line": 507
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"proofpatch_confirm_registration\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 64,
+          "line": 511
+        },
+        "start": {
+          "character": 12,
+          "line": 511
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cd\" is partially unknown\n\u00a0\u00a0Type of \"_cd\" is \"(_e: Unknown, _d: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 514
+        },
+        "start": {
+          "character": 12,
+          "line": 514
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ci\" is partially unknown\n\u00a0\u00a0Type of \"_ci\" is \"(_o: Unknown) -> Any\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 520
+        },
+        "start": {
+          "character": 11,
+          "line": 520
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"proofpatch_recover\" is unknown",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 78,
+          "line": 524
+        },
+        "start": {
+          "character": 16,
+          "line": 524
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cf\" is partially unknown\n\u00a0\u00a0Type of \"_cf\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 530
+        },
+        "start": {
+          "character": 8,
+          "line": 530
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cf\" is partially unknown\n\u00a0\u00a0Type of \"_cf\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 534
+        },
+        "start": {
+          "character": 8,
+          "line": 534
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cf\" is partially unknown\n\u00a0\u00a0Type of \"_cf\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 539
+        },
+        "start": {
+          "character": 8,
+          "line": 539
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cg\" is partially unknown\n\u00a0\u00a0Type of \"_cg\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 544
+        },
+        "start": {
+          "character": 12,
+          "line": 544
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cf\" is partially unknown\n\u00a0\u00a0Type of \"_cf\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 546
+        },
+        "start": {
+          "character": 8,
+          "line": 546
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cf\" is partially unknown\n\u00a0\u00a0Type of \"_cf\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 551
+        },
+        "start": {
+          "character": 8,
+          "line": 551
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_cf\" is partially unknown\n\u00a0\u00a0Type of \"_cf\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 556
+        },
+        "start": {
+          "character": 8,
+          "line": 556
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 560
+        },
+        "start": {
+          "character": 8,
+          "line": 560
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 564
+        },
+        "start": {
+          "character": 8,
+          "line": 564
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 568
+        },
+        "start": {
+          "character": 8,
+          "line": 568
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 572
+        },
+        "start": {
+          "character": 8,
+          "line": 572
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 576
+        },
+        "start": {
+          "character": 8,
+          "line": 576
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 580
+        },
+        "start": {
+          "character": 8,
+          "line": 580
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 584
+        },
+        "start": {
+          "character": 8,
+          "line": 584
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 588
+        },
+        "start": {
+          "character": 8,
+          "line": 588
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 592
+        },
+        "start": {
+          "character": 8,
+          "line": 592
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 596
+        },
+        "start": {
+          "character": 8,
+          "line": 596
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    },
+    {
+      "audit_class": "compact_static_type_information",
+      "file": "/Users/mralbert/Documents/Codex/proofpatch/contracts/proofpatch_governor_v3_facade_compact.py",
+      "message": "Type of \"_ce\" is partially unknown\n\u00a0\u00a0Type of \"_ce\" is \"(_e: Unknown, _d: Unknown, _x: Unknown, **_n: Unknown) -> None\"",
+      "normalized_severity": "information",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 600
+        },
+        "start": {
+          "character": 8,
+          "line": 600
+        }
+      },
+      "rule": "reportUnknownMemberType",
+      "severity": "error"
+    }
+  ],
+  "informational_diagnostic_count": 291,
+  "tool_exit_code": 1,
+  "unknown_severity_count": 0
+}

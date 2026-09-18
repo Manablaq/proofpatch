@@ -27,7 +27,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from genlayer.py.public_abi import StorageType
 import json
-_ae='0xD0dFE03E1bFe2EC221Cb505B6a9321e1dA2bD333'
+_ae='0x9840cCf5DBdf4AE5945Ca73367e8336cCBEF578e'
+_er='0x32E5eFAF7558B65f72dA2B2B27f040e74fA148BC'
 
 @gl.contract_interface
 class _dm:
@@ -199,31 +200,22 @@ class _do:
 
         def proofpatch_recover(self,_g:str,_h:str,_ag:str)->None:
             ...
-_bm='0x658Dc4E784836bB7C4Ae27029703C873fbb3D16a'
-_av='0xFF9315eE07aB08F20224BAE4e85283B1DD5F73C5'
-_bf='0x4fD4Ce9733D96f0fF6BD53018d2bbdd5B86898dD'
-_bz='0x232B09567e83Ed76F225f653b6D485381963578C'
-_by='0x8948b524adbfA84eBDEb39bFF925695fF111FCbD'
-_bx='0x6553ce6cca1C55789E119Bedf66C26Ff4617A0b1'
+_bm='0xCe91B262d6358dFd95A32a56fd577b71FB0DdC7F'
+_bh='0x3De9294a39A4b9e31975a74426a3f29C32E0829E'
+_bi='0x59A065F97a4d475Fc60AC350aDF5163AbfE27F91'
+_av='0xF7e1F1D31f60e866E2f0a1367834BEF7abC77b43'
+_bf='0x6740374AA335c4e02EC079d3d1E5A2198A28320F'
+_bz='0x209343F604Ec7A53339C3F555D5Cf333F4BEf4FD'
+_by='0xE7F337c2Bc992a94f213C41B66d7E49381F31145'
+_l1='0xd73FF76b1A2438eAD59DA4072F9484aED25C7865'
+_l2='0x429A733D5949bCB0DE97E32Da58E8d192acC41Ca'
+_l3='0xebf47F06759481606910dA564FF48203e386b95E'
+_bx='0xC01B9D36B3eEe2A563A4E7FA688b9a799fa759E2'
+_as='0x50d787E2078683Bbc27462208475578cE7295aF9'
+_at='0xef8F5C807117b2A606B861e947F2ff5756Db8CE7'
 
 @gl.contract_interface
 class _dk:
-
-    class _dy:
-
-        def execute(self,_e:str,_l:str)->None:
-            ...
-
-@gl.contract_interface
-class _da:
-
-    class _dy:
-
-        def execute(self,_e:str,_l:str)->None:
-            ...
-
-@gl.contract_interface
-class _de:
 
     class _dy:
 
@@ -236,40 +228,6 @@ class _di:
     class _ea:
 
         def read(self,_i:str,_f:str)->str:
-            ...
-
-@gl.contract_interface
-class _dg:
-
-    class _dy:
-
-        def execute(self,_e:str,_l:str)->None:
-            ...
-
-@gl.contract_interface
-class _cw:
-
-    class _dy:
-
-        def execute(self,_e:str,_l:str)->None:
-            ...
-_at='0x1240C476C1543D2156C57A8Ba16AF51052b5d039'
-
-@gl.contract_interface
-class _dc:
-
-    class _dy:
-
-        def execute(self,_e:str,_l:str)->None:
-            ...
-_as='0x692EF6b95D76eb7a5002B4aDEF446d0Acd6d25d5'
-
-@gl.contract_interface
-class _cy:
-
-    class _dy:
-
-        def execute(self,_e:str,_l:str)->None:
             ...
 
 class ProofPatchGovernorV2(gl.Contract):
@@ -294,6 +252,9 @@ class ProofPatchGovernorV2(gl.Contract):
 
     def _cl(self):
         return _dm(Address(_ae))
+
+    def _ck(self):
+        return _dm(Address(_er))
 
     def _cj(self,_i,_f):
         return _di(Address(_bz)).view(state=StorageType.LATEST_FINAL).read(_i,str(_f))
@@ -323,7 +284,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def review_incident(self,_g:str)->None:
-        if gl.message.sender_address==Address(_ae):
+        if gl.message.sender_address==Address(_er):
             self._cg(_s3,[_g],str(gl.message.sender_address))
             return
         self._cd(_s3,[_g])
@@ -474,9 +435,13 @@ class ProofPatchGovernorV2(gl.Contract):
         for(_f,_a)in _n.items():
             _k[_f]=self._ck(_a)
         if _e==_s7:
-            _ai=_da(Address(_av))
+            _ai=_dk(Address(_av))
         elif _e=='assure':
-            _ai=_de(Address(_bf))
+            _ai=_dk(Address(_bf))
+        elif _e in('incident','repair_incident'):
+            _ai=_dk(Address(_bh))
+        elif _e=='repair':
+            _ai=_dk(Address(_bi))
         else:
             _ai=_dk(Address(_bm))
         _ai.emit(on=_s1).execute(_e,json.dumps(_k,sort_keys=True,separators=(',',':')))
@@ -485,17 +450,17 @@ class ProofPatchGovernorV2(gl.Contract):
         _k={'args':self._ck(_d),'actor':_x,'now':self._cv()}
         for(_f,_a)in _n.items():
             _k[_f]=self._ck(_a)
-        _cw(Address(_bx)).emit(on=_s1).execute(_e,json.dumps(_k,sort_keys=True,separators=(',',':')))
+        _dk(Address(_bx)).emit(on=_s1).execute(_e,json.dumps(_k,sort_keys=True,separators=(',',':')))
 
     def _cd(self,_e,_d):
         _l={'args':self._ck(_d),'now':self._cv()}
-        _cy(Address(_as)).emit(on=_s1).execute(_e,json.dumps(_l,separators=(',',':')))
+        _dk(Address(_as)).emit(on=_s1).execute(_e,json.dumps(_l,separators=(',',':')))
 
     def _cg(self,_e,_d,_x,**_n):
         _k={'args':self._ck(_d),'actor':_x,'now':self._cv()}
         for(_f,_a)in _n.items():
             _k[_f]=self._ck(_a)
-        _dc(Address(_at)).emit(on=_s1).execute(_e,json.dumps(_k,sort_keys=True,separators=(',',':')))
+        _dk(Address(_at)).emit(on=_s1).execute(_e,json.dumps(_k,sort_keys=True,separators=(',',':')))
 
     def _ch(self,_ca):
         for _v in _ca:
@@ -523,9 +488,9 @@ class ProofPatchGovernorV2(gl.Contract):
         if _e==_s5:
             self._cl().emit(on=_s1).review_proposal(u256(_d[0]),_r)
         elif _e==_s6:
-            self._cl().emit(on=_s1).assure_release(u256(_d[0]),_r)
+            self._ck().emit(on=_s1).assure_release(u256(_d[0]),_r)
         elif _e==_s3:
-            self._cl().emit(on=_s1).review_incident(_d[0],_r)
+            self._ck().emit(on=_s1).review_incident(_d[0],_r)
         else:
             raise gl.vm.UserError(_s0)
 
@@ -538,7 +503,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def apply_policy_result(self,_e:str,_o:str)->None:
-        if gl.message.sender_address not in(Address(_bm),Address(_av),Address(_bf)):
+        if gl.message.sender_address not in(Address(_bm),Address(_bh),Address(_bi),Address(_av),Address(_bf)):
             raise gl.vm.UserError(_s0)
         _j=self._ci(_o)
         if _e==_s7:
@@ -551,7 +516,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def apply_lifecycle_result(self,_e:str,_o:str)->None:
-        if gl.message.sender_address!=Address(_by):
+        if gl.message.sender_address not in(Address(_by),Address(_l1),Address(_l2),Address(_l3)):
             raise gl.vm.UserError(_s0)
         _j=self._ci(_o)
         for _v in _j.get('actions',[]):
@@ -576,7 +541,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     @gl.public.write
     def assure_release(self,_b:u256,_u:str,_q:str,_t:str,_s:str)->None:
-        if gl.message.sender_address==Address(_ae):
+        if gl.message.sender_address==Address(_er):
             self._cg(_s6,[_b,_u,_q,_t,_s],str(gl.message.sender_address))
             return
         self._cf('assure',[_b,_u,_q,_t,_s],str(gl.message.sender_address))
@@ -586,6 +551,10 @@ class ProofPatchGovernorV2(gl.Contract):
         _cc=self._cv()
         self._cf(_s3,[_c,_h,_bn,_u,_q,_t,_s],str(gl.message.sender_address))
         return 'incident-'+str(_cc)+'-'+_q
+
+    @gl.public.write
+    def repair_incident(self,_g:str,_u:str,_q:str,_t:str,_s:str)->None:
+        self._cf('repair_incident',[_g,_u,_q,_t,_s],str(gl.message.sender_address))
 
     @gl.public.write
     def cancel_proposal(self,_b:u256):

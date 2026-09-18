@@ -1,643 +1,175 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
-_s0='ProofPatch invariant'
-_s1='used_evidence_ids'
-_s2='installed_candidate_hashes'
-_s3='assurance_deadline_seconds'
-_s4='used_incident_ids'
-_s5='observation_delay_seconds'
-_s6='proposal_count'
-_s7='release_count'
-_s8='proposal'
-_s9='ci_assurance_evidence_required'
-_s10='independent_assurance_required'
-_s11='audit_authority'
-_s12='active_target'
-_s13='NONCANONICAL'
-_s14='evidence'
-_s15='releases'
-_s16='incident_corroboration'
-_s17='expected_kernel_hash'
-_s18='policy_fingerprint'
-_s19='incidents'
-_s20='operation'
-_s21='target_release_id'
-_s22='candidate_sha256'
-_s23='incident_primary'
-_s24='REPAIR_REQUIRED'
-_s25='EXACT_PARENT'
-_s26='active_value'
-_s27='ci_authority'
-_s28='target_mode'
-_s29='proposals'
-_s30='_INVALID'
-_s31='incident'
-_s32='policies'
-from genlayer import*
-_ei='EVIDENCE_'
-_ek='MANIFEST_'
-_eg='ASSURANCE_'
-_ej='INCIDENT_'
-_el='RECOVERY_'
-_eh='CANDIDATE_'
-_ee='CI_'
-_ed='AUDIT_'
-from dataclasses import dataclass
-import hashlib
-import json
-_cj='proofpatch-v2'
-_ce='proofpatch-assurance-v1'
-_co='ACTIVE'
-_cf='PROVISIONAL'
-_ci='RECOVERED'
-_be='PROPOSED'
-_cl=_ei+_s24
-_bw='INSTALLED_PROVISIONAL'
-_bx=_eg+'PENDING'
-_by=_eg+_s24
-_ca=_eg+'RETRY_REQUIRED'
-_cg='CERTIFIED'
-_as=_ej+'OPEN'
-_di=16000
-_cd=512000
-_ck=1024
-_cn=160
-_bd=96
-_df=30*24*60*60
-_dg=14*24*60*60
-_dd=7*24*60*60
-_dn=60
-
+_M='proposal_count';_L='Unknown policy operation';_K='active';_J='create';_I='operation';_H='INVALID';_G='NONCANONICAL';_F='installed_candidate_hashes';_E='used_evidence_ids';_D='utf-8';_C=True;_B=None;_A=False;from genlayer import*;from dataclasses import dataclass;from genlayer.py.public_abi import StorageType;import hashlib,json,typing;SCHEMA_VERSION='proofpatch-v2';ASSURANCE_SCHEMA='proofpatch-assurance-v1';MODE_ACTIVE='ACTIVE';MODE_PROVISIONAL='PROVISIONAL';MODE_RECOVERED='RECOVERED';STATUS_PROPOSED='PROPOSED';STATUS_REPAIR='EVIDENCE_REPAIR_REQUIRED';STATUS_INSTALLED_PROVISIONAL='INSTALLED_PROVISIONAL';STATUS_ASSURANCE_PENDING='ASSURANCE_PENDING';STATUS_ASSURANCE_REPAIR='ASSURANCE_REPAIR_REQUIRED';STATUS_ASSURANCE_RETRY='ASSURANCE_RETRY_REQUIRED';STATUS_CERTIFIED='CERTIFIED';STATUS_INCIDENT_OPEN='INCIDENT_OPEN';STATUS_INCIDENT_REPAIR='INCIDENT_REPAIR_REQUIRED';STATUS_INCIDENT_RETRY='INCIDENT_RETRY_REQUIRED';MAX_CONSTITUTION_BYTES=16000;MAX_CANDIDATE_BYTES=512000;MAX_URL_BYTES=1024;MAX_ID_BYTES=160;MAX_VERSION_BYTES=96;MAX_EVIDENCE_AGE_SECONDS=2592000;MAX_PROPOSAL_TTL_SECONDS=1209600;MAX_EXECUTION_TIMEOUT_SECONDS=604800;MIN_WINDOW_SECONDS=60
 @allow_storage
 @dataclass
-class _fa:
-    fat:Address
-    fbw:Address
-    fx:str
-    fay:str
-    fbs:str
-    fs:str
-    fj:str
-    fbt:str
-    fv:str
-    fm:str
-    fb:str
-    fi:str
-    fc:str
-    fd:str
-    fbb:str
-    fae:str
-    fad:str
-    fab:str
-    fac:str
-    faq:u64
-    fbd:u64
-    fah:u64
-    fh:u64
-    fe:u64
-    far:u64
-    fap:u64
-    fa:bool
-
+class TargetPolicy:owner:Address;target:Address;constitution:str;policy_fingerprint:str;source_authority:str;ci_authority:str;audit_authority:str;source_prefix:str;ci_prefix:str;audit_prefix:str;assurance_authority:str;assurance_prefix:str;assurance_corroboration_authority:str;assurance_corroboration_prefix:str;proofpatch_kernel_hash:str;current_version:str;current_source_url:str;current_code_hash:str;current_release_id:str;max_evidence_age_seconds:u64;proposal_ttl_seconds:u64;execution_timeout_seconds:u64;assurance_observation_delay_seconds:u64;assurance_deadline_seconds:u64;max_manifest_bytes:u64;max_capsule_bytes:u64;active:bool
 @allow_storage
 @dataclass
-class _eu:
-    fbc:u256
-    fbw:Address
-    fbe:Address
-    fax:str
-    faw:str
-    fau:str
-    fq:str
-    fp:str
-    fn:bytes
-    fo:str
-    fu:str
-    ft:str
-    fl:str
-    fk:str
-    ff:str
-    fg:str
-    fbm:str
-    fbn:str
-    fbp:str
-    fbo:str
-    fbi:bytes
-    fbj:str
-    fbh:str
-    faf:str
-    fay:str
-    faa:u64
-    fai:u64
-    fbr:u64
-    fag:u64
-    fbv:str
-    fan:str
-
-@allow_storage
-@dataclass
-class _ey:
-    fbq:str
-    fbw:Address
-    fbx:str
-    fav:str
-    fau:str
-    fbu:str
-    fw:str
-    fbc:u256
-    fay:str
-    faf:str
-    fg:str
-    fbh:str
-    fal:u64
-    fr:u64
-    fbv:str
-    fbf:str
-    fbl:str
-    fao:str
-
-@allow_storage
-@dataclass
-class _ew:
-    faj:str
-    fbw:Address
-    fbq:str
-    fam:str
-    fak:str
-    fba:str
-    faz:str
-    fz:str
-    fy:str
-    fay:str
-    fg:str
-    fbh:str
-    fas:u64
-    fai:u64
-    fbr:u64
-    fbk:u64
-    fbv:str
-    fan:str
-    fbg:bool
-_ax='0x0000000000000000000000000000000000000000'
-
+class UpgradeProposal:proposal_id:u256;target:Address;proposer:Address;parent_version:str;parent_source_url:str;parent_code_hash:str;candidate_version:str;candidate_source_url:str;candidate_code:bytes;candidate_code_hash:str;ci_evidence_url:str;ci_evidence_id:str;audit_evidence_url:str;audit_evidence_id:str;assurance_manifest:str;assurance_manifest_hash:str;recovery_mode:str;recovery_release_id:str;recovery_version:str;recovery_source_url:str;recovery_code:bytes;recovery_code_hash:str;recovery_capsule_hash:str;evidence_set_hash:str;policy_fingerprint:str;created_at:u64;expires_at:u64;reviewed_at:u64;execution_deadline:u64;status:str;last_review_code:str
+ZERO='0x0000000000000000000000000000000000000000'
 @gl.contract_interface
-class _es:
-
-    class _fe:
-
-        def proofpatch_installed_release_id(self)->str:
-            ...
-
-        def proofpatch_release_mode(self)->str:
-            ...
-
-@gl.contract_interface
-class _eq:
-
-    class _fe:
-
-        def get_state_record(self,_n:str,_r:str)->str:
-            ...
-
-    class _fc:
-
-        def apply_policy_result(self,_s:str,_ec:str)->None:
-            ...
-
+class ProofPatchGovernor:
+	class View:
+		def get_state_record(self,kind:str,key:str)->str:...
+	class Write:
+		def apply_policy_result(self,operation:str,payload:str)->_B:...
 class ProofPatchPolicyLogic:
-
-    def _dz(self,_b):
-        return hashlib.sha256(_b).hexdigest()
-
-    def _dv(self,_u):
-        return hashlib.sha256('\x1f'.join(_u).encode('utf-8')).hexdigest()
-
-    def _dk(self,_a):
-        try:
-            _ad=json.loads(_a)
-            _bl=json.dumps(_ad,sort_keys=True,separators=(',',':'),ensure_ascii=False)
-            if _bl!=_a:
-                return(_s13,_ad)
-            return(self._dz(_bl.encode('utf-8')),_ad)
-        except Exception:
-            return('INVALID',None)
-
-    def _dq(self,_bo,_ch,_bz,_cc,_cb,_c):
-        if len(_bo.encode('utf-8'))>int(_c.far):
-            return _ek+'TOO_LARGE'
-        (_cm,_ad)=self._dk(_bo)
-        if _cm in('INVALID',_s13)or not isinstance(_ad,dict):
-            return _ek+'NOT_CANONICAL_JSON'
-        _i=_ad
-        _cq=('schema','target',_s22,_s18,_s17,'expected_release_version',_s5,_s3,_s9,_s10)
-        for _r in _cq:
-            if _r not in _i:
-                return _ek+'MISSING_'+_r.upper()
-        if _i.get('schema')!=_ce:
-            return _ek+'SCHEMA_MISMATCH'
-        _bh=_i.get('target')
-        if not isinstance(_bh,str)or _bh.lower()!=str(_ch).lower():
-            return _ek+'TARGET_MISMATCH'
-        if _i.get(_s22)!=_bz:
-            return _ek+'CANDIDATE_HASH_MISMATCH'
-        if _i.get(_s18)!=_cc:
-            return _ek+'POLICY_MISMATCH'
-        if _i.get(_s17)!=_cb:
-            return _ek+'KERNEL_MISMATCH'
-        if type(_i.get(_s5))is not int:
-            return _ek+'OBSERVATION_DELAY_INVALID'
-        if type(_i.get(_s3))is not int:
-            return _ek+'ASSURANCE_DEADLINE_INVALID'
-        if _i.get(_s5)!=int(_c.fh):
-            return _ek+'OBSERVATION_DELAY_MISMATCH'
-        if _i.get(_s3)!=int(_c.fe):
-            return _ek+'ASSURANCE_DEADLINE_MISMATCH'
-        if _i.get(_s9)is not True:
-            return _ek+'CI_ASSURANCE_REQUIRED'
-        if _i.get(_s10)is not True:
-            return _ek+'INDEPENDENT_ASSURANCE_REQUIRED'
-        for _aq in('required_state_checks','required_readback_checks','required_canary_checks'):
-            _bn=_i.get(_aq,[])
-            if not isinstance(_bn,list):
-                return 'MANIFEST_'+_aq.upper()+_s30
-            _a=_bn
-            if len(_a)>32:
-                return 'MANIFEST_'+_aq.upper()+_s30
-            for _br in _a:
-                if not isinstance(_br,str)or len(_br.encode('utf-8'))>160:
-                    return 'MANIFEST_'+_aq.upper()+'_ITEM_INVALID'
-        return ''
-
-    def _dy(self,_a,_cx,_ct,_cs):
-        _bi=len(_a.encode('utf-8'))
-        if _bi<_ct or _bi>_cs:
-            raise gl.vm.UserError(f'{_cx} length is invalid')
-
-    def _de(self,_a):
-        if not _a or _a in('.','..'):
-            return False
-        _cr='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-'
-        for _az in _a:
-            if _az not in _cr:
-                return False
-        return True
-
-    def _ds(self,_t):
-        _bq='https://raw.githubusercontent.com/'
-        if not _t.startswith(_bq)or not _t.endswith('/'):
-            return ''
-        _da=_t[len(_bq):]
-        _u=_da.split('/')
-        if len(_u)!=3 or _u[2]!='':
-            return ''
-        owner=_u[0]
-        _cp=_u[1]
-        if not self._de(owner):
-            return ''
-        if not self._de(_cp):
-            return ''
-        return owner
-
-    def _dl(self,_t):
-        return self._ds(_t)!=''
-
-    def _dr(self,_ba,_t):
-        if len(_ba.encode('utf-8'))>_ck:
-            return False
-        if not self._dl(_t):
-            return False
-        if not _ba.startswith(_t):
-            return False
-        _cw=_ba[len(_t):]
-        _u=_cw.split('/',1)
-        if len(_u)!=2:
-            return False
-        (_bp,_cz)=_u
-        if len(_bp)!=40:
-            return False
-        for _az in _bp:
-            if _az not in '0123456789abcdef':
-                return False
-        _bg=_cz.split('/')
-        if not _bg:
-            return False
-        for _cv in _bg:
-            if not self._de(_cv):
-                return False
-        return True
-
-    def _do(self,_o,_q,_l,_p,_k,_v,_ak):
-        return self._dv([_cj,_o,_q,_l,_p,_k,_v,_ak])
-
-    def _dp(self):
-        return u256(0)
-
-    def _dj(self,_e):
-        if _e not in self.policies:
-            raise gl.vm.UserError(_s0)
-        _c=self.policies[_e]
-        if self.actor!=_c.fat:
-            raise gl.vm.UserError(_s0)
-        if not _c.fa:
-            raise gl.vm.UserError(_s0)
-        return _c
-
-    def _dt(self,_m):
-        if _m not in self.proposals:
-            raise gl.vm.UserError(_s0)
-        return self.proposals[_m]
-
-    def _dm(self,_e,_z,_n,_bj):
-        self._dy(_bj,'evidence_id',8,_cn)
-        _bm=self._dv([str(_e),_z,_n,_bj])
-        if self.used_evidence_ids.get(_bm,False):
-            raise gl.vm.UserError(_s0)
-        self.used_evidence_ids[_bm]=True
-
-    def _dh(self,_e,_x):
-        return self._dv([str(_e),_x])
-
-    def _du(self,_e,_an,_o,_ag,_q,_l,_p,_k,_am,_ap,_al,_ao,_at,_ah):
-        _g=Address(_e)
-        _c=self._dj(_g)
-        active=self.active_proposal_by_target.get(_g,self._dp())
-        if active!=self._dp():
-            raise gl.vm.UserError(_s0)
-        self._dy(_an,'candidate_version',1,_bd)
-        if _an==_c.fae:
-            raise gl.vm.UserError(_s0)
-        if len(_ag)==0 or len(_ag)>_cd:
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_o,_c.fbt):
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_q,_c.fv):
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_p,_c.fm):
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_at,_c.fbt):
-            raise gl.vm.UserError(_s0)
-        if _l==_k:
-            raise gl.vm.UserError(_s0)
-        if _ap not in(_s25,_el+'CANDIDATE'):
-            raise gl.vm.UserError(_s0)
-        if len(_ah)==0 or len(_ah)>int(_c.fap):
-            raise gl.vm.UserError(_s0)
-        self._dy(_ao,'recovery_version',1,_bd)
-        _x=self._dz(_ag)
-        if _x==_c.fab:
-            raise gl.vm.UserError(_s0)
-        if self.installed_candidate_hashes.get(self._dh(_g,_x),False):
-            raise gl.vm.UserError(_s0)
-        _ac=self._dz(_ah)
-        if _ap==_s25:
-            if _al!=_c.fac:
-                raise gl.vm.UserError(_s0)
-            if _ac!=_c.fab:
-                raise gl.vm.UserError(_s0)
-            if _ao!=_c.fae:
-                raise gl.vm.UserError(_s0)
-        else:
-            if _al!='recovery-'+_ac[:16]:
-                raise gl.vm.UserError(_s0)
-            if _ac==_x:
-                raise gl.vm.UserError(_s0)
-        (_v,_en)=self._dk(_am)
-        if _v in('INVALID',_s13):
-            raise gl.vm.UserError(_s0)
-        _bf=self._dq(_am,_g,_x,_c.fay,_c.fbb,_c)
-        if _bf:
-            raise gl.vm.UserError(_bf)
-        self._dm(_g,_c.fs,'ci',_l)
-        self._dm(_g,_c.fj,'audit',_k)
-        _bs=self.now
-        _m=u256(int(self.proposal_count)+1)
-        evidence_set_hash=self._do(_o,_q,_l,_p,_k,_v,_ac)
-        self.proposals[_m]=_eu(fbc=_m,fbw=_g,fbe=_c.fat,fax=_c.fae,faw=_c.fad,fau=_c.fab,fq=_an,fp=_o,fn=_ag,fo=_x,fu=_q,ft=_l,fl=_p,fk=_k,ff=_am,fg=_v,fbm=_ap,fbn=_al,fbp=_ao,fbo=_at,fbi=_ah,fbj=_ac,fbh=_ac,faf=evidence_set_hash,fay=_c.fay,faa=u64(_bs),fai=u64(_bs+int(_c.fbd)),fbr=u64(0),fag=u64(0),fbv=_be,fan='')
-        self.proposal_count=_m
-        self.active_proposal_by_target[_g]=_m
-        return _m
-
-    def _dw(self,_m,_o,_q,_l,_p,_k):
-        _h=self._dt(_m)
-        _c=self._dj(_h.fbw)
-        if _h.fbv!=_cl:
-            raise gl.vm.UserError(_s0)
-        if self.now>int(_h.fai):
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_o,_c.fbt):
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_q,_c.fv):
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_p,_c.fm):
-            raise gl.vm.UserError(_s0)
-        if _l==_k:
-            raise gl.vm.UserError(_s0)
-        self._dm(_h.fbw,_c.fs,'ci',_l)
-        self._dm(_h.fbw,_c.fj,'audit',_k)
-        _h.fp=_o
-        _h.fu=_q
-        _h.ft=_l
-        _h.fl=_p
-        _h.fk=_k
-        _h.faf=self._do(_o,_q,_l,_p,_k,_h.fg,_h.fbh)
-        _h.fbv=_be
-        _h.fan=''
-
-    def _dx(self,_e,_y,_av,_aw,_ab,_au,_af):
-        _g=Address(_e)
-        if _g not in self.policies or _y not in self.releases:
-            raise gl.vm.UserError(_s0)
-        _w=self.releases[_y]
-        if _w.fbw!=_g:
-            raise gl.vm.UserError(_s0)
-        if _av not in('STATE_INVARIANT_VIOLATION','AUTHORIZATION_REGRESSION','UPGRADE_BYPASS','CONSENSUS_BINDING_REGRESSION',_ei+'TRUST_REGRESSION','FINALITY_REGRESSION','LIVENESS_REGRESSION','HIDDEN_VALUE_TRANSFER','KERNEL_INTEGRITY_FAILURE','REQUIRED_INTERFACE_FAILURE','OTHER_CONSTITUTIONAL_BREACH'):
-            raise gl.vm.UserError(_s0)
-        _c=self.policies[_g]
-        if not self._dr(_aw,_c.fm):
-            raise gl.vm.UserError(_s0)
-        if not self._dr(_au,_c.fd):
-            raise gl.vm.UserError(_s0)
-        if _ab==_af:
-            raise gl.vm.UserError(_s0)
-        self._dm(_g,_c.fj,_s23,_ab)
-        self._dm(_g,_c.fc,_s16,_af)
-        if self.target_release_id!=_y:
-            raise gl.vm.UserError(_s0)
-        if self.target_mode not in(_co,_cf,_ci):
-            raise gl.vm.UserError(_s0)
-        if _w.fbh=='':
-            raise gl.vm.UserError(_s0)
-        if _w.fbv not in(_cg,_bw,_bx,_by,_ca,_as):
-            raise gl.vm.UserError(_s0)
-        incident_id='incident-'+str(self.now)+'-'+_ab
-        if incident_id in self.incidents:
-            raise gl.vm.UserError(_s0)
-        _bc=self._dv([str(_g),_y,_ab,_af])
-        if self.used_incident_ids.get(_bc,False):
-            raise gl.vm.UserError(_s0)
-        self.used_incident_ids[_bc]=True
-        self.incidents[incident_id]=_ew(faj=incident_id,fbw=_g,fbq=_y,fam=_w.fw,fak=_av,fba=_aw,faz=_ab,fz=_au,fy=_af,fay=_w.fay,fg=_w.fg,fbh=_w.fbh,fas=u64(self.now),fai=u64(self.now+int(_c.fbd)),fbr=u64(0),fbk=u64(0),fbv=_as,fan='',fbg=False)
-        _w.fbv=_as
-        return incident_id
-
-class _eo(gl.Contract):
-    admin:Address
-    governor:Address
-
-    def __init__(self):
-        self.admin=gl.message.sender_address
-        self.governor=Address(_ax)
-
-    @gl.public.write
-    def bind_governor(self,governor:str)->None:
-        if gl.message.sender_address!=self.admin:
-            raise gl.vm.UserError(_s0)
-        if self.governor!=Address(_ax):
-            raise gl.vm.UserError(_s0)
-        _bk=Address(governor)
-        if _bk==Address(_ax):
-            raise gl.vm.UserError(_s0)
-        self.governor=_bk
-
-    def _em(self,_d,_b):
-        _ar=str(_b.get(_s20,''))
-        _f=_b['args']
-        if _ar=='create':
-            _f[3]=bytes.fromhex(_f[3])
-            _f[13]=bytes.fromhex(_f[13])
-        _aa=_eq(self.governor).view(state=StorageType.LATEST_FINAL)
-
-        def get(_n,_r):
-            return json.loads(_aa.get_state_record(_n,_r))
-        _bv=get('counts','')
-        _b[_s6]=_bv.get(_s6,0)
-        _b[_s7]=_bv.get(_s7,0)
-        _b[_s1]={}
-        _b[_s2]={}
-        _b[_s4]={}
-
-        def flag(_n,_r,_db):
-            if get(_n,_r).get('value',False):
-                _b[_db][_r]=True
-
-        def ekey(_e,_z,_n,_ai):
-            return hashlib.sha256('\x1f'.join([_e,_z,_n,_ai]).encode()).hexdigest()
-        if _ar=='create':
-            _e=str(_f[0])
-            _b['policy']=get('policy',_e)
-            _j=get('active',_e)
-            _b[_s12]=_e
-            _b[_s26]=_j.get('value',0)
-            flag(_s14,ekey(_e,_b['policy'][_s27],'ci',_f[5]),_s1)
-            flag(_s14,ekey(_e,_b['policy'][_s11],'audit',_f[7]),_s1)
-            flag('candidate',hashlib.sha256('\x1f'.join([_e,hashlib.sha256(_f[3]).hexdigest()]).encode()).hexdigest(),_s2)
-        elif _ar in('repair',):
-            _b[_s8]=get(_s8,str(int(_f[0])))
-            _e=_b[_s8]['target']
-            _b['policy']=get('policy',_e)
-            _cy=((_b['policy'][_s27],'ci',_f[3]),(_b['policy'][_s11],'audit',_f[5]))
-            for(_z,_n,_ai)in _cy:
-                flag(_s14,ekey(_e,_z,_n,_ai),_s1)
-        elif _ar==_s31:
-            _e=str(_f[0])
-            _bt=str(_f[1])
-            _b['policy']=get('policy',_e)
-            _b[_s15]=[get('release',_bt)]
-            for(_z,_n,_ai)in((_b['policy'][_s11],_s23,_f[4]),(_b['policy']['assurance_corroboration_authority'],_s16,_f[6])):
-                flag(_s14,ekey(_e,_z,_n,_ai),_s1)
-            _dc=hashlib.sha256('\x1f'.join([_e,_bt,_f[4],_f[6]]).encode()).hexdigest()
-            flag('incident_evidence',_dc,_s4)
-            _bu=_es(Address(_e)).view(state=StorageType.LATEST_FINAL)
-            _b[_s21]=_bu.proofpatch_installed_release_id()
-            _b[_s28]=_bu.proofpatch_release_mode()
-        _d.policies={}
-        _d.proposals={}
-        _d.releases={}
-        _d.incidents={}
-        _d.active_proposal_by_target={}
-        _d.used_evidence_ids=dict(_b.get(_s1,{}))
-        _d.installed_candidate_hashes=dict(_b.get(_s2,{}))
-        _d.used_incident_ids=dict(_b.get(_s4,{}))
-        _d.proposal_count=u256(_b.get(_s6,0))
-        _d.release_count=u256(_b.get(_s7,0))
-        if _b.get('policy')is not None:
-            _j=self._eb(_fa,_b['policy'])
-            _d.policies[_j.fbw]=_j
-        if _b.get(_s8)is not None:
-            _j=self._eb(_eu,_b[_s8])
-            _d.proposals[_j.fbc]=_j
-        for _aj in _b.get(_s15,[]):
-            _j=self._eb(_ey,_aj)
-            _d.releases[_j.fbq]=_j
-        for _aj in _b.get(_s19,[]):
-            _j=self._eb(_ew,_aj)
-            _d.incidents[_j.faj]=_j
-        if _b.get(_s12)is not None:
-            _d.active_proposal_by_target[Address(_b[_s12])]=u256(_b.get(_s26,0))
-        _d.actor=Address(_b['actor'])
-        _d.now=int(_b['now'])
-        _d.target_release_id=str(_b.get(_s21,''))
-        _d.target_mode=str(_b.get(_s28,''))
-
-    def _ea(self,_a):
-        if isinstance(_a,Address):
-            return str(_a)
-        if isinstance(_a,bytes):
-            return _a.hex()
-        if isinstance(_a,bool):
-            return _a
-        if isinstance(_a,int):
-            return int(_a)
-        if isinstance(_a,dict):
-            return{str(_bb):self._ea(_aa)for(_bb,_aa)in _a.items()}
-        if isinstance(_a,list):
-            return[self._ea(_aa)for _aa in _a]
-        if hasattr(_a,'__dict__'):
-            return{_bb:self._ea(_aa)for(_bb,_aa)in _a.__dict__.items()}
-        return _a
-
-    def _eb(self,cls,_aj):
-        _a=list(_aj.values())
-        if cls is _fa or cls is _eu or cls is _ey or(cls is _ew):
-            _a[1]=Address(_a[1])
-        if cls is _fa:
-            _a[0]=Address(_a[0])
-        elif cls is _eu:
-            _a[2]=Address(_a[2])
-            if isinstance(_a[8],str):
-                _a[8]=bytes.fromhex(_a[8])
-            if isinstance(_a[20],str):
-                _a[20]=bytes.fromhex(_a[20])
-        return cls(**dict(zip(cls.__annotations__.keys(),_a)))
-
-    def _ef(self,_d,_s,_b):
-        _ae={_s20:_s,_s32:[],_s29:[],_s15:[],_s19:[],'active':[],_s1:_d.used_evidence_ids,_s2:_d.installed_candidate_hashes,_s4:_d.used_incident_ids,_s6:int(_d.proposal_count),_s7:int(_d.release_count)}
-        for _a in _d.policies.values():
-            _ae[_s32].append(self._ea(_a))
-        for _a in _d.proposals.values():
-            _ae[_s29].append(self._ea(_a))
-        for _a in _d.releases.values():
-            _ae[_s15].append(self._ea(_a))
-        for _a in _d.incidents.values():
-            _ae[_s19].append(self._ea(_a))
-        for(_r,_a)in _d.active_proposal_by_target.items():
-            _ae['active'].append([str(_r),int(_a)])
-        return _ae
-
-    @gl.public.write
-    def execute(self,_s:str,_cu:str)->None:
-        if gl.message.sender_address!=self.governor:
-            raise gl.vm.UserError(_s0)
-        _b=json.loads(_cu)
-        _b[_s20]=_s
-        _d=ProofPatchPolicyLogic()
-        self._em(_d,_b)
-        _ay=_b['args']
-        if _s=='create':
-            _d._du(*_ay)
-        elif _s=='repair':
-            _d._dw(*_ay)
-        elif _s==_s31:
-            _d._dx(*_ay)
-        else:
-            raise gl.vm.UserError(_s0)
-        _eq(self.governor).emit(on='finalized').apply_policy_result(_s,json.dumps(self._ef(_d,_s,_b),separators=(',',':')))
+	def _sha256_hex(self,data:bytes)->str:return hashlib.sha256(data).hexdigest()
+	def _hash_text_parts(self,parts:list[str])->str:return hashlib.sha256('\x1f'.join(parts).encode(_D)).hexdigest()
+	def _canonical_json_hash(self,value:str)->tuple[str,object]:
+		try:
+			parsed=json.loads(value);canonical=json.dumps(parsed,sort_keys=_C,separators=(',',':'),ensure_ascii=_A)
+			if canonical!=value:return _G,parsed
+			return self._sha256_hex(canonical.encode(_D)),parsed
+		except Exception:return _H,_B
+	def _validate_manifest(self,manifest:str,expected_target:Address,expected_candidate_hash:str,expected_policy_hash:str,expected_kernel_hash:str,policy:TargetPolicy)->str:
+		K='_INVALID';J='independent_assurance_required';I='ci_assurance_evidence_required';H='expected_kernel_hash';G='policy_fingerprint';F='candidate_sha256';E='target';D='schema';C='MANIFEST_';B='assurance_deadline_seconds';A='observation_delay_seconds'
+		if len(manifest.encode(_D))>int(policy.max_manifest_bytes):return'MANIFEST_TOO_LARGE'
+		manifest_hash,parsed=self._canonical_json_hash(manifest)
+		if manifest_hash in(_H,_G)or not isinstance(parsed,dict):return'MANIFEST_NOT_CANONICAL_JSON'
+		obj=typing.cast(dict[object,object],parsed);required=D,E,F,G,H,'expected_release_version',A,B,I,J
+		for key in required:
+			if key not in obj:return'MANIFEST_MISSING_'+key.upper()
+		if obj.get(D)!=ASSURANCE_SCHEMA:return'MANIFEST_SCHEMA_MISMATCH'
+		target_value=obj.get(E)
+		if not isinstance(target_value,str)or target_value.lower()!=str(expected_target).lower():return'MANIFEST_TARGET_MISMATCH'
+		if obj.get(F)!=expected_candidate_hash:return'MANIFEST_CANDIDATE_HASH_MISMATCH'
+		if obj.get(G)!=expected_policy_hash:return'MANIFEST_POLICY_MISMATCH'
+		if obj.get(H)!=expected_kernel_hash:return'MANIFEST_KERNEL_MISMATCH'
+		if type(obj.get(A))is not int:return'MANIFEST_OBSERVATION_DELAY_INVALID'
+		if type(obj.get(B))is not int:return'MANIFEST_ASSURANCE_DEADLINE_INVALID'
+		if obj.get(A)!=int(policy.assurance_observation_delay_seconds):return'MANIFEST_OBSERVATION_DELAY_MISMATCH'
+		if obj.get(B)!=int(policy.assurance_deadline_seconds):return'MANIFEST_ASSURANCE_DEADLINE_MISMATCH'
+		if obj.get(I)is not _C:return'MANIFEST_CI_ASSURANCE_REQUIRED'
+		if obj.get(J)is not _C:return'MANIFEST_INDEPENDENT_ASSURANCE_REQUIRED'
+		for list_key in('required_state_checks','required_readback_checks','required_canary_checks'):
+			value_raw=obj.get(list_key,[])
+			if not isinstance(value_raw,list):return C+list_key.upper()+K
+			value=typing.cast(list[object],value_raw)
+			if len(value)>32:return C+list_key.upper()+K
+			for item in value:
+				if not isinstance(item,str)or len(item.encode(_D))>160:return C+list_key.upper()+'_ITEM_INVALID'
+		return''
+	def _check_text(self,value:str,label:str,minimum:int,maximum:int)->_B:
+		encoded_len=len(value.encode(_D))
+		if encoded_len<minimum or encoded_len>maximum:raise gl.vm.UserError(f"{label} length is invalid")
+	def _is_canonical_raw_segment(self,value:str)->bool:
+		if not value or value in('.','..'):return _A
+		allowed='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-'
+		for char in value:
+			if char not in allowed:return _A
+		return _C
+	def _raw_github_owner(self,prefix:str)->str:
+		base='https://raw.githubusercontent.com/'
+		if not prefix.startswith(base)or not prefix.endswith('/'):return''
+		rest=prefix[len(base):];parts=rest.split('/')
+		if len(parts)!=3 or parts[2]!='':return''
+		owner=parts[0];repository=parts[1]
+		if not self._is_canonical_raw_segment(owner):return''
+		if not self._is_canonical_raw_segment(repository):return''
+		return owner
+	def _is_authority_prefix(self,prefix:str)->bool:return self._raw_github_owner(prefix)!=''
+	def _is_immutable_url(self,url:str,prefix:str)->bool:
+		if len(url.encode(_D))>MAX_URL_BYTES:return _A
+		if not self._is_authority_prefix(prefix):return _A
+		if not url.startswith(prefix):return _A
+		suffix=url[len(prefix):];parts=suffix.split('/',1)
+		if len(parts)!=2:return _A
+		commit,path=parts
+		if len(commit)!=40:return _A
+		for char in commit:
+			if char not in'0123456789abcdef':return _A
+		path_segments=path.split('/')
+		if not path_segments:return _A
+		for segment in path_segments:
+			if not self._is_canonical_raw_segment(segment):return _A
+		return _C
+	def _evidence_set_hash(self,candidate_source_url:str,ci_evidence_url:str,ci_evidence_id:str,audit_evidence_url:str,audit_evidence_id:str,assurance_manifest_hash:str,recovery_capsule_hash:str)->str:return self._hash_text_parts([SCHEMA_VERSION,candidate_source_url,ci_evidence_url,ci_evidence_id,audit_evidence_url,audit_evidence_id,assurance_manifest_hash,recovery_capsule_hash])
+	def _inactive_proposal(self)->u256:return u256(0)
+	def _require_policy_owner(self,target:Address)->TargetPolicy:
+		if target not in self.policies:raise gl.vm.UserError('Target is not registered')
+		policy=self.policies[target]
+		if self.actor!=policy.owner:raise gl.vm.UserError('Only the registered target owner may perform this action')
+		if not policy.active:raise gl.vm.UserError('Target policy is inactive')
+		return policy
+	def _require_proposal(self,proposal_id:u256)->UpgradeProposal:
+		if proposal_id not in self.proposals:raise gl.vm.UserError('Unknown proposal')
+		return self.proposals[proposal_id]
+	def _reserve_evidence_id(self,target:Address,issuer:str,kind:str,evidence_id:str)->_B:
+		self._check_text(evidence_id,'evidence_id',8,MAX_ID_BYTES);reuse_key=self._hash_text_parts([str(target),issuer,kind,evidence_id])
+		if self.used_evidence_ids.get(reuse_key,_A):raise gl.vm.UserError('Evidence identifier has already been used')
+		self.used_evidence_ids[reuse_key]=_C
+	def _installed_candidate_key(self,target:Address,candidate_hash:str)->str:return self._hash_text_parts([str(target),candidate_hash])
+	def _create_proposal(self,target:str,candidate_version:str,candidate_source_url:str,candidate_code:bytes,ci_evidence_url:str,ci_evidence_id:str,audit_evidence_url:str,audit_evidence_id:str,assurance_manifest:str,recovery_mode:str,recovery_release_id:str,recovery_version:str,recovery_source_url:str,recovery_code:bytes)->u256:
+		A='EXACT_PARENT';target_address=Address(target);policy=self._require_policy_owner(target_address);active=self.active_proposal_by_target.get(target_address,self._inactive_proposal())
+		if active!=self._inactive_proposal():raise gl.vm.UserError('Target already has an active proposal')
+		self._check_text(candidate_version,'candidate_version',1,MAX_VERSION_BYTES)
+		if candidate_version==policy.current_version:raise gl.vm.UserError('Candidate version must differ from current version')
+		if len(candidate_code)==0 or len(candidate_code)>MAX_CANDIDATE_BYTES:raise gl.vm.UserError('Candidate source bytes are empty or too large')
+		if not self._is_immutable_url(candidate_source_url,policy.source_prefix):raise gl.vm.UserError('Candidate source URL is not an approved immutable source')
+		if not self._is_immutable_url(ci_evidence_url,policy.ci_prefix):raise gl.vm.UserError('CI evidence URL is not an approved immutable source')
+		if not self._is_immutable_url(audit_evidence_url,policy.audit_prefix):raise gl.vm.UserError('Audit evidence URL is not an approved immutable source')
+		if not self._is_immutable_url(recovery_source_url,policy.source_prefix):raise gl.vm.UserError('Recovery source URL is not an approved immutable source')
+		if ci_evidence_id==audit_evidence_id:raise gl.vm.UserError('CI and audit evidence identifiers must be distinct')
+		if recovery_mode not in(A,'RECOVERY_CANDIDATE'):raise gl.vm.UserError('Unsupported recovery mode')
+		if len(recovery_code)==0 or len(recovery_code)>int(policy.max_capsule_bytes):raise gl.vm.UserError('Recovery capsule is empty or too large')
+		self._check_text(recovery_version,'recovery_version',1,MAX_VERSION_BYTES);candidate_hash=self._sha256_hex(candidate_code)
+		if candidate_hash==policy.current_code_hash:raise gl.vm.UserError('Candidate code is identical to current code')
+		if self.installed_candidate_hashes.get(self._installed_candidate_key(target_address,candidate_hash),_A):raise gl.vm.UserError('This candidate hash has already been installed for this target')
+		recovery_hash=self._sha256_hex(recovery_code)
+		if recovery_mode==A:
+			if recovery_release_id!=policy.current_release_id:raise gl.vm.UserError('EXACT_PARENT recovery must name the current certified release')
+			if recovery_hash!=policy.current_code_hash:raise gl.vm.UserError('EXACT_PARENT capsule bytes must match the current release')
+			if recovery_version!=policy.current_version:raise gl.vm.UserError('EXACT_PARENT capsule version must match the current release')
+		else:
+			if recovery_release_id!='recovery-'+recovery_hash[:16]:raise gl.vm.UserError('Recovery candidate release ID must bind its capsule hash')
+			if recovery_hash==candidate_hash:raise gl.vm.UserError('Recovery candidate must differ from the candidate')
+		assurance_manifest_hash,_=self._canonical_json_hash(assurance_manifest)
+		if assurance_manifest_hash in(_H,_G):raise gl.vm.UserError('Assurance manifest must be canonical JSON')
+		manifest_error=self._validate_manifest(assurance_manifest,target_address,candidate_hash,policy.policy_fingerprint,policy.proofpatch_kernel_hash,policy)
+		if manifest_error:raise gl.vm.UserError(manifest_error)
+		self._reserve_evidence_id(target_address,policy.ci_authority,'ci',ci_evidence_id);self._reserve_evidence_id(target_address,policy.audit_authority,'audit',audit_evidence_id);now=self.now;proposal_id=u256(int(self.proposal_count)+1);evidence_set_hash=self._evidence_set_hash(candidate_source_url,ci_evidence_url,ci_evidence_id,audit_evidence_url,audit_evidence_id,assurance_manifest_hash,recovery_hash);self.proposals[proposal_id]=UpgradeProposal(proposal_id=proposal_id,target=target_address,proposer=policy.owner,parent_version=policy.current_version,parent_source_url=policy.current_source_url,parent_code_hash=policy.current_code_hash,candidate_version=candidate_version,candidate_source_url=candidate_source_url,candidate_code=candidate_code,candidate_code_hash=candidate_hash,ci_evidence_url=ci_evidence_url,ci_evidence_id=ci_evidence_id,audit_evidence_url=audit_evidence_url,audit_evidence_id=audit_evidence_id,assurance_manifest=assurance_manifest,assurance_manifest_hash=assurance_manifest_hash,recovery_mode=recovery_mode,recovery_release_id=recovery_release_id,recovery_version=recovery_version,recovery_source_url=recovery_source_url,recovery_code=recovery_code,recovery_code_hash=recovery_hash,recovery_capsule_hash=recovery_hash,evidence_set_hash=evidence_set_hash,policy_fingerprint=policy.policy_fingerprint,created_at=u64(now),expires_at=u64(now+int(policy.proposal_ttl_seconds)),reviewed_at=u64(0),execution_deadline=u64(0),status=STATUS_PROPOSED,last_review_code='');self.proposal_count=proposal_id;self.active_proposal_by_target[target_address]=proposal_id;return proposal_id
+class ProofPatchPolicyEngine(gl.Contract):
+	admin:Address;governor:Address
+	def __init__(self):self.admin=gl.message.sender_address;self.governor=Address(ZERO)
+	@gl.public.write
+	def bind_governor(self,governor:str)->_B:
+		if gl.message.sender_address!=self.admin:raise gl.vm.UserError('Only admin may bind governor')
+		if self.governor!=Address(ZERO):raise gl.vm.UserError('Governor is already bound')
+		candidate=Address(governor)
+		if candidate==Address(ZERO):raise gl.vm.UserError('Governor cannot be the zero address')
+		self.governor=candidate
+	def _load(self,logic:ProofPatchPolicyLogic,data:dict[object,object])->_B:
+		F='evidence';E='active_value';D='\\x1f';C='value';B='active_target';A='policy'
+		if str(data.get(_I,''))!=_J:raise gl.vm.UserError(_L)
+		args=data['args'];args[3]=bytes.fromhex(args[3]);args[13]=bytes.fromhex(args[13]);view=ProofPatchGovernor(self.governor).view(state=StorageType.LATEST_FINAL)
+		def get(kind:str,key:str)->dict[object,object]:return typing.cast(dict[object,object],json.loads(view.get_state_record(kind,key)))
+		def flag(kind:str,key:str,destination:str)->_B:
+			if get(kind,key).get(C,_A):data[destination][key]=_C
+		def evidence_key(target:str,issuer:str,kind:str,evidence_id:str)->str:return hashlib.sha256(D.join([target,issuer,kind,evidence_id]).encode()).hexdigest()
+		target=str(args[0]);data[A]=get(A,target);active=get(_K,target);data[B]=target;data[E]=active.get(C,0);data[_E]={};data[_F]={};policy=data[A];flag(F,evidence_key(target,policy['ci_authority'],'ci',args[5]),_E);flag(F,evidence_key(target,policy['audit_authority'],'audit',args[7]),_E);candidate_hash=hashlib.sha256(args[3]).hexdigest();flag('candidate',hashlib.sha256(D.join([target,candidate_hash]).encode()).hexdigest(),_F);logic.policies={};logic.proposals={};logic.active_proposal_by_target={};logic.used_evidence_ids=typing.cast(dict[object,bool],data[_E]);logic.installed_candidate_hashes=typing.cast(dict[object,bool],data[_F]);logic.proposal_count=u256(get('counts','').get(_M,0));policy_record=self._record(TargetPolicy,data[A]);logic.policies[policy_record.target]=policy_record
+		if data.get(B)is not _B:logic.active_proposal_by_target[Address(data[B])]=u256(data.get(E,0))
+		logic.actor=Address(data['actor']);logic.now=int(data['now'])
+	def _encode(self,value:object)->object:
+		if isinstance(value,Address):return str(value)
+		if isinstance(value,bytes):return value.hex()
+		if isinstance(value,bool):return value
+		if isinstance(value,int):return int(value)
+		if isinstance(value,dict):return{str(key):self._encode(item)for(key,item)in value.items()}
+		if isinstance(value,list):return[self._encode(item)for item in value]
+		if hasattr(value,'__dict__'):return{key:self._encode(item)for(key,item)in value.__dict__.items()}
+		return value
+	def _record(self,cls:typing.Any,raw:dict[object,object])->typing.Any:
+		value=list(raw.values());value[1]=Address(value[1])
+		if cls is TargetPolicy:value[0]=Address(value[0])
+		return cls(**dict(zip(cls.__annotations__.keys(),value)))
+	def _patch(self,logic:ProofPatchPolicyLogic)->dict[object,object]:
+		A='policies';result={_I:_J,A:[],'proposals':[],'releases':[],'incidents':[],_K:[],_E:logic.used_evidence_ids,_F:logic.installed_candidate_hashes,'used_incident_ids':{},_M:int(logic.proposal_count)}
+		for value in logic.policies.values():result[A].append(self._encode(value))
+		for(target,value)in logic.active_proposal_by_target.items():result[_K].append([str(target),int(value)])
+		return result
+	@gl.public.write
+	def execute(self,operation:str,request:str)->_B:
+		if gl.message.sender_address!=self.governor:raise gl.vm.UserError('Only the bound governor may execute policy logic')
+		if operation!=_J:raise gl.vm.UserError(_L)
+		data=json.loads(request);data[_I]=operation;logic=ProofPatchPolicyLogic();self._load(logic,data);logic._create_proposal(*data['args']);ProofPatchGovernor(self.governor).emit(on='finalized').apply_policy_result(operation,json.dumps(self._patch(logic),separators=(',',':')))

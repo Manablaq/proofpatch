@@ -57,8 +57,11 @@ def test_v2_has_no_owner_upgrade_bypass_and_guards_application_writes():
     assert "def proofpatch_recover(" in source
     assert 'PROOFPATCH_KERNEL_HASH = hashlib.sha256(PROOFPATCH_KERNEL_SOURCE.encode("utf-8")).hexdigest()' in source
     assert "_require_kernel_binding(" in source
-    assert "actual_kernel_source != PROOFPATCH_KERNEL_SOURCE" in source
+    assert "actual_kernel_source != storage_source" in source
     assert "Candidate kernel markers are not unique" in source
+    assert "def _kernel_method_digest(" in source
+    assert "if len(entries) != 15" in source
+    assert "self._kernel_method_digest(source, name) != digest" in source
 
 
 def test_v2_all_consequential_cross_contract_messages_are_finality_gated():

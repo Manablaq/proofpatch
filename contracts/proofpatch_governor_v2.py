@@ -247,6 +247,7 @@ class ProofPatchTarget:
         def proofpatch_installed_release_id(self) -> str: ...
         def proofpatch_release_mode(self) -> str: ...
         def get_proofpatch_kernel_hash(self) -> str: ...
+        def get_proofpatch_governor(self) -> Address: ...
 
     class Write:
         def proofpatch_confirm_registration(self, release_id: str, code_hash: str) -> None: ...
@@ -696,15 +697,16 @@ class ProofPatchGovernorV2(gl.Contract):
 
     def _engine_result(self, raw: str, expected: dict[str, object]) -> dict[object, object]:
         try:
-            value = json.loads(raw)
+            decoded: object = json.loads(raw)
         except Exception:
             raise gl.vm.UserError("Review engine returned invalid JSON")
-        if not isinstance(value, dict):
+        if not isinstance(decoded, dict):
             raise gl.vm.UserError("Review engine returned an invalid result")
+        value = typing.cast(dict[str, object], decoded)
         for key, expected_value in expected.items():
             if value.get(key) != expected_value:
                 raise gl.vm.UserError("Review engine result binding mismatch")
-        return value
+        return typing.cast(dict[object, object], value)
 
     def _proposal_review_snapshot(self, proposal: UpgradeProposal, policy: TargetPolicy, now: int) -> str:
         manifest_error = self._validate_manifest(
@@ -761,7 +763,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     def _assurance_snapshot(self, proposal: UpgradeProposal, policy: TargetPolicy, release_id: str,
                             primary_url: str, primary_id: str, corroboration_url: str,
-                            corroboration_id: str, now: int, target_view: object) -> str:
+                            corroboration_id: str, now: int, target_view: typing.Any) -> str:
         return json.dumps({
             "target": str(proposal.target), "proposal_id": int(proposal.proposal_id),
             "release_id": release_id, "candidate_code_hash": proposal.candidate_code_hash,
@@ -776,7 +778,11 @@ class ProofPatchGovernorV2(gl.Contract):
             "installed_release_id": target_view.proofpatch_installed_release_id(),
             "installed_mode": target_view.proofpatch_release_mode(),
             "installed_kernel_hash": target_view.get_proofpatch_kernel_hash(),
+            "target_governor": str(target_view.get_proofpatch_governor()),
+            "expected_governor": str(gl.message.contract_address),
             "kernel_hash": policy.proofpatch_kernel_hash,
+            "assurance_manifest": proposal.assurance_manifest,
+            "recovery_release_id": proposal.recovery_release_id,
         }, sort_keys=True, separators=(",", ":"))
 
     def _apply_assurance_result(self, proposal_id: u256, result: dict[object, object],
@@ -826,6 +832,7 @@ class ProofPatchGovernorV2(gl.Contract):
             "audit_authority": policy.audit_authority, "corroboration_authority": policy.assurance_corroboration_authority,
             "max_evidence_age_seconds": int(policy.max_evidence_age_seconds), "review_now": now,
             "release_code_hash": release.code_hash, "proposal_recovery_capsule_hash": proposal.recovery_capsule_hash,
+            "proposal_recovery_release_id": proposal.recovery_release_id,
         }, sort_keys=True, separators=(",", ":"))
 
     def _apply_incident_result(self, incident_id: str, result: dict[object, object]) -> None:

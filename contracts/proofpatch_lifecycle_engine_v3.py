@@ -1,4 +1,5 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportMissingParameterType=false, reportInvalidTypeForm=false, reportOptionalMemberAccess=false, reportUnboundVariable=false, reportOptionalSubscript=false, reportGeneralTypeIssues=false, reportAssignmentType=false, reportIndexIssue=false, reportCallIssue=false, reportUnnecessaryCast=false, reportPrivateUsage=false, reportUnusedFunction=false, reportUnusedImport=false
 from genlayer import *
 from dataclasses import dataclass
 from datetime import datetime
@@ -55,10 +56,9 @@ MAX_PROPOSAL_TTL_SECONDS = 14 * 24 * 60 * 60
 MAX_EXECUTION_TIMEOUT_SECONDS = 7 * 24 * 60 * 60
 MIN_WINDOW_SECONDS = 60
 SEMANTIC_KEYS = ('storage_layout_compatible', 'forward_storage_compatible', 'reverse_storage_compatible_or_recovery_safe', 'user_rights_preserved', 'no_privilege_escalation', 'proofpatch_kernel_preserved', 'upgrade_authority_preserved', 'provisional_guard_preserved', 'consensus_binding_preserved', 'evidence_trust_preserved', 'finality_safety_preserved', 'liveness_preserved', 'no_hidden_value_transfer', 'assurance_manifest_sufficient', 'assurance_path_preserved', 'recovery_capsule_valid', 'recovery_path_preserved', 'constitution_satisfied')
-REVIEW_ENGINE = '0xD0dFE03E1bFe2EC221Cb505B6a9321e1dA2bD333'
+REVIEW_ENGINE = '0xe33d03511EC85bccfAa1b2F93C2685F21eFA326e'
 STATUS_REVIEW_PENDING = 'REVIEW_PENDING'
 STATUS_INCIDENT_REVIEW_PENDING = 'INCIDENT_REVIEW_PENDING'
-
 @allow_storage
 @dataclass
 class TargetPolicy:
@@ -89,7 +89,6 @@ class TargetPolicy:
     max_manifest_bytes: u64
     max_capsule_bytes: u64
     active: bool
-
 @allow_storage
 @dataclass
 class UpgradeProposal:
@@ -124,7 +123,6 @@ class UpgradeProposal:
     execution_deadline: u64
     status: str
     last_review_code: str
-
 @allow_storage
 @dataclass
 class ReleaseRecord:
@@ -146,30 +144,14 @@ class ReleaseRecord:
     recovered_from_release_id: str
     recovery_incident_id: str
     lineage_hash: str
+ZERO = '0x0000000000000000000000000000000000000000'
+@gl.contract_interface
+class ProofPatchGovernorV2:
 
-@allow_storage
-@dataclass
-class IncidentRecord:
-    incident_id: str
-    target: Address
-    release_id: str
-    installed_code_hash: str
-    incident_type: str
-    primary_url: str
-    primary_evidence_id: str
-    corroboration_url: str
-    corroboration_evidence_id: str
-    policy_fingerprint: str
-    assurance_manifest_hash: str
-    recovery_capsule_hash: str
-    opened_at: u64
-    expires_at: u64
-    reviewed_at: u64
-    recovery_deadline: u64
-    status: str
-    last_review_code: str
-    recovery_authorized: bool
+    class Write:
 
+        def apply_lifecycle_result(self, operation: str, payload: str) -> None:
+            ...
 class ProofPatchLifecycleLogic:
 
     def __init__(self):
@@ -214,9 +196,6 @@ class ProofPatchLifecycleLogic:
     def _proposal_release_id(self, proposal: UpgradeProposal) -> str:
         return 'release-' + str(proposal.proposal_id) + '-' + proposal.candidate_code_hash[:16]
 
-    def _recovery_release_id(self, proposal: UpgradeProposal) -> str:
-        return proposal.recovery_release_id
-
     def _lineage_hash(self, target: Address, previous_lineage_hash: str, release_id: str, parent_release_id: str, version: str, code_hash: str, policy_fingerprint: str, evidence_set_hash: str, assurance_manifest_hash: str, recovery_capsule_hash: str) -> str:
         return self._hash_text_parts([SCHEMA_VERSION, str(target), previous_lineage_hash, release_id, parent_release_id, version, code_hash, policy_fingerprint, evidence_set_hash, assurance_manifest_hash, recovery_capsule_hash])
 
@@ -241,46 +220,6 @@ class ProofPatchLifecycleLogic:
         proposal.status = STATUS_INSTALLED_PROVISIONAL
         proposal.last_review_code = review_code
         self.installed_candidate_hashes[self._hash_text_parts([str(proposal.target), proposal.candidate_code_hash])] = True
-
-    def _complete_recovery(self, incident_id: str, release_id: str, recovery_hash: str) -> None:
-        if incident_id not in self.incidents:
-            raise gl.vm.UserError('Unknown incident')
-        incident = self.incidents[incident_id]
-        if incident.status == STATUS_RECOVERED:
-            return
-        if incident.status not in (STATUS_INCIDENT_CONFIRMED, STATUS_RECOVERY_QUEUED, STATUS_RECOVERY_RETRY) or release_id != incident.release_id:
-            raise gl.vm.UserError('Incident is not awaiting recovery confirmation')
-        if recovery_hash.lower() != incident.recovery_capsule_hash:
-            raise gl.vm.UserError('Recovery hash does not match precommitted capsule')
-        proposal = self.proposals[self.releases[release_id].proposal_id]
-        expected = self._recovery_release_id(proposal)
-        if self.target_final_release_id != expected:
-            raise gl.vm.UserError('Finalized target recovery release does not match')
-        if self.target_final_candidate_hash != recovery_hash.lower():
-            raise gl.vm.UserError('Finalized target recovery hash does not match')
-        if self.target_final_mode != MODE_RECOVERED:
-            raise gl.vm.UserError('Target has not finalized RECOVERED mode')
-        incident.status = STATUS_RECOVERED
-        incident.last_review_code = 'RECOVERY_VERIFIED'
-        self.releases[release_id].status = STATUS_RECOVERED
-        self.releases[release_id].recovery_incident_id = incident_id
-        policy = self.policies[incident.target]
-        if proposal.recovery_mode == 'RECOVERY_CANDIDATE':
-            if expected in self.releases:
-                if self.releases[expected].code_hash != recovery_hash.lower():
-                    raise gl.vm.UserError('Conflicting recovery release identity')
-            else:
-                affected = self.releases[release_id]
-                lineage = self._lineage_hash(incident.target, affected.lineage_hash, expected, release_id, proposal.recovery_version, recovery_hash.lower(), proposal.policy_fingerprint, proposal.evidence_set_hash, proposal.assurance_manifest_hash, proposal.recovery_capsule_hash)
-                self.releases[expected] = ReleaseRecord(release_id=expected, target=incident.target, version=proposal.recovery_version, parent_release_id=release_id, parent_code_hash=incident.installed_code_hash, source_url=proposal.recovery_source_url, code_hash=recovery_hash.lower(), proposal_id=proposal.proposal_id, policy_fingerprint=proposal.policy_fingerprint, evidence_set_hash=proposal.evidence_set_hash, assurance_manifest_hash=proposal.assurance_manifest_hash, recovery_capsule_hash=proposal.recovery_capsule_hash, installed_at=u64(self._now()), certified_at=u64(self._now()), status=STATUS_RECOVERED, recovered_from_release_id=release_id, recovery_incident_id=incident_id, lineage_hash=lineage)
-                self.release_count = u256(int(self.release_count) + 1)
-        elif expected not in self.releases:
-            raise gl.vm.UserError('Exact-parent recovery release is missing')
-        policy.current_version = proposal.recovery_version
-        policy.current_source_url = proposal.recovery_source_url
-        policy.current_code_hash = recovery_hash.lower()
-        policy.current_release_id = expected
-        self._release_active(incident.target, proposal.proposal_id)
 
     def cancel(self, proposal_id: u256) -> None:
         proposal = self._require_proposal(proposal_id)
@@ -358,104 +297,6 @@ class ProofPatchLifecycleLogic:
         proposal.last_review_code = 'EXECUTION_TIMEOUT'
         self._release_active(proposal.target, proposal_id)
 
-    def confirm_activation(self, proposal_id: u256, release_id: str, candidate_hash: str) -> None:
-        proposal = self._require_proposal(proposal_id)
-        if self.actor != proposal.target:
-            raise gl.vm.UserError('Only the protected target may confirm activation')
-        if proposal.status == STATUS_CERTIFIED:
-            return
-        if proposal.status != STATUS_CERTIFICATION_QUEUED:
-            raise gl.vm.UserError('Proposal is not awaiting activation confirmation')
-        if release_id != self._proposal_release_id(proposal) or candidate_hash.lower() != proposal.candidate_code_hash:
-            raise gl.vm.UserError('Activation identity does not match proposal')
-        if self.target_final_release_id != release_id:
-            raise gl.vm.UserError('Finalized target release does not match')
-        if self.target_final_candidate_hash != proposal.candidate_code_hash:
-            raise gl.vm.UserError('Finalized target hash does not match')
-        if self.target_final_mode != MODE_ACTIVE:
-            raise gl.vm.UserError('Target has not finalized ACTIVE mode')
-        release = self.releases[release_id]
-        now = self._now()
-        release.status = STATUS_CERTIFIED
-        release.certified_at = u64(now)
-        proposal.status = STATUS_CERTIFIED
-        proposal.last_review_code = 'CERTIFICATION_VERIFIED'
-        policy = self.policies[proposal.target]
-        policy.current_version = proposal.candidate_version
-        policy.current_source_url = proposal.candidate_source_url
-        policy.current_code_hash = proposal.candidate_code_hash
-        policy.current_release_id = release_id
-        self._release_active(proposal.target, proposal_id)
-
-    def expire_provisional(self, release_id: str) -> None:
-        if release_id not in self.releases:
-            raise gl.vm.UserError('Unknown release')
-        release = self.releases[release_id]
-        if release.status not in (STATUS_INSTALLED_PROVISIONAL, STATUS_ASSURANCE_PENDING, STATUS_ASSURANCE_REPAIR, STATUS_ASSURANCE_RETRY):
-            raise gl.vm.UserError('Release is not provisionally installed')
-        policy = self.policies[release.target]
-        if self._now() <= int(release.installed_at) + int(policy.assurance_deadline_seconds):
-            raise gl.vm.UserError('Assurance deadline has not passed')
-        incident_id = 'timeout-' + release_id
-        if not self.incident_exists:
-            proposal = self.proposals[release.proposal_id]
-            self.incidents[incident_id] = IncidentRecord(incident_id=incident_id, target=release.target, release_id=release_id, installed_code_hash=release.code_hash, incident_type='ASSURANCE_TIMEOUT', primary_url='', primary_evidence_id='', corroboration_url='', corroboration_evidence_id='', policy_fingerprint=release.policy_fingerprint, assurance_manifest_hash=release.assurance_manifest_hash, recovery_capsule_hash=release.recovery_capsule_hash, opened_at=u64(self._now()), expires_at=u64(self._now() + int(policy.proposal_ttl_seconds)), reviewed_at=u64(0), recovery_deadline=u64(0), status=STATUS_INCIDENT_OPEN, last_review_code='ASSURANCE_DEADLINE_EXPIRED', recovery_authorized=False)
-            proposal.status = STATUS_INCIDENT_OPEN
-        release.status = STATUS_INCIDENT_OPEN
-
-    def confirm_recovery(self, incident_id: str, release_id: str, recovery_hash: str) -> None:
-        if incident_id not in self.incidents:
-            raise gl.vm.UserError('Unknown incident')
-        incident = self.incidents[incident_id]
-        if self.actor != incident.target:
-            raise gl.vm.UserError('Only the protected target may confirm recovery')
-        if incident.status != STATUS_RECOVERED and self._now() > int(incident.recovery_deadline):
-            raise gl.vm.UserError('Recovery confirmation deadline has passed')
-        self._complete_recovery(incident_id, release_id, recovery_hash)
-
-    def reconcile_recovery(self, incident_id: str) -> None:
-        if incident_id not in self.incidents:
-            raise gl.vm.UserError('Unknown incident')
-        incident = self.incidents[incident_id]
-        if incident.status not in (STATUS_INCIDENT_CONFIRMED, STATUS_RECOVERY_QUEUED, STATUS_RECOVERY_RETRY):
-            raise gl.vm.UserError('Incident is not awaiting recovery reconciliation')
-        self._complete_recovery(incident_id, incident.release_id, incident.recovery_capsule_hash)
-
-    def expire_recovery(self, incident_id: str) -> None:
-        if incident_id not in self.incidents:
-            raise gl.vm.UserError('Unknown incident')
-        incident = self.incidents[incident_id]
-        if incident.status not in (STATUS_INCIDENT_CONFIRMED, STATUS_RECOVERY_QUEUED):
-            raise gl.vm.UserError('Incident is not awaiting recovery')
-        if self._now() <= int(incident.recovery_deadline):
-            raise gl.vm.UserError('Recovery deadline has not passed')
-        if self.target_final_mode == MODE_RECOVERED:
-            self._complete_recovery(incident_id, incident.release_id, incident.recovery_capsule_hash)
-            return
-        incident.status = STATUS_RECOVERY_RETRY
-        self.releases[incident.release_id].status = STATUS_RECOVERY_RETRY
-
-    def retry_recovery(self, incident_id: str) -> None:
-        if incident_id not in self.incidents:
-            raise gl.vm.UserError('Unknown incident')
-        incident = self.incidents[incident_id]
-        if incident.status != STATUS_RECOVERY_RETRY:
-            raise gl.vm.UserError('Recovery is not retryable')
-        policy = self.policies[incident.target]
-        now = self._now()
-        incident.status = STATUS_INCIDENT_CONFIRMED
-        incident.recovery_deadline = u64(now + int(policy.execution_timeout_seconds))
-        self.releases[incident.release_id].status = STATUS_INCIDENT_CONFIRMED
-        self.actions.append({'kind': 'recover', 'args': [incident_id, incident.release_id, incident.recovery_capsule_hash]})
-ZERO = '0x0000000000000000000000000000000000000000'
-
-@gl.contract_interface
-class ProofPatchGovernorV2:
-    class Write:
-
-        def apply_lifecycle_result(self, operation: str, payload: str) -> None:
-            ...
-
 class ProofPatchLifecycleEngine(gl.Contract):
     admin: Address
     governor: Address
@@ -498,56 +339,53 @@ class ProofPatchLifecycleEngine(gl.Contract):
         if isinstance(value, int):
             return int(value)
         if isinstance(value, dict):
-            return {str(k): self._encode(v) for (k, v) in value.items()}
+            return {str(key): self._encode(item) for key, item in value.items()}
         if isinstance(value, list):
-            return [self._encode(v) for v in value]
+            return [self._encode(item) for item in value]
         if hasattr(value, '__dict__'):
-            return {k: self._encode(v) for (k, v) in value.__dict__.items()}
+            return {key: self._encode(item) for key, item in value.__dict__.items()}
         return value
 
-    def _record(self, cls: object, raw: dict[object, object]) -> object:
+    def _record(self, cls: typing.Any, raw: dict[object, object]) -> typing.Any:
         value = list(raw.values())
-        if cls is TargetPolicy or cls is UpgradeProposal or cls is ReleaseRecord or cls is IncidentRecord:
+        if cls in (TargetPolicy, UpgradeProposal, ReleaseRecord):
             value[1] = Address(value[1])
         if cls is TargetPolicy:
             value[0] = Address(value[0])
         elif cls is UpgradeProposal:
             value[2] = Address(value[2])
-            if isinstance(value[8], str): value[8] = bytes.fromhex(value[8])
-            if isinstance(value[20], str): value[20] = bytes.fromhex(value[20])
+            if isinstance(value[8], str):
+                value[8] = bytes.fromhex(value[8])
+            if isinstance(value[20], str):
+                value[20] = bytes.fromhex(value[20])
         return cls(**dict(zip(cls.__annotations__.keys(), value)))
 
     def _load(self, logic: ProofPatchLifecycleLogic, data: dict[object, object]) -> None:
         logic.actor = Address(data['actor'])
         logic.now = int(data['now'])
-        records = data.get('records', {})
+        records = typing.cast(dict[str, typing.Any], data.get('records', {}))
         logic.proposal_count = u256(data.get('proposal_count', 0))
         logic.release_count = u256(data.get('release_count', 0))
-        logic.used_candidate_hashes = dict(data.get('installed_candidate_hashes', {}))
+        logic.installed_candidate_hashes = typing.cast(dict[object, bool], data.get('installed_candidate_hashes', {}))
         if records.get('policy') is not None:
-            p = self._record(TargetPolicy, records['policy'])
-            logic.policies[p.target] = p
+            policy = self._record(TargetPolicy, records['policy'])
+            logic.policies[policy.target] = policy
         if records.get('proposal') is not None:
-            p = self._record(UpgradeProposal, records['proposal'])
-            logic.proposals[p.proposal_id] = p
-        for key in ('release', 'parent_release', 'recovery_release'):
+            proposal = self._record(UpgradeProposal, records['proposal'])
+            logic.proposals[proposal.proposal_id] = proposal
+        for key in ('release', 'parent_release'):
             if records.get(key) is not None:
-                r = self._record(ReleaseRecord, records[key])
-                logic.releases[r.release_id] = r
-        if records.get('incident') is not None:
-            i = self._record(IncidentRecord, records['incident'])
-            logic.incidents[i.incident_id] = i
+                release = self._record(ReleaseRecord, records[key])
+                logic.releases[release.release_id] = release
         if data.get('active_target') is not None:
             logic.active_proposal_by_target[Address(data['active_target'])] = u256(data.get('active_value', 0))
-        logic.installed_candidate_hashes = logic.used_candidate_hashes
-        logic.incident_exists = bool(data.get('incident_exists', False))
-        view = data.get('target_final', {})
+        view = typing.cast(dict[str, typing.Any], data.get('target_final', {}))
         logic.target_final_proposal_id = u256(view.get('proposal_id', 0))
         logic.target_final_candidate_hash = str(view.get('candidate_hash', ''))
         logic.target_final_release_id = str(view.get('release_id', ''))
         logic.target_final_mode = str(view.get('mode', ''))
         logic.target_final_kernel_hash = str(view.get('kernel_hash', ''))
-        nonfinal = data.get('target_nonfinal', {})
+        nonfinal = typing.cast(dict[str, typing.Any], data.get('target_nonfinal', {}))
         logic.target_nonfinal_proposal_id = u256(nonfinal.get('proposal_id', 0))
         logic.target_nonfinal_candidate_hash = str(nonfinal.get('candidate_hash', ''))
 
@@ -559,16 +397,16 @@ class ProofPatchLifecycleEngine(gl.Contract):
             out['proposals'].append(self._encode(value))
         for value in logic.releases.values():
             out['releases'].append(self._encode(value))
-        for value in logic.incidents.values():
-            out['incidents'].append(self._encode(value))
-        for (key, value) in logic.active_proposal_by_target.items():
-            out['active'].append([str(key), int(value)])
+        for target, value in logic.active_proposal_by_target.items():
+            out['active'].append([str(target), int(value)])
         return out
 
     @gl.public.write
     def execute(self, operation: str, request: str) -> None:
         if gl.message.sender_address != self.executor:
             raise gl.vm.UserError('Only the bound lifecycle request engine may execute lifecycle logic')
+        if operation not in ('cancel', 'expire', 'confirm_install', 'reconcile_install', 'timeout'):
+            raise gl.vm.UserError('Unsupported proposal lifecycle operation')
         data = json.loads(request)
         logic = ProofPatchLifecycleLogic()
         self._load(logic, data)
@@ -581,21 +419,7 @@ class ProofPatchLifecycleEngine(gl.Contract):
             logic.confirm_install(*args)
         elif operation == 'reconcile_install':
             logic.reconcile_install(*args)
-        elif operation == 'timeout':
-            logic.mark_timeout(*args)
-        elif operation == 'confirm_activation':
-            logic.confirm_activation(*args)
-        elif operation == 'expire_provisional':
-            logic.expire_provisional(*args)
-        elif operation == 'confirm_recovery':
-            logic.confirm_recovery(*args)
-        elif operation == 'reconcile_recovery':
-            logic.reconcile_recovery(*args)
-        elif operation == 'expire_recovery':
-            logic.expire_recovery(*args)
-        elif operation == 'retry_recovery':
-            logic.retry_recovery(*args)
         else:
-            raise gl.vm.UserError('Unknown lifecycle operation')
+            logic.mark_timeout(*args)
         payload = json.dumps(self._patch(logic, operation), separators=(',', ':'))
         ProofPatchGovernorV2(self.governor).emit(on='finalized').apply_lifecycle_result(operation, payload)

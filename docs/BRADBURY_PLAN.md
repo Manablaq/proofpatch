@@ -1,5 +1,7 @@
 # Bradbury Verification Plan and Record
 
+> The current deployment plan and address set is [`BRADBURY_V3_DEPLOYMENT.md`](BRADBURY_V3_DEPLOYMENT.md). The single-facade proof below is retained as historical evidence.
+
 This document now distinguishes the canonical safe-upgrade path that is already complete from adversarial/recovery paths that must not be replayed against proposal #1.
 
 ## Canonical deployment
@@ -119,4 +121,4 @@ Preserve:
 - final `VERIFIED` proposal summary;
 - final audit log hash.
 
-See `BRADBURY_CURRENT_FINAL_EVIDENCE.md` for the current canonical record. `BRADBURY_FINAL_EVIDENCE.md` is retained only as superseded historical provenance.
+See `BRADBURY_V3_DEPLOYMENT.md` for the current modular record. `BRADBURY_CURRENT_FINAL_EVIDENCE.md` and `BRADBURY_FINAL_EVIDENCE.md` are retained only as superseded historical provenance.

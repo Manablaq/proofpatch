@@ -60,7 +60,7 @@ function DataValue({
       <span>{label}</span>
       <div>
         <strong className={mono ? "mono" : ""}>{value || "—"}</strong>
-        {copyable ? (
+        {copyable && value ? (
           <button onClick={() => copy(value, label)} aria-label={`Copy ${label}`}>
             <Copy size={14} />
           </button>
@@ -75,6 +75,7 @@ export function Dashboard() {
   const finality = useCanonicalFinalityChain();
 
   const state = live.data;
+  const stateAvailable = Boolean(state) && !live.isError;
 
   const invariantCount = [
     state?.proposalStatus === "VERIFIED",
@@ -165,14 +166,14 @@ export function Dashboard() {
             <div>
               <div className="eyebrow-row">
                 <span className="live-dot" />
-                FINALIZED BRADBURY STATE
+                {stateAvailable ? "FINALIZED BRADBURY STATE" : "BRADBURY STATE UNAVAILABLE"}
               </div>
               <h1>
                 Upgrade <em>verified.</em>
               </h1>
               <p>
-                Proposal #1 installed the exact approved safe-V2 bytes after consensus,
-                finality and target-side re-verification.
+                Every value in this workspace is read from finalized Bradbury state.
+                Values remain unavailable until the read succeeds.
               </p>
               <div className="hero-actions">
                 <a
@@ -201,7 +202,7 @@ export function Dashboard() {
               <div className="orb-ring ring-two" />
               <div className="orb-core">
                 <ShieldCheck size={34} />
-                <strong>{state?.proposalStatus || "VERIFIED"}</strong>
+                <strong>{stateAvailable ? state?.proposalStatus : "UNAVAILABLE"}</strong>
                 <span>install state</span>
               </div>
             </div>
@@ -210,26 +211,26 @@ export function Dashboard() {
           {live.isError ? (
             <div className="rpc-warning">
               <Activity size={17} />
-              Bradbury read is temporarily unavailable. The UI will retry automatically;
-              no write is retried.
+              Bradbury read is temporarily unavailable. Contract state is hidden until
+              a finalized read succeeds; no write is retried.
             </div>
           ) : null}
 
           <section className="metric-grid">
             <article>
               <span>Current version</span>
-              <strong>{state?.currentVersion || PROOFPATCH.candidateVersion}</strong>
-              <small>advanced from {PROOFPATCH.parentVersion}</small>
+              <strong>{stateAvailable ? state?.currentVersion : "—"}</strong>
+              <small>{stateAvailable ? `advanced from ${PROOFPATCH.parentVersion}` : "read unavailable"}</small>
             </article>
             <article>
               <span>Final invariants</span>
-              <strong>{state ? `${invariantCount}/10` : "10/10"}</strong>
-              <small>storage + authority preserved</small>
+              <strong>{stateAvailable ? `${invariantCount}/10` : "—"}</strong>
+              <small>{stateAvailable ? "storage + authority preserved" : "read unavailable"}</small>
             </article>
             <article>
               <span>Active proposal</span>
-              <strong>{state?.activeProposal || "0"}</strong>
-              <small>release lock cleared</small>
+              <strong>{stateAvailable ? state?.activeProposal : "—"}</strong>
+              <small>{stateAvailable ? "release lock state" : "read unavailable"}</small>
             </article>
             <article>
               <span>Network</span>
@@ -252,26 +253,7 @@ export function Dashboard() {
                 </span>
               </div>
               <div className="finality-list">
-                {(finality.data ?? [
-                  {
-                    label: "Review consensus",
-                    hash: PROOFPATCH.transactions.reviewParent,
-                    status: "FINALIZED",
-                    execution: "FINISHED_WITH_RETURN",
-                  },
-                  {
-                    label: "Finality-triggered upgrade",
-                    hash: PROOFPATCH.transactions.upgradeChild,
-                    status: "FINALIZED",
-                    execution: "FINISHED_WITH_RETURN",
-                  },
-                  {
-                    label: "Post-install confirmation",
-                    hash: PROOFPATCH.transactions.confirmationChild,
-                    status: "FINALIZED",
-                    execution: "FINISHED_WITH_RETURN",
-                  },
-                ]).map((item, index) => (
+                {(finality.data ?? []).map((item, index) => (
                   <div className="finality-row" key={item.hash}>
                     <div className="step-index">{String(index + 1).padStart(2, "0")}</div>
                     <div className="step-copy">
@@ -279,11 +261,18 @@ export function Dashboard() {
                       <code>{short(item.hash, 12, 10)}</code>
                     </div>
                     <div className="step-result">
-                      <span>{item.status || "FINALIZED"}</span>
-                      <small>{item.execution || "FINISHED_WITH_RETURN"}</small>
+                      <span>{item.status || "Unavailable"}</span>
+                      <small>{item.execution || "—"}</small>
                     </div>
                   </div>
                 ))}
+                {!finality.data?.length ? (
+                  <div className="finality-row">
+                    <div className="step-index">—</div>
+                    <div className="step-copy"><strong>Finality chain unavailable</strong><code>Awaiting finalized reads</code></div>
+                    <div className="step-result"><span>Unavailable</span><small>—</small></div>
+                  </div>
+                ) : null}
               </div>
             </article>
 
@@ -297,11 +286,11 @@ export function Dashboard() {
               </div>
               <div className="hash-display">
                 <span>approved_candidate_sha256</span>
-                <code>{state?.currentCodeHash || PROOFPATCH.candidateCodeHash}</code>
+                <code>{stateAvailable ? state?.currentCodeHash : "UNAVAILABLE"}</code>
                 <button
                   onClick={() =>
                     copy(
-                      state?.currentCodeHash || PROOFPATCH.candidateCodeHash,
+                      stateAvailable ? state?.currentCodeHash ?? "" : "",
                       "Candidate SHA-256",
                     )
                   }
@@ -328,21 +317,11 @@ export function Dashboard() {
               </div>
 
               <div className="data-stack">
-                <DataValue
-                  label="Evidence set hash"
-                  value={state?.evidenceSetHash || PROOFPATCH.evidenceSetHash}
-                  mono
-                  copyable
-                />
-                <DataValue
-                  label="Policy fingerprint"
-                  value={state?.policyFingerprint || PROOFPATCH.policyFingerprint}
-                  mono
-                  copyable
-                />
+                <DataValue label="Evidence set hash" value={stateAvailable ? state?.evidenceSetHash ?? "" : ""} mono copyable />
+                <DataValue label="Policy fingerprint" value={stateAvailable ? state?.policyFingerprint ?? "" : ""} mono copyable />
                 <DataValue
                   label="Final audit SHA-256"
-                  value={PROOFPATCH.evidence.finalAuditSha256}
+                  value={stateAvailable ? PROOFPATCH.evidence.finalAuditSha256 : ""}
                   mono
                   copyable
                 />
@@ -358,12 +337,12 @@ export function Dashboard() {
                 <Fingerprint size={20} />
               </div>
               <div className="data-stack compact-stack">
-                <DataValue label="Release" value={state?.releaseLabel || PROOFPATCH.releaseLabel} />
-                <DataValue label="Owner" value={short(state?.owner || PROOFPATCH.owner)} mono />
-                <DataValue label="Governor" value={short(state?.governor || PROOFPATCH.governor)} mono />
+                <DataValue label="Release" value={stateAvailable ? state?.releaseLabel ?? "" : ""} />
+                <DataValue label="Owner" value={stateAvailable ? short(state?.owner ?? "") : ""} mono />
+                <DataValue label="Governor" value={stateAvailable ? short(state?.governor ?? "") : ""} mono />
                 <DataValue
                   label="Protected value"
-                  value={state?.protectedValue || PROOFPATCH.protectedValue}
+                  value={stateAvailable ? state?.protectedValue ?? "" : ""}
                   mono
                 />
               </div>

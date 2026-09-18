@@ -1,137 +1,56 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
-_s0='ProofPatch invariant'
-_s1='used_evidence_ids'
-_s2='installed_at'
-_s3='proposal_id'
-_s4='proposals'
-from genlayer import*
-_ax='EVIDENCE_'
-_az='MANIFEST_'
-_av='ASSURANCE_'
-_ay='INCIDENT_'
-_ba='RECOVERY_'
-_aw='CANDIDATE_'
-_au='CI_'
-_at='AUDIT_'
-import hashlib
-import json
-_k='0x0000000000000000000000000000000000000000'
-_aa=1024
-_ab=160
-_x='INSTALLED_PROVISIONAL'
-_o=_av+'PENDING'
-_y=_av+'REPAIR_REQUIRED'
-_z=_av+'RETRY_REQUIRED'
-
+from genlayer import*;from genlayer.py.public_abi import StorageType;import hashlib,json,typing;ZERO='0x0000000000000000000000000000000000000000';MAX_URL_BYTES=1024;MAX_ID_BYTES=160;STATUS_INSTALLED_PROVISIONAL='INSTALLED_PROVISIONAL';STATUS_ASSURANCE_PENDING='ASSURANCE_PENDING';STATUS_ASSURANCE_REPAIR='ASSURANCE_REPAIR_REQUIRED';STATUS_ASSURANCE_RETRY='ASSURANCE_RETRY_REQUIRED'
 @gl.contract_interface
-class _bf:
-
-    class _bj:
-
-        def get_state_record(self,_v:str,_i:str)->str:
-            ...
-
-    class _bh:
-
-        def apply_policy_result(self,_j:str,_as:str)->None:
-            ...
-
-class _bd:
-
-    def _ao(self,_a):
-        return hashlib.sha256('\x1f'.join(_a).encode('utf-8')).hexdigest()
-
-    def _ap(self,_h,_ak,_af,_ae):
-        _w=len(_h.encode('utf-8'))
-        if _w<_af or _w>_ae:
-            raise gl.vm.UserError(f'{_ak} length is invalid')
-
-    def _al(self,_h):
-        if not _h or _h in('.','..'):
-            return False
-        _ad='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-'
-        return all((_l in _ad for _l in _h))
-
-    def _an(self,_f):
-        _t='https://raw.githubusercontent.com/'
-        if not _f.startswith(_t)or not _f.endswith('/'):
-            return ''
-        _a=_f[len(_t):].split('/')
-        if len(_a)!=3 or _a[2]!='':
-            return ''
-        if not self._al(_a[0])or not self._al(_a[1]):
-            return ''
-        return _a[0]
-
-    def _am(self,_n,_f):
-        if len(_n.encode('utf-8'))>_aa or self._an(_f)=='':
-            return False
-        if not _n.startswith(_f):
-            return False
-        _a=_n[len(_f):].split('/',1)
-        if len(_a)!=2 or len(_a[0])!=40 or any((_l not in '0123456789abcdef' for _l in _a[0])):
-            return False
-        return all((self._al(_ah)for _ah in _a[1].split('/')))
-
-    def _aq(self,_e,_d,_aj,_ai,_v,_p):
-        self._ap(_p,'evidence_id',8,_ab)
-        _i=self._ao([_aj,_ai,_v,_p])
-        if json.loads(_e.get_state_record('evidence',_i)).get('value',False)or _d[_s1].get(_i,False):
-            raise gl.vm.UserError(_s0)
-        _d[_s1][_i]=True
-
-    def _ar(self,_e,_c,_m):
-        _q=int(_c[0])
-        _b=json.loads(_e.get_state_record('proposal',str(_q)))
-        _g=json.loads(_e.get_state_record('policy',_b['target']))
-        _ac='release-'+str(_b[_s3])+'-'+_b['candidate_code_hash'][:16]
-        _s=json.loads(_e.get_state_record('release',_ac))
-        if _b['status']not in(_x,_y,_z,_o):
-            raise gl.vm.UserError(_s0)
-        if _m<int(_s[_s2])+int(_g['assurance_observation_delay_seconds']):
-            raise gl.vm.UserError(_s0)
-        if _m>int(_s[_s2])+int(_g['assurance_deadline_seconds']):
-            raise gl.vm.UserError(_s0)
-        if not self._am(_c[1],_g['assurance_prefix'])or not self._am(_c[3],_g['assurance_corroboration_prefix']):
-            raise gl.vm.UserError(_s0)
-        if _c[2]==_c[4]:
-            raise gl.vm.UserError(_s0)
-        _d={'operation':'assure',_s4:[_b],'releases':[],_s1:{}}
-        self._aq(_e,_d,_b['target'],_g['assurance_authority'],'assurance_primary',_c[2])
-        self._aq(_e,_d,_b['target'],_g['assurance_corroboration_authority'],'assurance_corroboration',_c[4])
-        _b['status']=_o
-        _b['reviewed_at']=_m
-        _b['last_review_code']='ENGINE_PENDING'
-        _d[_s4]=[_b]
-        _d['review']={_s3:_q,'primary_url':_c[1],'primary_evidence_id':_c[2],'corroboration_url':_c[3],'corroboration_evidence_id':_c[4]}
-        return _d
-
-class _bb(gl.Contract):
-    admin:Address
-    governor:Address
-
-    def __init__(self):
-        self.admin=gl.message.sender_address
-        self.governor=Address(_k)
-
-    @gl.public.write
-    def bind_governor(self,governor:str)->None:
-        if gl.message.sender_address!=self.admin:
-            raise gl.vm.UserError(_s0)
-        if self.governor!=Address(_k):
-            raise gl.vm.UserError(_s0)
-        _r=Address(governor)
-        if _r==Address(_k):
-            raise gl.vm.UserError(_s0)
-        self.governor=_r
-
-    @gl.public.write
-    def execute(self,_j:str,_ag:str)->None:
-        if gl.message.sender_address!=self.governor:
-            raise gl.vm.UserError(_s0)
-        if _j!='assure':
-            raise gl.vm.UserError(_s0)
-        _u=json.loads(_ag)
-        _e=_bf(self.governor).view(state=StorageType.LATEST_FINAL)
-        _d=_bd()._ar(_e,_u['args'],int(_u['now']))
-        _bf(self.governor).emit(on='finalized').apply_policy_result(_j,json.dumps(_d,separators=(',',':')))
+class ProofPatchGovernorV2:
+	class View:
+		def get_state_record(self,kind:str,key:str)->str:...
+	class Write:
+		def apply_policy_result(self,operation:str,payload:str)->None:...
+class ProofPatchAssuranceLogic:
+	def _hash_text_parts(self,parts:list[str])->str:return hashlib.sha256('\x1f'.join(parts).encode('utf-8')).hexdigest()
+	def _check_text(self,value:str,label:str,minimum:int,maximum:int)->None:
+		size=len(value.encode('utf-8'))
+		if size<minimum or size>maximum:raise gl.vm.UserError(f"{label} length is invalid")
+	def _is_canonical_raw_segment(self,value:str)->bool:
+		if not value or value in('.','..'):return False
+		allowed='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-';return all(char in allowed for char in value)
+	def _raw_github_owner(self,prefix:str)->str:
+		base='https://raw.githubusercontent.com/'
+		if not prefix.startswith(base)or not prefix.endswith('/'):return''
+		parts=prefix[len(base):].split('/')
+		if len(parts)!=3 or parts[2]!='':return''
+		if not self._is_canonical_raw_segment(parts[0])or not self._is_canonical_raw_segment(parts[1]):return''
+		return parts[0]
+	def _is_immutable_url(self,url:str,prefix:str)->bool:
+		if len(url.encode('utf-8'))>MAX_URL_BYTES or self._raw_github_owner(prefix)=='':return False
+		if not url.startswith(prefix):return False
+		parts=url[len(prefix):].split('/',1)
+		if len(parts)!=2 or len(parts[0])!=40 or any(char not in'0123456789abcdef'for char in parts[0]):return False
+		return all(self._is_canonical_raw_segment(segment)for segment in parts[1].split('/'))
+	def _reserve(self,view:typing.Any,patch:dict[str,typing.Any],target:str,issuer:str,kind:str,evidence_id:str)->None:
+		self._check_text(evidence_id,'evidence_id',8,MAX_ID_BYTES);key=self._hash_text_parts([target,issuer,kind,evidence_id])
+		if json.loads(view.get_state_record('evidence',key)).get('value',False)or patch['used_evidence_ids'].get(key,False):raise gl.vm.UserError('Evidence identifier has already been used')
+		patch['used_evidence_ids'][key]=True
+	def _assure(self,view:typing.Any,args:list[typing.Any],now:int)->dict[object,object]:
+		proposal_id=int(args[0]);proposal=json.loads(view.get_state_record('proposal',str(proposal_id)));policy=json.loads(view.get_state_record('policy',proposal['target']));release_id='release-'+str(proposal['proposal_id'])+'-'+proposal['candidate_code_hash'][:16];release=json.loads(view.get_state_record('release',release_id))
+		if proposal['status']not in(STATUS_INSTALLED_PROVISIONAL,STATUS_ASSURANCE_REPAIR,STATUS_ASSURANCE_RETRY,STATUS_ASSURANCE_PENDING):raise gl.vm.UserError('Release is not awaiting assurance')
+		if now<int(release['installed_at'])+int(policy['assurance_observation_delay_seconds']):raise gl.vm.UserError('Assurance observation period has not elapsed')
+		if now>int(release['installed_at'])+int(policy['assurance_deadline_seconds']):raise gl.vm.UserError('Assurance deadline has passed')
+		if not self._is_immutable_url(args[1],policy['assurance_prefix'])or not self._is_immutable_url(args[3],policy['assurance_corroboration_prefix']):raise gl.vm.UserError('Assurance evidence URL is not approved and immutable')
+		if args[2]==args[4]:raise gl.vm.UserError('Assurance evidence identifiers must be distinct')
+		patch={'operation':'assure','proposals':[proposal],'releases':[],'used_evidence_ids':{}};self._reserve(view,patch,proposal['target'],policy['assurance_authority'],'assurance_primary',args[2]);self._reserve(view,patch,proposal['target'],policy['assurance_corroboration_authority'],'assurance_corroboration',args[4]);proposal['status']=STATUS_ASSURANCE_PENDING;proposal['reviewed_at']=now;proposal['last_review_code']='ENGINE_PENDING';patch['proposals']=[proposal];patch['review']={'proposal_id':proposal_id,'primary_url':args[1],'primary_evidence_id':args[2],'corroboration_url':args[3],'corroboration_evidence_id':args[4]};return patch
+class ProofPatchAssuranceEngine(gl.Contract):
+	admin:Address;governor:Address
+	def __init__(self):self.admin=gl.message.sender_address;self.governor=Address(ZERO)
+	@gl.public.write
+	def bind_governor(self,governor:str)->None:
+		if gl.message.sender_address!=self.admin:raise gl.vm.UserError('Only admin may bind governor')
+		if self.governor!=Address(ZERO):raise gl.vm.UserError('Governor is already bound')
+		candidate=Address(governor)
+		if candidate==Address(ZERO):raise gl.vm.UserError('Governor cannot be the zero address')
+		self.governor=candidate
+	@gl.public.write
+	def execute(self,operation:str,request:str)->None:
+		if gl.message.sender_address!=self.governor:raise gl.vm.UserError('Only the bound governor may execute assurance logic')
+		if operation!='assure':raise gl.vm.UserError('Unknown assurance operation')
+		data=json.loads(request);view=ProofPatchGovernorV2(self.governor).view(state=StorageType.LATEST_FINAL);patch=ProofPatchAssuranceLogic()._assure(view,data['args'],int(data['now']));ProofPatchGovernorV2(self.governor).emit(on='finalized').apply_policy_result(operation,json.dumps(patch,separators=(',',':')))

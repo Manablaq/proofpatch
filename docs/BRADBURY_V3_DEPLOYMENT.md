@@ -1,5 +1,71 @@
 # ProofPatch V3 Bradbury Deployment
 
+## Current corrected graph
+
+The current submission is the corrected graph below. The previous graph in the historical section was superseded after an audit found that its compact facade omitted two review callback address constants. Every address below was freshly deployed from the compact artifact named in the last column, and every governor/executor binding was submitted with a state-changing `genlayer write` transaction.
+
+```text
+Network:  GenLayer Bradbury Testnet
+RPC:      https://rpc-bradbury.genlayer.com
+Worker:   0x1f87Ae197af539253978d435aD45cCf28Fb95024
+Facade:   0x1DB03E1F4D7F1F9af5C6f0Abc1A320CA2506F4A6
+Facade deployment: 0x1925ad0f82726902391397a99837f607db9bcea8b1afbe29a90f87bf324879c9
+```
+
+| Component | Address | Deployment transaction | Artifact |
+| --- | --- | --- | --- |
+| Proposal review | `0x9840cCf5DBdf4AE5945Ca73367e8336cCBEF578e` | `0x22fb47f32562c30d7656206a346d4c04976e27544b6d3b07146c7a6227bece54` | `proofpatch_review_engine_v2_compact.py` |
+| Fact review | `0x32E5eFAF7558B65f72dA2B2B27f040e74fA148BC` | `0x30fdf5c8b33270820edb9337d13deac67f5a2ae6d30b174bbd8546908f59a274` | `proofpatch_fact_review_engine_v3_compact.py` |
+| Create policy | `0xCe91B262d6358dFd95A32a56fd577b71FB0DdC7F` | `0x612284169c8f60f6ccab30dd51e42c1334603d175537224796d675337f8585ec` | `proofpatch_policy_engine_v3_compact.py` |
+| Repair policy | `0x59A065F97a4d475Fc60AC350aDF5163AbfE27F91` | `0x1ba87b1e9cb28d85445899ac62cea36ddb492ccd9eac4fdf698da3922d21e41c` | `proofpatch_repair_policy_engine_v3_compact.py` |
+| Incident policy | `0x3De9294a39A4b9e31975a74426a3f29C32E0829E` | `0x3c7cf80c6be2e616fa2dba9ea2a7026a53f0011533068dad590fbbf0975e997b` | `proofpatch_incident_policy_engine_v3_compact.py` |
+| Registration | `0xF7e1F1D31f60e866E2f0a1367834BEF7abC77b43` | `0xbeaf4bc538db0692d94fbd548e86c843476a83e33d48eda7a3511e3ece12f120` | `proofpatch_registration_engine_v3_compact.py` |
+| Assurance | `0x6740374AA335c4e02EC079d3d1E5A2198A28320F` | `0x39a4ac2a4513789d31ab80f725aa542e4d0287937770f36a3b6b4486b89bb3b5` | `proofpatch_assurance_engine_v3_compact.py` |
+| Summary | `0x209343F604Ec7A53339C3F555D5Cf333F4BEf4FD` | `0x3e50f76583ea3b5a9157a7de4690978667f973c8ff0c063e31737720b8b6e45b` | `proofpatch_summary_engine_v3_compact.py` |
+| Install lifecycle | `0xE7F337c2Bc992a94f213C41B66d7E49381F31145` | `0x24eb93f23e5ff04af26b455cb599cf1f764aaffdeea5eade9cff59c1f74b70c4` | `proofpatch_lifecycle_install_engine_v3_compact.py` |
+| Timeout lifecycle | `0xd73FF76b1A2438eAD59DA4072F9484aED25C7865` | `0xc14e73bd985b56e484782d8d480ff9ec1afbfdff5f0f9aa7636e533239c9d158` | `proofpatch_lifecycle_timeout_engine_v3_compact.py` |
+| Activation lifecycle | `0x429A733D5949bCB0DE97E32Da58E8d192acC41Ca` | `0x8c278ad5c07d8d8c3804b20bd1e23bb3a8df1baaaf0d4f7bad057534b6d2072c` | `proofpatch_lifecycle_activation_engine_v3_compact.py` |
+| Recovery lifecycle | `0xebf47F06759481606910dA564FF48203e386b95E` | `0xd146bcf878c2352d58bad59c070ad9f8bf5460e7b3f437ee5ebe8765dbd6a844` | `proofpatch_lifecycle_recovery_engine_v3_compact.py` |
+| Lifecycle request | `0xC01B9D36B3eEe2A563A4E7FA688b9a799fa759E2` | `0x4a2eb20cf3e57f7df2dc3aee141cc757a460e5e23ce0e8aa7db00171deb9bc90` | `proofpatch_lifecycle_request_engine_v3_compact.py` |
+| Review commit | `0xef8F5C807117b2A606B861e947F2ff5756Db8CE7` | `0xb366c52016bedea170dacfbdfc0e746c6862e22ec78ca0c300c3f5e93dd4bc75` | `proofpatch_review_commit_engine_v3_compact.py` |
+| Review request | `0x50d787E2078683Bbc27462208475578cE7295aF9` | `0x0eecac51106535ccb933eb3e8c3009c95e1bcf9b2f1c063c8b459a18493b4966` | `proofpatch_review_request_engine_v3_compact.py` |
+| Corrected facade | `0x1DB03E1F4D7F1F9af5C6f0Abc1A320CA2506F4A6` | `0x1925ad0f82726902391397a99837f607db9bcea8b1afbe29a90f87bf324879c9` | `proofpatch_governor_v3_facade_compact.py` |
+
+Governor bindings were submitted to the facade for all 15 components:
+
+| Component | Governor binding transaction |
+| --- | --- |
+| Proposal review | `0xa0b9a46ad71eb60b4acf3656c97bb96e554c678cea432ad40d2070b623b6ae95` |
+| Fact review | `0xda2c1cfbe54d9a98677f5420b8118dbf4496584222617bd61f7438b538900af6` |
+| Create policy | `0x2a01d1b4afa875291d16288063b995bcfcc33d5c22ecd8b279882048982f8047` |
+| Repair policy | `0x8c865aa304cfcfc6f36e9845e8e0fad8f845f85713300947b59e3cf983bcefb2` |
+| Incident policy | `0x33c747411a490da0ae18283fd28aaed9fe6d93f1e76c120b71b219ff392cdb76` |
+| Registration | `0x8cbbee3bee44018fad4d4476d8b8fd3e10320b7e28d001c43f8e0635e48ac51d` |
+| Assurance | `0xeeb50a9eda18b9532deca23b417bd8307610792d5cc87bc48d10b986c4586fd7` |
+| Summary | `0x9bb7cf7de61f9c49154cb0aee41513a5b5e9d37dfc31c9f88d871def910124d1` |
+| Install lifecycle | `0xb674e442bc494e182253935713e46452bc330de7ed9a2a30e350018bae813fc2` |
+| Timeout lifecycle | `0xf04f35f9ddd5fc35c33ce6967440f49b3cd2cbe60f341133a1ec7d1969ff33ac` |
+| Activation lifecycle | `0x98a47e2395d9fb9aef683a870484602297d306b0fd163337a2862cf604bce63b` |
+| Recovery lifecycle | `0x1601f7488c3ec745603e0ebcd213bc17ef50e57d93b92b7e45c5c938852cfb6a` |
+| Lifecycle request | `0x4f51d283d8e225769a0182d3f5bcb1b0e4850ed3382417691a67a6096c78ed52` |
+| Review commit | `0x444489d12514f06aeadbb7f9b538e8844313ab38e4296c9fb6cce9abc1cc806d` |
+| Review request | `0x0db88163e7e916b6b1d5240210a700b20e69b2fb2450ea3a472f53a631d3cf8c` |
+
+Lifecycle executor bindings use the worker wallet:
+
+| Executor | Binding transaction |
+| --- | --- |
+| Install lifecycle | `0x3b4f966de25b5ab7c221d3b187dfffd48b855f4dff7221a98b724d74d33b296f` |
+| Timeout lifecycle | `0x2476c5ea7eafe75ba025b0c97f68adda1c3d8a736cdde2850ec7378dab2049e2` |
+| Activation lifecycle | `0x4a05ca78bc995efe53066cfd9e077d4608435588620f94ada3c3e7a86414a89e` |
+| Recovery lifecycle | `0x3930e8563bfe34db62205dea74c73b778ec8cdc92548c463f74efd629f2b8e2f` |
+
+Local verification is complete: 71 direct tests passed, the full GenVM preflight passed, the frontend typecheck/build passed, and source parity passed for all 16 fresh artifacts at accepted state. Direct `get_state_record("counts", "")` returns `{"proposal_count":0,"release_count":0}`. Finality-sensitive summary reads fail closed while the deployment is still `ACCEPTED`; no fallback value is presented as verified state.
+
+The fresh deployment and binding transactions are currently within Bradbury’s finality window. This document must be updated with finalized receipts and the finalized facade smoke results before the graph is described as final.
+
+## Historical deployment record
+
 This record identifies the corrected modular ProofPatch graph deployed on GenLayer Bradbury. Every deployed contract is the matching compact artifact under `contracts/`; source parity was checked against the live Bradbury code.
 
 ## Network identity

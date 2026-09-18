@@ -1,11 +1,15 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false, reportMissingParameterType=false, reportInvalidTypeForm=false, reportOptionalMemberAccess=false, reportUnboundVariable=false, reportOptionalSubscript=false, reportGeneralTypeIssues=false, reportAssignmentType=false, reportIndexIssue=false, reportCallIssue=false, reportUnnecessaryCast=false, reportPrivateUsage=false, reportUnusedFunction=false, reportUnusedImport=false
 from genlayer import *
 from genlayer.py.public_abi import StorageType
 import hashlib
 import json
 
 ZERO = '0x0000000000000000000000000000000000000000'
-LIFECYCLE_ENGINE = '0x8948b524adbfA84eBDEb39bFF925695fF111FCbD'
+INSTALL_LIFECYCLE_ENGINE = '0xE7F337c2Bc992a94f213C41B66d7E49381F31145'
+TIMEOUT_LIFECYCLE_ENGINE = '0xd73FF76b1A2438eAD59DA4072F9484aED25C7865'
+ACTIVATION_LIFECYCLE_ENGINE = '0x429A733D5949bCB0DE97E32Da58E8d192acC41Ca'
+RECOVERY_LIFECYCLE_ENGINE = '0xebf47F06759481606910dA564FF48203e386b95E'
 
 @gl.contract_interface
 class ProofPatchGovernor:
@@ -63,6 +67,9 @@ class ProofPatchLifecycleRequestEngine(gl.Contract):
             records['release'] = self._read(view, 'release', args[0])
             target = records['release']['target']
             records['proposal'] = self._read(view, 'proposal', str(records['release']['proposal_id']))
+            existing_incident = self._maybe(view, 'incident', 'timeout-' + args[0])
+            if existing_incident is not None:
+                records['incident'] = existing_incident
         elif operation in ('confirm_recovery', 'reconcile_recovery', 'expire_recovery', 'retry_recovery'):
             records['incident'] = self._read(view, 'incident', args[0])
             records['release'] = self._read(view, 'release', records['incident']['release_id'])
@@ -92,8 +99,6 @@ class ProofPatchLifecycleRequestEngine(gl.Contract):
             key = hashlib.sha256('\x1f'.join([target, proposal['candidate_code_hash']]).encode()).hexdigest()
             used = self._maybe(view, 'candidate', key)
             prepared['installed_candidate_hashes'] = {key: True} if used is not None and used.get('value', False) else {}
-        if operation == 'expire_provisional':
-            prepared['incident_exists'] = self._maybe(view, 'incident', 'timeout-' + args[0]) is not None
         target_view = ProofPatchTarget(Address(target)).view(state=StorageType.LATEST_FINAL)
         prepared['target_final'] = {'proposal_id': int(target_view.proofpatch_installed_proposal_id()), 'candidate_hash': target_view.proofpatch_installed_candidate_hash(), 'release_id': target_view.proofpatch_installed_release_id(), 'mode': target_view.proofpatch_release_mode(), 'kernel_hash': target_view.get_proofpatch_kernel_hash()}
         nonfinal_view = ProofPatchTarget(Address(target)).view(state=StorageType.LATEST_NON_FINAL)
@@ -105,4 +110,14 @@ class ProofPatchLifecycleRequestEngine(gl.Contract):
         if gl.message.sender_address != self.governor:
             raise gl.vm.UserError('Only the bound governor may prepare lifecycle execution')
         prepared = self._prepare(operation, json.loads(request))
-        ProofPatchLifecycleEngine(Address(LIFECYCLE_ENGINE)).emit(on='finalized').execute(operation, json.dumps(prepared, sort_keys=True, separators=(',', ':')))
+        if operation in ('cancel', 'expire', 'confirm_install', 'reconcile_install'):
+            engine = INSTALL_LIFECYCLE_ENGINE
+        elif operation == 'timeout':
+            engine = TIMEOUT_LIFECYCLE_ENGINE
+        elif operation == 'confirm_activation':
+            engine = ACTIVATION_LIFECYCLE_ENGINE
+        elif operation in ('expire_provisional', 'confirm_recovery', 'reconcile_recovery', 'expire_recovery', 'retry_recovery'):
+            engine = RECOVERY_LIFECYCLE_ENGINE
+        else:
+            raise gl.vm.UserError('Unknown lifecycle operation')
+        ProofPatchLifecycleEngine(Address(engine)).emit(on='finalized').execute(operation, json.dumps(prepared, sort_keys=True, separators=(',', ':')))
