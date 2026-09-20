@@ -1,5 +1,14 @@
 # ProofPatch
 
+## Canonical V3 release — 2026-09-20
+
+The canonical repaired Bradbury release is facade `0x46eE236d3812A4c71F09eBdf641963bFc6ea8c6D` with protected target `0x9e8ACf20747B8d18D54b3c45e0510003029BCf4f`. The target is finalized in `ACTIVE` mode with root release `root-9da36f69837321c9`.
+
+The five-step registration chain finalized naturally end to end. Exact policy and root-release materialization passed. No manual finalization was used.
+
+Reviewer evidence: [docs/V3_FINAL_REVIEWER_EVIDENCE.md](docs/V3_FINAL_REVIEWER_EVIDENCE.md).
+
+
 **No code upgrade without consensus.**
 
 [![ProofPatch verify](https://github.com/Manablaq/proofpatch/actions/workflows/verify.yml/badge.svg)](https://github.com/Manablaq/proofpatch/actions/workflows/verify.yml)

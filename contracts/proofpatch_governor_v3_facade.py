@@ -376,7 +376,7 @@ class ProofPatchGovernorV2(gl.Contract):
         if hasattr(value, '__dict__'):
             fields = SERIAL_FIELDS['TargetPolicy'] if isinstance(value, TargetPolicy) else SERIAL_FIELDS['UpgradeProposal'] if isinstance(value, UpgradeProposal) else SERIAL_FIELDS['ReleaseRecord'] if isinstance(value, ReleaseRecord) else SERIAL_FIELDS['IncidentRecord'] if isinstance(value, IncidentRecord) else None
             if fields is not None:
-                return {key: self._encode(raw) for (key, raw) in zip(fields, value.__dict__.values())}
+                return {key: self._encode(getattr(value, key)) for key in fields}
             return {k: self._encode(v) for (k, v) in value.__dict__.items()}
         return value
 

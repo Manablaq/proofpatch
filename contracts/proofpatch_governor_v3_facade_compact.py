@@ -396,7 +396,7 @@ class ProofPatchGovernorV2(gl.Contract):
         if hasattr(_a,'__dict__'):
             _n=_af[_s11]if isinstance(_a,_dw)else _af[_s8]if isinstance(_a,_dq)else _af[_s10]if isinstance(_a,_du)else _af[_s9]if isinstance(_a,_ds)else None
             if _n is not None:
-                return{_f:self._ck(_p)for(_f,_p)in zip(_n,_a.__dict__.values())}
+                return{_f:self._ck(getattr(_a,_ak))for(_f,_ak)in zip(_n,_a.__class__.__annotations__.keys())}
             return{_ak:self._ck(_y)for(_ak,_y)in _a.__dict__.items()}
         return _a
 
@@ -415,7 +415,7 @@ class ProofPatchGovernorV2(gl.Contract):
 
     def _ci(self,_o):
         _j=json.loads(_o)
-        for(_i,cls,_aj,_cb)in(('policies',_dw,self.policies,'target'),('proposals',_dq,self.proposals,_s12),('releases',_du,self.releases,'release_id'),('incidents',_ds,self.incidents,'incident_id')):
+        for(_i,cls,_aj,_cb)in(('policies',_dw,self.policies,'fbw'),('proposals',_dq,self.proposals,'fbc'),('releases',_du,self.releases,'fbq'),('incidents',_ds,self.incidents,'faj')):
             for _p in _j.get(_i,[]):
                 _a=self._cm(cls,_p)
                 _aj[getattr(_a,_cb)]=_a

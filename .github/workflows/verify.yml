@@ -44,12 +44,16 @@ jobs:
       - name: Run authoritative contract preflight
         run: python scripts/preflight.py
 
+      - name: Validate modular graph and deployment packet
+        run: PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests/integration -v
+
       - name: Upload reviewer verification artifacts
         uses: actions/upload-artifact@v4
         with:
           name: proofpatch-contract-preflight-${{ github.sha }}
           path: |
             artifacts/local-preflight.json
+            deployments/bradbury-v3-deployment.json
             artifacts/strict-typecheck/*.json
           if-no-files-found: error
           retention-days: 90

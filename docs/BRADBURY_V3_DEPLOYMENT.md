@@ -1,5 +1,18 @@
 # ProofPatch V3 Bradbury Deployment
 
+## Canonical V3 release — 2026-09-20
+
+Facade: `0x46eE236d3812A4c71F09eBdf641963bFc6ea8c6D`
+
+Protected target: `0x9e8ACf20747B8d18D54b3c45e0510003029BCf4f`
+
+Root release: `root-9da36f69837321c9`
+
+Target mode: `ACTIVE`
+
+Registration closure: five of five consequential GenLayer transactions finalized successfully. Exact policy/root materialization passed. All older graph records below are historical provenance.
+
+
 ## Current corrected graph
 
 The current submission is the corrected graph below. The previous graph in the historical section was superseded after an audit found that its compact facade omitted two review callback address constants. Every address below was freshly deployed from the compact artifact named in the last column, and every governor/executor binding was submitted with a state-changing `genlayer write` transaction.
@@ -31,25 +44,25 @@ Facade deployment: 0x1925ad0f82726902391397a99837f607db9bcea8b1afbe29a90f87bf324
 | Review request | `0x50d787E2078683Bbc27462208475578cE7295aF9` | `0x0eecac51106535ccb933eb3e8c3009c95e1bcf9b2f1c063c8b459a18493b4966` | `proofpatch_review_request_engine_v3_compact.py` |
 | Corrected facade | `0x1DB03E1F4D7F1F9af5C6f0Abc1A320CA2506F4A6` | `0x1925ad0f82726902391397a99837f607db9bcea8b1afbe29a90f87bf324879c9` | `proofpatch_governor_v3_facade_compact.py` |
 
-Governor bindings were submitted to the facade for all 15 components:
+Canonical successful governor bindings to the corrected facade for all 15 components:
 
 | Component | Governor binding transaction |
 | --- | --- |
 | Proposal review | `0xa0b9a46ad71eb60b4acf3656c97bb96e554c678cea432ad40d2070b623b6ae95` |
 | Fact review | `0xda2c1cfbe54d9a98677f5420b8118dbf4496584222617bd61f7438b538900af6` |
 | Create policy | `0x2a01d1b4afa875291d16288063b995bcfcc33d5c22ecd8b279882048982f8047` |
-| Repair policy | `0x8c865aa304cfcfc6f36e9845e8e0fad8f845f85713300947b59e3cf983bcefb2` |
-| Incident policy | `0x33c747411a490da0ae18283fd28aaed9fe6d93f1e76c120b71b219ff392cdb76` |
-| Registration | `0x8cbbee3bee44018fad4d4476d8b8fd3e10320b7e28d001c43f8e0635e48ac51d` |
-| Assurance | `0xeeb50a9eda18b9532deca23b417bd8307610792d5cc87bc48d10b986c4586fd7` |
-| Summary | `0x9bb7cf7de61f9c49154cb0aee41513a5b5e9d37dfc31c9f88d871def910124d1` |
-| Install lifecycle | `0xb674e442bc494e182253935713e46452bc330de7ed9a2a30e350018bae813fc2` |
-| Timeout lifecycle | `0xf04f35f9ddd5fc35c33ce6967440f49b3cd2cbe60f341133a1ec7d1969ff33ac` |
-| Activation lifecycle | `0x98a47e2395d9fb9aef683a870484602297d306b0fd163337a2862cf604bce63b` |
-| Recovery lifecycle | `0x1601f7488c3ec745603e0ebcd213bc17ef50e57d93b92b7e45c5c938852cfb6a` |
-| Lifecycle request | `0x4f51d283d8e225769a0182d3f5bcb1b0e4850ed3382417691a67a6096c78ed52` |
-| Review commit | `0x444489d12514f06aeadbb7f9b538e8844313ab38e4296c9fb6cce9abc1cc806d` |
-| Review request | `0x0db88163e7e916b6b1d5240210a700b20e69b2fb2450ea3a472f53a631d3cf8c` |
+| Repair policy | `0x3ab7033cbaeb89d0a22406af07a430e9970a50908616a64843c5505c2e9afb4b` |
+| Incident policy | `0xb0b7ceada695f80938abb2ad394d274e3aeaedfc7c84798b5329c8c56c830443` |
+| Registration | `0xa883c0bbe3218dd4464237d8b57d05145ebfd78bf2be1db8a065e563cee1d36c` |
+| Assurance | `0xf34ada0952608118f2dba09e814c22a58f69dcbc54f2cb3e035c7e7b9a64a0b1` |
+| Summary | `0xfc8f5f4fe6bd42a9b4b8f7f8d35007da72854e980dc28a834545565b61edb6a2` |
+| Install lifecycle | `0x332c3c965fb9ab56f3a4008e04cedf38a61bfd6f13c4f6a204b1c78c259a37f8` |
+| Timeout lifecycle | `0x660d2565c5dac102c9c03b958e1bd1ed3eb921017b448f65c23578e9dd02ffa3` |
+| Activation lifecycle | `0x79baf6748367311db3457606c6c7b146095b76a2b46046870f26e00d7156f4b9` |
+| Recovery lifecycle | `0xf8d6a97d447ba88f490fd0ec50d68f05f913754e6fd1781bdb5f4c2ed14dad67` |
+| Lifecycle request | `0x0eb6d17a1c7f883198f093c26dac2ebd05ed71e60cc0ba367707f1e1e86dd9ca` |
+| Review commit | `0xb16939950fda023b90c3424380ec63b6068846c6cfdb7ed012122fce303057b6` |
+| Review request | `0x213cc88fbe89c2bf104119666e8d7c07826e5ca749ffb9c87b352b3a2be271c8` |
 
 Lifecycle executor bindings use the worker wallet:
 
@@ -62,7 +75,7 @@ Lifecycle executor bindings use the worker wallet:
 
 Local verification is complete: 71 direct tests passed, the full GenVM preflight passed, the frontend typecheck/build passed, and source parity passed for all 16 fresh artifacts at accepted state. Direct `get_state_record("counts", "")` returns `{"proposal_count":0,"release_count":0}`. Finality-sensitive summary reads fail closed while the deployment is still `ACCEPTED`; no fallback value is presented as verified state.
 
-The fresh deployment and binding transactions are currently within Bradbury’s finality window. This document must be updated with finalized receipts and the finalized facade smoke results before the graph is described as final.
+The canonical 35-transaction graph (16 deployments, 15 governor bindings, and 4 lifecycle executor bindings) has been rechecked from live Bradbury receipts: every transaction is `Finalized` with `FinishedWithReturn`. The regenerated `artifacts/bradbury-v3-finality.json` records those receipts. Twelve later duplicate/rebind attempts are intentionally excluded from the canonical binding table because they finalized with `FinishedWithError`; the historical governor-history diagnostic preserves those retries. Finalized source parity and the fresh-target V3 lifecycle proof remain separate release gates.
 
 ## Historical deployment record
 

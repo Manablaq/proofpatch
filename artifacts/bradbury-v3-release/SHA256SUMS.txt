@@ -1,0 +1,7 @@
+9f48ded9277e33a41617fb788a881b8901ed4f064b94e42b1eda22f8a1580071  ./binding-wave-preauth.json
+c71df16205e2c912d24cd3f1951852bc8f400262c893d91cef14b254b1f2a674  ./final-registration-state.json
+6f3a8a7521e620176999c83054f120fb817a119b9a4063781c1eb8f8564ee5cb  ./fresh-registration-preauth-r2.json
+5481e48a88a4176def2c6fc9933cf3619dec1bbde831d1837921e546c9e8f3a4  ./fresh-registration-unsigned-payload.json
+e85b3a0a5d5045d9a7f3f3221ff6eb415aa1597493d8501af9dcb68f0293c3e0  ./registration-chain.json
+8520e6c71a40a834722aef1ad567d119b7f449d6f479b88975f8eda045b35af9  ./registration-closure-success.json
+51238cc695cf18075119517557ce19a4c17c71e26329124f93544a3c5570f233  ./registration-execution-summary.json

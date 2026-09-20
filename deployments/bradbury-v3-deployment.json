@@ -1,0 +1,189 @@
+{
+  "schema": "proofpatch-bradbury-v3-deployment-v1",
+  "network": "GenLayer Bradbury Testnet",
+  "rpc": "https://rpc-bradbury.genlayer.com",
+  "worker": "0x1f87Ae197af539253978d435aD45cCf28Fb95024",
+  "facade": "0x1DB03E1F4D7F1F9af5C6f0Abc1A320CA2506F4A6",
+  "expected_status": "Finalized",
+  "expected_execution": "FinishedWithReturn",
+  "deployments": [
+    {
+      "name": "proposal_review",
+      "address": "0x9840cCf5DBdf4AE5945Ca73367e8336cCBEF578e",
+      "tx": "0x22fb47f32562c30d7656206a346d4c04976e27544b6d3b07146c7a6227bece54",
+      "artifact": "proofpatch_review_engine_v2_compact.py"
+    },
+    {
+      "name": "fact_review",
+      "address": "0x32E5eFAF7558B65f72dA2B2B27f040e74fA148BC",
+      "tx": "0x30fdf5c8b33270820edb9337d13deac67f5a2ae6d30b174bbd8546908f59a274",
+      "artifact": "proofpatch_fact_review_engine_v3_compact.py"
+    },
+    {
+      "name": "create_policy",
+      "address": "0xCe91B262d6358dFd95A32a56fd577b71FB0DdC7F",
+      "tx": "0x612284169c8f60f6ccab30dd51e42c1334603d175537224796d675337f8585ec",
+      "artifact": "proofpatch_policy_engine_v3_compact.py"
+    },
+    {
+      "name": "repair_policy",
+      "address": "0x59A065F97a4d475Fc60AC350aDF5163AbfE27F91",
+      "tx": "0x1ba87b1e9cb28d85445899ac62cea36ddb492ccd9eac4fdf698da3922d21e41c",
+      "artifact": "proofpatch_repair_policy_engine_v3_compact.py"
+    },
+    {
+      "name": "incident_policy",
+      "address": "0x3De9294a39A4b9e31975a74426a3f29C32E0829E",
+      "tx": "0x3c7cf80c6be2e616fa2dba9ea2a7026a53f0011533068dad590fbbf0975e997b",
+      "artifact": "proofpatch_incident_policy_engine_v3_compact.py"
+    },
+    {
+      "name": "registration",
+      "address": "0xF7e1F1D31f60e866E2f0a1367834BEF7abC77b43",
+      "tx": "0xbeaf4bc538db0692d94fbd548e86c843476a83e33d48eda7a3511e3ece12f120",
+      "artifact": "proofpatch_registration_engine_v3_compact.py"
+    },
+    {
+      "name": "assurance",
+      "address": "0x6740374AA335c4e02EC079d3d1E5A2198A28320F",
+      "tx": "0x39a4ac2a4513789d31ab80f725aa542e4d0287937770f36a3b6b4486b89bb3b5",
+      "artifact": "proofpatch_assurance_engine_v3_compact.py"
+    },
+    {
+      "name": "summary",
+      "address": "0x209343F604Ec7A53339C3F555D5Cf333F4BEf4FD",
+      "tx": "0x3e50f76583ea3b5a9157a7de4690978667f973c8ff0c063e31737720b8b6e45b",
+      "artifact": "proofpatch_summary_engine_v3_compact.py"
+    },
+    {
+      "name": "install_lifecycle",
+      "address": "0xE7F337c2Bc992a94f213C41B66d7E49381F31145",
+      "tx": "0x24eb93f23e5ff04af26b455cb599cf1f764aaffdeea5eade9cff59c1f74b70c4",
+      "artifact": "proofpatch_lifecycle_install_engine_v3_compact.py"
+    },
+    {
+      "name": "timeout_lifecycle",
+      "address": "0xd73FF76b1A2438eAD59DA4072F9484aED25C7865",
+      "tx": "0xc14e73bd985b56e484782d8d480ff9ec1afbfdff5f0f9aa7636e533239c9d158",
+      "artifact": "proofpatch_lifecycle_timeout_engine_v3_compact.py"
+    },
+    {
+      "name": "activation_lifecycle",
+      "address": "0x429A733D5949bCB0DE97E32Da58E8d192acC41Ca",
+      "tx": "0x8c278ad5c07d8d8c3804b20bd1e23bb3a8df1baaaf0d4f7bad057534b6d2072c",
+      "artifact": "proofpatch_lifecycle_activation_engine_v3_compact.py"
+    },
+    {
+      "name": "recovery_lifecycle",
+      "address": "0xebf47F06759481606910dA564FF48203e386b95E",
+      "tx": "0xd146bcf878c2352d58bad59c070ad9f8bf5460e7b3f437ee5ebe8765dbd6a844",
+      "artifact": "proofpatch_lifecycle_recovery_engine_v3_compact.py"
+    },
+    {
+      "name": "lifecycle_request",
+      "address": "0xC01B9D36B3eEe2A563A4E7FA688b9a799fa759E2",
+      "tx": "0x4a2eb20cf3e57f7df2dc3aee141cc757a460e5e23ce0e8aa7db00171deb9bc90",
+      "artifact": "proofpatch_lifecycle_request_engine_v3_compact.py"
+    },
+    {
+      "name": "review_commit",
+      "address": "0xef8F5C807117b2A606B861e947F2ff5756Db8CE7",
+      "tx": "0xb366c52016bedea170dacfbdfc0e746c6862e22ec78ca0c300c3f5e93dd4bc75",
+      "artifact": "proofpatch_review_commit_engine_v3_compact.py"
+    },
+    {
+      "name": "review_request",
+      "address": "0x50d787E2078683Bbc27462208475578cE7295aF9",
+      "tx": "0x0eecac51106535ccb933eb3e8c3009c95e1bcf9b2f1c063c8b459a18493b4966",
+      "artifact": "proofpatch_review_request_engine_v3_compact.py"
+    },
+    {
+      "name": "facade",
+      "address": "0x1DB03E1F4D7F1F9af5C6f0Abc1A320CA2506F4A6",
+      "tx": "0x1925ad0f82726902391397a99837f607db9bcea8b1afbe29a90f87bf324879c9",
+      "artifact": "proofpatch_governor_v3_facade_compact.py"
+    }
+  ],
+  "governor_bindings": [
+    {
+      "component": "proposal_review",
+      "tx": "0xa0b9a46ad71eb60b4acf3656c97bb96e554c678cea432ad40d2070b623b6ae95"
+    },
+    {
+      "component": "fact_review",
+      "tx": "0xda2c1cfbe54d9a98677f5420b8118dbf4496584222617bd61f7438b538900af6"
+    },
+    {
+      "component": "create_policy",
+      "tx": "0x2a01d1b4afa875291d16288063b995bcfcc33d5c22ecd8b279882048982f8047"
+    },
+    {
+      "component": "repair_policy",
+      "tx": "0x3ab7033cbaeb89d0a22406af07a430e9970a50908616a64843c5505c2e9afb4b"
+    },
+    {
+      "component": "incident_policy",
+      "tx": "0xb0b7ceada695f80938abb2ad394d274e3aeaedfc7c84798b5329c8c56c830443"
+    },
+    {
+      "component": "registration",
+      "tx": "0xa883c0bbe3218dd4464237d8b57d05145ebfd78bf2be1db8a065e563cee1d36c"
+    },
+    {
+      "component": "assurance",
+      "tx": "0xf34ada0952608118f2dba09e814c22a58f69dcbc54f2cb3e035c7e7b9a64a0b1"
+    },
+    {
+      "component": "summary",
+      "tx": "0xfc8f5f4fe6bd42a9b4b8f7f8d35007da72854e980dc28a834545565b61edb6a2"
+    },
+    {
+      "component": "install_lifecycle",
+      "tx": "0x332c3c965fb9ab56f3a4008e04cedf38a61bfd6f13c4f6a204b1c78c259a37f8"
+    },
+    {
+      "component": "timeout_lifecycle",
+      "tx": "0x660d2565c5dac102c9c03b958e1bd1ed3eb921017b448f65c23578e9dd02ffa3"
+    },
+    {
+      "component": "activation_lifecycle",
+      "tx": "0x79baf6748367311db3457606c6c7b146095b76a2b46046870f26e00d7156f4b9"
+    },
+    {
+      "component": "recovery_lifecycle",
+      "tx": "0xf8d6a97d447ba88f490fd0ec50d68f05f913754e6fd1781bdb5f4c2ed14dad67"
+    },
+    {
+      "component": "lifecycle_request",
+      "tx": "0x0eb6d17a1c7f883198f093c26dac2ebd05ed71e60cc0ba367707f1e1e86dd9ca"
+    },
+    {
+      "component": "review_commit",
+      "tx": "0xb16939950fda023b90c3424380ec63b6068846c6cfdb7ed012122fce303057b6"
+    },
+    {
+      "component": "review_request",
+      "tx": "0x213cc88fbe89c2bf104119666e8d7c07826e5ca749ffb9c87b352b3a2be271c8"
+    }
+  ],
+  "executor_bindings": [
+    {
+      "component": "install_lifecycle",
+      "tx": "0x3b4f966de25b5ab7c221d3b187dfffd48b855f4dff7221a98b724d74d33b296f"
+    },
+    {
+      "component": "timeout_lifecycle",
+      "tx": "0x2476c5ea7eafe75ba025b0c97f68adda1c3d8a736cdde2850ec7378dab2049e2"
+    },
+    {
+      "component": "activation_lifecycle",
+      "tx": "0x4a05ca78bc995efe53066cfd9e077d4608435588620f94ada3c3e7a86414a89e"
+    },
+    {
+      "component": "recovery_lifecycle",
+      "tx": "0x3930e8563bfe34db62205dea74c73b778ec8cdc92548c463f74efd629f2b8e2f"
+    }
+  ],
+  "record_status": "SUPERSEDED_HISTORICAL_GRAPH",
+  "canonical_replacement": "bradbury-v3-canonical.json"
+}

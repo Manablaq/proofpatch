@@ -2,6 +2,7 @@
 
 import { TransactionHashVariant } from "genlayer-js/types";
 import { publicClient } from "@/lib/genlayer";
+import { PROOFPATCH_V3 } from "@/lib/constants";
 
 type HexAddress = `0x${string}`;
 
@@ -27,10 +28,10 @@ export type ProofPatchV3State = {
 };
 
 const config: ProofPatchV3Config = {
-  facade: process.env.NEXT_PUBLIC_PROOFPATCH_V3_FACADE ?? "",
-  target: process.env.NEXT_PUBLIC_PROOFPATCH_V3_TARGET ?? "",
-  network: process.env.NEXT_PUBLIC_PROOFPATCH_V3_NETWORK ?? "Bradbury Testnet",
-  chainId: process.env.NEXT_PUBLIC_PROOFPATCH_V3_CHAIN_ID ?? "4221",
+  facade: PROOFPATCH_V3.facade,
+  target: PROOFPATCH_V3.target,
+  network: PROOFPATCH_V3.network.name,
+  chainId: String(PROOFPATCH_V3.network.chainId),
 };
 
 function requireConfig(): ProofPatchV3Config {

@@ -16,7 +16,7 @@ import Link from "next/link";
 import { LiveProof } from "@/components/live-proof";
 import { Reveal } from "@/components/reveal";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { PROOFPATCH, SECURITY_GATES } from "@/lib/constants";
+import { PROOFPATCH, PROOFPATCH_V3, SECURITY_GATES } from "@/lib/constants";
 
 const flow = [
   {
@@ -203,29 +203,29 @@ export default function HomePage() {
                   <strong>ProofPatch Protected Target</strong>
                 </div>
                 <span className="status-chip verified">
-                  <CheckCircle2 size={13} /> VERIFIED
+                  <CheckCircle2 size={13} /> ACTIVE
                 </span>
               </div>
 
               <div className="version-route">
                 <div>
-                  <span>parent</span>
-                  <strong>v{PROOFPATCH.parentVersion}</strong>
-                  <code>{short(PROOFPATCH.parentCodeHash)}</code>
+                  <span>registered</span>
+                  <strong>v{PROOFPATCH_V3.version}</strong>
+                  <code>{short(PROOFPATCH_V3.codeHash)}</code>
                 </div>
                 <div className="route-rail">
                   <i />
                   <ArrowRight size={16} />
                 </div>
                 <div className="active">
-                  <span>installed</span>
-                  <strong>v{PROOFPATCH.candidateVersion}</strong>
-                  <code>{short(PROOFPATCH.candidateCodeHash)}</code>
+                  <span>active</span>
+                  <strong>v{PROOFPATCH_V3.version}</strong>
+                  <code>{short(PROOFPATCH_V3.codeHash)}</code>
                 </div>
               </div>
 
               <div className="consensus-vector">
-                {["SOURCE", "CI", "AUDIT", "SEMANTICS", "FINALITY"].map((label) => (
+                {["SOURCE", "POLICY", "BINDINGS", "FINALITY", "ACTIVE"].map((label) => (
                   <div key={label}>
                     <i />
                     <span>{label}</span>
@@ -235,9 +235,9 @@ export default function HomePage() {
               </div>
 
               <div className="window-finality">
-                <div><span>01</span><p>Review finalized</p><CheckCircle2 size={16} /></div>
-                <div><span>02</span><p>Upgrade finalized</p><CheckCircle2 size={16} /></div>
-                <div><span>03</span><p>Install confirmed</p><CheckCircle2 size={16} /></div>
+                <div><span>01</span><p>Registration finalized</p><CheckCircle2 size={16} /></div>
+                <div><span>02</span><p>Policy materialized</p><CheckCircle2 size={16} /></div>
+                <div><span>03</span><p>Target active</p><CheckCircle2 size={16} /></div>
               </div>
             </div>
           </div>
@@ -245,10 +245,10 @@ export default function HomePage() {
       </section>
 
       <section className="proof-strip">
-        <div><span>GOVERNOR</span><code>{short(PROOFPATCH.governor)}</code></div>
-        <div><span>TARGET</span><code>{short(PROOFPATCH.target)}</code></div>
-        <div><span>PROPOSAL</span><strong>#1 · VERIFIED</strong></div>
-        <div><span>RELEASE</span><strong>2.0.0</strong></div>
+        <div><span>FACADE</span><code>{short(PROOFPATCH_V3.facade)}</code></div>
+        <div><span>TARGET</span><code>{short(PROOFPATCH_V3.target)}</code></div>
+        <div><span>STATE</span><strong>ACTIVE</strong></div>
+        <div><span>RELEASE</span><strong>{PROOFPATCH_V3.version}</strong></div>
       </section>
 
       <section className="section intro-section">

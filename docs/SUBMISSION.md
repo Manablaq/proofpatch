@@ -1,5 +1,20 @@
 # ProofPatch Submission Handoff
 
+## Canonical V3 release — 2026-09-20
+
+Canonical facade: `0x46eE236d3812A4c71F09eBdf641963bFc6ea8c6D`
+
+Canonical protected target: `0x9e8ACf20747B8d18D54b3c45e0510003029BCf4f`
+
+Root release: `root-9da36f69837321c9`
+
+Target mode: `ACTIVE`
+
+The repaired registration chain is finalized 5/5 and is the current reviewer target. Older deployment sections below are retained only for provenance.
+
+See [V3_FINAL_REVIEWER_EVIDENCE.md](V3_FINAL_REVIEWER_EVIDENCE.md).
+
+
 This is the reviewer-facing entry point for the completed ProofPatch release.
 
 ## Current submission packet

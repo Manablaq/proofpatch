@@ -1,0 +1,57 @@
+{
+  "schema": "proofpatch-bradbury-v3-canonical-release-v1",
+  "network": "Bradbury Testnet",
+  "chain_id": 4221,
+  "record_status": "CANONICAL",
+  "owner": "0x1f87Ae197af539253978d435aD45cCf28Fb95024",
+  "facade": "0x46eE236d3812A4c71F09eBdf641963bFc6ea8c6D",
+  "target": "0x9e8ACf20747B8d18D54b3c45e0510003029BCf4f",
+  "target_state": {
+    "release_mode": "ACTIVE",
+    "version": "2.0.0",
+    "root_release_id": "root-9da36f69837321c9",
+    "root_release_status": "REGISTERED_PARENT",
+    "code_hash": "9da36f69837321c9688e6ec338dbdfbfd085a9f387361e7bb2c37037f353c9fe",
+    "kernel_hash": "8a5f9c864d80aa10fdcd8f2878cf5bcd3ff28e0cdb62ab11043668e215e7a930",
+    "policy_fingerprint": "d090b20e2eb4deeff39cc295c703b431fb7631bfb64941d80405b37c85963607",
+    "proposal_count": 0,
+    "active_proposal": 0
+  },
+  "components": {
+    "proposal_review": "0x679aA599cA4ED97e019190848F092aEDD02B2B11",
+    "fact_review": "0x29F832ddB326a0F6D79bA37020b4c64446F7b1Ae",
+    "create_policy": "0x7e929407F480E9EfFB341D5bF5846166C596C4E3",
+    "repair_policy": "0x1fD8b5b343218ECfAAc2Ac5243692474820D82c5",
+    "incident_policy": "0x9cEB0E4cfcDb81f9b709689C475131AbF48e23fb",
+    "registration": "0xaa2f1957255a8eC97b26bE80C7777C11979B71D6",
+    "assurance": "0x2396370216148A5B1F61496f253e0A36C31DB973",
+    "summary": "0x9518b9df0627bA8CB8d6c8973a057913B367408A",
+    "install": "0xB8a2F9AF8fEEB80e5687fb4788c64A5C3Fe1Fe82",
+    "timeout": "0x374acF786A9B6736C2836e8fe74a33599fD8e728",
+    "activation": "0xaf3Fd129C8A1b12826E2d3F8F11A9A0BA3FFaA2d",
+    "recovery": "0xc96ba980Bd6AC2E99C2374cfD8B3419f7f2C71Ad",
+    "lifecycle_request": "0x06b09425c571BaA4D8eB0f1413107B2F71Ff5231",
+    "review_commit": "0xd3120FE1BC9CAf289F68C1fe9EA822634eacEFf3",
+    "review_request": "0x7F4808A5ddF193bAb643086eE35c01162bE4e0F3"
+  },
+  "registration": {
+    "evm_transaction": "0x42338065634a57097b9ff051eb3167bd87993ebd4e963314fcac006d7f5208f0",
+    "parent": "0xf01abff0c3f27998c0da2e212a51931ad4422ab5d4cd5ffec0b837f21d1befe9",
+    "register_target": "0x266f30fb932aafbccb5891ca26478baea1cc0826c587a2ab8bb25facdac511ad",
+    "registration_engine_execute": "0x93493791c5a6c1b4f2c61844d25cacd8e87f39ac5889d3d8758f1e13c045ec70",
+    "apply_policy_result": "0xa1ce343c1688372527b94e0806eed01150be88de993a3380aef6091ab038b084",
+    "confirm_registration": "0x35824ed9d44dda5c25d778c009c77854b0d580e37378aa0e156dec2b2ddccfe4",
+    "all_finalized": true,
+    "all_result": 1,
+    "all_execution": 1
+  },
+  "reproducibility": {
+    "target_deployment_plan_sha256": "7e7f125493d2c5223ccbc9c3aa338bbeebdbf97c14f0b1bced2b15659a56760e",
+    "binding_wave_plan_sha256": "9f48ded9277e33a41617fb788a881b8901ed4f064b94e42b1eda22f8a1580071",
+    "registration_plan_sha256": "6f3a8a7521e620176999c83054f120fb817a119b9a4063781c1eb8f8564ee5cb",
+    "registration_app_data_sha256": "47d1c2bdc8c8cddb62d411612aff26e6653220384ad0c8cb4c35cab5097139ae",
+    "closure_success_sha256": "8520e6c71a40a834722aef1ad567d119b7f449d6f479b88975f8eda045b35af9",
+    "closure_manifest_sha256": "fdc58cdc1828762dda6a68a351bcc2da307bd6a9d34806a314585b73a2443c3f"
+  },
+  "manual_finalize_performed": false
+}
