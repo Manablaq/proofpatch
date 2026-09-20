@@ -202,6 +202,12 @@ export function TransactionTrackerProvider({
         await queryClient.invalidateQueries({
           queryKey: ["proofpatch", "proposal-action-gate"],
         });
+        await queryClient.invalidateQueries({
+          queryKey: ["proofpatch-v2", "finalized-state"],
+        });
+        await queryClient.invalidateQueries({
+          queryKey: ["proofpatch-v3", "finalized-state"],
+        });
       }
     }
 

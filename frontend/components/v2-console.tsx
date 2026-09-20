@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { RefreshCw, ShieldCheck, TriangleAlert } from "lucide-react";
-import { appealNativeTransaction, connectBradburyWallet, getNativeAppealState, type NativeAppealState } from "@/lib/genlayer";
+import { getNativeAppealState, type NativeAppealState } from "@/lib/genlayer";
 import { useProofPatchV2State } from "@/lib/use-v2";
 
 function short(value: string) {
@@ -42,35 +42,31 @@ export function V2Console() {
     }
   }
 
-  async function submitAppeal() {
-    setAppealError("");
-    setAppealBusy(true);
-    try {
-      const address = await connectBradburyWallet();
-      await appealNativeTransaction(appealHash, address);
-      setAppealState(await getNativeAppealState(appealHash));
-    } catch (value) {
-      setAppealError(value instanceof Error ? value.message : "Native appeal submission failed.");
-    } finally {
-      setAppealBusy(false);
-    }
-  }
-
   return (
     <main className="app-frame">
       <aside className="app-sidebar">
         <Link href="/" className="brand compact"><span className="brand-glyph" aria-hidden><i /><i /><i /></span><span>ProofPatch</span></Link>
-        <div className="sidebar-label">V2 CONSOLE</div>
+        <div className="sidebar-label">V2 HISTORY</div>
         <nav><a className="active" href="#overview"><ShieldCheck size={17} /><span>Release assurance</span></a><a href="#lineage"><RefreshCw size={17} /><span>Lineage</span></a></nav>
         <div className="sidebar-spacer" />
-        <Link className="sidebar-docs" href="/">V1 baseline</Link>
+        <Link className="sidebar-docs" href="/app">Current V3</Link>
       </aside>
       <section className="app-main" id="overview">
-        <header className="app-topbar"><div><span className="breadcrumb">ProofPatch v2 / finalized read console</span><strong>Continuous release assurance</strong></div></header>
+        <header className="app-topbar"><div><span className="breadcrumb">ProofPatch V2 / historical finalized read console</span><strong>Superseded release evidence</strong></div></header>
         <div className="dashboard-content">
           <section className="hero-panel">
             <div><span className="eyebrow">LIVE CHAIN STATE</span><h1>{data?.releaseMode ?? "LIVE STATE UNAVAILABLE"}</h1><p>Installation, certification, incident and recovery state come from finalized contract reads.</p></div>
             <span className={`status-chip ${data ? "verified" : "pending"}`}>{data ? releaseStatus : "UNAVAILABLE"}</span>
+          </section>
+          <section className="notice-panel historical-notice">
+            <ShieldCheck size={18} />
+            <div>
+              <strong>Historical V2 surface</strong>
+              <p>
+                V3 is the canonical deployment. This route is retained for
+                provenance and finalized reads only; transaction writes are disabled.
+              </p>
+            </div>
           </section>
           {error ? <section className="notice-panel"><TriangleAlert size={18} /><div><strong>Live state unavailable</strong><p>{error}</p></div></section> : null}
           <section className="metric-grid">
@@ -84,13 +80,13 @@ export function V2Console() {
             <article className="panel"><div className="panel-heading"><span>ProofPatch kernel</span><ShieldCheck size={17} /></div><Field label="Kernel hash" value={short(data?.kernelHash ?? "")} /><Field label="Installed release" value={data?.installedReleaseId ?? "—"} /><Field label="Installed hash" value={short(data?.installedCodeHash ?? "")} /><Field label="Governor binding" value={data?.targetGovernor ?? "—"} /></article>
           </section>
           <section className="panel appeal-panel" id="appeal">
-            <div className="panel-heading"><span>Native GenLayer appeal</span><RefreshCw size={17} /></div>
-            <p>Inspect the actual consensus transaction before signing. The bond, eligibility, and lifecycle come from GenLayer’s appeal system.</p>
+            <div className="panel-heading"><span>Native appeal inspector</span><RefreshCw size={17} /></div>
+            <p>Read-only inspection of historical consensus transactions. Eligibility, bond and lifecycle are read from GenLayer; this historical surface does not submit an appeal.</p>
             <label className="field-label" htmlFor="appeal-hash">Consensus transaction hash</label>
             <input id="appeal-hash" className="text-input mono" value={appealHash} onChange={(event) => setAppealHash(event.target.value)} placeholder="0x…" />
             <div className="lifecycle-actions">
               <button className="button secondary" type="button" onClick={inspectAppeal} disabled={appealBusy || !appealHash.trim()}>{appealBusy ? "Inspecting…" : "Inspect lifecycle"}</button>
-              {appealState?.appealable ? <button className="button primary" type="button" onClick={submitAppeal} disabled={appealBusy}>Appeal with native bond</button> : null}
+
             </div>
             {appealState ? <div className="metric-grid appeal-metrics"><Field label="Decision status" value={appealState.status} /><Field label="Execution" value={appealState.execution} /><Field label="Lifecycle" value={appealState.lifecycle || "—"} /><Field label="Appeal bond" value={appealState.appealBond} /><Field label="Eligibility" value={appealState.appealable ? "APPEALABLE" : "NOT APPEALABLE"} /></div> : null}
             {appealError ? <p className="error-copy">{appealError}</p> : null}

@@ -33,6 +33,7 @@ export function LiveProof() {
     state?.policyFingerprint === PROOFPATCH_V3.policyFingerprint &&
     policyTarget.toLowerCase() === PROOFPATCH_V3.target.toLowerCase() &&
     releaseStatus === PROOFPATCH_V3.releaseStatus &&
+    state?.releaseMode === PROOFPATCH_V3.releaseMode &&
     state?.proposalCount === String(PROOFPATCH_V3.proposalCount) &&
     state?.activeProposal === String(PROOFPATCH_V3.activeProposal);
 
@@ -101,8 +102,8 @@ export function LiveProof() {
         <div className="finality-mini-step">
           <i />
           <div>
-            <strong>Active slot</strong>
-            <span>{state?.activeProposal === "0" ? "CLEAR" : state?.activeProposal || "Unavailable"}</span>
+            <strong>Target mode</strong>
+            <span>{state?.releaseMode || "Unavailable"}</span>
           </div>
         </div>
       </div>

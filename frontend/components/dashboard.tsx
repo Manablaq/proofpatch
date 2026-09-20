@@ -70,7 +70,7 @@ function DataValue({
   );
 }
 
-export function Dashboard() {
+export function Dashboard({ readOnly = false }: { readOnly?: boolean }) {
   const live = useProofPatchLiveState();
   const finality = useCanonicalFinalityChain();
 
@@ -157,7 +157,11 @@ export function Dashboard() {
               <kbd>⌘ K</kbd>
             </button>
             <ThemeToggle />
-            <WalletButton />
+            {readOnly ? (
+              <span className="status-chip historical-chip">Historical read-only</span>
+            ) : (
+              <WalletButton />
+            )}
           </div>
         </header>
 
@@ -166,14 +170,23 @@ export function Dashboard() {
             <div>
               <div className="eyebrow-row">
                 <span className="live-dot" />
-                {stateAvailable ? "FINALIZED BRADBURY STATE" : "BRADBURY STATE UNAVAILABLE"}
+                {readOnly
+                  ? "HISTORICAL FINALIZED EVIDENCE"
+                  : stateAvailable
+                    ? "FINALIZED BRADBURY STATE"
+                    : "BRADBURY STATE UNAVAILABLE"}
               </div>
               <h1>
-                Upgrade <em>verified.</em>
+                {readOnly ? (
+                  <>Historical <em>proof.</em></>
+                ) : (
+                  <>Upgrade <em>verified.</em></>
+                )}
               </h1>
               <p>
-                Every value in this workspace is read from finalized Bradbury state.
-                Values remain unavailable until the read succeeds.
+                {readOnly
+                  ? "This superseded deployment is preserved as finalized historical evidence. Its proposal and lifecycle write controls are intentionally disabled."
+                  : "Every value in this workspace is read from finalized Bradbury state. Values remain unavailable until the read succeeds."}
               </p>
               <div className="hero-actions">
                 <a
@@ -239,7 +252,24 @@ export function Dashboard() {
             </article>
           </section>
 
-          <ProposalWorkspace />
+          {readOnly ? (
+            <section className="historical-banner" aria-label="Historical workspace notice">
+              <ShieldCheck size={18} />
+              <div>
+                <strong>Historical deployment — read only</strong>
+                <p>
+                  The canonical product is ProofPatch V3. This workspace remains
+                  available only to inspect the superseded finalized deployment;
+                  proposal creation, repair and lifecycle writes are not exposed here.
+                </p>
+              </div>
+              <Link className="button secondary" href="/app">
+                Open current V3
+              </Link>
+            </section>
+          ) : (
+            <ProposalWorkspace />
+          )}
 
           <section className="dashboard-grid two">
             <article className="dash-card" id="finality">

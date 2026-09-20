@@ -194,11 +194,12 @@ function requireTransactionHash(value: string): HexHash {
 
 export async function getNativeAppealState(hash: string): Promise<NativeAppealState> {
   const txId = requireTransactionHash(hash);
-  const [snapshot, appealable, bond] = await Promise.all([
-    getTransactionSnapshot(txId),
-    publicClient.canAppeal({ txId }),
-    publicClient.getMinAppealBond({ txId }),
-  ]);
+  const snapshot = await getTransactionSnapshot(txId);
+  const appealable = await publicClient.canAppeal({ txId });
+  const bond = appealable
+    ? await publicClient.getMinAppealBond({ txId })
+    : 0n;
+
   return {
     ...snapshot,
     appealable,

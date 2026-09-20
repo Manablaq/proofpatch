@@ -23,6 +23,7 @@ export type ProofPatchV3State = {
   currentCodeHash: string;
   policyFingerprint: string;
   policyKernelHash: string;
+  releaseMode: string;
   policy: Record<string, unknown> | null;
   release: Record<string, unknown> | null;
 };
@@ -73,7 +74,7 @@ function parseRecord(value: unknown, label: string): Record<string, unknown> | n
 
 export async function getProofPatchV3State(): Promise<ProofPatchV3State> {
   const live = requireConfig();
-  const [proposalCountRaw, activeRaw, currentReleaseRaw, currentVersionRaw, currentCodeHashRaw, policyFingerprintRaw, policyKernelHashRaw, policyRaw] = await Promise.all([
+  const [proposalCountRaw, activeRaw, currentReleaseRaw, currentVersionRaw, currentCodeHashRaw, policyFingerprintRaw, policyKernelHashRaw, releaseModeRaw, policyRaw] = await Promise.all([
     readFinal(live.facade, "get_proposal_count"),
     readFinal(live.facade, "get_active_proposal", [live.target]),
     readFinal(live.facade, "get_current_release_id", [live.target]),
@@ -81,6 +82,7 @@ export async function getProofPatchV3State(): Promise<ProofPatchV3State> {
     readFinal(live.facade, "get_current_code_hash", [live.target]),
     readFinal(live.facade, "get_policy_fingerprint", [live.target]),
     readFinal(live.facade, "get_policy_kernel_hash", [live.target]),
+    readFinal(live.target, "proofpatch_release_mode"),
     readFinal(live.facade, "get_state_record", ["policy", live.target]),
   ]);
 
@@ -105,6 +107,7 @@ export async function getProofPatchV3State(): Promise<ProofPatchV3State> {
     currentCodeHash: text(currentCodeHashRaw),
     policyFingerprint: text(policyFingerprintRaw),
     policyKernelHash: text(policyKernelHashRaw),
+    releaseMode: text(releaseModeRaw),
     policy: parseRecord(policyRaw, "policy record"),
     release,
   };
