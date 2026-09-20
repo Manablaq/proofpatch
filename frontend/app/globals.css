@@ -489,6 +489,17 @@
   kbd { min-width:30px; padding:3px 5px; border:1px solid var(--line); border-bottom-color:var(--line-strong); border-radius:5px; background:var(--surface-soft); color:var(--faint); font:500 9px var(--font-mono),monospace; text-align:center; }
   .wallet-button { min-height:42px; display:inline-flex; align-items:center; gap:8px; padding:0 13px; border:1px solid var(--line); border-radius:11px; background:var(--ink); color:var(--bg); font-size:11px; font-weight:650; cursor:pointer; }
   .wallet-button:disabled { opacity:.6; cursor:progress; }
+  .wallet-button.owner-wallet {
+    border-color: rgba(35,169,137,.34);
+  }
+  .wallet-network-label {
+    padding-left: 8px;
+    border-left: 1px solid currentColor;
+    opacity: .56;
+    font: 600 8px var(--font-mono), monospace;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
 
   .app-content { width:min(1380px,100%); margin:0 auto; padding:36px 32px 90px; }
   .dashboard-hero { min-height:300px; display:flex; justify-content:space-between; align-items:center; gap:40px; padding:42px; border:1px solid var(--line); border-radius:22px; background:linear-gradient(135deg,var(--surface),var(--surface-soft)); overflow:hidden; position:relative; }
@@ -599,6 +610,10 @@
   }
 
   @media (max-width: 760px) {
+    .wallet-network-label {
+      display: none;
+    }
+
     .site-header { top:10px; width:calc(100% - 20px); height:58px; border-radius:15px; padding-left:12px; }
     .brand { font-size:16px; }
     .header-launch { padding:0 12px; }

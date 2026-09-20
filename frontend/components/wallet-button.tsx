@@ -9,36 +9,61 @@ function short(value: string) {
   return value ? `${value.slice(0, 6)}…${value.slice(-4)}` : "";
 }
 
-export function WalletButton() {
+export function WalletButton({
+  expectedOwner = PROOFPATCH.owner,
+  networkLabel,
+}: {
+  expectedOwner?: string;
+  networkLabel?: string;
+}) {
   const wallet = useWallet();
+
+  const ownerConnected =
+    Boolean(wallet.address) &&
+    wallet.address.toLowerCase() === expectedOwner.toLowerCase();
 
   async function connect() {
     try {
       const connected = await wallet.connect();
-      const ownerConnected =
-        connected.toLowerCase() === PROOFPATCH.owner.toLowerCase();
+
+      const isExpectedOwner =
+        connected.toLowerCase() === expectedOwner.toLowerCase();
 
       toast.success(
-        ownerConnected
+        isExpectedOwner
           ? "Registered owner wallet connected"
-          : "Wallet connected in read-only mode",
+          : "Wallet connected",
       );
     } catch (error) {
       const message =
         error instanceof Error && error.message
           ? error.message
           : "Wallet account connection failed";
+
       toast.error(message);
     }
   }
 
   return (
     <button
-      className={`wallet-button ${wallet.isOwner ? "owner-wallet" : ""}`}
+      type="button"
+      className={`wallet-button ${ownerConnected ? "owner-wallet" : ""}`}
       onClick={() => void connect()}
       disabled={wallet.connecting}
+      title={
+        wallet.address
+          ? `${wallet.address}${networkLabel ? ` · ${networkLabel}` : ""}`
+          : networkLabel
+            ? `Connect wallet for ${networkLabel}`
+            : "Connect wallet"
+      }
     >
-      {wallet.isOwner ? <CheckCircle2 size={16} /> : <Wallet size={16} />}
+      {ownerConnected ? (
+        <CheckCircle2 size={16} />
+      ) : (
+        <Wallet size={16} />
+      )}
+
       <span>
         {wallet.address
           ? short(wallet.address)
@@ -46,6 +71,12 @@ export function WalletButton() {
             ? "Connecting…"
             : "Connect wallet"}
       </span>
+
+      {networkLabel ? (
+        <small className="wallet-network-label">
+          {networkLabel}
+        </small>
+      ) : null}
     </button>
   );
 }

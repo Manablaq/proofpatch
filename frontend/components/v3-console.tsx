@@ -13,13 +13,14 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
   appealNativeTransaction,
-  connectBradburyWallet,
   getNativeAppealState,
   type NativeAppealState,
 } from "@/lib/genlayer";
 import { PROOFPATCH_V3 } from "@/lib/constants";
 import { useProofPatchV3State } from "@/lib/use-v3";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { WalletButton } from "@/components/wallet-button";
+import { useWallet } from "@/lib/wallet-context";
 
 function short(value: string, head = 12, tail = 10) {
   if (!value) return "—";
@@ -77,6 +78,7 @@ function Field({
 }
 
 export function V3Console() {
+  const wallet = useWallet();
   const state = useProofPatchV3State();
   const data = state.data;
   const error = state.error instanceof Error ? state.error.message : "";
@@ -133,7 +135,7 @@ export function V3Console() {
     setAppealBusy(true);
 
     try {
-      const address = await connectBradburyWallet();
+      const address = wallet.address || (await wallet.connect());
       await appealNativeTransaction(appealHash, address);
       toast.success("Appeal submitted. Re-reading consensus lifecycle.");
       setAppealState(await getNativeAppealState(appealHash));
@@ -284,6 +286,10 @@ export function V3Console() {
               <span>{state.isFetching ? "Reading…" : "Refresh"}</span>
             </button>
             <ThemeToggle />
+            <WalletButton
+              expectedOwner={PROOFPATCH_V3.owner}
+              networkLabel="Bradbury"
+            />
           </div>
         </header>
 
