@@ -2,6 +2,15 @@
 
 This is the canonical reviewer-facing evidence record for the repaired ProofPatch V3 Bradbury release.
 
+## Immutable rewarded-base comparison
+
+- Prior canonical/rewarded V3 base tag: `proofpatch-v3-bradbury-final-2026-09-20`
+- Prior base commit: `30a96ffef9853e505f54ad6d95bff51aea781046`
+- Submitted V3 head commit: `2da3fa0bc54da038ea7f38ac4100f197d03fa1b8`
+- Immutable comparison: https://github.com/Manablaq/proofpatch/compare/30a96ffef9853e505f54ad6d95bff51aea781046...2da3fa0bc54da038ea7f38ac4100f197d03fa1b8
+
+The range contains exactly two frontend commits and no contract-file changes: the V3 interface audit (`7a82facfad95a43982fc35051d3daa2aa718cc5f`) and the V3 wallet-connection correction (`2da3fa0bc54da038ea7f38ac4100f197d03fa1b8`).
+
 ## Canonical live release
 
 - Network: Bradbury Testnet

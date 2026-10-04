@@ -14,6 +14,16 @@ The repaired registration chain is finalized 5/5 and is the current reviewer tar
 
 See [V3_FINAL_REVIEWER_EVIDENCE.md](V3_FINAL_REVIEWER_EVIDENCE.md).
 
+## Immutable rewarded-base comparison
+
+For novelty, overlap, materiality, and tier review, the prior canonical/rewarded V3 base is the immutable tag `proofpatch-v3-bradbury-final-2026-09-20` at commit `30a96ffef9853e505f54ad6d95bff51aea781046`. The submitted V3 head is commit `2da3fa0bc54da038ea7f38ac4100f197d03fa1b8`.
+
+Permanent GitHub comparison:
+
+https://github.com/Manablaq/proofpatch/compare/30a96ffef9853e505f54ad6d95bff51aea781046...2da3fa0bc54da038ea7f38ac4100f197d03fa1b8
+
+The comparison contains exactly two commits (`7a82facfad95a43982fc35051d3daa2aa718cc5f` and `2da3fa0bc54da038ea7f38ac4100f197d03fa1b8`), changes 10 frontend files, and contains no contract-file changes. This is the immutable scope record for the V3 frontend materiality review.
+
 
 This is the reviewer-facing entry point for the completed ProofPatch release.
 
